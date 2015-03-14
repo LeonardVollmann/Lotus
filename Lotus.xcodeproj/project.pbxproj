@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D73890EB1AB4918D0009E28C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73890EA1AB4918D0009E28C /* main.cpp */; };
+		D73890F51AB4938E0009E28C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73890F41AB4938E0009E28C /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		D73890E71AB4918D0009E28C /* Lotus */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lotus; sourceTree = BUILT_PRODUCTS_DIR; };
-		D73890EA1AB4918D0009E28C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D73890F41AB4938E0009E28C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +41,7 @@
 		D73890DE1AB4918D0009E28C = {
 			isa = PBXGroup;
 			children = (
-				D73890E91AB4918D0009E28C /* Lotus */,
+				D73890F31AB493800009E28C /* src */,
 				D73890E81AB4918D0009E28C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +54,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D73890E91AB4918D0009E28C /* Lotus */ = {
+		D73890F31AB493800009E28C /* src */ = {
 			isa = PBXGroup;
 			children = (
-				D73890EA1AB4918D0009E28C /* main.cpp */,
+				D73890F41AB4938E0009E28C /* main.cpp */,
 			);
-			path = Lotus;
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +118,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D73890EB1AB4918D0009E28C /* main.cpp in Sources */,
+				D73890F51AB4938E0009E28C /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
