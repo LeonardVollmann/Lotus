@@ -14,6 +14,8 @@
 		D73891001AB499460009E28C /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73890FE1AB499460009E28C /* window.cpp */; };
 		D73BC0B21AB4BB6700B3EB8F /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73BC0B01AB4BB6700B3EB8F /* time.cpp */; };
 		D73BC0B51AB4BD4100B3EB8F /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73BC0B31AB4BD4100B3EB8F /* engine.cpp */; };
+		D73BC0B81AB4E00F00B3EB8F /* vertexarray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73BC0B61AB4E00F00B3EB8F /* vertexarray.cpp */; };
+		D73BC0BB1AB4E30200B3EB8F /* indexbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73BC0B91AB4E30200B3EB8F /* indexbuffer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +42,11 @@
 		D73BC0B11AB4BB6700B3EB8F /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
 		D73BC0B31AB4BD4100B3EB8F /* engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = engine.cpp; sourceTree = "<group>"; };
 		D73BC0B41AB4BD4100B3EB8F /* engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engine.h; sourceTree = "<group>"; };
+		D73BC0B61AB4E00F00B3EB8F /* vertexarray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vertexarray.cpp; sourceTree = "<group>"; };
+		D73BC0B71AB4E00F00B3EB8F /* vertexarray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vertexarray.h; sourceTree = "<group>"; };
+		D73BC0B91AB4E30200B3EB8F /* indexbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = indexbuffer.cpp; sourceTree = "<group>"; };
+		D73BC0BA1AB4E30200B3EB8F /* indexbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = indexbuffer.h; sourceTree = "<group>"; };
+		D73BC0BD1AB4E3CF00B3EB8F /* i_renderable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = i_renderable.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +95,11 @@
 		D73890FD1AB499380009E28C /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				D73BC0BD1AB4E3CF00B3EB8F /* i_renderable.h */,
+				D73BC0B91AB4E30200B3EB8F /* indexbuffer.cpp */,
+				D73BC0BA1AB4E30200B3EB8F /* indexbuffer.h */,
+				D73BC0B61AB4E00F00B3EB8F /* vertexarray.cpp */,
+				D73BC0B71AB4E00F00B3EB8F /* vertexarray.h */,
 				D73890FE1AB499460009E28C /* window.cpp */,
 				D73890FF1AB499460009E28C /* window.h */,
 			);
@@ -163,6 +175,8 @@
 			files = (
 				D73890F51AB4938E0009E28C /* main.cpp in Sources */,
 				D73BC0B51AB4BD4100B3EB8F /* engine.cpp in Sources */,
+				D73BC0BB1AB4E30200B3EB8F /* indexbuffer.cpp in Sources */,
+				D73BC0B81AB4E00F00B3EB8F /* vertexarray.cpp in Sources */,
 				D73BC0B21AB4BB6700B3EB8F /* time.cpp in Sources */,
 				D73891001AB499460009E28C /* window.cpp in Sources */,
 			);
