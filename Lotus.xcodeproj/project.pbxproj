@@ -12,6 +12,8 @@
 		D73890FB1AB495B70009E28C /* libglfw3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D73890FA1AB495B70009E28C /* libglfw3.3.0.dylib */; };
 		D73890FC1AB495D50009E28C /* libGLEW.1.11.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D73890F81AB495130009E28C /* libGLEW.1.11.0.dylib */; };
 		D73891001AB499460009E28C /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73890FE1AB499460009E28C /* window.cpp */; };
+		D73BC0B21AB4BB6700B3EB8F /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73BC0B01AB4BB6700B3EB8F /* time.cpp */; };
+		D73BC0B51AB4BD4100B3EB8F /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73BC0B31AB4BD4100B3EB8F /* engine.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +36,10 @@
 		D73890FA1AB495B70009E28C /* libglfw3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.0.dylib; path = ../../../../../../usr/local/Cellar/glfw3/3.0.4/lib/libglfw3.3.0.dylib; sourceTree = "<group>"; };
 		D73890FE1AB499460009E28C /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		D73890FF1AB499460009E28C /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
+		D73BC0B01AB4BB6700B3EB8F /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
+		D73BC0B11AB4BB6700B3EB8F /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
+		D73BC0B31AB4BD4100B3EB8F /* engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = engine.cpp; sourceTree = "<group>"; };
+		D73BC0B41AB4BD4100B3EB8F /* engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engine.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,7 @@
 		D73890F31AB493800009E28C /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D73BC0A91AB4A93600B3EB8F /* core */,
 				D73890FD1AB499380009E28C /* graphics */,
 				D73890F41AB4938E0009E28C /* main.cpp */,
 			);
@@ -85,6 +92,17 @@
 				D73890FF1AB499460009E28C /* window.h */,
 			);
 			path = graphics;
+			sourceTree = "<group>";
+		};
+		D73BC0A91AB4A93600B3EB8F /* core */ = {
+			isa = PBXGroup;
+			children = (
+				D73BC0B01AB4BB6700B3EB8F /* time.cpp */,
+				D73BC0B11AB4BB6700B3EB8F /* time.h */,
+				D73BC0B31AB4BD4100B3EB8F /* engine.cpp */,
+				D73BC0B41AB4BD4100B3EB8F /* engine.h */,
+			);
+			path = core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +162,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D73890F51AB4938E0009E28C /* main.cpp in Sources */,
+				D73BC0B51AB4BD4100B3EB8F /* engine.cpp in Sources */,
+				D73BC0B21AB4BB6700B3EB8F /* time.cpp in Sources */,
 				D73891001AB499460009E28C /* window.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

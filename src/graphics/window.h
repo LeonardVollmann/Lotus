@@ -16,7 +16,7 @@ namespace lotus { namespace graphics {
         Window(int width, int height, const char *title);
         virtual ~Window();
         
-        bool closed();
+        bool isClosed();
         
         void clear();
         void update();

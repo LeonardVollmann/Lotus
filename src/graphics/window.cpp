@@ -22,7 +22,7 @@ namespace lotus { namespace graphics {
         glfwTerminate();
     }
     
-    bool Window::closed()
+    bool Window::isClosed()
     {
         return glfwWindowShouldClose(m_window) == 1;
     }
