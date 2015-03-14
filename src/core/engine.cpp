@@ -10,7 +10,9 @@ namespace lotus {
         m_frameTime(1.0 / (double) fps),
         m_window(width, height, title),
         m_running(false)
-    {}
+    {
+        initGL();
+    }
 
     Engine::~Engine()
     {}
@@ -79,6 +81,15 @@ namespace lotus {
         m_window.clear();
         
         m_window.update();
+    }
+    
+    void Engine::initGL()
+    {
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glEnable(GL_CULL_FACE);
+        glFrontFace(GL_CW);
+        glCullFace(GL_BACK);
+        glEnable(GL_DEPTH_CLAMP);
     }
     
 }

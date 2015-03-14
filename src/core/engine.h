@@ -21,6 +21,7 @@ namespace lotus {
     private:
         void update(float delta);
         void render();
+        void initGL();
     };
     
 }

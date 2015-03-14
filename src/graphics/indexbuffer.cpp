@@ -15,19 +15,19 @@ namespace lotus { namespace graphics {
     IndexBuffer::~IndexBuffer()
     {}
     
-    void IndexBuffer::render()
+    void IndexBuffer::render() const
     {
         bind();
         glDrawElements(GL_TRIANGLES, m_icount, GL_UNSIGNED_SHORT, nullptr);
         unbind();
     }
     
-    void IndexBuffer::bind()
+    void IndexBuffer::bind() const
     {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
     }
     
-    void IndexBuffer::unbind()
+    void IndexBuffer::unbind() const
     {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }

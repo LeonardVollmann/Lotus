@@ -1,7 +1,7 @@
 #ifndef LOTUS_INDEXBUFFER_H
 #define LOTUS_INDEXBUFFER_H
 
-#include "i_renderable.h"
+#include "irenderable.h"
 
 #include <GL/glew.h>
 
@@ -18,9 +18,9 @@ namespace lotus { namespace graphics {
         IndexBuffer(GLushort *indices, GLsizei icount);
         virtual ~IndexBuffer();
         
-        void render();
-        void bind();
-        void unbind();
+        virtual void render() const override;
+        void bind() const;
+        void unbind() const;
     private:
         void compile(GLushort *indices, GLsizei icount);
     };

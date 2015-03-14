@@ -53,17 +53,16 @@ namespace lotus { namespace graphics {
             return false;
         }
         
-        if (!glewInit())
-        {
-            std::cout << "ERROR: Failed to initialize GLEW" << std::endl;
-            return false;
-        }
-        glewExperimental = GL_TRUE;
-        
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwMakeContextCurrent(m_window);
+        
+        glewExperimental = GL_TRUE;
+        GLenum status = glewInit();
+        if (status != GLEW_OK) {
+            std::cerr << "ERROR: Failed to initialize GLEW: status = " << status << std::endl;
+        }
         
         glfwSetWindowSizeCallback(m_window, resizeWindow);
         
