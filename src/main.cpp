@@ -1,5 +1,6 @@
 #include "core/engine.h"
 #include "maths/vector.h"
+#include "maths/matrix.h"
 
 #include <iostream>
 
