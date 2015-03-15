@@ -5,149 +5,43 @@
 
 namespace lotus { namespace maths {
     
-    template<typename T, unsigned int D>
+    template<typename T, uint8_t D>
     class Vector
     {
     private:
         T values[D];
     public:
-        inline T operator[](unsigned int i) const { return values[i]; }
-        inline T &operator[](unsigned int i) { return values[i]; }
+        inline T operator[](uint8_t i) const { return values[i]; }
+        inline T &operator[](uint8_t i) { return values[i]; }
         
-        inline bool operator==(const Vector<T, D> &r) const
-        {
-            for (unsigned int i = 0; i < D; i++) {
-                if ((*this)[i] != r[i]) {
-                    return false;
-                }
-            }
-            return true;
-        }
-        
+        bool operator==(const Vector<T, D> &r) const;
         inline bool operator!=(const Vector<T, D> &r) const { return !this->operator==(r); }
         
-        inline Vector<T, D> operator+(const Vector<T, D> &r) const
-        {
-            Vector<T, D> result;
-            for (unsigned int i = 0; i < D; i++) {
-                result[i] = (*this)[i] + r[i];
-            }
-            return result;
-        }
+        Vector<T, D> operator+(const Vector<T, D> &r) const;
+        Vector<T, D> operator-(const Vector<T, D> &r) const;
+        Vector<T, D> operator*(const T &r) const;
+        Vector<T, D> operator/(const T &r) const;
         
-        inline Vector<T, D> operator-(const Vector<T, D> &r) const
-        {
-            Vector<T, D> result;
-            for (unsigned int i = 0; i < D; i++) {
-                result[i] = (*this)[i] - r[i];
-            }
-            return result;
-        }
+        Vector<T, D> operator+=(const Vector<T, D> &r);
+        Vector<T, D> operator-=(const Vector<T, D> &r);
+        Vector<T, D> operator*=(const T &r);
+        Vector<T, D> operator/=(const T &r);
         
-        inline Vector<T, D> operator*(const T &r) const
-        {
-            Vector<T, D> result;
-            for (unsigned int i = 0; i < D; i++) {
-                result[i] = (*this)[i] * r;
-            }
-            return result;
-        }
+        T dot(const Vector<T, D> &r) const;
+        Vector<T, D> abs() const;
+        Vector<T, D> lerp(const Vector<T, D> &r, const T &beta) const;
         
-        inline Vector<T, D> operator/(const T &r) const
-        {
-            Vector<T, D> result;
-            for (unsigned int i = 0; i < D; i++) {
-                result[i] = (*this)[i] / r;
-            }
-            return result;
-        }
-        
-        inline Vector<T, D> operator+=(const Vector<T, D> &r)
-        {
-            for (unsigned int i = 0; i < D; i++) {
-                (*this)[i] += r[i];
-            }
-            return *this;
-        }
-        
-        inline Vector<T, D> operator-=(const Vector<T, D> &r)
-        {
-            for (unsigned int i = 0; i < D; i++) {
-                (*this)[i] -= r[i];
-            }
-            return *this;
-        }
-        
-        inline Vector<T, D> operator*=(const T &r)
-        {
-            for (unsigned int i = 0; i < D; i++) {
-                (*this)[i] *= r;
-            }
-            return *this;
-        }
-        
-        inline Vector<T, D> operator/=(const T &r)
-        {
-            for (unsigned int i = 0; i < D; i++) {
-                (*this)[i] /= r;
-            }
-            return *this;
-        }
-        
-        inline T dot(const Vector<T, D> &r) const
-        {
-            T result = 0;
-            for (unsigned int i = 0; i < D; i++) {
-                result += (*this)[i] * r[i];
-            }
-            return result;
-        }
-        
-        inline Vector<T, D> abs() const
-        {
-            Vector<T, D> result;
-            for (unsigned int i = 0; i < D; i++)
-            {
-                result[i] = (T)fabs((*this)[i]);
-            }
-            return result;
-        }
-        
-        inline T lengthSquared() const { return this->dot((*this)); }
-        
-        inline T length() const { return sqrt(this->lengthSquared()); }
-        
-        inline Vector<T, D> normalized() const
-        {
-            return *this / this->length();
-        }
-        
-        inline Vector<T, D> lerp(const Vector<T, D> &r, const T &beta) const
-        {
-            Vector<T, D> result;
-            for (unsigned int i = 0; i < D; i++) {
-                result[i] = (1 - beta) * (*this)[i] + beta * r[i];
-            }
-            return result;
-        }
+        inline T lengthSquared() const { return dot((*this)); }
+        inline T length() const { return sqrt(lengthSquared()); }
+        inline Vector<T, D> normalized() const { return *this / length(); }
     };
     
     template<typename T>
     class Vector2 : public Vector<T, 2>
     {
-        Vector2<T>()
-        {}
-        
-        Vector2<T>(const Vector2<T> &r)
-        {
-             (*this) = r;
-        }
-        
-        Vector2<T>(const T &x, const T &y)
-        {
-            (*this)[0] = x;
-            (*this)[1] = y;
-        }
+        Vector2<T>() {}
+        Vector2<T>(const Vector2<T> &r);
+        Vector2<T>(const T &x, const T &y);
         
         inline T getX() const { return (*this)[0]; }
         inline T getY() const { return (*this)[1]; }
@@ -167,18 +61,10 @@ namespace lotus { namespace maths {
     {
     public:
         Vector3<T>() {}
+        Vector3<T>(const Vector3<T> &r);
+        Vector3<T>(const T &x, const T &y, const T& z);
         
-        Vector3<T>(const Vector3<T> &r)
-        {
-            (*this) = r;
-        }
-        
-        Vector3<T>(const T &x, const T &y, const T& z)
-        {
-            (*this)[0] = x;
-            (*this)[1] = y;
-            (*this)[2] = z;
-        }
+        Vector3<T> cross(const Vector3<T> &r);
         
         inline T getX() const { return ((*this))[0]; }
         inline T getY() const { return ((*this))[1]; }
@@ -194,17 +80,6 @@ namespace lotus { namespace maths {
             setY(y);
             setZ(z);
         }
-        
-        Vector3<T> cross(const Vector3<T> &r)
-        {
-            Vector3<T> result;
-            
-            result[0] = ((*this)[1] * r[2]) - (((*this))[2] * r[1]);
-            result[1] = ((*this)[2] * r[0]) - (((*this))[0] * r[2]);
-            result[2] = ((*this)[0] * r[1]) - (((*this))[1] * r[0]);
-            
-            return result;
-        }
     };
     
     template <typename T>
@@ -212,19 +87,8 @@ namespace lotus { namespace maths {
     {
     public:
         Vector4<T>() {}
-        
-        Vector4<T>(const Vector4<T> &r)
-        {
-            (*this) = r;
-        }
-        
-        Vector4<T>(const T &x, const T &y, const T &z, const T &w)
-        {
-            (*this)[0] = x;
-            (*this)[1] = y;
-            (*this)[2] = z;
-            (*this)[3] = w;
-        }
+        Vector4<T>(const Vector4<T> &r);
+        Vector4<T>(const T &x, const T &y, const T &z, const T &w);
         
         inline T getX() const { return (*this)[0]; }
         inline T getY() const { return (*this)[1]; }
@@ -279,5 +143,7 @@ namespace lotus { namespace maths {
     typedef Vector4<uint64_t> vec4ui64;
     
 } }
+
+#include "vector.inl"
 
 #endif

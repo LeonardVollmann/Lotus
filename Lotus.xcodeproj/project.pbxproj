@@ -18,6 +18,8 @@
 		D73BC0BB1AB4E30200B3EB8F /* indexbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73BC0B91AB4E30200B3EB8F /* indexbuffer.cpp */; };
 		D73BC0CA1AB4EBCE00B3EB8F /* primitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73BC0C91AB4EBCE00B3EB8F /* primitive.cpp */; };
 		D73BC0CD1AB4ED2200B3EB8F /* rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73BC0CB1AB4ED2200B3EB8F /* rectangle.cpp */; };
+		D73BC0DE1AB58B7800B3EB8F /* vector.inl in Sources */ = {isa = PBXBuildFile; fileRef = D73BC0DD1AB58B7800B3EB8F /* vector.inl */; };
+		D73BC0E01AB58B8200B3EB8F /* matrix.inl in Sources */ = {isa = PBXBuildFile; fileRef = D73BC0DF1AB58B8200B3EB8F /* matrix.inl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +57,9 @@
 		D73BC0CC1AB4ED2200B3EB8F /* rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rectangle.h; sourceTree = "<group>"; };
 		D73BC0D31AB4F4CE00B3EB8F /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
 		D73BC0D81AB578B000B3EB8F /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		D73BC0DD1AB58B7800B3EB8F /* vector.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vector.inl; sourceTree = "<group>"; };
+		D73BC0DF1AB58B8200B3EB8F /* matrix.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = matrix.inl; sourceTree = "<group>"; };
+		D73BC0E21AB5A47700B3EB8F /* math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,8 +146,11 @@
 		D73BC0D11AB4F4CE00B3EB8F /* maths */ = {
 			isa = PBXGroup;
 			children = (
-				D73BC0D31AB4F4CE00B3EB8F /* vector.h */,
+				D73BC0DF1AB58B8200B3EB8F /* matrix.inl */,
 				D73BC0D81AB578B000B3EB8F /* matrix.h */,
+				D73BC0E21AB5A47700B3EB8F /* math.h */,
+				D73BC0DD1AB58B7800B3EB8F /* vector.inl */,
+				D73BC0D31AB4F4CE00B3EB8F /* vector.h */,
 			);
 			path = maths;
 			sourceTree = "<group>";
@@ -206,8 +214,10 @@
 				D73890F51AB4938E0009E28C /* main.cpp in Sources */,
 				D73BC0B51AB4BD4100B3EB8F /* engine.cpp in Sources */,
 				D73BC0CA1AB4EBCE00B3EB8F /* primitive.cpp in Sources */,
+				D73BC0DE1AB58B7800B3EB8F /* vector.inl in Sources */,
 				D73BC0CD1AB4ED2200B3EB8F /* rectangle.cpp in Sources */,
 				D73BC0BB1AB4E30200B3EB8F /* indexbuffer.cpp in Sources */,
+				D73BC0E01AB58B8200B3EB8F /* matrix.inl in Sources */,
 				D73BC0B81AB4E00F00B3EB8F /* vertexarray.cpp in Sources */,
 				D73BC0B21AB4BB6700B3EB8F /* time.cpp in Sources */,
 				D73891001AB499460009E28C /* window.cpp in Sources */,
