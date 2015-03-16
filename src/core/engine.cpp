@@ -73,12 +73,14 @@ namespace lotus {
     
     void Engine::update(float delta)
     {
-        
+        m_game->update(delta);
     }
     
     void Engine::render()
     {
         m_window.clear();
+        
+        m_game->render();
         
         m_window.update();
     }

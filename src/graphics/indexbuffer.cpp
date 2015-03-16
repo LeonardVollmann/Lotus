@@ -9,7 +9,7 @@ namespace lotus { namespace graphics {
         m_indices(indices),
         m_icount(icount)
     {
-        compile(indices, icount);
+        compile();
     }
     
     IndexBuffer::~IndexBuffer()
@@ -32,11 +32,11 @@ namespace lotus { namespace graphics {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
     
-    void IndexBuffer::compile(GLushort *indices, GLsizei icount)
+    void IndexBuffer::compile()
     {
         glGenBuffers(1, &m_ibo);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, icount * sizeof(GLushort), indices, GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_icount * sizeof(GLushort), m_indices, GL_STATIC_DRAW);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
     

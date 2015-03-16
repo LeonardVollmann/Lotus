@@ -3,9 +3,9 @@
 #include <iostream>
 
 namespace lotus { namespace graphics {
-    
-    void resizeWindow(GLFWwindow *window, int width, int height);
 
+    void callback_resize(GLFWwindow *window, int width, int height);
+    
     Window::Window(int width, int height, const char *title) :
         m_width(width),
         m_height(height),
@@ -46,17 +46,20 @@ namespace lotus { namespace graphics {
             return false;
         }
         
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        
         m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr, nullptr);
         if (!m_window)
         {
             std::cout << "ERROR: Failed to create window" << std::endl;
             return false;
         }
-        
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    
         glfwMakeContextCurrent(m_window);
+        glfwSetWindowUserPointer(m_window, this);
         
         glewExperimental = GL_TRUE;
         GLenum status = glewInit();
@@ -64,14 +67,16 @@ namespace lotus { namespace graphics {
             std::cerr << "ERROR: Failed to initialize GLEW: status = " << status << std::endl;
         }
         
-        glfwSetWindowSizeCallback(m_window, resizeWindow);
+        glfwSetWindowSizeCallback(m_window, callback_resize);
         
         return true;
     }
     
-    void resizeWindow(GLFWwindow *window, int width, int height)
+    void callback_resize(GLFWwindow *window, int width, int height)
     {
-        glViewport(0, 0, width, height);
+        Window *_window = (Window*) glfwGetWindowUserPointer(window);
+        _window->setWidth(width);
+        _window->setHeight(height);
     }
 
 } }

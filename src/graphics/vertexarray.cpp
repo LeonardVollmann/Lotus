@@ -7,9 +7,9 @@ namespace lotus { namespace graphics {
     
     VertexArray::VertexArray(GLfloat *vertices, GLsizei vcount) :
         m_vertices(vertices),
-        m_vcount(vcount)
+        m_vcount(vcount * 3)
     {
-        compile(vertices, vcount);
+        compile();
     }
     
     VertexArray::~VertexArray()
@@ -25,14 +25,14 @@ namespace lotus { namespace graphics {
         glBindVertexArray(0);
     }
     
-    void VertexArray::compile(GLfloat *vertices, GLsizei vcount)
+    void VertexArray::compile()
     {
         glGenVertexArrays(1, &m_vao);
         glBindVertexArray(m_vao);
         
         glGenBuffers(1, &m_vbo);
         glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-        glBufferData(GL_ARRAY_BUFFER, vcount * sizeof(GLfloat), vertices, GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, m_vcount * sizeof(GLfloat), m_vertices, GL_STATIC_DRAW);
         
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);

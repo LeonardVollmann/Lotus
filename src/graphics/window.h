@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 
 namespace lotus { namespace graphics {
-   
+    
     class Window
     {
     private:
@@ -20,6 +20,9 @@ namespace lotus { namespace graphics {
         
         void clear();
         void update();
+        
+        inline void setWidth(int width) { m_width = width; }
+        inline void setHeight(int height) { m_height = height; }
     private:
         bool init();
     };

@@ -22,7 +22,7 @@ namespace lotus { namespace graphics {
         void bind() const;
         void unbind() const;
     private:
-        void compile(GLushort *indices, GLsizei icount);
+        void compile();
     };
     
 } }

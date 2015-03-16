@@ -19,7 +19,7 @@ namespace lotus { namespace graphics {
         void bind();
         void unbind();
     private:
-        void compile(GLfloat *vertices, GLsizei vcount);
+        void compile();
     };
     
 } }
