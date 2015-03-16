@@ -21,8 +21,8 @@
 		D73BC0E91AB5B75400B3EB8F /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D73BC0E71AB5B75400B3EB8F /* shader.cpp */; };
 		D73BC0F11AB5C39700B3EB8F /* shader.vs in Copy Files */ = {isa = PBXBuildFile; fileRef = D73BC0EF1AB5C1DD00B3EB8F /* shader.vs */; };
 		D73BC0F21AB5C39700B3EB8F /* shader.fs in Copy Files */ = {isa = PBXBuildFile; fileRef = D73BC0F01AB5C1E800B3EB8F /* shader.fs */; };
-		D73BFFCB1AB629280053918B /* libGLEW.1.12.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D73BC1191AB628B200B3EB8F /* libGLEW.1.12.0.dylib */; };
-		D73BFFCD1AB629380053918B /* libglfw3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D73BFFCC1AB629380053918B /* libglfw3.3.0.dylib */; };
+		D73BFFCF1AB75F4D0053918B /* libglfw3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D73BFFCE1AB75F4D0053918B /* libglfw3.3.0.dylib */; };
+		D73BFFD31AB75F8B0053918B /* libGLEW.1.11.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D73BFFD21AB75F8B0053918B /* libGLEW.1.11.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,8 +69,9 @@
 		D73BC0EB1AB5BE6900B3EB8F /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = src/core/game.h; sourceTree = SOURCE_ROOT; };
 		D73BC0EF1AB5C1DD00B3EB8F /* shader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vs; sourceTree = "<group>"; };
 		D73BC0F01AB5C1E800B3EB8F /* shader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.fs; sourceTree = "<group>"; };
-		D73BC1191AB628B200B3EB8F /* libGLEW.1.12.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.12.0.dylib; path = ../../../../../../usr/lib/libGLEW.1.12.0.dylib; sourceTree = "<group>"; };
-		D73BFFCC1AB629380053918B /* libglfw3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.0.dylib; path = ../../../../../../usr/local/Cellar/glfw3/3.0.4/lib/libglfw3.3.0.dylib; sourceTree = "<group>"; };
+		D73BFFCE1AB75F4D0053918B /* libglfw3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.0.dylib; path = Dependencies/glfw3/3.0.4/lib/libglfw3.3.0.dylib; sourceTree = "<group>"; };
+		D73BFFD01AB75F6A0053918B /* libGLEWmx.1.11.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEWmx.1.11.0.dylib; path = Dependencies/glew/1.11.0/lib/libGLEWmx.1.11.0.dylib; sourceTree = "<group>"; };
+		D73BFFD21AB75F8B0053918B /* libGLEW.1.11.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.11.0.dylib; path = Dependencies/glew/1.11.0/lib/libGLEW.1.11.0.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +79,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D73BFFCD1AB629380053918B /* libglfw3.3.0.dylib in Frameworks */,
-				D73BFFCB1AB629280053918B /* libGLEW.1.12.0.dylib in Frameworks */,
+				D73BFFD31AB75F8B0053918B /* libGLEW.1.11.0.dylib in Frameworks */,
+				D73BFFCF1AB75F4D0053918B /* libglfw3.3.0.dylib in Frameworks */,
 				D73890F71AB494FE0009E28C /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,8 +91,9 @@
 		D73890DE1AB4918D0009E28C = {
 			isa = PBXGroup;
 			children = (
-				D73BFFCC1AB629380053918B /* libglfw3.3.0.dylib */,
-				D73BC1191AB628B200B3EB8F /* libGLEW.1.12.0.dylib */,
+				D73BFFD21AB75F8B0053918B /* libGLEW.1.11.0.dylib */,
+				D73BFFD01AB75F6A0053918B /* libGLEWmx.1.11.0.dylib */,
+				D73BFFCE1AB75F4D0053918B /* libglfw3.3.0.dylib */,
 				D73890F61AB494FE0009E28C /* OpenGL.framework */,
 				D73BC0ED1AB5C12D00B3EB8F /* res */,
 				D73890F31AB493800009E28C /* src */,
@@ -293,8 +295,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = Dependencies/include;
-				LIBRARY_SEARCH_PATHS = Dependencies/lib;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -330,8 +332,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = Dependencies/include;
-				LIBRARY_SEARCH_PATHS = Dependencies/lib;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
@@ -341,12 +343,13 @@
 		D73890EF1AB4918D0009E28C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Dependencies/glfw3/3.0.4/include",
+					"$(PROJECT_DIR)/Dependencies/glew/1.11.0/include",
+				);
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Dependencies/glfw/lib",
-					/usr/local/Cellar/glfw3/3.0.4/lib,
-					/usr/local/Cellar/glew/1.11.0/lib,
+					"$(PROJECT_DIR)/Dependencies/glfw3/3.0.4/lib",
+					"$(PROJECT_DIR)/Dependencies/glew/1.11.0/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -355,12 +358,13 @@
 		D73890F01AB4918D0009E28C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Dependencies/glfw3/3.0.4/include",
+					"$(PROJECT_DIR)/Dependencies/glew/1.11.0/include",
+				);
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Dependencies/glfw/lib",
-					/usr/local/Cellar/glfw3/3.0.4/lib,
-					/usr/local/Cellar/glew/1.11.0/lib,
+					"$(PROJECT_DIR)/Dependencies/glfw3/3.0.4/lib",
+					"$(PROJECT_DIR)/Dependencies/glew/1.11.0/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
