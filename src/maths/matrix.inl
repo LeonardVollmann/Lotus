@@ -130,11 +130,63 @@ namespace lotus { namespace maths {
         (*this)[1][1] = cosAngle + ysqr * (1 - cosAngle);
         (*this)[1][2] = v.getY() * v.getZ() * (1 - cosAngle) - v.getX() * sinAngle;
         
-        (*this)[2][0]  = v.getZ() * v.getX() * (1 - cosAngle) - v.getY() * sinAngle;
+        (*this)[2][0] = v.getZ() * v.getX() * (1 - cosAngle) - v.getY() * sinAngle;
         (*this)[2][1] = v.getZ() * v.getY() * (1 - cosAngle) + v.getX() * sinAngle;
         (*this)[2][2] = cosAngle + zsqr * (1 - cosAngle);
         
         return *this;
+    }
+    
+    template<typename T, uint8_t D>
+    Matrix<T, 4> Matrix<T, D>::initOrthographicProjection(const T &left, const T &right,
+                                                          const T &top, const T &bottom,
+                                                          const T &near, const T &far)
+    {
+        (*this)[0][0] = 2 / (right - left);
+        (*this)[0][1] = 0;
+        (*this)[0][2] = 0;
+        (*this)[0][3] = -(right + left) / (right - left);
+        
+        (*this)[1][0] = 0;
+        (*this)[1][1] = 2 / (top - bottom);
+        (*this)[1][2] = 0;
+        (*this)[1][3] = -(top + bottom) / (top - bottom);
+        
+        (*this)[2][0] = 0;
+        (*this)[2][1] = 0;
+        (*this)[2][2] = -2 / (far - near);
+        (*this)[2][3] = -(far + near) / (far - near);
+        
+        (*this)[3][0] = 0;
+        (*this)[3][1] = 0;
+        (*this)[3][2] = 0;
+        (*this)[3][3] = 1;
+    }
+    
+    template<typename T, uint8_t D>
+    Matrix<T, 4> Matrix<T, D>::initPerspectiveProjection(const T &left, const T &right,
+                                                         const T &top, const T &bottom,
+                                                         const T &near, const T &far)
+    {
+        (*this)[0][0] = 2 * near / (right - left);
+        (*this)[0][1] = 0;
+        (*this)[0][2] = (right + left) / (right - left);
+        (*this)[0][3] = 0;
+        
+        (*this)[1][0] = 0;
+        (*this)[1][1] = 2 * near / (top - bottom);
+        (*this)[1][2] = (top + bottom) / (top - bottom);
+        (*this)[1][3] = 0;
+        
+        (*this)[2][0] = 0;
+        (*this)[2][1] = 0;
+        (*this)[2][2] = -(far + near) / (far - near);
+        (*this)[2][3] = -2 * far * near / (far - near);
+        
+        (*this)[3][0] = 0;
+        (*this)[3][1] = 0;
+        (*this)[3][2] = -1;
+        (*this)[3][3] = 0;
     }
     
     template<typename T, uint8_t D>

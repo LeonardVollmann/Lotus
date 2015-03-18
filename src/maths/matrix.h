@@ -31,6 +31,14 @@ namespace lotus { namespace maths {
         Matrix<T, D> initScale(const Vector<T, D - 1> &r);
         Matrix<T, D> initRotation(const Vector3<T> &v, float angle);
         
+        Matrix<T, 4> initOrthographicProjection(const T &left, const T &right,
+                                                const T &top, const T &bottom,
+                                                const T &near, const T &far);
+        
+        Matrix<T, 4> initPerspectiveProjection(const T &left, const T &right,
+                                               const T &top, const T &bottom,
+                                               const T &near, const T &far);
+        
         Vector<T, D> getRow(uint8_t row) const;
         Vector<T, D> getCol(uint8_t col) const;
         

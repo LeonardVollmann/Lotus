@@ -70,7 +70,6 @@
 		D73BC0EF1AB5C1DD00B3EB8F /* shader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vs; sourceTree = "<group>"; };
 		D73BC0F01AB5C1E800B3EB8F /* shader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.fs; sourceTree = "<group>"; };
 		D73BFFCE1AB75F4D0053918B /* libglfw3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.0.dylib; path = Dependencies/glfw3/3.0.4/lib/libglfw3.3.0.dylib; sourceTree = "<group>"; };
-		D73BFFD01AB75F6A0053918B /* libGLEWmx.1.11.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEWmx.1.11.0.dylib; path = Dependencies/glew/1.11.0/lib/libGLEWmx.1.11.0.dylib; sourceTree = "<group>"; };
 		D73BFFD21AB75F8B0053918B /* libGLEW.1.11.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.11.0.dylib; path = Dependencies/glew/1.11.0/lib/libGLEW.1.11.0.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				D73BFFD21AB75F8B0053918B /* libGLEW.1.11.0.dylib */,
-				D73BFFD01AB75F6A0053918B /* libGLEWmx.1.11.0.dylib */,
 				D73BFFCE1AB75F4D0053918B /* libglfw3.3.0.dylib */,
 				D73890F61AB494FE0009E28C /* OpenGL.framework */,
 				D73BC0ED1AB5C12D00B3EB8F /* res */,
