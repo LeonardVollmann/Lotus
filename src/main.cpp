@@ -4,7 +4,18 @@
 
 int main()
 {
-	std::cout << "Hello World!" << std::endl;
+	using namespace lotus;
+	using namespace lotus::maths;
+	// using namespace lotus::graphics;
+
+	// Window window(800, 600, "Lotus");
+
+	// while (!window.isClosed())
+	// {
+	// 	window.clear();
+
+	// 	window.update();
+	// }
 
 	return 0;
 }

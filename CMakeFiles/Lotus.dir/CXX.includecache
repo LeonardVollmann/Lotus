@@ -12,6 +12,20 @@ iostream
 maths/maths.hpp
 /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/maths.hpp
 
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.cpp
+mat4.hpp
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.hpp
+maths_func.hpp
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/maths_func.hpp
+cmath
+-
+
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.hpp
+vec3.hpp
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.hpp
+vec4.hpp
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.hpp
+
 /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/maths.hpp
 vec2.hpp
 /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.hpp
@@ -19,13 +33,37 @@ vec3.hpp
 /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.hpp
 vec4.hpp
 /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.hpp
+mat4.hpp
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.hpp
+
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/maths_func.hpp
+cmath
+-
+
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.cpp
+vec2.hpp
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.hpp
+cmath
+-
 
 /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.hpp
 iostream
 -
 
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.cpp
+vec3.hpp
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.hpp
+cmath
+-
+
 /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.hpp
 iostream
+-
+
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.cpp
+vec4.hpp
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.hpp
+cmath
 -
 
 /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.hpp

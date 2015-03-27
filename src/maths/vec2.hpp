@@ -27,8 +27,8 @@ namespace lotus { namespace maths {
 		friend vec2 operator*(const vec2 &left, const vec2 &right);
 		friend vec2 operator/(const vec2 &left, const vec2 &right);
 
-		bool operator==(const vec2 &other);
-		bool operator!=(const vec2 &other);
+		friend bool operator==(const vec2 &left, const vec2 &right);
+		friend bool operator!=(const vec2 &left, const vec2 &right);
 
 		vec2 &operator+=(const vec2 &other);
 		vec2 &operator-=(const vec2 &other);

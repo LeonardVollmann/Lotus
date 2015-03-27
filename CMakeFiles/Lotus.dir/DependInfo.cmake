@@ -5,6 +5,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/Leonard/Documents/Programming/C++/Lotus/src/main.cpp" "/Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles/Lotus.dir/src/main.cpp.o"
+  "/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.cpp" "/Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o"
+  "/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.cpp" "/Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o"
+  "/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.cpp" "/Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o"
+  "/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.cpp" "/Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

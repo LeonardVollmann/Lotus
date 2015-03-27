@@ -1,4 +1,7 @@
-#include "mat4.h"
+#include "mat4.hpp"
+#include "maths_func.hpp"
+
+#include <cmath>
 
 namespace lotus { namespace maths {
 

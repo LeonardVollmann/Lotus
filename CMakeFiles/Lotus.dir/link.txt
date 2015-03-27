@@ -1,1 +1,1 @@
-/usr/bin/c++   -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/Lotus.dir/src/main.cpp.o  -o Lotus  /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw3.dylib 
+/usr/bin/c++   -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/Lotus.dir/src/main.cpp.o CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o  -o Lotus  /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw3.dylib 

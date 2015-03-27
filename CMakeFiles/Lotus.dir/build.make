@@ -72,14 +72,114 @@ CMakeFiles/Lotus.dir/src/main.cpp.o.provides: CMakeFiles/Lotus.dir/src/main.cpp.
 
 CMakeFiles/Lotus.dir/src/main.cpp.o.provides.build: CMakeFiles/Lotus.dir/src/main.cpp.o
 
+CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o: CMakeFiles/Lotus.dir/flags.make
+CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o: src/maths/mat4.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.cpp
+
+CMakeFiles/Lotus.dir/src/maths/mat4.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lotus.dir/src/maths/mat4.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.cpp > CMakeFiles/Lotus.dir/src/maths/mat4.cpp.i
+
+CMakeFiles/Lotus.dir/src/maths/mat4.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lotus.dir/src/maths/mat4.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.cpp -o CMakeFiles/Lotus.dir/src/maths/mat4.cpp.s
+
+CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o.requires:
+.PHONY : CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o.requires
+
+CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o.provides: CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o.provides.build
+.PHONY : CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o.provides
+
+CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o.provides.build: CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o
+
+CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o: CMakeFiles/Lotus.dir/flags.make
+CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o: src/maths/vec2.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.cpp
+
+CMakeFiles/Lotus.dir/src/maths/vec2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lotus.dir/src/maths/vec2.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.cpp > CMakeFiles/Lotus.dir/src/maths/vec2.cpp.i
+
+CMakeFiles/Lotus.dir/src/maths/vec2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lotus.dir/src/maths/vec2.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.cpp -o CMakeFiles/Lotus.dir/src/maths/vec2.cpp.s
+
+CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o.requires:
+.PHONY : CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o.requires
+
+CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o.provides: CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o.provides.build
+.PHONY : CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o.provides
+
+CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o.provides.build: CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o
+
+CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o: CMakeFiles/Lotus.dir/flags.make
+CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o: src/maths/vec3.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.cpp
+
+CMakeFiles/Lotus.dir/src/maths/vec3.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lotus.dir/src/maths/vec3.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.cpp > CMakeFiles/Lotus.dir/src/maths/vec3.cpp.i
+
+CMakeFiles/Lotus.dir/src/maths/vec3.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lotus.dir/src/maths/vec3.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.cpp -o CMakeFiles/Lotus.dir/src/maths/vec3.cpp.s
+
+CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o.requires:
+.PHONY : CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o.requires
+
+CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o.provides: CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o.provides.build
+.PHONY : CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o.provides
+
+CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o.provides.build: CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o
+
+CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o: CMakeFiles/Lotus.dir/flags.make
+CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o: src/maths/vec4.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_5)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.cpp
+
+CMakeFiles/Lotus.dir/src/maths/vec4.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lotus.dir/src/maths/vec4.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.cpp > CMakeFiles/Lotus.dir/src/maths/vec4.cpp.i
+
+CMakeFiles/Lotus.dir/src/maths/vec4.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lotus.dir/src/maths/vec4.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.cpp -o CMakeFiles/Lotus.dir/src/maths/vec4.cpp.s
+
+CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o.requires:
+.PHONY : CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o.requires
+
+CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o.provides: CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o.provides.build
+.PHONY : CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o.provides
+
+CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o.provides.build: CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o
+
 # Object files for target Lotus
 Lotus_OBJECTS = \
-"CMakeFiles/Lotus.dir/src/main.cpp.o"
+"CMakeFiles/Lotus.dir/src/main.cpp.o" \
+"CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o" \
+"CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o" \
+"CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o" \
+"CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o"
 
 # External object files for target Lotus
 Lotus_EXTERNAL_OBJECTS =
 
 Lotus: CMakeFiles/Lotus.dir/src/main.cpp.o
+Lotus: CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o
+Lotus: CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o
+Lotus: CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o
+Lotus: CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o
 Lotus: CMakeFiles/Lotus.dir/build.make
 Lotus: /usr/local/lib/libGLEW.dylib
 Lotus: /usr/local/lib/libglfw3.dylib
@@ -92,6 +192,10 @@ CMakeFiles/Lotus.dir/build: Lotus
 .PHONY : CMakeFiles/Lotus.dir/build
 
 CMakeFiles/Lotus.dir/requires: CMakeFiles/Lotus.dir/src/main.cpp.o.requires
+CMakeFiles/Lotus.dir/requires: CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o.requires
+CMakeFiles/Lotus.dir/requires: CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o.requires
+CMakeFiles/Lotus.dir/requires: CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o.requires
+CMakeFiles/Lotus.dir/requires: CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o.requires
 .PHONY : CMakeFiles/Lotus.dir/requires
 
 CMakeFiles/Lotus.dir/clean:

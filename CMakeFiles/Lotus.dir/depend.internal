@@ -3,7 +3,23 @@
 
 CMakeFiles/Lotus.dir/src/main.cpp.o
  /Users/Leonard/Documents/Programming/C++/Lotus/src/main.cpp
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.hpp
  /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/maths.hpp
  /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.hpp
  /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.hpp
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.hpp
+CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.cpp
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.hpp
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/maths_func.hpp
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.hpp
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.hpp
+CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.cpp
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.hpp
+CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.cpp
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.hpp
+CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.cpp
  /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.hpp

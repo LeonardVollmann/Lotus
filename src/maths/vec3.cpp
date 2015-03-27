@@ -1,5 +1,7 @@
 #include "vec3.hpp"
 
+#include <cmath>
+
 namespace lotus { namespace maths {
 
 	vec3::vec3()
@@ -9,7 +11,7 @@ namespace lotus { namespace maths {
 		this->z = 0.0f;
 	}
 
-	vec3::vec3(const float &x, const float &y, const float &z) :
+	vec3::vec3(const float &x, const float &y, const float &z)
 	{
 		this->x = x;
 		this->y = y;
@@ -111,9 +113,9 @@ namespace lotus { namespace maths {
 		return result;
 	}
 
-	vec2 &normalize()
+	vec3 &vec3::normalize()
 	{
-		float length = length();
+		float length = this->length();
 		x /= length;
 		y /= length;
 		z /= length;
@@ -125,39 +127,39 @@ namespace lotus { namespace maths {
 	{
 		vec3 result;
 
-		result.x = a.y * b.z − a.z * b.y
-		result.y = a.z * b.x − a.x * b.z
-		result.z = a.x * b.y − a.y * b.x
+		result.x = a.y * b.z - a.z * b.y;
+		result.y = a.z * b.x - a.x * b.z;
+		result.z = a.x * b.y - a.y * b.x;
 
 		return result;
 	}
 
-	bool operator==(const vec3 &other)
+	bool operator==(const vec3 &left, const vec3 &right)
 	{
-		reuturn x == other.x && y == other.y && z == other.z;
+		return left.x == right.x && left.y == right.y && left.z == right.z;
 	}
 
-	bool operator!=(const vec3 &other)
+	bool operator!=(const vec3 &left, const vec3 &right)
 	{
-		return !(*this == other);
+		return !(left == right);
 	}
 
-	vec3 &operator+=(const vec3 &other)
+	vec3 &vec3::operator+=(const vec3 &other)
 	{
 		return add(other);
 	}	
 
-	vec3 &operator-=(const vec3 &other)
+	vec3 &vec3::operator-=(const vec3 &other)
 	{
 		return subtract(other);
 	}	
 
-	vec3 &operator*=(const vec3 &other)
+	vec3 &vec3::operator*=(const vec3 &other)
 	{
 		return multiply(other);
 	}	
 
-	vec3 &operator/=(const vec3 &other)
+	vec3 &vec3::operator/=(const vec3 &other)
 	{
 		return divide(other);
 	}

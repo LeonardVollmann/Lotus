@@ -1,5 +1,7 @@
 #include "vec2.hpp"
 
+#include <cmath>
+
 namespace lotus { namespace maths {
 
 	vec2::vec2()
@@ -8,7 +10,7 @@ namespace lotus { namespace maths {
 		this->y = 0.0f;
 	}
 
-	vec2::vec2(const float &x, const float &y) :
+	vec2::vec2(const float &x, const float &y)
 	{
 		this->x = x;
 		this->y = y;
@@ -38,7 +40,7 @@ namespace lotus { namespace maths {
 		return *this;
 	}
 
-	vec2 &vec2::divide(const vec2 &other) const
+	vec2 &vec2::divide(const vec2 &other)
 	{
 		x /= other.x;
 		y /= other.y;
@@ -61,9 +63,9 @@ namespace lotus { namespace maths {
 		return sqrtf(lengthSqr());
 	}
 
-	vec2 &normalize()
+	vec2 &vec2::normalize()
 	{
-		float length = length();
+		float length = this->length();
 		x /= length;
 		y /= length;
 
@@ -110,32 +112,32 @@ namespace lotus { namespace maths {
 		return result;
 	}
 
-	bool operator==(const vec2 &other)
+	bool operator==(const vec2 &left, const vec2 &right)
 	{
-		reuturn x == other.x && y == other.y;
+		return left.x == right.x && left.y == right.y;
 	}
 
-	bool operator!=(const vec2 &other)
+	bool operator!=(const vec2 &left, const vec2 &right)
 	{
-		return !(*this == other);
+		return !(left == right);
 	}
 
-	vec2 &operator+=(const vec2 &other)
+	vec2 &vec2::operator+=(const vec2 &other)
 	{
 		return add(other);
 	}	
 
-	vec2 &operator-=(const vec2 &other)
+	vec2 &vec2::operator-=(const vec2 &other)
 	{
 		return subtract(other);
 	}	
 
-	vec2 &operator*=(const vec2 &other)
+	vec2 &vec2::operator*=(const vec2 &other)
 	{
 		return multiply(other);
 	}	
 
-	vec2 &operator/=(const vec2 &other)
+	vec2 &vec2::operator/=(const vec2 &other)
 	{
 		return divide(other);
 	}

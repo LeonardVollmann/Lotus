@@ -17,7 +17,7 @@ namespace lotus { namespace maths {
 		vec4 &multiply(const vec4 &other);
 		vec4 &divide(const vec4 &other);
 
-		float dot(const vec2 &other) const;
+		float dot(const vec4 &other) const;
 		float lengthSqr() const;
 		float length() const;
 		vec4 &normalize();
@@ -27,8 +27,8 @@ namespace lotus { namespace maths {
 		friend vec4 operator*(const vec4 &left, const vec4 &right);
 		friend vec4 operator/(const vec4 &left, const vec4 &right);
 
-		bool operator==(const vec4 &other);
-		bool operator!=(const vec4 &other);
+		friend bool operator==(const vec4 &left, const vec4 &right);
+		friend bool operator!=(const vec4 &left, const vec4 &right);
 
 		vec4 &operator+=(const vec4 &other);
 		vec4 &operator-=(const vec4 &other);

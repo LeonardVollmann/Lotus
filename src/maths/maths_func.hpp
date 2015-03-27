@@ -1,6 +1,8 @@
 #ifndef MATHS_FUNC_HPP
 #define MATHS_FUNC_HPP
 
+#include <cmath>
+
 namespace lotus { namespace maths { 
 
 	float toRadians(float degrees)

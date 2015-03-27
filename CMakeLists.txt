@@ -21,7 +21,11 @@ if ( CMAKE_BUILD_TYPE STREQUAL "Release" )
 add_definitions( -O2 )
 endif ( CMAKE_BUILD_TYPE STREQUAL "Release" )
 
-file(GLOB_RECURSE HDRS ${Lotus_SOURCE_DIR}/src/*.h)
+file(GLOB_RECURSE HDRS 
+	${Lotus_SOURCE_DIR}/src/*.h
+	${Lotus_SOURCE_DIR}/src/*.hpp
+)
+
 file(GLOB_RECURSE SRCS
 	${Lotus_SOURCE_DIR}/src/*.cpp
 	${Lotus_SOURCE_DIR}/src/*.c

@@ -1,5 +1,7 @@
 #include "vec4.hpp"
 
+#include <cmath>
+
 namespace lotus { namespace maths {
 
 	vec4::vec4()
@@ -10,7 +12,7 @@ namespace lotus { namespace maths {
 		this->w = 0.0f;
 	}
 
-	vec4::vec4(const float &x, const float &y, const float &z, const float &w) :
+	vec4::vec4(const float &x, const float &y, const float &z, const float &w)
 	{
 		this->x = x;
 		this->y = y;
@@ -121,9 +123,9 @@ namespace lotus { namespace maths {
 		return result;
 	}
 
-	vec2 &normalize()
+	vec4 &vec4::normalize()
 	{
-		float length = length();
+		float length = this->length();
 		x /= length;
 		y /= length;
 		z /= length;
@@ -132,32 +134,32 @@ namespace lotus { namespace maths {
 		return *this;
 	}
 
-	bool operator==(const vec4 &other)
+	bool operator==(const vec4 &left, const vec4 &right)
 	{
-		reuturn x == other.x && y == other.y && z == other.z && w == other.w;
+		return left.x == right.x && left.y == right.y && left.z == right.z && left.w == right.w;
 	}
 
-	bool operator!=(const vec4 &other)
+	bool operator!=(const vec4 &left, const vec4 &right)
 	{
-		return !(*this == other);
+		return !(left == right);
 	}
 
-	vec4 &operator+=(const vec4 &other)
+	vec4 &vec4::operator+=(const vec4 &other)
 	{
 		return add(other);
 	}	
 
-	vec4 &operator-=(const vec4 &other)
+	vec4 &vec4::operator-=(const vec4 &other)
 	{
 		return subtract(other);
 	}	
 
-	vec4 &operator*=(const vec4 &other)
+	vec4 &vec4::operator*=(const vec4 &other)
 	{
 		return multiply(other);
 	}	
 
-	vec4 &operator/=(const vec4 &other)
+	vec4 &vec4::operator/=(const vec4 &other)
 	{
 		return divide(other);
 	}
