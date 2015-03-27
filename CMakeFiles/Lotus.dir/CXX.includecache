@@ -9,4 +9,26 @@
 /Users/Leonard/Documents/Programming/C++/Lotus/src/main.cpp
 iostream
 -
+maths/maths.hpp
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/maths.hpp
+
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/maths.hpp
+vec2.hpp
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.hpp
+vec3.hpp
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.hpp
+vec4.hpp
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.hpp
+
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.hpp
+iostream
+-
+
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.hpp
+iostream
+-
+
+/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.hpp
+iostream
+-
 

@@ -3,3 +3,7 @@
 
 CMakeFiles/Lotus.dir/src/main.cpp.o
  /Users/Leonard/Documents/Programming/C++/Lotus/src/main.cpp
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/maths.hpp
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.hpp
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.hpp
+ /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.hpp
