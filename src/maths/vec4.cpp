@@ -58,6 +58,21 @@ namespace lotus { namespace maths {
 		return *this;
 	}
 
+	float vec4::dot(const vec4 &other) const
+	{
+		return x * other.x + y * other.y + z * other.z + w * other.w;
+	}
+
+	float vec4::lengthSqr() const
+	{
+		return dot(*this);
+	}
+
+	float vec4::length() const
+	{
+		return sqrtf(lengthSqr());
+	}
+
 	vec4 operator+(const vec4 &left, const vec4 &right)
 	{
 		vec4 result;
@@ -104,6 +119,17 @@ namespace lotus { namespace maths {
 		result.w = left.w / right.w;
 		
 		return result;
+	}
+
+	vec2 &normalize()
+	{
+		float length = length();
+		x /= length;
+		y /= length;
+		z /= length;
+		w /= length;
+
+		return *this;
 	}
 
 	bool operator==(const vec4 &other)

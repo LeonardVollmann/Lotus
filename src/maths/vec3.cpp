@@ -52,6 +52,21 @@ namespace lotus { namespace maths {
 		return *this;
 	}
 
+	float vec3::dot(const vec3 &other) const
+	{
+		return x * other.x + y * other.y + z * other.z;
+	}
+
+	float vec3::lengthSqr() const
+	{
+		return dot(*this);
+	}
+
+	float vec3::length() const
+	{
+		return sqrtf(lengthSqr());
+	}
+
 	vec3 operator+(const vec3 &left, const vec3 &right)
 	{
 		vec3 result;
@@ -93,6 +108,27 @@ namespace lotus { namespace maths {
 		result.y = left.y / right.y;
 		result.z = left.z / right.z;
 		
+		return result;
+	}
+
+	vec2 &normalize()
+	{
+		float length = length();
+		x /= length;
+		y /= length;
+		z /= length;
+
+		return *this;
+	}
+
+	vec3 cross(const vec3 &a, const vec3 &b)
+	{
+		vec3 result;
+
+		result.x = a.y * b.z − a.z * b.y
+		result.y = a.z * b.x − a.x * b.z
+		result.z = a.x * b.y − a.y * b.x
+
 		return result;
 	}
 

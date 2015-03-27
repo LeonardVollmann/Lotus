@@ -17,6 +17,11 @@ namespace lotus { namespace maths {
 		vec4 &multiply(const vec4 &other);
 		vec4 &divide(const vec4 &other);
 
+		float dot(const vec2 &other) const;
+		float lengthSqr() const;
+		float length() const;
+		vec4 &normalize();
+
 		friend vec4 operator+(const vec4 &left, const vec4 &right);
 		friend vec4 operator-(const vec4 &left, const vec4 &right);
 		friend vec4 operator*(const vec4 &left, const vec4 &right);

@@ -38,11 +38,35 @@ namespace lotus { namespace maths {
 		return *this;
 	}
 
-	vec2 &vec2::divide(const vec2 &other)
+	vec2 &vec2::divide(const vec2 &other) const
 	{
 		x /= other.x;
 		y /= other.y;
 		
+		return *this;
+	}
+
+	float vec2::dot(const vec2 &other) const
+	{
+		return x * other.x + y * other.y;
+	}
+
+	float vec2::lengthSqr() const
+	{
+		return dot(*this);
+	}
+
+	float vec2::length() const
+	{
+		return sqrtf(lengthSqr());
+	}
+
+	vec2 &normalize()
+	{
+		float length = length();
+		x /= length;
+		y /= length;
+
 		return *this;
 	}
 
