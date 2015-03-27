@@ -1,0 +1,1 @@
+/usr/bin/c++   -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/Lotus.dir/src/main.cpp.o  -o Lotus  /usr/local/lib/libGLEW.dylib /usr/local/lib/libglfw3.dylib 
