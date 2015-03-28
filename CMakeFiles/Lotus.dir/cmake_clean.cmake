@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Lotus.dir/src/graphics/window.cpp.o"
   "CMakeFiles/Lotus.dir/src/main.cpp.o"
   "CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o"
   "CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o"

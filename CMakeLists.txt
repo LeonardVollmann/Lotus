@@ -22,8 +22,8 @@ add_definitions( -O2 )
 endif ( CMAKE_BUILD_TYPE STREQUAL "Release" )
 
 file(GLOB_RECURSE HDRS 
-	${Lotus_SOURCE_DIR}/src/*.h
 	${Lotus_SOURCE_DIR}/src/*.hpp
+	${Lotus_SOURCE_DIR}/src/*.h
 )
 
 file(GLOB_RECURSE SRCS
@@ -35,6 +35,7 @@ add_executable(Lotus ${HDRS} ${SRCS})
 
 SET(Lotus_CMAKE_DIR "${Lotus_SOURCE_DIR}/cmake")
 
+find_package(OpenGL REQUIRED)
 INCLUDE(${Lotus_CMAKE_DIR}/FindGLEW.cmake)
 INCLUDE(${Lotus_CMAKE_DIR}/FindGLFW3.cmake)
 

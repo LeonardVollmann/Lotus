@@ -1,6 +1,5 @@
 SET( GLFW3_SEARCH_PATHS
   ${GLFW3_ROOT_DIR}
-  ./lib/glfw3
   $ENV{PROGRAMFILES}/GLFW3
   #"$ENV{PROGRAMFILES(X86)}/GLFW3"
   ~/Library/Frameworks

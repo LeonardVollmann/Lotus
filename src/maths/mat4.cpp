@@ -50,6 +50,11 @@ namespace lotus { namespace maths {
 		return multiply(other);
 	}
 
+	float mat4::operator[](int index) const
+	{
+		return elements[index];
+	}
+	
 	mat4 mat4::identity()
 	{
 		return mat4(1.0f);

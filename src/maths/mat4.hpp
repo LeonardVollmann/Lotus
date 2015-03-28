@@ -22,6 +22,8 @@ namespace lotus { namespace maths {
 		mat4& multiply(const mat4& other);
 		mat4& operator*=(const mat4& other);
 
+		float operator[](int index) const;
+
 		friend mat4 operator*(mat4 left, const mat4& right);
 
 		static mat4 identity();

@@ -200,6 +200,15 @@ Lotus_BINARY_DIR:STATIC=/Users/Leonard/Documents/Programming/C++/Lotus
 //Value Computed by CMake
 Lotus_SOURCE_DIR:STATIC=/Users/Leonard/Documents/Programming/C++/Lotus
 
+//Include for OpenGL on OSX
+OPENGL_INCLUDE_DIR:PATH=/System/Library/Frameworks/OpenGL.framework
+
+//OpenGL lib for OSX
+OPENGL_gl_LIBRARY:FILEPATH=/System/Library/Frameworks/OpenGL.framework
+
+//AGL lib for OSX
+OPENGL_glu_LIBRARY:FILEPATH=/System/Library/Frameworks/AGL.framework
+
 
 ########################
 # INTERNAL cache entries
@@ -334,4 +343,12 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 CMAKE_USE_RELATIVE_PATHS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding OpenGL
+FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/System/Library/Frameworks/OpenGL.framework][/System/Library/Frameworks/OpenGL.framework][v()]
+//ADVANCED property for variable: OPENGL_INCLUDE_DIR
+OPENGL_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENGL_gl_LIBRARY
+OPENGL_gl_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENGL_glu_LIBRARY
+OPENGL_glu_LIBRARY-ADVANCED:INTERNAL=1
 

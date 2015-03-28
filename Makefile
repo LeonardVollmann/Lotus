@@ -115,6 +115,30 @@ Lotus/fast:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/build
 .PHONY : Lotus/fast
 
+src/graphics/window.o: src/graphics/window.cpp.o
+.PHONY : src/graphics/window.o
+
+# target to build an object file
+src/graphics/window.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/window.cpp.o
+.PHONY : src/graphics/window.cpp.o
+
+src/graphics/window.i: src/graphics/window.cpp.i
+.PHONY : src/graphics/window.i
+
+# target to preprocess a source file
+src/graphics/window.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/window.cpp.i
+.PHONY : src/graphics/window.cpp.i
+
+src/graphics/window.s: src/graphics/window.cpp.s
+.PHONY : src/graphics/window.s
+
+# target to generate assembly for a file
+src/graphics/window.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/window.cpp.s
+.PHONY : src/graphics/window.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -244,6 +268,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Lotus"
+	@echo "... src/graphics/window.o"
+	@echo "... src/graphics/window.i"
+	@echo "... src/graphics/window.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
