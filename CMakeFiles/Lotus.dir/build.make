@@ -49,9 +49,101 @@ include CMakeFiles/Lotus.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Lotus.dir/flags.make
 
+CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o: CMakeFiles/Lotus.dir/flags.make
+CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o: src/graphics/buffers/buffer.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/buffers/buffer.cpp
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/buffers/buffer.cpp > CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.i
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/buffers/buffer.cpp -o CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.s
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o.requires:
+.PHONY : CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o.requires
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o.provides: CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o.provides.build
+.PHONY : CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o.provides
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o.provides.build: CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o: CMakeFiles/Lotus.dir/flags.make
+CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o: src/graphics/buffers/indexbuffer.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/buffers/indexbuffer.cpp
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/buffers/indexbuffer.cpp > CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.i
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/buffers/indexbuffer.cpp -o CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.s
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o.requires:
+.PHONY : CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o.requires
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o.provides: CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o.provides.build
+.PHONY : CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o.provides
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o.provides.build: CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o: CMakeFiles/Lotus.dir/flags.make
+CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o: src/graphics/buffers/vertexarray.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/buffers/vertexarray.cpp
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/buffers/vertexarray.cpp > CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.i
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/buffers/vertexarray.cpp -o CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.s
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o.requires:
+.PHONY : CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o.requires
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o.provides: CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o.provides.build
+.PHONY : CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o.provides
+
+CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o.provides.build: CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o
+
+CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o: CMakeFiles/Lotus.dir/flags.make
+CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o: src/graphics/shader.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/shader.cpp
+
+CMakeFiles/Lotus.dir/src/graphics/shader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lotus.dir/src/graphics/shader.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/shader.cpp > CMakeFiles/Lotus.dir/src/graphics/shader.cpp.i
+
+CMakeFiles/Lotus.dir/src/graphics/shader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lotus.dir/src/graphics/shader.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/shader.cpp -o CMakeFiles/Lotus.dir/src/graphics/shader.cpp.s
+
+CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o.requires:
+.PHONY : CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o.requires
+
+CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o.provides: CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o.provides.build
+.PHONY : CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o.provides
+
+CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o.provides.build: CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o
+
 CMakeFiles/Lotus.dir/src/graphics/window.cpp.o: CMakeFiles/Lotus.dir/flags.make
 CMakeFiles/Lotus.dir/src/graphics/window.cpp.o: src/graphics/window.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/graphics/window.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/graphics/window.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/window.cpp
 
@@ -74,7 +166,7 @@ CMakeFiles/Lotus.dir/src/graphics/window.cpp.o.provides.build: CMakeFiles/Lotus.
 
 CMakeFiles/Lotus.dir/src/main.cpp.o: CMakeFiles/Lotus.dir/flags.make
 CMakeFiles/Lotus.dir/src/main.cpp.o: src/main.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/main.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/main.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/main.cpp
 
@@ -97,7 +189,7 @@ CMakeFiles/Lotus.dir/src/main.cpp.o.provides.build: CMakeFiles/Lotus.dir/src/mai
 
 CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o: CMakeFiles/Lotus.dir/flags.make
 CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o: src/maths/mat4.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.cpp
 
@@ -120,7 +212,7 @@ CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o.provides.build: CMakeFiles/Lotus.dir/s
 
 CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o: CMakeFiles/Lotus.dir/flags.make
 CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o: src/maths/vec2.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec2.cpp
 
@@ -143,7 +235,7 @@ CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o.provides.build: CMakeFiles/Lotus.dir/s
 
 CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o: CMakeFiles/Lotus.dir/flags.make
 CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o: src/maths/vec3.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec3.cpp
 
@@ -166,7 +258,7 @@ CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o.provides.build: CMakeFiles/Lotus.dir/s
 
 CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o: CMakeFiles/Lotus.dir/flags.make
 CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o: src/maths/vec4.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o -c /Users/Leonard/Documents/Programming/C++/Lotus/src/maths/vec4.cpp
 
@@ -189,6 +281,10 @@ CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o.provides.build: CMakeFiles/Lotus.dir/s
 
 # Object files for target Lotus
 Lotus_OBJECTS = \
+"CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o" \
+"CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o" \
+"CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o" \
+"CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o" \
 "CMakeFiles/Lotus.dir/src/graphics/window.cpp.o" \
 "CMakeFiles/Lotus.dir/src/main.cpp.o" \
 "CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o" \
@@ -199,6 +295,10 @@ Lotus_OBJECTS = \
 # External object files for target Lotus
 Lotus_EXTERNAL_OBJECTS =
 
+Lotus: CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o
+Lotus: CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o
+Lotus: CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o
+Lotus: CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o
 Lotus: CMakeFiles/Lotus.dir/src/graphics/window.cpp.o
 Lotus: CMakeFiles/Lotus.dir/src/main.cpp.o
 Lotus: CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o
@@ -216,6 +316,10 @@ Lotus: CMakeFiles/Lotus.dir/link.txt
 CMakeFiles/Lotus.dir/build: Lotus
 .PHONY : CMakeFiles/Lotus.dir/build
 
+CMakeFiles/Lotus.dir/requires: CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o.requires
+CMakeFiles/Lotus.dir/requires: CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o.requires
+CMakeFiles/Lotus.dir/requires: CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o.requires
+CMakeFiles/Lotus.dir/requires: CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o.requires
 CMakeFiles/Lotus.dir/requires: CMakeFiles/Lotus.dir/src/graphics/window.cpp.o.requires
 CMakeFiles/Lotus.dir/requires: CMakeFiles/Lotus.dir/src/main.cpp.o.requires
 CMakeFiles/Lotus.dir/requires: CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o.requires

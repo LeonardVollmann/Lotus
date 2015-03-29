@@ -4,6 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/buffers/buffer.cpp" "/Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o"
+  "/Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/buffers/indexbuffer.cpp" "/Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o"
+  "/Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/buffers/vertexarray.cpp" "/Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o"
+  "/Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/shader.cpp" "/Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o"
   "/Users/Leonard/Documents/Programming/C++/Lotus/src/graphics/window.cpp" "/Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles/Lotus.dir/src/graphics/window.cpp.o"
   "/Users/Leonard/Documents/Programming/C++/Lotus/src/main.cpp" "/Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles/Lotus.dir/src/main.cpp.o"
   "/Users/Leonard/Documents/Programming/C++/Lotus/src/maths/mat4.cpp" "/Users/Leonard/Documents/Programming/C++/Lotus/CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o"

@@ -115,6 +115,102 @@ Lotus/fast:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/build
 .PHONY : Lotus/fast
 
+src/graphics/buffers/buffer.o: src/graphics/buffers/buffer.cpp.o
+.PHONY : src/graphics/buffers/buffer.o
+
+# target to build an object file
+src/graphics/buffers/buffer.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o
+.PHONY : src/graphics/buffers/buffer.cpp.o
+
+src/graphics/buffers/buffer.i: src/graphics/buffers/buffer.cpp.i
+.PHONY : src/graphics/buffers/buffer.i
+
+# target to preprocess a source file
+src/graphics/buffers/buffer.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.i
+.PHONY : src/graphics/buffers/buffer.cpp.i
+
+src/graphics/buffers/buffer.s: src/graphics/buffers/buffer.cpp.s
+.PHONY : src/graphics/buffers/buffer.s
+
+# target to generate assembly for a file
+src/graphics/buffers/buffer.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.s
+.PHONY : src/graphics/buffers/buffer.cpp.s
+
+src/graphics/buffers/indexbuffer.o: src/graphics/buffers/indexbuffer.cpp.o
+.PHONY : src/graphics/buffers/indexbuffer.o
+
+# target to build an object file
+src/graphics/buffers/indexbuffer.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o
+.PHONY : src/graphics/buffers/indexbuffer.cpp.o
+
+src/graphics/buffers/indexbuffer.i: src/graphics/buffers/indexbuffer.cpp.i
+.PHONY : src/graphics/buffers/indexbuffer.i
+
+# target to preprocess a source file
+src/graphics/buffers/indexbuffer.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.i
+.PHONY : src/graphics/buffers/indexbuffer.cpp.i
+
+src/graphics/buffers/indexbuffer.s: src/graphics/buffers/indexbuffer.cpp.s
+.PHONY : src/graphics/buffers/indexbuffer.s
+
+# target to generate assembly for a file
+src/graphics/buffers/indexbuffer.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.s
+.PHONY : src/graphics/buffers/indexbuffer.cpp.s
+
+src/graphics/buffers/vertexarray.o: src/graphics/buffers/vertexarray.cpp.o
+.PHONY : src/graphics/buffers/vertexarray.o
+
+# target to build an object file
+src/graphics/buffers/vertexarray.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o
+.PHONY : src/graphics/buffers/vertexarray.cpp.o
+
+src/graphics/buffers/vertexarray.i: src/graphics/buffers/vertexarray.cpp.i
+.PHONY : src/graphics/buffers/vertexarray.i
+
+# target to preprocess a source file
+src/graphics/buffers/vertexarray.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.i
+.PHONY : src/graphics/buffers/vertexarray.cpp.i
+
+src/graphics/buffers/vertexarray.s: src/graphics/buffers/vertexarray.cpp.s
+.PHONY : src/graphics/buffers/vertexarray.s
+
+# target to generate assembly for a file
+src/graphics/buffers/vertexarray.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.s
+.PHONY : src/graphics/buffers/vertexarray.cpp.s
+
+src/graphics/shader.o: src/graphics/shader.cpp.o
+.PHONY : src/graphics/shader.o
+
+# target to build an object file
+src/graphics/shader.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o
+.PHONY : src/graphics/shader.cpp.o
+
+src/graphics/shader.i: src/graphics/shader.cpp.i
+.PHONY : src/graphics/shader.i
+
+# target to preprocess a source file
+src/graphics/shader.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shader.cpp.i
+.PHONY : src/graphics/shader.cpp.i
+
+src/graphics/shader.s: src/graphics/shader.cpp.s
+.PHONY : src/graphics/shader.s
+
+# target to generate assembly for a file
+src/graphics/shader.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shader.cpp.s
+.PHONY : src/graphics/shader.cpp.s
+
 src/graphics/window.o: src/graphics/window.cpp.o
 .PHONY : src/graphics/window.o
 
@@ -268,6 +364,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Lotus"
+	@echo "... src/graphics/buffers/buffer.o"
+	@echo "... src/graphics/buffers/buffer.i"
+	@echo "... src/graphics/buffers/buffer.s"
+	@echo "... src/graphics/buffers/indexbuffer.o"
+	@echo "... src/graphics/buffers/indexbuffer.i"
+	@echo "... src/graphics/buffers/indexbuffer.s"
+	@echo "... src/graphics/buffers/vertexarray.o"
+	@echo "... src/graphics/buffers/vertexarray.i"
+	@echo "... src/graphics/buffers/vertexarray.s"
+	@echo "... src/graphics/shader.o"
+	@echo "... src/graphics/shader.i"
+	@echo "... src/graphics/shader.s"
 	@echo "... src/graphics/window.o"
 	@echo "... src/graphics/window.i"
 	@echo "... src/graphics/window.s"

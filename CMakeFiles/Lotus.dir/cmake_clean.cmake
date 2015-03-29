@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o"
+  "CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o"
+  "CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o"
+  "CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o"
   "CMakeFiles/Lotus.dir/src/graphics/window.cpp.o"
   "CMakeFiles/Lotus.dir/src/main.cpp.o"
   "CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o"

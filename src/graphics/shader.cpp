@@ -114,21 +114,14 @@ namespace lotus { namespace graphics {
         glUniform1f(m_uniforms[uniform], value);
     }
     
-    void Shader::setUniformVector3f(const std::string &uniform, const maths::vec3f &value) const
+    void Shader::setUniformVector3f(const std::string &uniform, const maths::vec3 &value) const
     {
-        glUniform3f(m_uniforms[uniform], value.getX(), value.getY(), value.getZ());
+        glUniform3f(m_uniforms[uniform], value.x, value.y, value.z);
     }
     
-    void Shader::setUniformMatrix4f(const std::string &uniform, const maths::mat4f &value) const
-    {
-        GLfloat matrix[16];
-        for (unsigned int i = 0; i < 4; i++) {
-            for (unsigned int j = 0; j < 4; j++) {
-                matrix[4 * i + j] = (GLfloat)value[i][j];
-            }
-        }
-        
-        glUniformMatrix4fv(m_uniforms[uniform], 1, true, matrix);
+    void Shader::setUniformMatrix4f(const std::string &uniform, const maths::mat4 &value) const
+    {   
+        glUniformMatrix4fv(m_uniforms[uniform], 1, true, value.elements);
     }
     
     Shader &Shader::addVertexShader()

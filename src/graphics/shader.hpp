@@ -1,12 +1,11 @@
 #ifndef SHADER_HPP
 #define SHADER_HPP
 
-#include "math.h"
+#include "../maths/maths.hpp"
 
 #include <GL/glew.h>
 #include <map>
 #include <string>
-#include <stdint.h>
 
 namespace lotus { namespace graphics {
 
@@ -17,7 +16,7 @@ namespace lotus { namespace graphics {
         
         GLuint m_program;
         GLuint m_shaders[3];
-        uint8_t m_numShaders;
+        int m_numShaders;
         
         mutable std::map<std::string, GLint> m_uniforms;
     public:
@@ -39,8 +38,8 @@ namespace lotus { namespace graphics {
         void addUniform(const std::string &uniform) const;
         void setUniformInteger(const std::string &uniform, int value) const;
         void setUniformFloat(const std::string &uniform, float value) const;
-        void setUniformVector3f(const std::string &uniform, const maths::vec3f &value) const;
-        void setUniformMatrix4f(const std::string &uniform, const maths::mat4f &value) const;
+        void setUniformVector3f(const std::string &uniform, const maths::vec3 &value) const;
+        void setUniformMatrix4f(const std::string &uniform, const maths::mat4 &value) const;
     };
 
 } }
