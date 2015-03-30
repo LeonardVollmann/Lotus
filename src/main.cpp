@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include "maths/maths.hpp"
-#include "graphics/window.hpp"
-#include "graphics/shader.hpp"
-#include "graphics/renderables/renderable.hpp"
-#include "graphics/renderables/renderable2d.hpp"
-#include "graphics/renderers/simplerenderer.hpp"
+#include "maths/lotus_maths.hpp"
+#include "graphics/lotus_window.hpp"
+#include "graphics/lotus_shader.hpp"
+#include "graphics/renderables/lotus_renderable.hpp"
+#include "graphics/renderables/lotus_renderable2d.hpp"
+#include "graphics/renderers/lotus_simplerenderer.hpp"
 
 int main()
 {

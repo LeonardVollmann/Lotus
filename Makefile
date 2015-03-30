@@ -115,197 +115,197 @@ Lotus/fast:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/build
 .PHONY : Lotus/fast
 
-src/graphics/buffers/buffer.o: src/graphics/buffers/buffer.cpp.o
-.PHONY : src/graphics/buffers/buffer.o
+src/graphics/buffers/lotus_buffer.o: src/graphics/buffers/lotus_buffer.cpp.o
+.PHONY : src/graphics/buffers/lotus_buffer.o
 
 # target to build an object file
-src/graphics/buffers/buffer.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o
-.PHONY : src/graphics/buffers/buffer.cpp.o
+src/graphics/buffers/lotus_buffer.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/lotus_buffer.cpp.o
+.PHONY : src/graphics/buffers/lotus_buffer.cpp.o
 
-src/graphics/buffers/buffer.i: src/graphics/buffers/buffer.cpp.i
-.PHONY : src/graphics/buffers/buffer.i
+src/graphics/buffers/lotus_buffer.i: src/graphics/buffers/lotus_buffer.cpp.i
+.PHONY : src/graphics/buffers/lotus_buffer.i
 
 # target to preprocess a source file
-src/graphics/buffers/buffer.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.i
-.PHONY : src/graphics/buffers/buffer.cpp.i
+src/graphics/buffers/lotus_buffer.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/lotus_buffer.cpp.i
+.PHONY : src/graphics/buffers/lotus_buffer.cpp.i
 
-src/graphics/buffers/buffer.s: src/graphics/buffers/buffer.cpp.s
-.PHONY : src/graphics/buffers/buffer.s
+src/graphics/buffers/lotus_buffer.s: src/graphics/buffers/lotus_buffer.cpp.s
+.PHONY : src/graphics/buffers/lotus_buffer.s
 
 # target to generate assembly for a file
-src/graphics/buffers/buffer.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.s
-.PHONY : src/graphics/buffers/buffer.cpp.s
+src/graphics/buffers/lotus_buffer.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/lotus_buffer.cpp.s
+.PHONY : src/graphics/buffers/lotus_buffer.cpp.s
 
-src/graphics/buffers/indexbuffer.o: src/graphics/buffers/indexbuffer.cpp.o
-.PHONY : src/graphics/buffers/indexbuffer.o
+src/graphics/buffers/lotus_indexbuffer.o: src/graphics/buffers/lotus_indexbuffer.cpp.o
+.PHONY : src/graphics/buffers/lotus_indexbuffer.o
 
 # target to build an object file
-src/graphics/buffers/indexbuffer.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o
-.PHONY : src/graphics/buffers/indexbuffer.cpp.o
+src/graphics/buffers/lotus_indexbuffer.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/lotus_indexbuffer.cpp.o
+.PHONY : src/graphics/buffers/lotus_indexbuffer.cpp.o
 
-src/graphics/buffers/indexbuffer.i: src/graphics/buffers/indexbuffer.cpp.i
-.PHONY : src/graphics/buffers/indexbuffer.i
+src/graphics/buffers/lotus_indexbuffer.i: src/graphics/buffers/lotus_indexbuffer.cpp.i
+.PHONY : src/graphics/buffers/lotus_indexbuffer.i
 
 # target to preprocess a source file
-src/graphics/buffers/indexbuffer.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.i
-.PHONY : src/graphics/buffers/indexbuffer.cpp.i
+src/graphics/buffers/lotus_indexbuffer.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/lotus_indexbuffer.cpp.i
+.PHONY : src/graphics/buffers/lotus_indexbuffer.cpp.i
 
-src/graphics/buffers/indexbuffer.s: src/graphics/buffers/indexbuffer.cpp.s
-.PHONY : src/graphics/buffers/indexbuffer.s
+src/graphics/buffers/lotus_indexbuffer.s: src/graphics/buffers/lotus_indexbuffer.cpp.s
+.PHONY : src/graphics/buffers/lotus_indexbuffer.s
 
 # target to generate assembly for a file
-src/graphics/buffers/indexbuffer.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.s
-.PHONY : src/graphics/buffers/indexbuffer.cpp.s
+src/graphics/buffers/lotus_indexbuffer.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/lotus_indexbuffer.cpp.s
+.PHONY : src/graphics/buffers/lotus_indexbuffer.cpp.s
 
-src/graphics/buffers/vertexarray.o: src/graphics/buffers/vertexarray.cpp.o
-.PHONY : src/graphics/buffers/vertexarray.o
+src/graphics/buffers/lotus_vertexarray.o: src/graphics/buffers/lotus_vertexarray.cpp.o
+.PHONY : src/graphics/buffers/lotus_vertexarray.o
 
 # target to build an object file
-src/graphics/buffers/vertexarray.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o
-.PHONY : src/graphics/buffers/vertexarray.cpp.o
+src/graphics/buffers/lotus_vertexarray.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/lotus_vertexarray.cpp.o
+.PHONY : src/graphics/buffers/lotus_vertexarray.cpp.o
 
-src/graphics/buffers/vertexarray.i: src/graphics/buffers/vertexarray.cpp.i
-.PHONY : src/graphics/buffers/vertexarray.i
+src/graphics/buffers/lotus_vertexarray.i: src/graphics/buffers/lotus_vertexarray.cpp.i
+.PHONY : src/graphics/buffers/lotus_vertexarray.i
 
 # target to preprocess a source file
-src/graphics/buffers/vertexarray.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.i
-.PHONY : src/graphics/buffers/vertexarray.cpp.i
+src/graphics/buffers/lotus_vertexarray.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/lotus_vertexarray.cpp.i
+.PHONY : src/graphics/buffers/lotus_vertexarray.cpp.i
 
-src/graphics/buffers/vertexarray.s: src/graphics/buffers/vertexarray.cpp.s
-.PHONY : src/graphics/buffers/vertexarray.s
+src/graphics/buffers/lotus_vertexarray.s: src/graphics/buffers/lotus_vertexarray.cpp.s
+.PHONY : src/graphics/buffers/lotus_vertexarray.s
 
 # target to generate assembly for a file
-src/graphics/buffers/vertexarray.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.s
-.PHONY : src/graphics/buffers/vertexarray.cpp.s
+src/graphics/buffers/lotus_vertexarray.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/lotus_vertexarray.cpp.s
+.PHONY : src/graphics/buffers/lotus_vertexarray.cpp.s
 
-src/graphics/renderables/renderable.o: src/graphics/renderables/renderable.cpp.o
-.PHONY : src/graphics/renderables/renderable.o
+src/graphics/lotus_shader.o: src/graphics/lotus_shader.cpp.o
+.PHONY : src/graphics/lotus_shader.o
 
 # target to build an object file
-src/graphics/renderables/renderable.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.o
-.PHONY : src/graphics/renderables/renderable.cpp.o
+src/graphics/lotus_shader.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_shader.cpp.o
+.PHONY : src/graphics/lotus_shader.cpp.o
 
-src/graphics/renderables/renderable.i: src/graphics/renderables/renderable.cpp.i
-.PHONY : src/graphics/renderables/renderable.i
+src/graphics/lotus_shader.i: src/graphics/lotus_shader.cpp.i
+.PHONY : src/graphics/lotus_shader.i
 
 # target to preprocess a source file
-src/graphics/renderables/renderable.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.i
-.PHONY : src/graphics/renderables/renderable.cpp.i
+src/graphics/lotus_shader.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_shader.cpp.i
+.PHONY : src/graphics/lotus_shader.cpp.i
 
-src/graphics/renderables/renderable.s: src/graphics/renderables/renderable.cpp.s
-.PHONY : src/graphics/renderables/renderable.s
+src/graphics/lotus_shader.s: src/graphics/lotus_shader.cpp.s
+.PHONY : src/graphics/lotus_shader.s
 
 # target to generate assembly for a file
-src/graphics/renderables/renderable.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.s
-.PHONY : src/graphics/renderables/renderable.cpp.s
+src/graphics/lotus_shader.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_shader.cpp.s
+.PHONY : src/graphics/lotus_shader.cpp.s
 
-src/graphics/renderables/renderable2d.o: src/graphics/renderables/renderable2d.cpp.o
-.PHONY : src/graphics/renderables/renderable2d.o
+src/graphics/lotus_window.o: src/graphics/lotus_window.cpp.o
+.PHONY : src/graphics/lotus_window.o
 
 # target to build an object file
-src/graphics/renderables/renderable2d.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o
-.PHONY : src/graphics/renderables/renderable2d.cpp.o
+src/graphics/lotus_window.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_window.cpp.o
+.PHONY : src/graphics/lotus_window.cpp.o
 
-src/graphics/renderables/renderable2d.i: src/graphics/renderables/renderable2d.cpp.i
-.PHONY : src/graphics/renderables/renderable2d.i
+src/graphics/lotus_window.i: src/graphics/lotus_window.cpp.i
+.PHONY : src/graphics/lotus_window.i
 
 # target to preprocess a source file
-src/graphics/renderables/renderable2d.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.i
-.PHONY : src/graphics/renderables/renderable2d.cpp.i
+src/graphics/lotus_window.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_window.cpp.i
+.PHONY : src/graphics/lotus_window.cpp.i
 
-src/graphics/renderables/renderable2d.s: src/graphics/renderables/renderable2d.cpp.s
-.PHONY : src/graphics/renderables/renderable2d.s
+src/graphics/lotus_window.s: src/graphics/lotus_window.cpp.s
+.PHONY : src/graphics/lotus_window.s
 
 # target to generate assembly for a file
-src/graphics/renderables/renderable2d.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.s
-.PHONY : src/graphics/renderables/renderable2d.cpp.s
+src/graphics/lotus_window.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_window.cpp.s
+.PHONY : src/graphics/lotus_window.cpp.s
 
-src/graphics/renderers/simplerenderer.o: src/graphics/renderers/simplerenderer.cpp.o
-.PHONY : src/graphics/renderers/simplerenderer.o
+src/graphics/renderables/lotus_renderable.o: src/graphics/renderables/lotus_renderable.cpp.o
+.PHONY : src/graphics/renderables/lotus_renderable.o
 
 # target to build an object file
-src/graphics/renderers/simplerenderer.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o
-.PHONY : src/graphics/renderers/simplerenderer.cpp.o
+src/graphics/renderables/lotus_renderable.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_renderable.cpp.o
+.PHONY : src/graphics/renderables/lotus_renderable.cpp.o
 
-src/graphics/renderers/simplerenderer.i: src/graphics/renderers/simplerenderer.cpp.i
-.PHONY : src/graphics/renderers/simplerenderer.i
+src/graphics/renderables/lotus_renderable.i: src/graphics/renderables/lotus_renderable.cpp.i
+.PHONY : src/graphics/renderables/lotus_renderable.i
 
 # target to preprocess a source file
-src/graphics/renderers/simplerenderer.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.i
-.PHONY : src/graphics/renderers/simplerenderer.cpp.i
+src/graphics/renderables/lotus_renderable.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_renderable.cpp.i
+.PHONY : src/graphics/renderables/lotus_renderable.cpp.i
 
-src/graphics/renderers/simplerenderer.s: src/graphics/renderers/simplerenderer.cpp.s
-.PHONY : src/graphics/renderers/simplerenderer.s
+src/graphics/renderables/lotus_renderable.s: src/graphics/renderables/lotus_renderable.cpp.s
+.PHONY : src/graphics/renderables/lotus_renderable.s
 
 # target to generate assembly for a file
-src/graphics/renderers/simplerenderer.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.s
-.PHONY : src/graphics/renderers/simplerenderer.cpp.s
+src/graphics/renderables/lotus_renderable.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_renderable.cpp.s
+.PHONY : src/graphics/renderables/lotus_renderable.cpp.s
 
-src/graphics/shader.o: src/graphics/shader.cpp.o
-.PHONY : src/graphics/shader.o
+src/graphics/renderables/lotus_renderable2d.o: src/graphics/renderables/lotus_renderable2d.cpp.o
+.PHONY : src/graphics/renderables/lotus_renderable2d.o
 
 # target to build an object file
-src/graphics/shader.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o
-.PHONY : src/graphics/shader.cpp.o
+src/graphics/renderables/lotus_renderable2d.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_renderable2d.cpp.o
+.PHONY : src/graphics/renderables/lotus_renderable2d.cpp.o
 
-src/graphics/shader.i: src/graphics/shader.cpp.i
-.PHONY : src/graphics/shader.i
+src/graphics/renderables/lotus_renderable2d.i: src/graphics/renderables/lotus_renderable2d.cpp.i
+.PHONY : src/graphics/renderables/lotus_renderable2d.i
 
 # target to preprocess a source file
-src/graphics/shader.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shader.cpp.i
-.PHONY : src/graphics/shader.cpp.i
+src/graphics/renderables/lotus_renderable2d.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_renderable2d.cpp.i
+.PHONY : src/graphics/renderables/lotus_renderable2d.cpp.i
 
-src/graphics/shader.s: src/graphics/shader.cpp.s
-.PHONY : src/graphics/shader.s
+src/graphics/renderables/lotus_renderable2d.s: src/graphics/renderables/lotus_renderable2d.cpp.s
+.PHONY : src/graphics/renderables/lotus_renderable2d.s
 
 # target to generate assembly for a file
-src/graphics/shader.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shader.cpp.s
-.PHONY : src/graphics/shader.cpp.s
+src/graphics/renderables/lotus_renderable2d.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_renderable2d.cpp.s
+.PHONY : src/graphics/renderables/lotus_renderable2d.cpp.s
 
-src/graphics/window.o: src/graphics/window.cpp.o
-.PHONY : src/graphics/window.o
+src/graphics/renderers/lotus_simplerenderer.o: src/graphics/renderers/lotus_simplerenderer.cpp.o
+.PHONY : src/graphics/renderers/lotus_simplerenderer.o
 
 # target to build an object file
-src/graphics/window.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/window.cpp.o
-.PHONY : src/graphics/window.cpp.o
+src/graphics/renderers/lotus_simplerenderer.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderers/lotus_simplerenderer.cpp.o
+.PHONY : src/graphics/renderers/lotus_simplerenderer.cpp.o
 
-src/graphics/window.i: src/graphics/window.cpp.i
-.PHONY : src/graphics/window.i
+src/graphics/renderers/lotus_simplerenderer.i: src/graphics/renderers/lotus_simplerenderer.cpp.i
+.PHONY : src/graphics/renderers/lotus_simplerenderer.i
 
 # target to preprocess a source file
-src/graphics/window.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/window.cpp.i
-.PHONY : src/graphics/window.cpp.i
+src/graphics/renderers/lotus_simplerenderer.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderers/lotus_simplerenderer.cpp.i
+.PHONY : src/graphics/renderers/lotus_simplerenderer.cpp.i
 
-src/graphics/window.s: src/graphics/window.cpp.s
-.PHONY : src/graphics/window.s
+src/graphics/renderers/lotus_simplerenderer.s: src/graphics/renderers/lotus_simplerenderer.cpp.s
+.PHONY : src/graphics/renderers/lotus_simplerenderer.s
 
 # target to generate assembly for a file
-src/graphics/window.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/window.cpp.s
-.PHONY : src/graphics/window.cpp.s
+src/graphics/renderers/lotus_simplerenderer.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderers/lotus_simplerenderer.cpp.s
+.PHONY : src/graphics/renderers/lotus_simplerenderer.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -331,125 +331,125 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/maths/mat4.o: src/maths/mat4.cpp.o
-.PHONY : src/maths/mat4.o
+src/maths/lotus_mat4.o: src/maths/lotus_mat4.cpp.o
+.PHONY : src/maths/lotus_mat4.o
 
 # target to build an object file
-src/maths/mat4.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/mat4.cpp.o
-.PHONY : src/maths/mat4.cpp.o
+src/maths/lotus_mat4.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_mat4.cpp.o
+.PHONY : src/maths/lotus_mat4.cpp.o
 
-src/maths/mat4.i: src/maths/mat4.cpp.i
-.PHONY : src/maths/mat4.i
+src/maths/lotus_mat4.i: src/maths/lotus_mat4.cpp.i
+.PHONY : src/maths/lotus_mat4.i
 
 # target to preprocess a source file
-src/maths/mat4.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/mat4.cpp.i
-.PHONY : src/maths/mat4.cpp.i
+src/maths/lotus_mat4.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_mat4.cpp.i
+.PHONY : src/maths/lotus_mat4.cpp.i
 
-src/maths/mat4.s: src/maths/mat4.cpp.s
-.PHONY : src/maths/mat4.s
+src/maths/lotus_mat4.s: src/maths/lotus_mat4.cpp.s
+.PHONY : src/maths/lotus_mat4.s
 
 # target to generate assembly for a file
-src/maths/mat4.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/mat4.cpp.s
-.PHONY : src/maths/mat4.cpp.s
+src/maths/lotus_mat4.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_mat4.cpp.s
+.PHONY : src/maths/lotus_mat4.cpp.s
 
-src/maths/vec2.o: src/maths/vec2.cpp.o
-.PHONY : src/maths/vec2.o
+src/maths/lotus_vec2.o: src/maths/lotus_vec2.cpp.o
+.PHONY : src/maths/lotus_vec2.o
 
 # target to build an object file
-src/maths/vec2.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o
-.PHONY : src/maths/vec2.cpp.o
+src/maths/lotus_vec2.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_vec2.cpp.o
+.PHONY : src/maths/lotus_vec2.cpp.o
 
-src/maths/vec2.i: src/maths/vec2.cpp.i
-.PHONY : src/maths/vec2.i
+src/maths/lotus_vec2.i: src/maths/lotus_vec2.cpp.i
+.PHONY : src/maths/lotus_vec2.i
 
 # target to preprocess a source file
-src/maths/vec2.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec2.cpp.i
-.PHONY : src/maths/vec2.cpp.i
+src/maths/lotus_vec2.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_vec2.cpp.i
+.PHONY : src/maths/lotus_vec2.cpp.i
 
-src/maths/vec2.s: src/maths/vec2.cpp.s
-.PHONY : src/maths/vec2.s
+src/maths/lotus_vec2.s: src/maths/lotus_vec2.cpp.s
+.PHONY : src/maths/lotus_vec2.s
 
 # target to generate assembly for a file
-src/maths/vec2.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec2.cpp.s
-.PHONY : src/maths/vec2.cpp.s
+src/maths/lotus_vec2.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_vec2.cpp.s
+.PHONY : src/maths/lotus_vec2.cpp.s
 
-src/maths/vec3.o: src/maths/vec3.cpp.o
-.PHONY : src/maths/vec3.o
+src/maths/lotus_vec3.o: src/maths/lotus_vec3.cpp.o
+.PHONY : src/maths/lotus_vec3.o
 
 # target to build an object file
-src/maths/vec3.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o
-.PHONY : src/maths/vec3.cpp.o
+src/maths/lotus_vec3.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_vec3.cpp.o
+.PHONY : src/maths/lotus_vec3.cpp.o
 
-src/maths/vec3.i: src/maths/vec3.cpp.i
-.PHONY : src/maths/vec3.i
+src/maths/lotus_vec3.i: src/maths/lotus_vec3.cpp.i
+.PHONY : src/maths/lotus_vec3.i
 
 # target to preprocess a source file
-src/maths/vec3.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec3.cpp.i
-.PHONY : src/maths/vec3.cpp.i
+src/maths/lotus_vec3.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_vec3.cpp.i
+.PHONY : src/maths/lotus_vec3.cpp.i
 
-src/maths/vec3.s: src/maths/vec3.cpp.s
-.PHONY : src/maths/vec3.s
+src/maths/lotus_vec3.s: src/maths/lotus_vec3.cpp.s
+.PHONY : src/maths/lotus_vec3.s
 
 # target to generate assembly for a file
-src/maths/vec3.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec3.cpp.s
-.PHONY : src/maths/vec3.cpp.s
+src/maths/lotus_vec3.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_vec3.cpp.s
+.PHONY : src/maths/lotus_vec3.cpp.s
 
-src/maths/vec4.o: src/maths/vec4.cpp.o
-.PHONY : src/maths/vec4.o
+src/maths/lotus_vec4.o: src/maths/lotus_vec4.cpp.o
+.PHONY : src/maths/lotus_vec4.o
 
 # target to build an object file
-src/maths/vec4.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o
-.PHONY : src/maths/vec4.cpp.o
+src/maths/lotus_vec4.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_vec4.cpp.o
+.PHONY : src/maths/lotus_vec4.cpp.o
 
-src/maths/vec4.i: src/maths/vec4.cpp.i
-.PHONY : src/maths/vec4.i
+src/maths/lotus_vec4.i: src/maths/lotus_vec4.cpp.i
+.PHONY : src/maths/lotus_vec4.i
 
 # target to preprocess a source file
-src/maths/vec4.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec4.cpp.i
-.PHONY : src/maths/vec4.cpp.i
+src/maths/lotus_vec4.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_vec4.cpp.i
+.PHONY : src/maths/lotus_vec4.cpp.i
 
-src/maths/vec4.s: src/maths/vec4.cpp.s
-.PHONY : src/maths/vec4.s
+src/maths/lotus_vec4.s: src/maths/lotus_vec4.cpp.s
+.PHONY : src/maths/lotus_vec4.s
 
 # target to generate assembly for a file
-src/maths/vec4.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec4.cpp.s
-.PHONY : src/maths/vec4.cpp.s
+src/maths/lotus_vec4.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_vec4.cpp.s
+.PHONY : src/maths/lotus_vec4.cpp.s
 
-src/utils/fileutils.o: src/utils/fileutils.cpp.o
-.PHONY : src/utils/fileutils.o
+src/utils/lotus_fileutils.o: src/utils/lotus_fileutils.cpp.o
+.PHONY : src/utils/lotus_fileutils.o
 
 # target to build an object file
-src/utils/fileutils.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/utils/fileutils.cpp.o
-.PHONY : src/utils/fileutils.cpp.o
+src/utils/lotus_fileutils.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/utils/lotus_fileutils.cpp.o
+.PHONY : src/utils/lotus_fileutils.cpp.o
 
-src/utils/fileutils.i: src/utils/fileutils.cpp.i
-.PHONY : src/utils/fileutils.i
+src/utils/lotus_fileutils.i: src/utils/lotus_fileutils.cpp.i
+.PHONY : src/utils/lotus_fileutils.i
 
 # target to preprocess a source file
-src/utils/fileutils.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/utils/fileutils.cpp.i
-.PHONY : src/utils/fileutils.cpp.i
+src/utils/lotus_fileutils.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/utils/lotus_fileutils.cpp.i
+.PHONY : src/utils/lotus_fileutils.cpp.i
 
-src/utils/fileutils.s: src/utils/fileutils.cpp.s
-.PHONY : src/utils/fileutils.s
+src/utils/lotus_fileutils.s: src/utils/lotus_fileutils.cpp.s
+.PHONY : src/utils/lotus_fileutils.s
 
 # target to generate assembly for a file
-src/utils/fileutils.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/utils/fileutils.cpp.s
-.PHONY : src/utils/fileutils.cpp.s
+src/utils/lotus_fileutils.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/utils/lotus_fileutils.cpp.s
+.PHONY : src/utils/lotus_fileutils.cpp.s
 
 # Help Target
 help:
@@ -460,48 +460,48 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Lotus"
-	@echo "... src/graphics/buffers/buffer.o"
-	@echo "... src/graphics/buffers/buffer.i"
-	@echo "... src/graphics/buffers/buffer.s"
-	@echo "... src/graphics/buffers/indexbuffer.o"
-	@echo "... src/graphics/buffers/indexbuffer.i"
-	@echo "... src/graphics/buffers/indexbuffer.s"
-	@echo "... src/graphics/buffers/vertexarray.o"
-	@echo "... src/graphics/buffers/vertexarray.i"
-	@echo "... src/graphics/buffers/vertexarray.s"
-	@echo "... src/graphics/renderables/renderable.o"
-	@echo "... src/graphics/renderables/renderable.i"
-	@echo "... src/graphics/renderables/renderable.s"
-	@echo "... src/graphics/renderables/renderable2d.o"
-	@echo "... src/graphics/renderables/renderable2d.i"
-	@echo "... src/graphics/renderables/renderable2d.s"
-	@echo "... src/graphics/renderers/simplerenderer.o"
-	@echo "... src/graphics/renderers/simplerenderer.i"
-	@echo "... src/graphics/renderers/simplerenderer.s"
-	@echo "... src/graphics/shader.o"
-	@echo "... src/graphics/shader.i"
-	@echo "... src/graphics/shader.s"
-	@echo "... src/graphics/window.o"
-	@echo "... src/graphics/window.i"
-	@echo "... src/graphics/window.s"
+	@echo "... src/graphics/buffers/lotus_buffer.o"
+	@echo "... src/graphics/buffers/lotus_buffer.i"
+	@echo "... src/graphics/buffers/lotus_buffer.s"
+	@echo "... src/graphics/buffers/lotus_indexbuffer.o"
+	@echo "... src/graphics/buffers/lotus_indexbuffer.i"
+	@echo "... src/graphics/buffers/lotus_indexbuffer.s"
+	@echo "... src/graphics/buffers/lotus_vertexarray.o"
+	@echo "... src/graphics/buffers/lotus_vertexarray.i"
+	@echo "... src/graphics/buffers/lotus_vertexarray.s"
+	@echo "... src/graphics/lotus_shader.o"
+	@echo "... src/graphics/lotus_shader.i"
+	@echo "... src/graphics/lotus_shader.s"
+	@echo "... src/graphics/lotus_window.o"
+	@echo "... src/graphics/lotus_window.i"
+	@echo "... src/graphics/lotus_window.s"
+	@echo "... src/graphics/renderables/lotus_renderable.o"
+	@echo "... src/graphics/renderables/lotus_renderable.i"
+	@echo "... src/graphics/renderables/lotus_renderable.s"
+	@echo "... src/graphics/renderables/lotus_renderable2d.o"
+	@echo "... src/graphics/renderables/lotus_renderable2d.i"
+	@echo "... src/graphics/renderables/lotus_renderable2d.s"
+	@echo "... src/graphics/renderers/lotus_simplerenderer.o"
+	@echo "... src/graphics/renderers/lotus_simplerenderer.i"
+	@echo "... src/graphics/renderers/lotus_simplerenderer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/maths/mat4.o"
-	@echo "... src/maths/mat4.i"
-	@echo "... src/maths/mat4.s"
-	@echo "... src/maths/vec2.o"
-	@echo "... src/maths/vec2.i"
-	@echo "... src/maths/vec2.s"
-	@echo "... src/maths/vec3.o"
-	@echo "... src/maths/vec3.i"
-	@echo "... src/maths/vec3.s"
-	@echo "... src/maths/vec4.o"
-	@echo "... src/maths/vec4.i"
-	@echo "... src/maths/vec4.s"
-	@echo "... src/utils/fileutils.o"
-	@echo "... src/utils/fileutils.i"
-	@echo "... src/utils/fileutils.s"
+	@echo "... src/maths/lotus_mat4.o"
+	@echo "... src/maths/lotus_mat4.i"
+	@echo "... src/maths/lotus_mat4.s"
+	@echo "... src/maths/lotus_vec2.o"
+	@echo "... src/maths/lotus_vec2.i"
+	@echo "... src/maths/lotus_vec2.s"
+	@echo "... src/maths/lotus_vec3.o"
+	@echo "... src/maths/lotus_vec3.i"
+	@echo "... src/maths/lotus_vec3.s"
+	@echo "... src/maths/lotus_vec4.o"
+	@echo "... src/maths/lotus_vec4.i"
+	@echo "... src/maths/lotus_vec4.s"
+	@echo "... src/utils/lotus_fileutils.o"
+	@echo "... src/utils/lotus_fileutils.i"
+	@echo "... src/utils/lotus_fileutils.s"
 .PHONY : help
 
 
