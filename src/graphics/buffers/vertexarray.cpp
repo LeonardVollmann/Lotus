@@ -9,12 +9,12 @@ namespace lotus { namespace graphics {
 
 	VertexArray::~VertexArray()
 	{
-		glDeleteVertexArrays(1, &m_id);
-
 		for (auto it = m_buffers.begin(); it != m_buffers.end(); it++)
 		{
 			delete *it;
 		}
+		
+		glDeleteVertexArrays(1, &m_id);
 	}
 
 	void VertexArray::addBuffer(Buffer *buffer)

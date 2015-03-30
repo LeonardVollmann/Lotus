@@ -14,6 +14,42 @@ CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o: src/graphics/buffer
 CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o: src/graphics/buffers/vertexarray.hpp
 CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o: /usr/local/include/GL/glew.h
 
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.o: src/graphics/buffers/buffer.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.o: src/graphics/buffers/indexbuffer.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.o: src/graphics/buffers/vertexarray.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.o: src/graphics/renderables/renderable.cpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.o: src/graphics/renderables/renderable.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.o: src/graphics/renderers/irenderer.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.o: /usr/local/include/GL/glew.h
+
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o: src/graphics/buffers/buffer.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o: src/graphics/buffers/indexbuffer.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o: src/graphics/buffers/vertexarray.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o: src/graphics/renderables/renderable.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o: src/graphics/renderables/renderable2d.cpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o: src/graphics/renderables/renderable2d.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o: src/maths/mat4.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o: src/maths/maths.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o: src/maths/vec2.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o: src/maths/vec3.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o: src/maths/vec4.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o: /usr/local/include/GL/glew.h
+
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/graphics/buffers/buffer.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/graphics/buffers/indexbuffer.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/graphics/buffers/vertexarray.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/graphics/renderables/renderable.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/graphics/renderables/renderable2d.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/graphics/renderers/irenderer.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/graphics/renderers/simplerenderer.cpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/graphics/renderers/simplerenderer.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/maths/mat4.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/maths/maths.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/maths/vec2.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/maths/vec3.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: src/maths/vec4.hpp
+CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o: /usr/local/include/GL/glew.h
+
 CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o: src/graphics/shader.cpp
 CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o: src/graphics/shader.hpp
 CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o: src/maths/mat4.hpp
@@ -21,6 +57,7 @@ CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o: src/maths/maths.hpp
 CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o: src/maths/vec2.hpp
 CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o: src/maths/vec3.hpp
 CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o: src/maths/vec4.hpp
+CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o: src/utils/fileutils.hpp
 CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o: /usr/local/include/GL/glew.h
 
 CMakeFiles/Lotus.dir/src/graphics/window.cpp.o: src/graphics/window.cpp
@@ -28,6 +65,14 @@ CMakeFiles/Lotus.dir/src/graphics/window.cpp.o: src/graphics/window.hpp
 CMakeFiles/Lotus.dir/src/graphics/window.cpp.o: /usr/local/include/GL/glew.h
 CMakeFiles/Lotus.dir/src/graphics/window.cpp.o: /usr/local/include/GLFW/glfw3.h
 
+CMakeFiles/Lotus.dir/src/main.cpp.o: src/graphics/buffers/buffer.hpp
+CMakeFiles/Lotus.dir/src/main.cpp.o: src/graphics/buffers/indexbuffer.hpp
+CMakeFiles/Lotus.dir/src/main.cpp.o: src/graphics/buffers/vertexarray.hpp
+CMakeFiles/Lotus.dir/src/main.cpp.o: src/graphics/renderables/renderable.hpp
+CMakeFiles/Lotus.dir/src/main.cpp.o: src/graphics/renderables/renderable2d.hpp
+CMakeFiles/Lotus.dir/src/main.cpp.o: src/graphics/renderers/irenderer.hpp
+CMakeFiles/Lotus.dir/src/main.cpp.o: src/graphics/renderers/simplerenderer.hpp
+CMakeFiles/Lotus.dir/src/main.cpp.o: src/graphics/shader.hpp
 CMakeFiles/Lotus.dir/src/main.cpp.o: src/graphics/window.hpp
 CMakeFiles/Lotus.dir/src/main.cpp.o: src/main.cpp
 CMakeFiles/Lotus.dir/src/main.cpp.o: src/maths/mat4.hpp
@@ -52,4 +97,7 @@ CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o: src/maths/vec3.hpp
 
 CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o: src/maths/vec4.cpp
 CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o: src/maths/vec4.hpp
+
+CMakeFiles/Lotus.dir/src/utils/fileutils.cpp.o: src/utils/fileutils.cpp
+CMakeFiles/Lotus.dir/src/utils/fileutils.cpp.o: src/utils/fileutils.hpp
 

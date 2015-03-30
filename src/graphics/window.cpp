@@ -57,17 +57,23 @@ namespace lotus { namespace graphics {
             std::cout << "ERROR: Failed to create window" << std::endl;
             return false;
         }
+
+        glfwSetWindowUserPointer(m_window, this);
+        glfwSetWindowSizeCallback(m_window, callback_resize);
     
         glfwMakeContextCurrent(m_window);
-        
+
         glewExperimental = GL_TRUE;
         GLenum status = glewInit();
         if (status != GLEW_OK) {
             std::cerr << "ERROR: Failed to initialize GLEW: status = " << status << std::endl;
         }
-        
-        glfwSetWindowUserPointer(m_window, this);
-        glfwSetWindowSizeCallback(m_window, callback_resize);
+
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_DEPTH_CLAMP);
+        // glEnable(GL_CULL_FACE);
+        // glFrontFace(GL_CW);
+        // glCullFace(GL_BACK);
         
         return true;
     }

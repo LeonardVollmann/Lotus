@@ -2,6 +2,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/Lotus.dir/src/graphics/buffers/buffer.cpp.o"
   "CMakeFiles/Lotus.dir/src/graphics/buffers/indexbuffer.cpp.o"
   "CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.o"
+  "CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.o"
+  "CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o"
+  "CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o"
   "CMakeFiles/Lotus.dir/src/graphics/shader.cpp.o"
   "CMakeFiles/Lotus.dir/src/graphics/window.cpp.o"
   "CMakeFiles/Lotus.dir/src/main.cpp.o"
@@ -9,6 +12,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Lotus.dir/src/maths/vec2.cpp.o"
   "CMakeFiles/Lotus.dir/src/maths/vec3.cpp.o"
   "CMakeFiles/Lotus.dir/src/maths/vec4.cpp.o"
+  "CMakeFiles/Lotus.dir/src/utils/fileutils.cpp.o"
   "Lotus.pdb"
   "Lotus"
 )

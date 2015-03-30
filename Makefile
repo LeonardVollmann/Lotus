@@ -187,6 +187,78 @@ src/graphics/buffers/vertexarray.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/vertexarray.cpp.s
 .PHONY : src/graphics/buffers/vertexarray.cpp.s
 
+src/graphics/renderables/renderable.o: src/graphics/renderables/renderable.cpp.o
+.PHONY : src/graphics/renderables/renderable.o
+
+# target to build an object file
+src/graphics/renderables/renderable.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.o
+.PHONY : src/graphics/renderables/renderable.cpp.o
+
+src/graphics/renderables/renderable.i: src/graphics/renderables/renderable.cpp.i
+.PHONY : src/graphics/renderables/renderable.i
+
+# target to preprocess a source file
+src/graphics/renderables/renderable.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.i
+.PHONY : src/graphics/renderables/renderable.cpp.i
+
+src/graphics/renderables/renderable.s: src/graphics/renderables/renderable.cpp.s
+.PHONY : src/graphics/renderables/renderable.s
+
+# target to generate assembly for a file
+src/graphics/renderables/renderable.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/renderable.cpp.s
+.PHONY : src/graphics/renderables/renderable.cpp.s
+
+src/graphics/renderables/renderable2d.o: src/graphics/renderables/renderable2d.cpp.o
+.PHONY : src/graphics/renderables/renderable2d.o
+
+# target to build an object file
+src/graphics/renderables/renderable2d.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.o
+.PHONY : src/graphics/renderables/renderable2d.cpp.o
+
+src/graphics/renderables/renderable2d.i: src/graphics/renderables/renderable2d.cpp.i
+.PHONY : src/graphics/renderables/renderable2d.i
+
+# target to preprocess a source file
+src/graphics/renderables/renderable2d.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.i
+.PHONY : src/graphics/renderables/renderable2d.cpp.i
+
+src/graphics/renderables/renderable2d.s: src/graphics/renderables/renderable2d.cpp.s
+.PHONY : src/graphics/renderables/renderable2d.s
+
+# target to generate assembly for a file
+src/graphics/renderables/renderable2d.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/renderable2d.cpp.s
+.PHONY : src/graphics/renderables/renderable2d.cpp.s
+
+src/graphics/renderers/simplerenderer.o: src/graphics/renderers/simplerenderer.cpp.o
+.PHONY : src/graphics/renderers/simplerenderer.o
+
+# target to build an object file
+src/graphics/renderers/simplerenderer.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.o
+.PHONY : src/graphics/renderers/simplerenderer.cpp.o
+
+src/graphics/renderers/simplerenderer.i: src/graphics/renderers/simplerenderer.cpp.i
+.PHONY : src/graphics/renderers/simplerenderer.i
+
+# target to preprocess a source file
+src/graphics/renderers/simplerenderer.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.i
+.PHONY : src/graphics/renderers/simplerenderer.cpp.i
+
+src/graphics/renderers/simplerenderer.s: src/graphics/renderers/simplerenderer.cpp.s
+.PHONY : src/graphics/renderers/simplerenderer.s
+
+# target to generate assembly for a file
+src/graphics/renderers/simplerenderer.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderers/simplerenderer.cpp.s
+.PHONY : src/graphics/renderers/simplerenderer.cpp.s
+
 src/graphics/shader.o: src/graphics/shader.cpp.o
 .PHONY : src/graphics/shader.o
 
@@ -355,6 +427,30 @@ src/maths/vec4.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/vec4.cpp.s
 .PHONY : src/maths/vec4.cpp.s
 
+src/utils/fileutils.o: src/utils/fileutils.cpp.o
+.PHONY : src/utils/fileutils.o
+
+# target to build an object file
+src/utils/fileutils.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/utils/fileutils.cpp.o
+.PHONY : src/utils/fileutils.cpp.o
+
+src/utils/fileutils.i: src/utils/fileutils.cpp.i
+.PHONY : src/utils/fileutils.i
+
+# target to preprocess a source file
+src/utils/fileutils.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/utils/fileutils.cpp.i
+.PHONY : src/utils/fileutils.cpp.i
+
+src/utils/fileutils.s: src/utils/fileutils.cpp.s
+.PHONY : src/utils/fileutils.s
+
+# target to generate assembly for a file
+src/utils/fileutils.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/utils/fileutils.cpp.s
+.PHONY : src/utils/fileutils.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -373,6 +469,15 @@ help:
 	@echo "... src/graphics/buffers/vertexarray.o"
 	@echo "... src/graphics/buffers/vertexarray.i"
 	@echo "... src/graphics/buffers/vertexarray.s"
+	@echo "... src/graphics/renderables/renderable.o"
+	@echo "... src/graphics/renderables/renderable.i"
+	@echo "... src/graphics/renderables/renderable.s"
+	@echo "... src/graphics/renderables/renderable2d.o"
+	@echo "... src/graphics/renderables/renderable2d.i"
+	@echo "... src/graphics/renderables/renderable2d.s"
+	@echo "... src/graphics/renderers/simplerenderer.o"
+	@echo "... src/graphics/renderers/simplerenderer.i"
+	@echo "... src/graphics/renderers/simplerenderer.s"
 	@echo "... src/graphics/shader.o"
 	@echo "... src/graphics/shader.i"
 	@echo "... src/graphics/shader.s"
@@ -394,6 +499,9 @@ help:
 	@echo "... src/maths/vec4.o"
 	@echo "... src/maths/vec4.i"
 	@echo "... src/maths/vec4.s"
+	@echo "... src/utils/fileutils.o"
+	@echo "... src/utils/fileutils.i"
+	@echo "... src/utils/fileutils.s"
 .PHONY : help
 
 
