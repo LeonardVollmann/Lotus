@@ -61,7 +61,7 @@ namespace lotus { namespace graphics {
     
     void Shader::setUniformMatrix4f(const std::string &uniform, const maths::mat4 &value) const
     {   
-        glUniformMatrix4fv(m_uniforms[uniform], 1, true, value.elements);
+        glUniformMatrix4fv(m_uniforms[uniform], 1, false, value.elements);
     }
     
     Shader &Shader::addVertexShader()

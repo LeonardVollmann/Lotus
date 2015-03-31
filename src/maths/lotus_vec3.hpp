@@ -1,6 +1,8 @@
 #ifndef LOTUS_VEC3_HPP_INCLUDED
 #define LOTUS_VEC3_HPP_INCLUDED
 
+#include "lotus_quat.hpp"
+
 #include <iostream>
 
 namespace lotus { namespace maths {
@@ -16,6 +18,8 @@ namespace lotus { namespace maths {
 		vec3 &subtract(const vec3 &other);
 		vec3 &multiply(const vec3 &other);
 		vec3 &divide(const vec3 &other);
+		vec3 &rotate(const quat &rotation);
+		vec3 &rotate(float angle, const vec3 &axis);
 
 		float dot(const vec3 &other) const;
 		float lengthSqr() const;

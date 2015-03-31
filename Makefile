@@ -355,6 +355,30 @@ src/maths/lotus_mat4.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_mat4.cpp.s
 .PHONY : src/maths/lotus_mat4.cpp.s
 
+src/maths/lotus_quat.o: src/maths/lotus_quat.cpp.o
+.PHONY : src/maths/lotus_quat.o
+
+# target to build an object file
+src/maths/lotus_quat.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_quat.cpp.o
+.PHONY : src/maths/lotus_quat.cpp.o
+
+src/maths/lotus_quat.i: src/maths/lotus_quat.cpp.i
+.PHONY : src/maths/lotus_quat.i
+
+# target to preprocess a source file
+src/maths/lotus_quat.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_quat.cpp.i
+.PHONY : src/maths/lotus_quat.cpp.i
+
+src/maths/lotus_quat.s: src/maths/lotus_quat.cpp.s
+.PHONY : src/maths/lotus_quat.s
+
+# target to generate assembly for a file
+src/maths/lotus_quat.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_quat.cpp.s
+.PHONY : src/maths/lotus_quat.cpp.s
+
 src/maths/lotus_vec2.o: src/maths/lotus_vec2.cpp.o
 .PHONY : src/maths/lotus_vec2.o
 
@@ -490,6 +514,9 @@ help:
 	@echo "... src/maths/lotus_mat4.o"
 	@echo "... src/maths/lotus_mat4.i"
 	@echo "... src/maths/lotus_mat4.s"
+	@echo "... src/maths/lotus_quat.o"
+	@echo "... src/maths/lotus_quat.i"
+	@echo "... src/maths/lotus_quat.s"
 	@echo "... src/maths/lotus_vec2.o"
 	@echo "... src/maths/lotus_vec2.i"
 	@echo "... src/maths/lotus_vec2.s"

@@ -20,7 +20,7 @@ if ( CMAKE_BUILD_TYPE STREQUAL "" )
 endif ( CMAKE_BUILD_TYPE STREQUAL "" )
 
 if ( CMAKE_BUILD_TYPE STREQUAL "Release" )
-add_definitions( -O2 )
+add_definitions( -O3 )
 endif ( CMAKE_BUILD_TYPE STREQUAL "Release" )
 
 file(GLOB_RECURSE HDRS 

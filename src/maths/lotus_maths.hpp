@@ -7,4 +7,6 @@
 
 #include "lotus_mat4.hpp"
 
+#include "lotus_quat.hpp"
+
 #endif

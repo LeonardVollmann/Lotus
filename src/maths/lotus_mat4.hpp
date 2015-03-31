@@ -3,6 +3,7 @@
 
 #include "lotus_vec3.hpp"
 #include "lotus_vec4.hpp"
+#include "lotus_quat.hpp"
 
 namespace lotus { namespace maths {
 
@@ -19,18 +20,20 @@ namespace lotus { namespace maths {
 			return vec4(elements[index], elements[index + 1], elements[index + 2], elements[index + 3]);
 		}
 
-		mat4& multiply(const mat4& other);
-		mat4& operator*=(const mat4& other);
+		mat4 multiply(const mat4 &other) const;
+		mat4 &operator*=(const mat4 &other);
 
-		float operator[](int index) const;
+		float &operator[](int index);
 
-		friend mat4 operator*(mat4 left, const mat4& right);
+		friend mat4 operator*(const mat4 &left, const mat4 &right);
 
 		static mat4 identity();
 
-		static mat4 translation(const vec3& translation);
-		static mat4 rotation(float angle, const vec3& axis);
-		static mat4 scale(const vec3& scale);
+		static mat4 translation(const vec3 &translation);
+		static mat4 rotation(float angle, const vec3 &axis);
+		static mat4 rotation(const vec3 &f, const vec3 &r, const vec3 &u);
+		static mat4 rotation(const quat &rotation);
+		static mat4 scale(const vec3 &scale);
 
 		static mat4 orthographic(float left, float right, float bottom, float top, float near, float far);
 		static mat4 perspective(float fov, float aspectRatio, float near, float far);

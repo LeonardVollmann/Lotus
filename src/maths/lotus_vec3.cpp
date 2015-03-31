@@ -54,6 +54,32 @@ namespace lotus { namespace maths {
 		return *this;
 	}
 
+	vec3 &vec3::rotate(const quat &rotation)
+	{
+		quat q = rotation * (*this) * rotation.conjugate();
+
+		x = q.x;
+		y = q.y;
+		z = q.z;
+
+		return *this;
+	}
+
+	vec3 &vec3::rotate(float angle, const vec3 &axis)
+	{
+		const float sinHalfAngle = sinf(angle / 2.0f);
+		const float cosHalfAngle = cosf(angle / 2.0f);
+
+		const float rx = axis.x * sinHalfAngle;
+		const float ry = axis.y * sinHalfAngle;
+		const float rz = axis.z * sinHalfAngle;
+		const float rw = cosHalfAngle;
+
+		quat rotation = quat(rx, ry, rz, rw);
+
+		return rotate(rotation);
+	}
+
 	float vec3::dot(const vec3 &other) const
 	{
 		return x * other.x + y * other.y + z * other.z;

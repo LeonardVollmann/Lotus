@@ -22,8 +22,9 @@ namespace lotus { namespace maths {
 		elements[3 + 3 * 4] = diagonal;
 	}
 
-	mat4& mat4::multiply(const mat4& other)
+	mat4 mat4::multiply(const mat4 &other) const
 	{
+		mat4 result = *this;
 		for (int y = 0; y < 4; y++)
 		{
 			for (int x = 0; x < 4; x++)
@@ -33,24 +34,25 @@ namespace lotus { namespace maths {
 				{
 					sum += elements[x + i * 4] * other.elements[i + y * 4];
 				}
-				elements[x + y * 4] = sum;
+				result.elements[x + y * 4] = sum;
 			}
 		}
 
-		return *this;
+		return result;
 	}
 
-	mat4 operator*(mat4 left, const mat4& right)
+	mat4 operator*(const mat4 &left, const mat4 &right)
 	{
 		return left.multiply(right);
 	}
 
 	mat4& mat4::operator*=(const mat4& other)
 	{
-		return multiply(other);
+		*this = multiply(other);
+		return *this;
 	}
 
-	float mat4::operator[](int index) const
+	float &mat4::operator[](int index)
 	{
 		return elements[index];
 	}
@@ -60,7 +62,7 @@ namespace lotus { namespace maths {
 		return mat4(1.0f);
 	}
 
-	mat4 mat4::translation(const vec3& translation)
+	mat4 mat4::translation(const vec3 &translation)
 	{
 		mat4 result(1.0f);
 
@@ -71,35 +73,62 @@ namespace lotus { namespace maths {
 		return result;
 	}
 
-	mat4 mat4::rotation(float angle, const vec3& axis)
+	mat4 mat4::rotation(float angle, const vec3 &axis)
 	{
 		mat4 result(1.0f);
 
-		float r = toRadians(angle);
-		float c = cos(r);
-		float s = sin(r);
+		float c = cos(angle);
+		float s = sin(angle);
 		float omc = 1.0f - c;
 		
 		float x = axis.x;
 		float y = axis.y;
 		float z = axis.z;
 
-		result.elements[0 + 0 * 4] = x * omc + c;
-		result.elements[1 + 0 * 4] = y * x * omc + z * s;
-		result.elements[2 + 0 * 4] = x * z * omc - y * s;
+		result[0 + 0 * 4] = x * omc + c;
+		result[1 + 0 * 4] = y * x * omc + z * s;
+		result[2 + 0 * 4] = x * z * omc - y * s;
 
-		result.elements[0 + 1 * 4] = x * y * omc - z * s;
-		result.elements[1 + 1 * 4] = y * omc + c;
-		result.elements[2 + 1 * 4] = y * z * omc + x * s;
+		result[0 + 1 * 4] = x * y * omc - z * s;
+		result[1 + 1 * 4] = y * omc + c;
+		result[2 + 1 * 4] = y * z * omc + x * s;
 
-		result.elements[0 + 2 * 4] = x * z * omc + y * s;
-		result.elements[1 + 2 * 4] = y * z * omc - x * s;
-		result.elements[2 + 2 * 4] = z * omc + c;
+		result[0 + 2 * 4] = x * z * omc + y * s;
+		result[1 + 2 * 4] = y * z * omc - x * s;
+		result[2 + 2 * 4] = z * omc + c;
 		
 		return result;
 	}
 
-	mat4 mat4::scale(const vec3& scale)
+	mat4 mat4::rotation(const vec3 &f, const vec3 &r, const vec3 &u)
+	{
+		mat4 result(1.0f);
+
+		result[0 + 0 * 4] = r.x;
+		result[1 + 0 * 4] = r.y;
+		result[2 + 0 * 4] = r.z;
+
+		result[0 + 1 * 4] = u.x;
+		result[1 + 1 * 4] = u.y;
+		result[2 + 1 * 4] = u.z;
+		
+		result[0 + 2 * 4] = f.x;
+		result[1 + 2 * 4] = f.y;
+		result[2 + 2 * 4] = f.z;
+
+		return result;
+	}
+
+	mat4 mat4::rotation(const quat &rotation)
+	{
+		const vec3 f = vec3(0.0f, 0.0f, 1.0f).rotate(rotation);
+		const vec3 r = vec3(1.0f, 0.0f, 0.0f).rotate(rotation);
+		const vec3 u = vec3(0.0f, 1.0f, 0.0f).rotate(rotation);
+
+		return mat4::rotation(f, r, u);
+	}
+
+	mat4 mat4::scale(const vec3 &scale)
 	{
 		mat4 result(1.0f);
 
