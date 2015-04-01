@@ -55,14 +55,31 @@ namespace lotus { namespace graphics {
         glUniform1f(m_uniforms[uniform], value);
     }
     
-    void Shader::setUniformVector3f(const std::string &uniform, const maths::vec3 &value) const
+    void Shader::setUniformVec3(const std::string &uniform, const maths::vec3 &value) const
     {
         glUniform3f(m_uniforms[uniform], value.x, value.y, value.z);
     }
+
+    void Shader::setUniformVec4(const std::string &uniform, const maths::vec4 &value) const
+    {
+        glUniform4f(m_uniforms[uniform], value.x, value.y, value.z, value.w);
+    }
     
-    void Shader::setUniformMatrix4f(const std::string &uniform, const maths::mat4 &value) const
+    void Shader::setUniformMat4(const std::string &uniform, const maths::mat4 &value) const
     {   
         glUniformMatrix4fv(m_uniforms[uniform], 1, false, value.elements);
+    }
+
+    void Shader::setUniformBaseLight(const std::string &uniform, const BaseLight &baseLight)
+    {
+        glUniform3f(m_uniforms[uniform + ".color"], baseLight.color.x, baseLight.color.y, baseLight.color.z);
+        glUniform1f(m_uniforms[uniform + ".intensity"], baseLight.intensity);
+    } 
+
+    void Shader::setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight)
+    {
+        setUniformBaseLight(uniform + ".base", directionalLight.base);
+        glUniform3f(m_uniforms[uniform + ".direction"], directionalLight.direction.x, directionalLight.direction.y, directionalLight.direction.z);
     }
     
     Shader &Shader::addVertexShader()

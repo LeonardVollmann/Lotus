@@ -23,7 +23,8 @@ namespace lotus { namespace graphics {
 		void addNormal(GLfloat x, GLfloat y, GLfloat z);
 		void addFace(GLushort i1, GLushort i2, GLushort i3);
 
-		void finalize();
+		bool isValid();
+		IndexedModel &finalize();
 
 		inline const std::vector<GLfloat> &getVertices() const { return m_vertices; }
 		inline const std::vector<GLfloat> &getTexCoords() const { return m_texCoords; }
