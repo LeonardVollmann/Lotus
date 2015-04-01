@@ -10,7 +10,7 @@ namespace lotus { namespace graphics {
 	private:
 		GLuint m_id;
 	public:
-		IndexBuffer(GLushort *data, GLsizei count);
+		IndexBuffer(const GLushort *data, GLsizei count);
 		virtual ~IndexBuffer();
 
 		void bind() const;

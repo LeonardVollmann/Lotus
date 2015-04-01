@@ -14,7 +14,8 @@ namespace lotus { namespace graphics {
         m_program = glCreateProgram();
 
         glBindAttribLocation(m_program, 0, "vertex_pos");
-        glBindAttribLocation(m_program, 1, "vertex_color");
+        glBindAttribLocation(m_program, 1, "vertex_texCoord");
+        glBindAttribLocation(m_program, 2, "vertex_normal");
     }
     
     Shader::~Shader()

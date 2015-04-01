@@ -2,7 +2,6 @@
 #define LOTUS_SIMPLE_RENDERER
 
 #include "lotus_irenderer.hpp"
-#include "../renderables/lotus_renderable2d.hpp"
 
 namespace lotus { namespace graphics {
 

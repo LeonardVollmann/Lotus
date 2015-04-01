@@ -3,15 +3,13 @@
 
 namespace lotus { namespace graphics {
 
-	Renderable::Renderable(GLfloat *vertices, GLfloat *colors, GLsizei vertexCount, GLushort *indices, GLsizei indexCount) :
-		m_ibo(indices, indexCount),
+	Renderable::Renderable(const GLfloat *vertices, GLsizei numVertices, const GLushort *indices, GLsizei numIndices) :
+		m_ibo(indices, numIndices),
 		m_vertices(vertices),
 		m_indices(indices),
-		m_indexCount(indexCount),
-		m_colors(colors)
+		m_numIndices(numIndices)
 	{
-		m_vao.addBuffer(new Buffer(m_vertices, vertexCount * 3, 3));
-		m_vao.addBuffer(new Buffer(m_colors, vertexCount * 4, 4));
+		m_vao.addBuffer(new Buffer(m_vertices, numVertices, 3));
 	}
 
 	void Renderable::render(IRenderer *renderer) const

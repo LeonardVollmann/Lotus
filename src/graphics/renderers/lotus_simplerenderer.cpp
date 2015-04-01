@@ -4,7 +4,7 @@ namespace lotus { namespace graphics {
 
 	void SimpleRenderer::render(const Renderable &renderable) const
 	{
-		glDrawElements(GL_TRIANGLES, renderable.getIndexCount(), GL_UNSIGNED_SHORT, nullptr);
+		glDrawElements(GL_TRIANGLES, renderable.getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 	}
 
 } }

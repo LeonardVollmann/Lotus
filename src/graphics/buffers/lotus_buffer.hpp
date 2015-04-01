@@ -11,7 +11,7 @@ namespace lotus { namespace graphics {
 		GLuint m_id;
 		GLuint m_numComponents;
 	public:
-		Buffer(float *data, GLsizei count, GLuint numComponents);
+		Buffer(const GLfloat *data, GLsizei count, GLuint numComponents);
 		virtual ~Buffer();
 
 		void bind() const;

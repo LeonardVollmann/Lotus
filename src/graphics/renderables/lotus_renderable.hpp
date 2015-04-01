@@ -17,17 +17,16 @@ namespace lotus { namespace graphics {
 		VertexArray m_vao;
 		IndexBuffer m_ibo;
 
-		GLfloat *m_vertices;
-		GLushort *m_indices;
-		GLsizei m_indexCount;
-		GLfloat *m_colors;
+		const GLfloat *m_vertices;
+		const GLushort *m_indices;
+		GLsizei m_numIndices;
 	public:
-		Renderable(GLfloat *vertices, GLfloat *colors, GLsizei vertexCount, GLushort *indices, GLsizei indexCount);
+		Renderable(const GLfloat *vertices, GLsizei numVertices, const GLushort *indices, GLsizei indexCount);
 		virtual ~Renderable() {}
 
 		virtual void render(IRenderer *renderer) const;
 
-		inline GLsizei getIndexCount() const { return m_indexCount; }
+		inline GLsizei getNumIndices() const { return m_numIndices; }
 	};
 
 } }

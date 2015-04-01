@@ -2,7 +2,7 @@
 
 namespace lotus { namespace graphics {
 
-	IndexBuffer::IndexBuffer(GLushort *data, GLsizei count)
+	IndexBuffer::IndexBuffer(const GLushort *data, GLsizei count)
 	{
 		glGenBuffers(1, &m_id);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_id);

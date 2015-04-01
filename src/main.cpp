@@ -5,8 +5,11 @@
 #include "graphics/lotus_window.hpp"
 #include "graphics/lotus_shader.hpp"
 #include "graphics/renderables/lotus_renderable.hpp"
-#include "graphics/renderables/lotus_renderable2d.hpp"
+#include "graphics/renderables/lotus_quad.hpp"
+#include "graphics/renderables/lotus_mesh.hpp"
 #include "graphics/renderers/lotus_simplerenderer.hpp"
+#include "graphics/meshloading/lotus_indexedmodel.hpp"
+#include "graphics/meshloading/lotus_objloader.hpp"
 
 int main()
 {
@@ -16,7 +19,11 @@ int main()
 
 	Window window(800, 600, "Lotus");
 
-	Renderable2D sprite(maths::vec2(0.5f, 0.5f), maths::vec4(1.0f, 0.0f, 1.0f, 1.0f));
+	IndexedModel model = OBJLoader::loadIndexedModel("dragon");
+	model.finalize();
+	Mesh mesh(model);
+
+	Quad sprite(maths::vec2(0.5f, 0.5f));
 	SimpleRenderer renderer;
 
 	Shader shader("simple");
@@ -27,7 +34,6 @@ int main()
 	shader.addUniform("u_color");
 
 	mat4 perspective = mat4::perspective(70.0f, 800 / 600, 0.001f, 1000.0f);
-	mat4 ortho = mat4::orthographic(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 5.0f);
 
 	float count = 0;
 	while (!window.isClosed())
@@ -38,10 +44,10 @@ int main()
 
 		shader.setUniformMatrix4f("pr_matrix", perspective);
 		shader.setUniformMatrix4f("vw_matrix", mat4(1.0f));
-		shader.setUniformMatrix4f("ml_matrix", mat4::translation(vec3(0.0f, 0.0f, -2.0f)) * mat4::rotation(quat(sinf(count), 0.0f, cosf(count), 1.0f).normalize()));
-		shader.setUniformVector3f("u_color", vec3(sinf(count), 0.5f, cosf(count)));
+		shader.setUniformMatrix4f("ml_matrix", mat4::translation(vec3(0.0f, -2.5f, -6.0f)) * mat4::rotation(quat(0.0f, sinf(count) * 4, 0.0f, 1.0f).normalize()) * mat4::scale(maths::vec3(0.5f, 0.5f, 0.5f)));
+		shader.setUniformVector3f("u_color", vec3(1.0f, 1.0f, 1.0f));
 
-		sprite.render(&renderer);
+		mesh.render(&renderer);
 
 		shader.unbind();
 

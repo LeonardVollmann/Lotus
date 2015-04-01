@@ -235,6 +235,102 @@ src/graphics/lotus_window.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_window.cpp.s
 .PHONY : src/graphics/lotus_window.cpp.s
 
+src/graphics/meshloading/lotus_indexedmodel.o: src/graphics/meshloading/lotus_indexedmodel.cpp.o
+.PHONY : src/graphics/meshloading/lotus_indexedmodel.o
+
+# target to build an object file
+src/graphics/meshloading/lotus_indexedmodel.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/meshloading/lotus_indexedmodel.cpp.o
+.PHONY : src/graphics/meshloading/lotus_indexedmodel.cpp.o
+
+src/graphics/meshloading/lotus_indexedmodel.i: src/graphics/meshloading/lotus_indexedmodel.cpp.i
+.PHONY : src/graphics/meshloading/lotus_indexedmodel.i
+
+# target to preprocess a source file
+src/graphics/meshloading/lotus_indexedmodel.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/meshloading/lotus_indexedmodel.cpp.i
+.PHONY : src/graphics/meshloading/lotus_indexedmodel.cpp.i
+
+src/graphics/meshloading/lotus_indexedmodel.s: src/graphics/meshloading/lotus_indexedmodel.cpp.s
+.PHONY : src/graphics/meshloading/lotus_indexedmodel.s
+
+# target to generate assembly for a file
+src/graphics/meshloading/lotus_indexedmodel.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/meshloading/lotus_indexedmodel.cpp.s
+.PHONY : src/graphics/meshloading/lotus_indexedmodel.cpp.s
+
+src/graphics/meshloading/lotus_objloader.o: src/graphics/meshloading/lotus_objloader.cpp.o
+.PHONY : src/graphics/meshloading/lotus_objloader.o
+
+# target to build an object file
+src/graphics/meshloading/lotus_objloader.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/meshloading/lotus_objloader.cpp.o
+.PHONY : src/graphics/meshloading/lotus_objloader.cpp.o
+
+src/graphics/meshloading/lotus_objloader.i: src/graphics/meshloading/lotus_objloader.cpp.i
+.PHONY : src/graphics/meshloading/lotus_objloader.i
+
+# target to preprocess a source file
+src/graphics/meshloading/lotus_objloader.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/meshloading/lotus_objloader.cpp.i
+.PHONY : src/graphics/meshloading/lotus_objloader.cpp.i
+
+src/graphics/meshloading/lotus_objloader.s: src/graphics/meshloading/lotus_objloader.cpp.s
+.PHONY : src/graphics/meshloading/lotus_objloader.s
+
+# target to generate assembly for a file
+src/graphics/meshloading/lotus_objloader.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/meshloading/lotus_objloader.cpp.s
+.PHONY : src/graphics/meshloading/lotus_objloader.cpp.s
+
+src/graphics/renderables/lotus_mesh.o: src/graphics/renderables/lotus_mesh.cpp.o
+.PHONY : src/graphics/renderables/lotus_mesh.o
+
+# target to build an object file
+src/graphics/renderables/lotus_mesh.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_mesh.cpp.o
+.PHONY : src/graphics/renderables/lotus_mesh.cpp.o
+
+src/graphics/renderables/lotus_mesh.i: src/graphics/renderables/lotus_mesh.cpp.i
+.PHONY : src/graphics/renderables/lotus_mesh.i
+
+# target to preprocess a source file
+src/graphics/renderables/lotus_mesh.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_mesh.cpp.i
+.PHONY : src/graphics/renderables/lotus_mesh.cpp.i
+
+src/graphics/renderables/lotus_mesh.s: src/graphics/renderables/lotus_mesh.cpp.s
+.PHONY : src/graphics/renderables/lotus_mesh.s
+
+# target to generate assembly for a file
+src/graphics/renderables/lotus_mesh.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_mesh.cpp.s
+.PHONY : src/graphics/renderables/lotus_mesh.cpp.s
+
+src/graphics/renderables/lotus_quad.o: src/graphics/renderables/lotus_quad.cpp.o
+.PHONY : src/graphics/renderables/lotus_quad.o
+
+# target to build an object file
+src/graphics/renderables/lotus_quad.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_quad.cpp.o
+.PHONY : src/graphics/renderables/lotus_quad.cpp.o
+
+src/graphics/renderables/lotus_quad.i: src/graphics/renderables/lotus_quad.cpp.i
+.PHONY : src/graphics/renderables/lotus_quad.i
+
+# target to preprocess a source file
+src/graphics/renderables/lotus_quad.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_quad.cpp.i
+.PHONY : src/graphics/renderables/lotus_quad.cpp.i
+
+src/graphics/renderables/lotus_quad.s: src/graphics/renderables/lotus_quad.cpp.s
+.PHONY : src/graphics/renderables/lotus_quad.s
+
+# target to generate assembly for a file
+src/graphics/renderables/lotus_quad.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_quad.cpp.s
+.PHONY : src/graphics/renderables/lotus_quad.cpp.s
+
 src/graphics/renderables/lotus_renderable.o: src/graphics/renderables/lotus_renderable.cpp.o
 .PHONY : src/graphics/renderables/lotus_renderable.o
 
@@ -258,30 +354,6 @@ src/graphics/renderables/lotus_renderable.s: src/graphics/renderables/lotus_rend
 src/graphics/renderables/lotus_renderable.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_renderable.cpp.s
 .PHONY : src/graphics/renderables/lotus_renderable.cpp.s
-
-src/graphics/renderables/lotus_renderable2d.o: src/graphics/renderables/lotus_renderable2d.cpp.o
-.PHONY : src/graphics/renderables/lotus_renderable2d.o
-
-# target to build an object file
-src/graphics/renderables/lotus_renderable2d.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_renderable2d.cpp.o
-.PHONY : src/graphics/renderables/lotus_renderable2d.cpp.o
-
-src/graphics/renderables/lotus_renderable2d.i: src/graphics/renderables/lotus_renderable2d.cpp.i
-.PHONY : src/graphics/renderables/lotus_renderable2d.i
-
-# target to preprocess a source file
-src/graphics/renderables/lotus_renderable2d.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_renderable2d.cpp.i
-.PHONY : src/graphics/renderables/lotus_renderable2d.cpp.i
-
-src/graphics/renderables/lotus_renderable2d.s: src/graphics/renderables/lotus_renderable2d.cpp.s
-.PHONY : src/graphics/renderables/lotus_renderable2d.s
-
-# target to generate assembly for a file
-src/graphics/renderables/lotus_renderable2d.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderables/lotus_renderable2d.cpp.s
-.PHONY : src/graphics/renderables/lotus_renderable2d.cpp.s
 
 src/graphics/renderers/lotus_simplerenderer.o: src/graphics/renderers/lotus_simplerenderer.cpp.o
 .PHONY : src/graphics/renderers/lotus_simplerenderer.o
@@ -499,12 +571,21 @@ help:
 	@echo "... src/graphics/lotus_window.o"
 	@echo "... src/graphics/lotus_window.i"
 	@echo "... src/graphics/lotus_window.s"
+	@echo "... src/graphics/meshloading/lotus_indexedmodel.o"
+	@echo "... src/graphics/meshloading/lotus_indexedmodel.i"
+	@echo "... src/graphics/meshloading/lotus_indexedmodel.s"
+	@echo "... src/graphics/meshloading/lotus_objloader.o"
+	@echo "... src/graphics/meshloading/lotus_objloader.i"
+	@echo "... src/graphics/meshloading/lotus_objloader.s"
+	@echo "... src/graphics/renderables/lotus_mesh.o"
+	@echo "... src/graphics/renderables/lotus_mesh.i"
+	@echo "... src/graphics/renderables/lotus_mesh.s"
+	@echo "... src/graphics/renderables/lotus_quad.o"
+	@echo "... src/graphics/renderables/lotus_quad.i"
+	@echo "... src/graphics/renderables/lotus_quad.s"
 	@echo "... src/graphics/renderables/lotus_renderable.o"
 	@echo "... src/graphics/renderables/lotus_renderable.i"
 	@echo "... src/graphics/renderables/lotus_renderable.s"
-	@echo "... src/graphics/renderables/lotus_renderable2d.o"
-	@echo "... src/graphics/renderables/lotus_renderable2d.i"
-	@echo "... src/graphics/renderables/lotus_renderable2d.s"
 	@echo "... src/graphics/renderers/lotus_simplerenderer.o"
 	@echo "... src/graphics/renderers/lotus_simplerenderer.i"
 	@echo "... src/graphics/renderers/lotus_simplerenderer.s"
