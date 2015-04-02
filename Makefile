@@ -115,6 +115,30 @@ Lotus/fast:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/build
 .PHONY : Lotus/fast
 
+src/core/lotus_transform.o: src/core/lotus_transform.cpp.o
+.PHONY : src/core/lotus_transform.o
+
+# target to build an object file
+src/core/lotus_transform.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/core/lotus_transform.cpp.o
+.PHONY : src/core/lotus_transform.cpp.o
+
+src/core/lotus_transform.i: src/core/lotus_transform.cpp.i
+.PHONY : src/core/lotus_transform.i
+
+# target to preprocess a source file
+src/core/lotus_transform.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/core/lotus_transform.cpp.i
+.PHONY : src/core/lotus_transform.cpp.i
+
+src/core/lotus_transform.s: src/core/lotus_transform.cpp.s
+.PHONY : src/core/lotus_transform.s
+
+# target to generate assembly for a file
+src/core/lotus_transform.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/core/lotus_transform.cpp.s
+.PHONY : src/core/lotus_transform.cpp.s
+
 src/graphics/buffers/lotus_buffer.o: src/graphics/buffers/lotus_buffer.cpp.o
 .PHONY : src/graphics/buffers/lotus_buffer.o
 
@@ -556,6 +580,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Lotus"
+	@echo "... src/core/lotus_transform.o"
+	@echo "... src/core/lotus_transform.i"
+	@echo "... src/core/lotus_transform.s"
 	@echo "... src/graphics/buffers/lotus_buffer.o"
 	@echo "... src/graphics/buffers/lotus_buffer.i"
 	@echo "... src/graphics/buffers/lotus_buffer.s"

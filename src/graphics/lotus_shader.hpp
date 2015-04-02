@@ -30,7 +30,7 @@ namespace lotus { namespace graphics {
         Shader &addFragmentShader();
         Shader &addGeometryShader();
         Shader &compile();
-        
+
         void addUniform(const std::string &uniform) const;
         void setUniformInteger(const std::string &uniform, int value) const;
         void setUniformFloat(const std::string &uniform, float value) const;

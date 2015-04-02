@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 
+#include "core/lotus_transform.hpp"
 #include "maths/lotus_maths.hpp"
 #include "graphics/lotus_window.hpp"
 #include "graphics/lotus_shader.hpp"
@@ -38,7 +39,7 @@ int main()
 	shader.addUniform("directionalLight.base.intensity");
 	shader.addUniform("directionalLight.direction");
 
-	mat4 perspective = mat4::perspective(70.0f, 800 / 600, 0.001f, 1000.0f);
+	mat4 perspective = mat4::perspective(70.0f, window.getAspect(), 0.001f, 1000.0f);
 
 	float count = 0;
 	while (!window.isClosed())
@@ -47,6 +48,7 @@ int main()
 
 		shader.bind();
 
+		perspective = mat4::perspective(70.0f, window.getAspect(), 0.001f, 1000.0f);
 		shader.setUniformMat4("pr_matrix", perspective);
 		shader.setUniformMat4("vw_matrix", mat4(1.0f));
 		shader.setUniformMat4("ml_matrix", mat4::translation(vec3(0.0f, -2.5f, -6.0f)) * mat4::rotation(quat(0.0f, sinf(count) * 4, 0.0f, 1.0f).normalize()) * mat4::scale(maths::vec3(0.5f, 0.5f, 0.5f)));
