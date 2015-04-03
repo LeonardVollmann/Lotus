@@ -259,6 +259,30 @@ src/graphics/lotus_shader.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_shader.cpp.s
 .PHONY : src/graphics/lotus_shader.cpp.s
 
+src/graphics/lotus_texture.o: src/graphics/lotus_texture.cpp.o
+.PHONY : src/graphics/lotus_texture.o
+
+# target to build an object file
+src/graphics/lotus_texture.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_texture.cpp.o
+.PHONY : src/graphics/lotus_texture.cpp.o
+
+src/graphics/lotus_texture.i: src/graphics/lotus_texture.cpp.i
+.PHONY : src/graphics/lotus_texture.i
+
+# target to preprocess a source file
+src/graphics/lotus_texture.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_texture.cpp.i
+.PHONY : src/graphics/lotus_texture.cpp.i
+
+src/graphics/lotus_texture.s: src/graphics/lotus_texture.cpp.s
+.PHONY : src/graphics/lotus_texture.s
+
+# target to generate assembly for a file
+src/graphics/lotus_texture.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_texture.cpp.s
+.PHONY : src/graphics/lotus_texture.cpp.s
+
 src/graphics/lotus_window.o: src/graphics/lotus_window.cpp.o
 .PHONY : src/graphics/lotus_window.o
 
@@ -571,6 +595,30 @@ src/maths/lotus_vec4.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_vec4.cpp.s
 .PHONY : src/maths/lotus_vec4.cpp.s
 
+src/staticlibs/stb_image.o: src/staticlibs/stb_image.c.o
+.PHONY : src/staticlibs/stb_image.o
+
+# target to build an object file
+src/staticlibs/stb_image.c.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/staticlibs/stb_image.c.o
+.PHONY : src/staticlibs/stb_image.c.o
+
+src/staticlibs/stb_image.i: src/staticlibs/stb_image.c.i
+.PHONY : src/staticlibs/stb_image.i
+
+# target to preprocess a source file
+src/staticlibs/stb_image.c.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/staticlibs/stb_image.c.i
+.PHONY : src/staticlibs/stb_image.c.i
+
+src/staticlibs/stb_image.s: src/staticlibs/stb_image.c.s
+.PHONY : src/staticlibs/stb_image.s
+
+# target to generate assembly for a file
+src/staticlibs/stb_image.c.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/staticlibs/stb_image.c.s
+.PHONY : src/staticlibs/stb_image.c.s
+
 src/utils/lotus_fileutils.o: src/utils/lotus_fileutils.cpp.o
 .PHONY : src/utils/lotus_fileutils.o
 
@@ -622,6 +670,9 @@ help:
 	@echo "... src/graphics/lotus_shader.o"
 	@echo "... src/graphics/lotus_shader.i"
 	@echo "... src/graphics/lotus_shader.s"
+	@echo "... src/graphics/lotus_texture.o"
+	@echo "... src/graphics/lotus_texture.i"
+	@echo "... src/graphics/lotus_texture.s"
 	@echo "... src/graphics/lotus_window.o"
 	@echo "... src/graphics/lotus_window.i"
 	@echo "... src/graphics/lotus_window.s"
@@ -661,6 +712,9 @@ help:
 	@echo "... src/maths/lotus_vec4.o"
 	@echo "... src/maths/lotus_vec4.i"
 	@echo "... src/maths/lotus_vec4.s"
+	@echo "... src/staticlibs/stb_image.o"
+	@echo "... src/staticlibs/stb_image.i"
+	@echo "... src/staticlibs/stb_image.s"
 	@echo "... src/utils/lotus_fileutils.o"
 	@echo "... src/utils/lotus_fileutils.i"
 	@echo "... src/utils/lotus_fileutils.s"

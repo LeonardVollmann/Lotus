@@ -15,6 +15,7 @@ struct DirectionalLight
 in vec2 texCoord;
 in vec3 normal;
 
+uniform sampler2D diffuse;
 uniform vec4 baseColor;
 uniform vec3 ambientLight;
 uniform DirectionalLight directionalLight;
@@ -40,8 +41,10 @@ vec4 calcDirectionalLight(DirectionalLight directionalLight, vec3 normal)
 
 void main()
 {
+	vec4 textureColor = texture(diffuse, texCoord);
+
 	vec4 totalLight = vec4(ambientLight, 1.0);
 	totalLight += calcDirectionalLight(directionalLight, normal);
 
-	color = baseColor * totalLight;
+	color = textureColor * totalLight + baseColor * totalLight;
 }

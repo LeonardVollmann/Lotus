@@ -138,7 +138,7 @@ namespace lotus { namespace graphics {
                 glGetShaderInfoLog(shader, sizeof(error), NULL, error);
             }
             
-            std::cerr << errorMessage << ": '" << error << "'" << std::endl;
+            std::cerr << errorMessage << error << std::endl;
         }
     }
 
