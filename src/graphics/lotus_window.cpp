@@ -1,10 +1,14 @@
 #include "lotus_window.hpp"
+#include "../core/lotus_input.hpp"
 
 #include <iostream>
 
 namespace lotus { namespace graphics {
     
     void callback_resize(GLFWwindow *window, int width, int height);
+    void callback_key(GLFWwindow* window, int key, int scancode, int action, int mods);
+    void callback_mouse_button(GLFWwindow* window, int button, int action, int mods);
+    void callback_cursor_pos(GLFWwindow* window, double xpos, double ypos);
     
     Window::Window(int width, int height, const char *title) :
         m_width(width),
@@ -60,8 +64,13 @@ namespace lotus { namespace graphics {
 
         glfwSetWindowUserPointer(m_window, this);
         glfwSetWindowSizeCallback(m_window, callback_resize);
+        glfwSetKeyCallback(m_window, callback_key);
+        glfwSetMouseButtonCallback(m_window, callback_mouse_button);
+        glfwSetCursorPosCallback(m_window, callback_cursor_pos);
     
         glfwMakeContextCurrent(m_window);
+
+        Input::setWindow(m_window);
 
         glewExperimental = GL_TRUE;
         GLenum status = glewInit();
@@ -82,6 +91,21 @@ namespace lotus { namespace graphics {
         Window *win = (Window*) glfwGetWindowUserPointer(window);
         win->setWidth(width);
         win->setHeight(height);
+    }
+
+    void callback_key(GLFWwindow* window, int key, int scancode, int action, int mods)
+    {
+        Input::keyCallback(window, key, scancode, action, mods);
+    }
+
+    void callback_mouse_button(GLFWwindow* window, int button, int action, int mods)
+    {
+        Input::mouseButtonCallback(window, button, action, mods);
+    }
+
+    void callback_cursor_pos(GLFWwindow* window, double xpos, double ypos)
+    {
+        Input::cursorPosCallback(window, xpos, ypos);
     }
 
 } }

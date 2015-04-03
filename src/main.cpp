@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 
-#include "core/lotus_transform.hpp"
 #include "maths/lotus_maths.hpp"
 #include "graphics/lotus_window.hpp"
 #include "graphics/lotus_shader.hpp"
@@ -12,6 +11,8 @@
 #include "graphics/renderers/lotus_simplerenderer.hpp"
 #include "graphics/meshloading/lotus_indexedmodel.hpp"
 #include "graphics/meshloading/lotus_objloader.hpp"
+#include "core/lotus_input.hpp"
+#include "core/lotus_transform.hpp"
 
 int main()
 {
@@ -44,6 +45,8 @@ int main()
 	float count = 0;
 	while (!window.isClosed())
 	{
+		std::cout << Input::getKey(GLFW_KEY_SPACE) << std::endl;
+
 		window.clear();
 
 		shader.bind();
