@@ -1,4 +1,5 @@
 #include "lotus_vec3.hpp"
+#include "lotus_quat.hpp"
 
 #include <cmath>
 
@@ -9,6 +10,13 @@ namespace lotus { namespace maths {
 		this->x = 0.0f;
 		this->y = 0.0f;
 		this->z = 0.0f;
+	}
+
+	vec3::vec3(const float &value)
+	{
+		this->x = value;
+		this->y = value;
+		this->z = value;
 	}
 
 	vec3::vec3(const float &x, const float &y, const float &z)

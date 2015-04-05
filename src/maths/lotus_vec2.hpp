@@ -10,6 +10,7 @@ namespace lotus { namespace maths {
 		float x, y;
 
 		vec2();
+		vec2(const float &value);
 		vec2(const float &x, const float &y);
 
 		vec2 &add(const vec2 &other);

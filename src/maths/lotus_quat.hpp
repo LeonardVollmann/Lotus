@@ -9,7 +9,9 @@ namespace lotus { namespace maths {
 	{
 		float x, y, z, w;
 
+		quat();
 		quat(float x, float y, float z, float w);
+		quat(float angle, const vec3 &axis);
 
 		float lengthSqr() const;
 		float length() const;
@@ -22,6 +24,13 @@ namespace lotus { namespace maths {
 
 		quat &multiply(const quat &other);
 		quat &operator*=(const quat &other);
+
+		vec3 getForward() const;
+		vec3 getBack() const;
+		vec3 getUp() const;
+		vec3 getDown() const;
+		vec3 getRight() const;
+		vec3 getLeft() const;
 	};
 
 } }

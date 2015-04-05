@@ -22,6 +22,11 @@ namespace lotus { namespace maths {
 		elements[3 + 3 * 4] = diagonal;
 	}
 
+	mat4::mat4(const quat &q)
+	{
+		(*this) = rotation(q.getForward(), q.getUp(), q.getRight());
+	}
+
 	mat4 mat4::multiply(const mat4 &other) const
 	{
 		mat4 result = *this;
@@ -100,7 +105,7 @@ namespace lotus { namespace maths {
 		return result;
 	}
 
-	mat4 mat4::rotation(const vec3 &f, const vec3 &r, const vec3 &u)
+	mat4 mat4::rotation(const vec3 &f, const vec3 &u, const vec3 &r)
 	{
 		mat4 result(1.0f);
 
@@ -125,7 +130,7 @@ namespace lotus { namespace maths {
 		const vec3 r = vec3(1.0f, 0.0f, 0.0f).rotate(rotation);
 		const vec3 u = vec3(0.0f, 1.0f, 0.0f).rotate(rotation);
 
-		return mat4::rotation(f, r, u);
+		return mat4::rotation(f, u, r);
 	}
 
 	mat4 mat4::scale(const vec3 &scale)

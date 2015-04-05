@@ -6,6 +6,7 @@
 #include "graphics/lotus_shader.hpp"
 #include "graphics/lotus_lighting.hpp"
 #include "graphics/lotus_texture.hpp"
+#include "graphics/lotus_camera.hpp"
 #include "graphics/renderables/lotus_renderable.hpp"
 #include "graphics/renderables/lotus_quad.hpp"
 #include "graphics/renderables/lotus_mesh.hpp"
@@ -45,6 +46,8 @@ int main()
 
 	mat4 perspective = mat4::perspective(70.0f, window.getAspect(), 0.001f, 1000.0f);
 
+	Camera camera;
+
 	float count = 0;
 	while (!window.isClosed())
 	{
@@ -55,8 +58,8 @@ int main()
 		rot *= maths::quat(0.0f, 0.01f, 0.0f, 1.0f).normalize();
 		perspective = mat4::perspective(70.0f, window.getAspect(), 0.001f, 1000.0f);
 		shader.setUniformMat4("pr_matrix", perspective);
-		shader.setUniformMat4("vw_matrix", mat4(1.0f));
-		shader.setUniformMat4("ml_matrix", mat4::translation(vec3(0.0f, -4.0f, -12.0f)) * mat4::rotation(rot) * mat4::scale(maths::vec3(1.0f, 1.0f, 1.0f)));
+		shader.setUniformMat4("vw_matrix", camera.getViewMatrix());
+		shader.setUniformMat4("ml_matrix", mat4::translation(vec3(0.0f, -4.0f, 0.0f)) * mat4::rotation(rot) * mat4::scale(maths::vec3(1.0f, 1.0f, 1.0f)));
 		// shader.setUniformVec4("baseColor", vec4(0.53f, 0.0f, 0.54f, 1.0f));
 		shader.setUniformVec4("baseColor", vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		shader.setUniformVec3("ambientLight", vec3(0.2f, 0.2f, 0.2f));
@@ -67,6 +70,7 @@ int main()
 		shader.unbind();
 
 		window.update();
+		camera.update();
 		count += 0.01f;
 	}
 

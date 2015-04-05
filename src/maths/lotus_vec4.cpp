@@ -12,6 +12,14 @@ namespace lotus { namespace maths {
 		this->w = 0.0f;
 	}
 
+	vec4::vec4(const float &value)
+	{
+		this->x = value;
+		this->y = value;
+		this->z = value;
+		this->w = value;
+	}
+
 	vec4::vec4(const float &x, const float &y, const float &z, const float &w)
 	{
 		this->x = x;

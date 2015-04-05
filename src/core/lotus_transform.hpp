@@ -25,6 +25,11 @@ namespace lotus {
 
 		maths::mat4 getTransformation() const;
 
+		void translate(const maths::vec3 &translation);
+		void rotate(const maths::quat &rotation);
+		void rotate(float angle, const maths::vec3 &axis);
+		void scale(const maths::vec3 &scale);
+
 		void setPos(const maths::vec3 &pos);
 		void setRot(const maths::quat &rot);
 		void setScale(const maths::vec3 &scale);

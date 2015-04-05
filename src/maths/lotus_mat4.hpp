@@ -13,6 +13,7 @@ namespace lotus { namespace maths {
 
 		mat4();
 		mat4(float diagonal);
+		mat4(const quat &q);
 
 		vec4 getColumn(int index)
 		{
@@ -31,7 +32,7 @@ namespace lotus { namespace maths {
 
 		static mat4 translation(const vec3 &translation);
 		static mat4 rotation(float angle, const vec3 &axis);
-		static mat4 rotation(const vec3 &f, const vec3 &r, const vec3 &u);
+		static mat4 rotation(const vec3 &f, const vec3 &u, const vec3 &r);
 		static mat4 rotation(const quat &rotation);
 		static mat4 scale(const vec3 &scale);
 

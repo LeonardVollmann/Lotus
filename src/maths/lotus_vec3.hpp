@@ -1,17 +1,18 @@
 #ifndef LOTUS_VEC3_HPP_INCLUDED
 #define LOTUS_VEC3_HPP_INCLUDED
 
-#include "lotus_quat.hpp"
-
 #include <iostream>
 
 namespace lotus { namespace maths {
+
+	struct quat;
 
 	struct vec3
 	{
 		float x, y, z;
 
 		vec3();
+		vec3(const float &value);
 		vec3(const float &x, const float &y, const float &z);
 
 		vec3 &add(const vec3 &other);

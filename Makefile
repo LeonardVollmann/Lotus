@@ -235,6 +235,30 @@ src/graphics/buffers/lotus_vertexarray.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/lotus_vertexarray.cpp.s
 .PHONY : src/graphics/buffers/lotus_vertexarray.cpp.s
 
+src/graphics/lotus_camera.o: src/graphics/lotus_camera.cpp.o
+.PHONY : src/graphics/lotus_camera.o
+
+# target to build an object file
+src/graphics/lotus_camera.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_camera.cpp.o
+.PHONY : src/graphics/lotus_camera.cpp.o
+
+src/graphics/lotus_camera.i: src/graphics/lotus_camera.cpp.i
+.PHONY : src/graphics/lotus_camera.i
+
+# target to preprocess a source file
+src/graphics/lotus_camera.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_camera.cpp.i
+.PHONY : src/graphics/lotus_camera.cpp.i
+
+src/graphics/lotus_camera.s: src/graphics/lotus_camera.cpp.s
+.PHONY : src/graphics/lotus_camera.s
+
+# target to generate assembly for a file
+src/graphics/lotus_camera.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_camera.cpp.s
+.PHONY : src/graphics/lotus_camera.cpp.s
+
 src/graphics/lotus_shader.o: src/graphics/lotus_shader.cpp.o
 .PHONY : src/graphics/lotus_shader.o
 
@@ -667,6 +691,9 @@ help:
 	@echo "... src/graphics/buffers/lotus_vertexarray.o"
 	@echo "... src/graphics/buffers/lotus_vertexarray.i"
 	@echo "... src/graphics/buffers/lotus_vertexarray.s"
+	@echo "... src/graphics/lotus_camera.o"
+	@echo "... src/graphics/lotus_camera.i"
+	@echo "... src/graphics/lotus_camera.s"
 	@echo "... src/graphics/lotus_shader.o"
 	@echo "... src/graphics/lotus_shader.i"
 	@echo "... src/graphics/lotus_shader.s"

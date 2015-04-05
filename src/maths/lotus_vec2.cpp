@@ -10,6 +10,12 @@ namespace lotus { namespace maths {
 		this->y = 0.0f;
 	}
 
+	vec2::vec2(const float &value)
+	{
+		this->x = value;
+		this->y = value;
+	}
+
 	vec2::vec2(const float &x, const float &y)
 	{
 		this->x = x;
