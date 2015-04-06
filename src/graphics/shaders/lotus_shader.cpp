@@ -1,5 +1,5 @@
 #include "lotus_shader.hpp"
-#include "../utils/lotus_fileutils.hpp"
+#include "../../utils/lotus_fileutils.hpp"
 
 #include <iostream>
 
@@ -37,51 +37,7 @@ namespace lotus { namespace graphics {
     {
         glUseProgram(0);
     }
-    
-    void Shader::addUniform(const std::string &uniform) const
-    {
-        GLint location = glGetUniformLocation(m_program, uniform.c_str());
-        
-        m_uniforms.insert(std::pair<std::string, GLint>(uniform, location));
-    }
-    
-    void Shader::setUniformInteger(const std::string &uniform, int value) const
-    {
-        glUniform1i(m_uniforms[uniform], value);
-    }
-    
-    void Shader::setUniformFloat(const std::string &uniform, float value) const
-    {
-        glUniform1f(m_uniforms[uniform], value);
-    }
-    
-    void Shader::setUniformVec3(const std::string &uniform, const maths::vec3 &value) const
-    {
-        glUniform3f(m_uniforms[uniform], value.x, value.y, value.z);
-    }
 
-    void Shader::setUniformVec4(const std::string &uniform, const maths::vec4 &value) const
-    {
-        glUniform4f(m_uniforms[uniform], value.x, value.y, value.z, value.w);
-    }
-    
-    void Shader::setUniformMat4(const std::string &uniform, const maths::mat4 &value) const
-    {   
-        glUniformMatrix4fv(m_uniforms[uniform], 1, false, value.elements);
-    }
-
-    void Shader::setUniformBaseLight(const std::string &uniform, const BaseLight &baseLight)
-    {
-        glUniform3f(m_uniforms[uniform + ".color"], baseLight.color.x, baseLight.color.y, baseLight.color.z);
-        glUniform1f(m_uniforms[uniform + ".intensity"], baseLight.intensity);
-    } 
-
-    void Shader::setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight)
-    {
-        setUniformBaseLight(uniform + ".base", directionalLight.base);
-        glUniform3f(m_uniforms[uniform + ".direction"], directionalLight.direction.x, directionalLight.direction.y, directionalLight.direction.z);
-    }
-    
     Shader &Shader::addVertexShader()
     {
         GLuint shader = create_shader(FileUtils::readFile("res/shaders/" + m_fileName + "-vert.glsl"), GL_VERTEX_SHADER);
@@ -118,6 +74,38 @@ namespace lotus { namespace graphics {
         check_shader_error(m_program, GL_VALIDATE_STATUS, true, "Error: Shader validation failed: ");
         
         return *this;
+    }
+    
+    void Shader::addUniform(const std::string &uniform) const
+    {
+        GLint location = glGetUniformLocation(m_program, uniform.c_str());
+        
+        m_uniforms.insert(std::pair<std::string, GLint>(uniform, location));
+    }
+    
+    void Shader::setUniformInteger(const std::string &uniform, int value) const
+    {
+        glUniform1i(m_uniforms[uniform], value);
+    }
+    
+    void Shader::setUniformFloat(const std::string &uniform, float value) const
+    {
+        glUniform1f(m_uniforms[uniform], value);
+    }
+    
+    void Shader::setUniformVec3(const std::string &uniform, const maths::vec3 &value) const
+    {
+        glUniform3f(m_uniforms[uniform], value.x, value.y, value.z);
+    }
+
+    void Shader::setUniformVec4(const std::string &uniform, const maths::vec4 &value) const
+    {
+        glUniform4f(m_uniforms[uniform], value.x, value.y, value.z, value.w);
+    }
+    
+    void Shader::setUniformMat4(const std::string &uniform, const maths::mat4 &value) const
+    {   
+        glUniformMatrix4fv(m_uniforms[uniform], 1, false, value.elements);
     }
 
     void check_shader_error(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)

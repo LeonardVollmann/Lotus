@@ -259,29 +259,29 @@ src/graphics/lotus_camera.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_camera.cpp.s
 .PHONY : src/graphics/lotus_camera.cpp.s
 
-src/graphics/lotus_shader.o: src/graphics/lotus_shader.cpp.o
-.PHONY : src/graphics/lotus_shader.o
+src/graphics/lotus_material.o: src/graphics/lotus_material.cpp.o
+.PHONY : src/graphics/lotus_material.o
 
 # target to build an object file
-src/graphics/lotus_shader.cpp.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_shader.cpp.o
-.PHONY : src/graphics/lotus_shader.cpp.o
+src/graphics/lotus_material.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_material.cpp.o
+.PHONY : src/graphics/lotus_material.cpp.o
 
-src/graphics/lotus_shader.i: src/graphics/lotus_shader.cpp.i
-.PHONY : src/graphics/lotus_shader.i
+src/graphics/lotus_material.i: src/graphics/lotus_material.cpp.i
+.PHONY : src/graphics/lotus_material.i
 
 # target to preprocess a source file
-src/graphics/lotus_shader.cpp.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_shader.cpp.i
-.PHONY : src/graphics/lotus_shader.cpp.i
+src/graphics/lotus_material.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_material.cpp.i
+.PHONY : src/graphics/lotus_material.cpp.i
 
-src/graphics/lotus_shader.s: src/graphics/lotus_shader.cpp.s
-.PHONY : src/graphics/lotus_shader.s
+src/graphics/lotus_material.s: src/graphics/lotus_material.cpp.s
+.PHONY : src/graphics/lotus_material.s
 
 # target to generate assembly for a file
-src/graphics/lotus_shader.cpp.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_shader.cpp.s
-.PHONY : src/graphics/lotus_shader.cpp.s
+src/graphics/lotus_material.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/lotus_material.cpp.s
+.PHONY : src/graphics/lotus_material.cpp.s
 
 src/graphics/lotus_texture.o: src/graphics/lotus_texture.cpp.o
 .PHONY : src/graphics/lotus_texture.o
@@ -474,6 +474,78 @@ src/graphics/renderers/lotus_simplerenderer.s: src/graphics/renderers/lotus_simp
 src/graphics/renderers/lotus_simplerenderer.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/renderers/lotus_simplerenderer.cpp.s
 .PHONY : src/graphics/renderers/lotus_simplerenderer.cpp.s
+
+src/graphics/shaders/lotus_phongshader.o: src/graphics/shaders/lotus_phongshader.cpp.o
+.PHONY : src/graphics/shaders/lotus_phongshader.o
+
+# target to build an object file
+src/graphics/shaders/lotus_phongshader.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shaders/lotus_phongshader.cpp.o
+.PHONY : src/graphics/shaders/lotus_phongshader.cpp.o
+
+src/graphics/shaders/lotus_phongshader.i: src/graphics/shaders/lotus_phongshader.cpp.i
+.PHONY : src/graphics/shaders/lotus_phongshader.i
+
+# target to preprocess a source file
+src/graphics/shaders/lotus_phongshader.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shaders/lotus_phongshader.cpp.i
+.PHONY : src/graphics/shaders/lotus_phongshader.cpp.i
+
+src/graphics/shaders/lotus_phongshader.s: src/graphics/shaders/lotus_phongshader.cpp.s
+.PHONY : src/graphics/shaders/lotus_phongshader.s
+
+# target to generate assembly for a file
+src/graphics/shaders/lotus_phongshader.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shaders/lotus_phongshader.cpp.s
+.PHONY : src/graphics/shaders/lotus_phongshader.cpp.s
+
+src/graphics/shaders/lotus_shader.o: src/graphics/shaders/lotus_shader.cpp.o
+.PHONY : src/graphics/shaders/lotus_shader.o
+
+# target to build an object file
+src/graphics/shaders/lotus_shader.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shaders/lotus_shader.cpp.o
+.PHONY : src/graphics/shaders/lotus_shader.cpp.o
+
+src/graphics/shaders/lotus_shader.i: src/graphics/shaders/lotus_shader.cpp.i
+.PHONY : src/graphics/shaders/lotus_shader.i
+
+# target to preprocess a source file
+src/graphics/shaders/lotus_shader.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shaders/lotus_shader.cpp.i
+.PHONY : src/graphics/shaders/lotus_shader.cpp.i
+
+src/graphics/shaders/lotus_shader.s: src/graphics/shaders/lotus_shader.cpp.s
+.PHONY : src/graphics/shaders/lotus_shader.s
+
+# target to generate assembly for a file
+src/graphics/shaders/lotus_shader.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shaders/lotus_shader.cpp.s
+.PHONY : src/graphics/shaders/lotus_shader.cpp.s
+
+src/graphics/shaders/lotus_simpleshader.o: src/graphics/shaders/lotus_simpleshader.cpp.o
+.PHONY : src/graphics/shaders/lotus_simpleshader.o
+
+# target to build an object file
+src/graphics/shaders/lotus_simpleshader.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shaders/lotus_simpleshader.cpp.o
+.PHONY : src/graphics/shaders/lotus_simpleshader.cpp.o
+
+src/graphics/shaders/lotus_simpleshader.i: src/graphics/shaders/lotus_simpleshader.cpp.i
+.PHONY : src/graphics/shaders/lotus_simpleshader.i
+
+# target to preprocess a source file
+src/graphics/shaders/lotus_simpleshader.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shaders/lotus_simpleshader.cpp.i
+.PHONY : src/graphics/shaders/lotus_simpleshader.cpp.i
+
+src/graphics/shaders/lotus_simpleshader.s: src/graphics/shaders/lotus_simpleshader.cpp.s
+.PHONY : src/graphics/shaders/lotus_simpleshader.s
+
+# target to generate assembly for a file
+src/graphics/shaders/lotus_simpleshader.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/shaders/lotus_simpleshader.cpp.s
+.PHONY : src/graphics/shaders/lotus_simpleshader.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -694,9 +766,9 @@ help:
 	@echo "... src/graphics/lotus_camera.o"
 	@echo "... src/graphics/lotus_camera.i"
 	@echo "... src/graphics/lotus_camera.s"
-	@echo "... src/graphics/lotus_shader.o"
-	@echo "... src/graphics/lotus_shader.i"
-	@echo "... src/graphics/lotus_shader.s"
+	@echo "... src/graphics/lotus_material.o"
+	@echo "... src/graphics/lotus_material.i"
+	@echo "... src/graphics/lotus_material.s"
 	@echo "... src/graphics/lotus_texture.o"
 	@echo "... src/graphics/lotus_texture.i"
 	@echo "... src/graphics/lotus_texture.s"
@@ -721,6 +793,15 @@ help:
 	@echo "... src/graphics/renderers/lotus_simplerenderer.o"
 	@echo "... src/graphics/renderers/lotus_simplerenderer.i"
 	@echo "... src/graphics/renderers/lotus_simplerenderer.s"
+	@echo "... src/graphics/shaders/lotus_phongshader.o"
+	@echo "... src/graphics/shaders/lotus_phongshader.i"
+	@echo "... src/graphics/shaders/lotus_phongshader.s"
+	@echo "... src/graphics/shaders/lotus_shader.o"
+	@echo "... src/graphics/shaders/lotus_shader.i"
+	@echo "... src/graphics/shaders/lotus_shader.s"
+	@echo "... src/graphics/shaders/lotus_simpleshader.o"
+	@echo "... src/graphics/shaders/lotus_simpleshader.i"
+	@echo "... src/graphics/shaders/lotus_simpleshader.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

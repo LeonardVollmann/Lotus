@@ -1,9 +1,7 @@
 #ifndef LOTUS_MAT4_HPP_INCLUDED
 #define LOTUS_MAT4_HPP_INCLUDED
 
-#include "lotus_vec3.hpp"
-#include "lotus_vec4.hpp"
-#include "lotus_quat.hpp"
+#include "lotus_maths.hpp"
 
 namespace lotus { namespace maths {
 

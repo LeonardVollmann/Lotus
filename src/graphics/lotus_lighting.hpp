@@ -27,12 +27,6 @@ namespace lotus { namespace graphics {
 		{
 			this->direction = direction;
 		}
-
-		DirectionalLight(const maths::vec3 &color, float intensity, const maths::vec3 &direction) :
-			base(color, intensity)
-		{
-			this->direction = direction;
-		}
 	};
 
 } }

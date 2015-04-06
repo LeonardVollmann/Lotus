@@ -9,8 +9,6 @@ namespace lotus {
 
 	class Transform
 	{
-	public:
-		static const Transform *CURRENT;
 	private:
 		maths::vec3 m_pos;
 		maths::quat m_rot;
@@ -19,9 +17,6 @@ namespace lotus {
 		Transform(const maths::vec3 &pos = maths::vec3(0.0f, 0.0f, 0.0f),
 			const maths::quat &quat = maths::quat(0.0f, 0.0f, 0.0f, 1.0f),
 			const maths::vec3 &scale = maths::vec3(1.0f, 1.0f, 1.0f));
-
-		void bind() const;
-		void unbind() const;
 
 		maths::mat4 getTransformation() const;
 

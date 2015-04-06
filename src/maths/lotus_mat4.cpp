@@ -1,5 +1,4 @@
 #include "lotus_mat4.hpp"
-#include "lotus_maths_func.hpp"
 
 #include <cmath>
 
