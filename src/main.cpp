@@ -36,11 +36,14 @@ int main()
 	shader.addUniform("pr_matrix");
 	shader.addUniform("vw_matrix");
 	shader.addUniform("ml_matrix");
+	shader.addUniform("cameraPos");
 	shader.addUniform("baseColor");
 	shader.addUniform("ambientLight");
 	shader.addUniform("directionalLight.base.color");
 	shader.addUniform("directionalLight.base.intensity");
 	shader.addUniform("directionalLight.direction");
+	shader.addUniform("specularIntensity");
+	shader.addUniform("specularPower");
 
 	maths::quat rot(0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -60,10 +63,13 @@ int main()
 		shader.setUniformMat4("pr_matrix", perspective);
 		shader.setUniformMat4("vw_matrix", camera.getViewMatrix());
 		shader.setUniformMat4("ml_matrix", mat4::translation(vec3(0.0f, -4.0f, 0.0f)) * mat4::rotation(rot) * mat4::scale(maths::vec3(1.0f, 1.0f, 1.0f)));
-		// shader.setUniformVec4("baseColor", vec4(0.53f, 0.0f, 0.54f, 1.0f));
-		shader.setUniformVec4("baseColor", vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		shader.setUniformVec3("cameraPos", camera.getTransform().getPos());
+		shader.setUniformVec4("baseColor", vec4(0.53f, 0.0f, 0.54f, 1.0f));
+		// shader.setUniformVec4("baseColor", vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		shader.setUniformVec3("ambientLight", vec3(0.2f, 0.2f, 0.2f));
 		shader.setUniformDirectionalLight("directionalLight", DirectionalLight(vec3(1.0f, 1.0f, 1.0f), 0.8f, vec3(1.0f, 1.0f, 1.0f).normalize()));
+		shader.setUniformFloat("specularIntensity", 2.0f);
+		shader.setUniformFloat("specularPower", 32.0f);
 
 		mesh.render(&renderer);
 

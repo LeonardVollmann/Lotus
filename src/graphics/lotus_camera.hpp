@@ -12,8 +12,9 @@ namespace lotus { namespace graphics {
 		Transform m_transform;
 	public:
 		void update();
-
 		maths::mat4 getViewMatrix() const;
+
+		inline const Transform &getTransform() const { return m_transform; }
 	};
 
 } }
