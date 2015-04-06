@@ -16,6 +16,6 @@ void main()
 {
 	gl_Position = pr_matrix * vw_matrix * ml_matrix * vec4(vertex_pos, 1.0);
 	texCoord = vertex_texCoord;
-	normal = (ml_matrix * vec4(vertex_normal, 0.0)).xyz;
+	normal = normalize((ml_matrix * vec4(vertex_normal, 0.0)).xyz);
 	worldPos = (ml_matrix * vec4(vertex_pos, 1.0)).xyz;
 }

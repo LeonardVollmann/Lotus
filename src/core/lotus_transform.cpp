@@ -31,7 +31,7 @@ namespace lotus {
 
 	void Transform::scale(const maths::vec3 &scale)
 	{
-		m_scale += scale;
+		m_scale *= scale;
 	}
 
 	void Transform::setPos(const maths::vec3 &pos)

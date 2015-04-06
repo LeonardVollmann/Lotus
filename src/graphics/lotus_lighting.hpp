@@ -29,6 +29,32 @@ namespace lotus { namespace graphics {
 		}
 	};
 
+	struct Attenuation
+	{
+		float constant, linear, exponent;
+
+		Attenuation(float constant, float linear, float exponent)
+		{
+			this->constant = constant;
+			this->linear = linear;
+			this->exponent = exponent;
+		}
+	};
+
+	struct PointLight
+	{
+		BaseLight base;
+		Attenuation atten;
+		maths::vec3 pos;
+
+		PointLight(const BaseLight &baseLight, const Attenuation &attenuation, const maths::vec3 &pos) :
+			base(baseLight),
+			atten(attenuation)
+		{
+			this->pos = pos;
+		}
+	};
+
 } }
 
 #endif

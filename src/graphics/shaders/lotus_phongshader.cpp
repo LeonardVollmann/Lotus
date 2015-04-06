@@ -4,7 +4,7 @@ namespace lotus { namespace graphics {
 
 	PhongShader::PhongShader() :
 		Shader("phong"),
-		m_ambientLight(maths::vec3(0.2f, 0.2f, 0.2f)),
+		m_ambientLight(maths::vec3(0.1f, 0.1f, 0.1f)),
 		m_directionalLight(BaseLight(maths::vec3(1.0f, 1.0f, 1.0f), 0.0f), maths::vec3(0.0f, 0.0f, 0.0f))
 	{
 		addVertexShader();
@@ -25,6 +25,18 @@ namespace lotus { namespace graphics {
 		addUniform("directionalLight.base.color");
 		addUniform("directionalLight.base.intensity");
 		addUniform("directionalLight.direction");
+
+		for (int i = 0; i < MAX_POINT_LIGHTS; i++)
+		{
+			std::string pointLightName = "pointLights[" + std::to_string(i) + "]";
+
+			addUniform(pointLightName + ".base.color");
+			addUniform(pointLightName + ".base.intensity");
+			addUniform(pointLightName + ".atten.constant");
+			addUniform(pointLightName + ".atten.linear");
+			addUniform(pointLightName + ".atten.exponent");
+			addUniform(pointLightName + ".pos");
+		}
 	}
 
 	void PhongShader::updateUniforms(const Transform &transform, const Material &material, const Camera &camera, const maths::mat4 &projection) const
@@ -41,6 +53,11 @@ namespace lotus { namespace graphics {
 
 		setUniformVec3("ambientLight", m_ambientLight);
 		setUniformDirectionalLight("directionalLight", m_directionalLight);
+
+		for (int i = 0; i < m_numPointLights; i++)
+		{
+			setUniformPointLight("pointLights[" + std::to_string(i) + "]", m_pointLights[i]);
+		}
 	}
 
 
@@ -56,18 +73,31 @@ namespace lotus { namespace graphics {
 		glUniform3f(m_uniforms[uniform + ".direction"], directionalLight.direction.x, directionalLight.direction.y, directionalLight.direction.z);
 	}
 
-	// void Shader::setUniformAttenuation(const std::string &uniform, const Attenuation &attenuation) const
-	// {
-	// 	setUniformFloat(uniform + ".constant", attenuation.constant);
-	// 	setUniformFloat(uniform + ".linear", attenuation.linear);
-	// 	setUniformFloat(uniform + ".exponent", attenuation.exponent);
-	// }
+	void PhongShader::setUniformAttenuation(const std::string &uniform, const Attenuation &attenuation) const
+	{
+		setUniformFloat(uniform + ".constant", attenuation.constant);
+		setUniformFloat(uniform + ".linear", attenuation.linear);
+		setUniformFloat(uniform + ".exponent", attenuation.exponent);
+	}
 
-	// void Shader::setUniformPointLight(const std::string &uniform, const PointLight &pointLight) const
-	// {
-	// 	setUniformBaseLight(uniform + ".base", pointLight.base);
-	// 	setUniformAttenuation(uniform + ".attenuation", pointLight.attenuation);
-	// 	setUniformVec3(uniform + ".pos", pointLight.pos);
-	// }
+	void PhongShader::setUniformPointLight(const std::string &uniform, const PointLight &pointLight) const
+	{
+		setUniformBaseLight(uniform + ".base", pointLight.base);
+		setUniformAttenuation(uniform + ".atten", pointLight.atten);
+		setUniformVec3(uniform + ".pos", pointLight.pos);
+	}
+
+	void PhongShader::setPointLights(PointLight *pointLights, int numLights)
+	{
+		if (numLights > MAX_POINT_LIGHTS)
+		{
+			std::cerr<< "ERROR: Too many PointLights." << std::endl;
+		}
+		else
+		{
+			m_pointLights = pointLights;
+			m_numPointLights = numLights;
+		}
+	}
 
 } }

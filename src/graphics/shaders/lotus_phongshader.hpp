@@ -8,11 +8,13 @@ namespace lotus { namespace graphics {
 
 	class PhongShader : public Shader
 	{
-	public:
-		constexpr static int MAX_POINT_LIGHTS = 4;
 	private:
+		constexpr static int MAX_POINT_LIGHTS = 4;
+
 		maths::vec3 m_ambientLight;
 		DirectionalLight m_directionalLight;
+		PointLight *m_pointLights;
+		int m_numPointLights;
 	public:
 		PhongShader();
 
@@ -20,8 +22,10 @@ namespace lotus { namespace graphics {
 
 		void setUniformBaseLight(const std::string &uniform, const BaseLight &baseLight) const;
 		void setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight) const;
-		// void setUniformAttenuation(const std::string &uniform, const Attenuation &attenuation) const;
-		// void setUniformPointLight(const std::string &uniform, const PointLight &pointLight) const;
+		void setUniformAttenuation(const std::string &uniform, const Attenuation &attenuation) const;
+		void setUniformPointLight(const std::string &uniform, const PointLight &pointLight) const;
+
+		void setPointLights(PointLight *pointLights, int numLights);
 
 		inline const maths::vec3 &getAmbientLight() const { return m_ambientLight; }
 		inline const DirectionalLight &getDirectionalLight() const { return m_directionalLight; }

@@ -104,14 +104,14 @@ namespace lotus { namespace graphics {
 			}
 		}
 		
-		for(int i = 0; i < m_normals.size(); i += 3)
-		{
-			vec3 normal = vec3(m_normals[i], m_normals[i + 1], m_normals[i + 2]).normalize();
+		// for(int i = 0; i < m_normals.size(); i += 3)
+		// {
+		// 	vec3 normal = vec3(m_normals[i], m_normals[i + 1], m_normals[i + 2]).normalize();
 
-			m_normals[i + 0] = normal.x;
-			m_normals[i + 1] = normal.y;
-			m_normals[i + 2] = normal.z;
-		}
+		// 	m_normals[i + 0] = normal.x;
+		// 	m_normals[i + 1] = normal.y;
+		// 	m_normals[i + 2] = normal.z;
+		// }
 	}
 
 } }

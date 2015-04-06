@@ -4,11 +4,10 @@ namespace lotus { namespace graphics {
 
 	Mesh::Mesh(const GLfloat *vertices, const GLfloat *texCoords, const GLfloat *normals, GLsizei numVertices, 
 		const GLushort *indices, GLsizei numIndices) :
-		Renderable(vertices, numVertices, indices, numIndices),
+		Renderable(vertices, texCoords, numVertices, indices, numIndices),
 		m_texCoords(texCoords),
 		m_normals(normals)
 	{
-		m_vao.addBuffer(new Buffer(texCoords, numVertices, 2));
 		m_vao.addBuffer(new Buffer(normals, numVertices, 3));
 	}
 
