@@ -75,17 +75,7 @@ namespace lotus { namespace maths {
 
 	vec3 &vec3::rotate(float angle, const vec3 &axis)
 	{
-		const float sinHalfAngle = sinf(angle / 2.0f);
-		const float cosHalfAngle = cosf(angle / 2.0f);
-
-		const float rx = axis.x * sinHalfAngle;
-		const float ry = axis.y * sinHalfAngle;
-		const float rz = axis.z * sinHalfAngle;
-		const float rw = cosHalfAngle;
-
-		quat rotation = quat(rx, ry, rz, rw);
-
-		return rotate(rotation);
+		return rotate(quat(angle, axis));
 	}
 
 	float vec3::dot(const vec3 &other) const

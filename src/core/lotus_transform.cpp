@@ -21,12 +21,12 @@ namespace lotus {
 
 	void Transform::rotate(const maths::quat &rotation)
 	{
-		m_rot *= rotation;
+		m_rot = (rotation * m_rot).normalize();
 	}
 
 	void Transform::rotate(float angle, const maths::vec3 &axis)
 	{
-		m_rot *= maths::quat(angle, axis);
+		rotate(maths::quat(angle, axis));
 	}
 
 	void Transform::scale(const maths::vec3 &scale)

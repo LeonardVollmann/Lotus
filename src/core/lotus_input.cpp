@@ -1,5 +1,7 @@
 #include "lotus_input.hpp"
 
+#include <iostream>
+
 namespace lotus {
 	
 	bool Input::s_keys[512];
@@ -25,19 +27,20 @@ namespace lotus {
 
 	void Input::cursorPosCallback(GLFWwindow* window, double xpos, double ypos)
 	{
-		s_oldCursorPos = s_cursorPos;
-		s_cursorPos = maths::vec2((float) xpos, (float) ypos);
-		s_cursorPosDelta = s_cursorPos;
-
-		if (!s_mouseLocked)
-		{
-			s_cursorPosDelta -= s_oldCursorPos;
-			return;
-		}
-
 		int width, height;
 		glfwGetWindowSize(window, &width, &height);
-		glfwSetCursorPos(window, (float) width / 2.0f, (float) height / 2.0f);
+
+		const float xNormalized = ((float) xpos / (float) width - 0.5f) * 2.0f;
+		const float yNormalized = ((float) ypos / (float) height - 0.5f) * 2.0f;
+
+		s_oldCursorPos = s_cursorPos;
+		s_cursorPos = maths::vec2(xNormalized, yNormalized);
+		s_cursorPosDelta = (s_cursorPos - s_oldCursorPos);
+
+		if (s_mouseLocked)
+		{
+			glfwSetCursorPos(window, (float) width / 2.0f, (float) height / 2.0f);
+		}
 	}
 
 	void Input::setCursorVisible(bool visible)

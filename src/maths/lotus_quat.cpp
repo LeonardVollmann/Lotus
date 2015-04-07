@@ -61,22 +61,22 @@ namespace lotus { namespace maths {
 
 	quat operator*(const quat &left, const quat &right)
 	{
-		const float x = left.x * right.w + left.w * right.x + left.y * right.z - left.z * right.y;
-		const float y = left.y * right.w + left.w * right.y + left.z * right.x - left.x * right.z;
-		const float z = left.z * right.w + left.w * right.z + left.x * right.y - left.y * right.x;
-		const float w = left.w * right.w - left.x * right.x - left.y * right.y - left.z * right.z;
-
-		return quat(x, y, z, w);
+		const float w_ = left.w * right.w - left.x * right.x - left.y * right.y - left.z * right.z;
+		const float x_ = left.x * right.w + left.w * right.x + left.y * right.z - left.z * right.y;
+		const float y_ = left.y * right.w + left.w * right.y + left.z * right.x - left.x * right.z;
+		const float z_ = left.z * right.w + left.w * right.z + left.x * right.y - left.y * right.x;
+		
+		return quat(x_, y_, z_, w_);
 	}
 
 	quat operator*(const quat &left, const vec3 &right)
 	{
-		const float x =  left.w * right.x + left.y * right.z - left.z * right.y;
-		const float y =  left.w * right.y + left.z * right.x - left.x * right.z;
-		const float z =  left.w * right.z + left.x * right.y - left.y * right.x;
-		const float w = -left.x * right.x - left.y * right.y - left.z * right.z;
-
-		return quat(x, y, z, w);
+		const float w_ = -left.x * right.x - left.y * right.y - left.z * right.z;
+		const float x_ =  left.w * right.x + left.y * right.z - left.z * right.y;
+		const float y_ =  left.w * right.y + left.z * right.x - left.x * right.z;
+		const float z_ =  left.w * right.z + left.x * right.y - left.y * right.x;
+		
+		return quat(x_, y_, z_, w_);
 	}
 
 	quat &quat::multiply(const quat &other)

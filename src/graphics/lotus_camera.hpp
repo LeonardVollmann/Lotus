@@ -15,6 +15,8 @@ namespace lotus { namespace graphics {
 		maths::mat4 getViewMatrix() const;
 
 		inline const Transform &getTransform() const { return m_transform; }
+	private:
+		void move(const maths::vec3 &axis, float amount);
 	};
 
 } }

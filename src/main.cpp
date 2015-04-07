@@ -94,6 +94,17 @@ int main()
 	float temp = 0.0f;
 	while (!window.isClosed())
 	{
+		if (Input::getMouseButton(GLFW_MOUSE_BUTTON_1))
+		{
+			Input::setMouseLocked(true);
+			Input::setCursorVisible(false);
+		}
+		if (Input::getKey(GLFW_KEY_ESCAPE))
+		{
+			Input::setMouseLocked(false);
+			Input::setCursorVisible(true);
+		}
+
 		temp += 0.025f;
 		float sinTemp = sinf(temp) * 7.0f;
 		float cosTemp = cosf(temp) * 7.0f;
