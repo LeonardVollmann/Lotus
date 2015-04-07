@@ -10,7 +10,6 @@ namespace lotus { namespace graphics {
 	{
 	private:
 		maths::vec2 m_size;
-		maths::vec4 m_color;
 	public:
 		Quad(const maths::vec2 &size);
 		virtual ~Quad() {}

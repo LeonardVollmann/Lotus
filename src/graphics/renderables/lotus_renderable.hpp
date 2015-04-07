@@ -14,13 +14,13 @@ namespace lotus { namespace graphics {
 	class Renderable
 	{
 	protected:
-		VertexArray m_vao;
-		IndexBuffer m_ibo;
+		VertexArray 	m_vao;
+		IndexBuffer 	m_ibo;
 
-		const GLfloat *m_vertices;
-		const GLfloat *m_texCoords;
-		const GLushort *m_indices;
-		GLsizei m_numIndices;
+		const GLfloat 	*m_vertices;
+		const GLfloat 	*m_texCoords;
+		const GLushort 	*m_indices;
+		GLsizei 		m_numIndices;
 	public:
 		Renderable(const GLfloat *vertices, const GLfloat *texCoords, GLsizei numVertices, const GLushort *indices, GLsizei indexCount);
 		virtual ~Renderable() {}

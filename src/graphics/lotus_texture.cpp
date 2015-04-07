@@ -42,10 +42,10 @@ namespace lotus { namespace graphics {
 
 	void Texture::bind(unsigned int unit) const
 	{
-	    assert(unit >= 0 && unit <= 31);
-	    
-	    glActiveTexture(GL_TEXTURE0 + unit);
-	    glBindTexture(GL_TEXTURE_2D, m_texture);
+		assert(unit >= 0 && unit <= 31);
+
+		glActiveTexture(GL_TEXTURE0 + unit);
+		glBindTexture(GL_TEXTURE_2D, m_texture);
 	}
 
 	void Texture::unbind() const

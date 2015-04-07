@@ -37,7 +37,7 @@ namespace lotus { namespace graphics {
 				if (strcmp(tokens[0], "v") == 0)
 				{
 					float v[3];
-					for (int i = 0; i < 3; i++)
+					for (unsigned int i = 0; i < 3; i++)
 					{
 						v[i] = atof(tokens[i + 1]);
 					}
@@ -47,7 +47,7 @@ namespace lotus { namespace graphics {
 				else if (strcmp(tokens[0], "vt") == 0)
 				{
 					float v[2];
-					for (int i = 0; i < 2; i++)
+					for (unsigned int i = 0; i < 2; i++)
 					{
 						v[i] = atof(tokens[i + 1]);
 					}
@@ -57,7 +57,7 @@ namespace lotus { namespace graphics {
 				else if (strcmp(tokens[0], "vn") == 0)
 				{
 					float v[3];
-					for (int i = 0; i < 3; i++)
+					for (unsigned int i = 0; i < 3; i++)
 					{
 						v[i] = atof(tokens[i + 1]);
 					}
@@ -68,7 +68,7 @@ namespace lotus { namespace graphics {
 				{
 					int numIndices = tokens.size() - 1;
 					GLushort indices[numIndices];
-					for (int i = 0; i < numIndices; i++)
+					for (unsigned int i = 0; i < numIndices; i++)
 					{
 						indices[i] = (GLushort) atoi(tokens[i + 1]) - 1;
 					}

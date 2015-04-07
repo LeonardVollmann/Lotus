@@ -54,7 +54,7 @@ namespace lotus { namespace graphics {
 
 		if (m_texCoords.size() < m_vertices.size())
 		{
-			for (int i = m_texCoords.size(); i < m_vertices.size(); i++)
+			for (unsigned int i = m_texCoords.size(); i < m_vertices.size(); i++)
 			{
 				m_texCoords.push_back(0.0f);
 			}
@@ -75,12 +75,12 @@ namespace lotus { namespace graphics {
 		m_normals.clear();
 		m_normals.reserve(m_vertices.size());
 		
-		for(int i = 0; i < m_vertices.size() * 3; i++)
+		for(unsigned int i = 0; i < m_vertices.size() * 3; i++)
 		{
 			m_normals.push_back(0.0f);
 		}
 
-		for(int i = 0; i < m_indices.size(); i += 3)
+		for(unsigned int i = 0; i < m_indices.size(); i += 3)
 		{
 			GLushort i0 = m_indices[i];
 			GLushort i1 = m_indices[i + 1];
@@ -95,9 +95,9 @@ namespace lotus { namespace graphics {
 			
 			vec3 normal = cross(d1, d2).normalize();
 			
-			for (int j = 0; j < 3; j++)
+			for (unsigned int j = 0; j < 3; j++)
 			{
-				int index = (i0 + j) * 3;
+				unsigned int index = (i0 + j) * 3;
 				m_normals[index + 0] = m_normals[index + 0] + normal.x;
 				m_normals[index + 1] = m_normals[index + 1] + normal.y;
 				m_normals[index + 2] = m_normals[index + 2] + normal.z;

@@ -29,9 +29,9 @@ namespace lotus {
 		void setRot(const maths::quat &rot);
 		void setScale(const maths::vec3 &scale);
 
-		inline const maths::vec3 &getPos() const { return m_pos; }
-		inline const maths::quat &getRot() const { return m_rot; }
-		inline const maths::vec3 &getScale() const { return m_scale; }
+		inline const maths::vec3 &getPos() 		const { return m_pos; }
+		inline const maths::quat &getRot() 		const { return m_rot; }
+		inline const maths::vec3 &getScale() 	const { return m_scale; }
 	};
 
 }

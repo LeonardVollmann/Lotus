@@ -12,8 +12,7 @@ namespace lotus { namespace graphics {
 		const GLfloat *m_texCoords;
 		const GLfloat *m_normals;
 	public:
-		Mesh(const GLfloat *vertices, const GLfloat *texCoords, const GLfloat *normals, GLsizei numVertices, 
-			const GLushort *indices, GLsizei numIndices);
+		Mesh(const GLfloat *vertices, const GLfloat *texCoords, const GLfloat *normals, GLsizei numVertices, const GLushort *indices, GLsizei numIndices);
 		Mesh(const IndexedModel &model);
 	};
 

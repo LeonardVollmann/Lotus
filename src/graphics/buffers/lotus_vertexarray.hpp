@@ -11,8 +11,8 @@ namespace lotus { namespace graphics {
 	class VertexArray
 	{
 	private:
-		GLuint m_id;
-		std::vector<Buffer*> m_buffers;
+		GLuint					m_id;
+		std::vector<Buffer*> 	m_buffers;
 	public:
 		VertexArray();
 		virtual ~VertexArray();

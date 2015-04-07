@@ -6,13 +6,13 @@ namespace lotus { namespace maths {
 
 	mat4::mat4()
 	{
-		for (int i = 0; i < 4 * 4; i++)
+		for (unsigned int i = 0; i < 4 * 4; i++)
 			elements[i] = 0.0f;
 	}
 
 	mat4::mat4(float diagonal)
 	{
-		for (int i = 0; i < 4 * 4; i++)
+		for (unsigned int i = 0; i < 4 * 4; i++)
 			elements[i] = 0.0f;
 
 		elements[0 + 0 * 4] = diagonal;
@@ -29,12 +29,12 @@ namespace lotus { namespace maths {
 	mat4 mat4::multiply(const mat4 &other) const
 	{
 		mat4 result = *this;
-		for (int y = 0; y < 4; y++)
+		for (unsigned int y = 0; y < 4; y++)
 		{
-			for (int x = 0; x < 4; x++)
+			for (unsigned int x = 0; x < 4; x++)
 			{
 				float sum = 0.0f;
-				for (int i = 0; i < 4; i++)
+				for (unsigned int i = 0; i < 4; i++)
 				{
 					sum += elements[x + i * 4] * other.elements[i + y * 4];
 				}
