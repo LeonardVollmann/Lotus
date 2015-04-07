@@ -63,17 +63,29 @@ int main()
 
 	PointLight pointLights[]
 	{	
-		PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-6.0f, 0.0f, 0.0f)),
-		PointLight(BaseLight(vec3(0.0f, 1.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-2.0f, 0.0f, 0.0f)),
-		PointLight(BaseLight(vec3(0.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 2.0f, 0.0f, 0.0f)),
-		PointLight(BaseLight(vec3(1.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 6.0f, 0.0f, 0.0f))
+		PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-6.0f, 0.0f, 0.0f), 8.0f),
+		PointLight(BaseLight(vec3(0.0f, 1.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-2.0f, 0.0f, 0.0f), 8.0f),
+		PointLight(BaseLight(vec3(0.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 2.0f, 0.0f, 0.0f), 8.0f),
+		PointLight(BaseLight(vec3(1.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 6.0f, 0.0f, 0.0f), 8.0f)
 	};
+
+	SpotLight spotLights[]
+	{
+		SpotLight(PointLight(BaseLight(vec3(1.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
+		SpotLight(PointLight(BaseLight(vec3(0.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -2.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
+		SpotLight(PointLight(BaseLight(vec3(0.0f, 1.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f,  2.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
+		SpotLight(PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f,  6.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f)
+	};
+
+	SpotLight spotLight(PointLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 7.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 30.0f), vec3(camera.getTransform().getRot().getForward()), 0.7f);
 
 	PhongShader phongShader;
 	phongShader.setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
 	DirectionalLight directionalLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 0.1f), vec3(1.0f, 1.0f, 1.0f).normalize());
 	phongShader.setDirectionalLight(directionalLight);
 	phongShader.setPointLights(pointLights, 4);
+	// phongShader.setSpotLights(spotLights, 4);
+	phongShader.setSpotLights(&spotLight, 1);
 
 	dragonTransform.translate(vec3(0.0f, 1.0f, -7.5f));
 	planeTransform.translate(vec3(0.0f, -1.0f, 0.0f));
@@ -83,13 +95,21 @@ int main()
 	while (!window.isClosed())
 	{
 		temp += 0.025f;
-		float sinTemp = sinf(temp);
-		float cosTemp = cosf(temp);
+		float sinTemp = sinf(temp) * 7.0f;
+		float cosTemp = cosf(temp) * 7.0f;
 
-		pointLights[0].pos.z = sinTemp * 7;
-		pointLights[1].pos.z = cosTemp * 7;
-		pointLights[2].pos.z = sinTemp * 7;
-		pointLights[3].pos.z = cosTemp * 7;
+		pointLights[0].pos.z = sinTemp;
+		pointLights[1].pos.z = cosTemp;
+		pointLights[2].pos.z = sinTemp;
+		pointLights[3].pos.z = cosTemp;
+
+		spotLights[0].pointLight.pos.x = sinTemp;
+		spotLights[1].pointLight.pos.x = cosTemp;
+		spotLights[2].pointLight.pos.x = sinTemp;
+		spotLights[3].pointLight.pos.x = cosTemp;
+
+		spotLight.pointLight.pos = camera.getTransform().getPos();
+		spotLight.direction = camera.getTransform().getRot().getBack();
 
 		window.clear();
 

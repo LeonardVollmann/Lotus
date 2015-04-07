@@ -46,12 +46,28 @@ namespace lotus { namespace graphics {
 		BaseLight base;
 		Attenuation atten;
 		maths::vec3 pos;
+		float range;
 
-		PointLight(const BaseLight &baseLight, const Attenuation &attenuation, const maths::vec3 &pos) :
+		PointLight(const BaseLight &baseLight, const Attenuation &attenuation, const maths::vec3 &pos, float range) :
 			base(baseLight),
 			atten(attenuation)
 		{
 			this->pos = pos;
+			this->range = range;
+		}
+	};
+
+	struct SpotLight
+	{
+		PointLight pointLight;
+		maths::vec3 direction;
+		float cutoff;
+
+		SpotLight(const PointLight &point, const maths::vec3 &direction, float cutoff) :
+			pointLight(point)
+		{
+			this->direction = direction;
+			this->cutoff = cutoff;
 		}
 	};
 

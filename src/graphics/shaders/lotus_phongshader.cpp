@@ -36,6 +36,22 @@ namespace lotus { namespace graphics {
 			addUniform(pointLightName + ".atten.linear");
 			addUniform(pointLightName + ".atten.exponent");
 			addUniform(pointLightName + ".pos");
+			addUniform(pointLightName + ".range");
+		}
+
+		for (int i = 0; i < MAX_SPOT_LIGHTS; i++)
+		{
+			std::string spotLightName = "spotLights[" + std::to_string(i) + "]";
+
+			addUniform(spotLightName + ".pointLight.base.color");
+			addUniform(spotLightName + ".pointLight.base.intensity");
+			addUniform(spotLightName + ".pointLight.atten.constant");
+			addUniform(spotLightName + ".pointLight.atten.linear");
+			addUniform(spotLightName + ".pointLight.atten.exponent");
+			addUniform(spotLightName + ".pointLight.pos");
+			addUniform(spotLightName + ".pointLight.range");
+			addUniform(spotLightName + ".direction");
+			addUniform(spotLightName + ".cutoff");
 		}
 	}
 
@@ -57,6 +73,11 @@ namespace lotus { namespace graphics {
 		for (int i = 0; i < m_numPointLights; i++)
 		{
 			setUniformPointLight("pointLights[" + std::to_string(i) + "]", m_pointLights[i]);
+		}
+
+		for (int i = 0; i < m_numSpotLights; i++)
+		{
+			setUniformSpotLight("spotLights[" + std::to_string(i) + "]", m_spotLights[i]);
 		}
 	}
 
@@ -85,18 +106,39 @@ namespace lotus { namespace graphics {
 		setUniformBaseLight(uniform + ".base", pointLight.base);
 		setUniformAttenuation(uniform + ".atten", pointLight.atten);
 		setUniformVec3(uniform + ".pos", pointLight.pos);
+		setUniformFloat(uniform + ".range", pointLight.range);
+	}
+
+	void PhongShader::setUniformSpotLight(const std::string &uniform, const SpotLight &spotLight) const
+	{
+		setUniformPointLight(uniform + ".pointLight", spotLight.pointLight);
+		setUniformVec3(uniform + ".direction", spotLight.direction);
+		setUniformFloat(uniform + ".cutoff", spotLight.cutoff);
 	}
 
 	void PhongShader::setPointLights(PointLight *pointLights, int numLights)
 	{
 		if (numLights > MAX_POINT_LIGHTS)
 		{
-			std::cerr<< "ERROR: Too many PointLights." << std::endl;
+			std::cerr << "ERROR: Too many PointLights." << std::endl;
 		}
 		else
 		{
 			m_pointLights = pointLights;
 			m_numPointLights = numLights;
+		}
+	}
+
+	void PhongShader::setSpotLights(SpotLight *spotLights, int numLights)
+	{
+		if (numLights > MAX_SPOT_LIGHTS)
+		{
+			std::cerr << "ERROR: Too many SpotLights." << std::endl;
+		}
+		else
+		{
+			m_spotLights = spotLights;
+			m_numSpotLights = numLights;
 		}
 	}
 
