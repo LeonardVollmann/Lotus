@@ -115,6 +115,54 @@ Lotus/fast:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/build
 .PHONY : Lotus/fast
 
+src/core/lotus_engine.o: src/core/lotus_engine.cpp.o
+.PHONY : src/core/lotus_engine.o
+
+# target to build an object file
+src/core/lotus_engine.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/core/lotus_engine.cpp.o
+.PHONY : src/core/lotus_engine.cpp.o
+
+src/core/lotus_engine.i: src/core/lotus_engine.cpp.i
+.PHONY : src/core/lotus_engine.i
+
+# target to preprocess a source file
+src/core/lotus_engine.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/core/lotus_engine.cpp.i
+.PHONY : src/core/lotus_engine.cpp.i
+
+src/core/lotus_engine.s: src/core/lotus_engine.cpp.s
+.PHONY : src/core/lotus_engine.s
+
+# target to generate assembly for a file
+src/core/lotus_engine.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/core/lotus_engine.cpp.s
+.PHONY : src/core/lotus_engine.cpp.s
+
+src/core/lotus_entity.o: src/core/lotus_entity.cpp.o
+.PHONY : src/core/lotus_entity.o
+
+# target to build an object file
+src/core/lotus_entity.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/core/lotus_entity.cpp.o
+.PHONY : src/core/lotus_entity.cpp.o
+
+src/core/lotus_entity.i: src/core/lotus_entity.cpp.i
+.PHONY : src/core/lotus_entity.i
+
+# target to preprocess a source file
+src/core/lotus_entity.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/core/lotus_entity.cpp.i
+.PHONY : src/core/lotus_entity.cpp.i
+
+src/core/lotus_entity.s: src/core/lotus_entity.cpp.s
+.PHONY : src/core/lotus_entity.s
+
+# target to generate assembly for a file
+src/core/lotus_entity.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/core/lotus_entity.cpp.s
+.PHONY : src/core/lotus_entity.cpp.s
+
 src/core/lotus_input.o: src/core/lotus_input.cpp.o
 .PHONY : src/core/lotus_input.o
 
@@ -748,6 +796,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Lotus"
+	@echo "... src/core/lotus_engine.o"
+	@echo "... src/core/lotus_engine.i"
+	@echo "... src/core/lotus_engine.s"
+	@echo "... src/core/lotus_entity.o"
+	@echo "... src/core/lotus_entity.i"
+	@echo "... src/core/lotus_entity.s"
 	@echo "... src/core/lotus_input.o"
 	@echo "... src/core/lotus_input.i"
 	@echo "... src/core/lotus_input.s"

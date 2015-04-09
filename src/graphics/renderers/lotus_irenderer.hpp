@@ -1,5 +1,5 @@
-#ifndef LOTUS_I_RENDERABLE_HPP_INCLUDED
-#define LOTUS_I_RENDERABLE_HPP_INCLUDED
+#ifndef LOTUS_I_RENDERER_HPP_INCLUDED
+#define LOTUS_I_RENDERER_HPP_INCLUDED
 
 #include "../renderables/lotus_renderable.hpp"
 

@@ -77,7 +77,7 @@ int main()
 		SpotLight(PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f,  6.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f)
 	};
 
-	SpotLight spotLight(PointLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 7.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 30.0f), vec3(camera.getTransform().getRot().getForward()), 0.7f);
+	SpotLight spotLight(PointLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 10.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 30.0f), vec3(camera.getTransform().getRot().getForward()), 0.7f);
 
 	PhongShader phongShader;
 	phongShader.setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
@@ -105,19 +105,47 @@ int main()
 			Input::setCursorVisible(true);
 		}
 
+		if (Input::getKey(GLFW_KEY_TAB)) spotLight.cutoff -= 0.007f;
+		if (Input::getKey(GLFW_KEY_LEFT_SHIFT)) spotLight.cutoff += 0.007f;
+		if (Input::getKey(GLFW_KEY_LEFT_ALT)) spotLight.pointLight.base.intensity -= 0.1f;
+		if (Input::getKey(GLFW_KEY_LEFT_SUPER)) spotLight.pointLight.base.intensity += 0.1f;
+
+		if (Input::getKey(GLFW_KEY_RIGHT_SUPER))
+		{
+			pointLights[0].base.intensity -= 0.1f;
+			pointLights[1].base.intensity -= 0.1f;
+			pointLights[2].base.intensity -= 0.1f;
+			pointLights[3].base.intensity -= 0.1f;
+		}
+		if (Input::getKey(GLFW_KEY_RIGHT_ALT))
+		{
+			pointLights[0].base.intensity += 0.1f;
+			pointLights[1].base.intensity += 0.1f;
+			pointLights[2].base.intensity += 0.1f;
+			pointLights[3].base.intensity += 0.1f;
+		}
+
 		temp += 0.025f;
-		float sinTemp = sinf(temp) * 7.0f;
-		float cosTemp = cosf(temp) * 7.0f;
+		const float speed = 7.0f;
+		const float sinTemp = sinf(temp);
+		const float cosTemp = cosf(temp);
 
-		pointLights[0].pos.z = sinTemp;
-		pointLights[1].pos.z = cosTemp;
-		pointLights[2].pos.z = sinTemp;
-		pointLights[3].pos.z = cosTemp;
+		for (unsigned int i = 0; i < 4; i++)
+		{
+			spotLights[i].direction.x = cosTemp;
+			spotLights[i].direction.z = sinTemp;
 
-		spotLights[0].pointLight.pos.x = sinTemp;
-		spotLights[1].pointLight.pos.x = cosTemp;
-		spotLights[2].pointLight.pos.x = sinTemp;
-		spotLights[3].pointLight.pos.x = cosTemp;
+			if (i % 2 == 0)
+			{
+				pointLights[i].pos.z = sinTemp * speed;
+				spotLights[i].pointLight.pos.x = sinTemp * speed;
+			}
+			else
+			{
+				pointLights[i].pos.z = cosTemp * speed;
+				spotLights[i].pointLight.pos.x = cosTemp * speed;
+			}
+		}
 
 		spotLight.pointLight.pos = camera.getTransform().getPos();
 		spotLight.direction = camera.getTransform().getRot().getBack();
@@ -139,6 +167,7 @@ int main()
 		phongShader.unbind();
 
 		window.update();
+		perspective = mat4::perspective(70.0f, window.getAspect(), 0.001f, 1000.0f);
 		camera.update();
 	}
 

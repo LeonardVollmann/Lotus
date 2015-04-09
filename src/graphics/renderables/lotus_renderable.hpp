@@ -18,11 +18,11 @@ namespace lotus { namespace graphics {
 		IndexBuffer 	m_ibo;
 
 		const GLfloat 	*m_vertices;
-		const GLfloat 	*m_texCoords;
+		const GLfloat 	*m_colors;
 		const GLushort 	*m_indices;
 		GLsizei 		m_numIndices;
 	public:
-		Renderable(const GLfloat *vertices, const GLfloat *texCoords, GLsizei numVertices, const GLushort *indices, GLsizei indexCount);
+		Renderable(const GLfloat *vertices, GLsizei numVertices, const GLushort *indices, GLsizei indexCount);
 		virtual ~Renderable() {}
 
 		virtual void render(IRenderer *renderer) const;

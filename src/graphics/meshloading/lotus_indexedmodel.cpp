@@ -10,8 +10,7 @@ namespace lotus { namespace graphics {
 		m_vertices(vertices),
 		m_texCoords(texCoords),
 		m_normals(normals),
-		m_indices(indices)
-	{}
+		m_indices(indices) {}
 
 	void IndexedModel::addVertex(GLfloat x, GLfloat y, GLfloat z)
 	{
