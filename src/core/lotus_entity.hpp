@@ -5,30 +5,26 @@
 
 #include <vector>
 
-namespace lotus {
+class EntityComponent;
 
-	class EntityComponent;
+class Entity
+{
+private:
+	Transform 						m_transform;
+	Entity 							*m_parent;
+	std::vector<Entity*> 			m_nodes;
+	std::vector<EntityComponent*> 	m_components;
+public:
+	Entity(const Transform &transform);
+	virtual ~Entity();
 
-	class Entity
-	{
-	private:
-		Transform 						m_transform;
-		Entity 							*m_parent;
-		std::vector<Entity*> 			m_nodes;
-		std::vector<EntityComponent*> 	m_components;
-	public:
-		Entity(const Transform &transform);
-		virtual ~Entity();
+	void update();
+	void addNode(Entity *node);
+	void addComponent(EntityComponent *component);
+	std::vector<Entity*> getAllDescendants() const;
 
-		void update();
-		void addNode(Entity *node);
-		void addComponent(EntityComponent *component);
-		std::vector<Entity*> getAllDescendants() const;
-
-		inline Transform &getTransform() { return m_transform; }
-		inline Entity *getParent() const { return m_parent; }
-	};
-
-}
+	inline Transform &getTransform() { return m_transform; }
+	inline Entity *getParent() const { return m_parent; }
+};
 
 #endif

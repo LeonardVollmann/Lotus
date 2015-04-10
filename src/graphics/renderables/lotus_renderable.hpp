@@ -7,29 +7,25 @@
 
 #include <GL/glew.h>
 
-namespace lotus { namespace graphics {
+class IRenderer;
 
-	class IRenderer;
+class Renderable
+{
+protected:
+	VertexArray 	m_vao;
+	IndexBuffer 	m_ibo;
 
-	class Renderable
-	{
-	protected:
-		VertexArray 	m_vao;
-		IndexBuffer 	m_ibo;
+	const GLfloat 	*m_vertices;
+	const GLfloat 	*m_colors;
+	const GLushort 	*m_indices;
+	GLsizei 		m_numIndices;
+public:
+	Renderable(const GLfloat *vertices, GLsizei numVertices, const GLushort *indices, GLsizei indexCount);
+	virtual ~Renderable() {}
 
-		const GLfloat 	*m_vertices;
-		const GLfloat 	*m_colors;
-		const GLushort 	*m_indices;
-		GLsizei 		m_numIndices;
-	public:
-		Renderable(const GLfloat *vertices, GLsizei numVertices, const GLushort *indices, GLsizei indexCount);
-		virtual ~Renderable() {}
+	virtual void render(IRenderer *renderer) const;
 
-		virtual void render(IRenderer *renderer) const;
-
-		inline GLsizei getNumIndices() const { return m_numIndices; }
-	};
-
-} }
+	inline GLsizei getNumIndices() const { return m_numIndices; }
+};
 
 #endif

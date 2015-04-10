@@ -3,74 +3,70 @@
 
 #include "../maths/lotus_vec3.hpp"
 
-namespace lotus { namespace graphics { 
+struct BaseLight
+{
+	vec3 	color;
+	float 	intensity;
 
-	struct BaseLight
+	BaseLight(const vec3 &color, float intensity)
 	{
-		maths::vec3 color;
-		float intensity;
+		this->color = color;
+		this->intensity = intensity; 
+	}
+};
 
-		BaseLight(const maths::vec3 &color, float intensity)
-		{
-			this->color = color;
-			this->intensity = intensity; 
-		}
-	};
+struct DirectionalLight
+{
+	BaseLight 	base;
+	vec3 		direction;
 
-	struct DirectionalLight
+	DirectionalLight(const BaseLight &baseLight, const vec3 &direction) :
+		base(baseLight)
 	{
-		BaseLight base;
-		maths::vec3 direction;
+		this->direction = direction;
+	}
+};
 
-		DirectionalLight(const BaseLight &baseLight, const maths::vec3 &direction) :
-			base(baseLight)
-		{
-			this->direction = direction;
-		}
-	};
+struct Attenuation
+{
+	float constant, linear, exponent;
 
-	struct Attenuation
+	Attenuation(float constant, float linear, float exponent)
 	{
-		float constant, linear, exponent;
+		this->constant = constant;
+		this->linear = linear;
+		this->exponent = exponent;
+	}
+};
 
-		Attenuation(float constant, float linear, float exponent)
-		{
-			this->constant = constant;
-			this->linear = linear;
-			this->exponent = exponent;
-		}
-	};
+struct PointLight
+{
+	BaseLight 	base;
+	Attenuation atten;
+	vec3 		pos;
+	float 		range;
 
-	struct PointLight
+	PointLight(const BaseLight &baseLight, const Attenuation &attenuation, const vec3 &pos, float range) :
+		base(baseLight),
+		atten(attenuation)
 	{
-		BaseLight base;
-		Attenuation atten;
-		maths::vec3 pos;
-		float range;
+		this->pos = pos;
+		this->range = range;
+	}
+};
 
-		PointLight(const BaseLight &baseLight, const Attenuation &attenuation, const maths::vec3 &pos, float range) :
-			base(baseLight),
-			atten(attenuation)
-		{
-			this->pos = pos;
-			this->range = range;
-		}
-	};
+struct SpotLight
+{
+	PointLight 	pointLight;
+	vec3 		direction;
+	float 		cutoff;
 
-	struct SpotLight
+	SpotLight(const PointLight &point, const vec3 &direction, float cutoff) :
+		pointLight(point)
 	{
-		PointLight pointLight;
-		maths::vec3 direction;
-		float cutoff;
-
-		SpotLight(const PointLight &point, const maths::vec3 &direction, float cutoff) :
-			pointLight(point)
-		{
-			this->direction = direction;
-			this->cutoff = cutoff;
-		}
-	};
-
-} }
+		this->direction = direction;
+		this->cutoff = cutoff;
+	}
+};
 
 #endif

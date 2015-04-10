@@ -2,59 +2,55 @@
 
 #include <iostream>
 
-namespace lotus {
-	
-	bool Input::s_keys[512];
-	bool Input::s_mouseButtons[64];
-	
-	bool Input::s_cursorVisible;
-	bool Input::s_mouseLocked;
-	maths::vec2 Input::s_cursorPos;
-	maths::vec2 Input::s_oldCursorPos;
-	maths::vec2 Input::s_cursorPosDelta;
+bool Input::s_keys[512];
+bool Input::s_mouseButtons[64];
 
-	GLFWwindow *Input::s_window;
+bool Input::s_cursorVisible;
+bool Input::s_mouseLocked;
+vec2 Input::s_cursorPos;
+vec2 Input::s_oldCursorPos;
+vec2 Input::s_cursorPosDelta;
 
-	void Input::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+GLFWwindow *Input::s_window;
+
+void Input::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	s_keys[key] = action == GLFW_PRESS || action == GLFW_REPEAT;
+}
+
+void Input::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+{
+	s_mouseButtons[button] = action == GLFW_PRESS;
+}
+
+void Input::cursorPosCallback(GLFWwindow* window, double xpos, double ypos)
+{
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
+
+	const float xNormalized = ((float) xpos / (float) width - 0.5f) * 2.0f;
+	const float yNormalized = ((float) ypos / (float) height - 0.5f) * 2.0f;
+
+	s_oldCursorPos = s_cursorPos;
+	s_cursorPos = vec2(xNormalized, yNormalized);
+	s_cursorPosDelta = (s_cursorPos - s_oldCursorPos);
+
+	if (s_mouseLocked)
 	{
-		s_keys[key] = action == GLFW_PRESS || action == GLFW_REPEAT;
+		glfwSetCursorPos(window, (float) width / 2.0f, (float) height / 2.0f);
 	}
+}
 
-	void Input::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+void Input::setCursorVisible(bool visible)
+{
+	s_cursorVisible = visible;
+
+	if (s_cursorVisible)
 	{
-		s_mouseButtons[button] = action == GLFW_PRESS;
+		glfwSetInputMode(s_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	}
-
-	void Input::cursorPosCallback(GLFWwindow* window, double xpos, double ypos)
+	else
 	{
-		int width, height;
-		glfwGetWindowSize(window, &width, &height);
-
-		const float xNormalized = ((float) xpos / (float) width - 0.5f) * 2.0f;
-		const float yNormalized = ((float) ypos / (float) height - 0.5f) * 2.0f;
-
-		s_oldCursorPos = s_cursorPos;
-		s_cursorPos = maths::vec2(xNormalized, yNormalized);
-		s_cursorPosDelta = (s_cursorPos - s_oldCursorPos);
-
-		if (s_mouseLocked)
-		{
-			glfwSetCursorPos(window, (float) width / 2.0f, (float) height / 2.0f);
-		}
+		glfwSetInputMode(s_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 	}
-
-	void Input::setCursorVisible(bool visible)
-	{
-		s_cursorVisible = visible;
-
-		if (s_cursorVisible)
-		{
-			glfwSetInputMode(s_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-		}
-		else
-		{
-			glfwSetInputMode(s_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-		}
-	}
-
 }

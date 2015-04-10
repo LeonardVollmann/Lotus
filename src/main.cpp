@@ -21,10 +21,6 @@
 
 int main()
 {
-	using namespace lotus;
-	using namespace lotus::maths;
-	using namespace lotus::graphics;
-
 	Window window(800, 600, "Lotus");
 
 	Texture texture("texture.png");

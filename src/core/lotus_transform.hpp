@@ -5,35 +5,31 @@
 #include "../maths/lotus_mat4.hpp"
 #include "../maths/lotus_quat.hpp"
 
-namespace lotus {
+class Transform
+{
+private:
+	vec3 m_pos;
+	quat m_rot;
+	vec3 m_scale;
+public:
+	Transform(const vec3 &pos = vec3(0.0f, 0.0f, 0.0f),
+		const quat &rot = quat(0.0f, 0.0f, 0.0f, 1.0f),
+		const vec3 &scale = vec3(1.0f, 1.0f, 1.0f));
 
-	class Transform
-	{
-	private:
-		maths::vec3 m_pos;
-		maths::quat m_rot;
-		maths::vec3 m_scale;
-	public:
-		Transform(const maths::vec3 &pos = maths::vec3(0.0f, 0.0f, 0.0f),
-			const maths::quat &quat = maths::quat(0.0f, 0.0f, 0.0f, 1.0f),
-			const maths::vec3 &scale = maths::vec3(1.0f, 1.0f, 1.0f));
+	mat4 getTransformation() const;
 
-		maths::mat4 getTransformation() const;
+	void translate(const vec3 &translation);
+	void rotate(const quat &rotation);
+	void rotate(float angle, const vec3 &axis);
+	void scale(const vec3 &scale);
 
-		void translate(const maths::vec3 &translation);
-		void rotate(const maths::quat &rotation);
-		void rotate(float angle, const maths::vec3 &axis);
-		void scale(const maths::vec3 &scale);
+	void setPos(const vec3 &pos);
+	void setRot(const quat &rot);
+	void setScale(const vec3 &scale);
 
-		void setPos(const maths::vec3 &pos);
-		void setRot(const maths::quat &rot);
-		void setScale(const maths::vec3 &scale);
-
-		inline const maths::vec3 &getPos() 		const { return m_pos; }
-		inline const maths::quat &getRot() 		const { return m_rot; }
-		inline const maths::vec3 &getScale() 	const { return m_scale; }
-	};
-
-}
+	inline const vec3 &getPos() 	const { return m_pos; }
+	inline const quat &getRot() 	const { return m_rot; }
+	inline const vec3 &getScale() 	const { return m_scale; }
+};
 
 #endif

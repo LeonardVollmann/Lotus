@@ -3,20 +3,16 @@
 
 #include <GL/glew.h>
 
-namespace lotus { namespace graphics {
+class IndexBuffer
+{
+private:
+	GLuint m_id;
+public:
+	IndexBuffer(const GLushort *data, GLsizei count);
+	virtual ~IndexBuffer();
 
-	class IndexBuffer
-	{
-	private:
-		GLuint m_id;
-	public:
-		IndexBuffer(const GLushort *data, GLsizei count);
-		virtual ~IndexBuffer();
-
-		void bind() const;
-		void unbind() const;
-	};
-
-} }
+	void bind() const;
+	void unbind() const;
+};
 
 #endif

@@ -1,145 +1,141 @@
 #include "lotus_phongshader.hpp"
 
-namespace lotus { namespace graphics { 
+PhongShader::PhongShader() :
+	Shader("phong"),
+	m_ambientLight(vec3(0.1f, 0.1f, 0.1f)),
+	m_directionalLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 0.0f), vec3(0.0f, 0.0f, 0.0f))
+{
+	addVertexShader();
+	addFragmentShader();
+	compile();
 
-	PhongShader::PhongShader() :
-		Shader("phong"),
-		m_ambientLight(maths::vec3(0.1f, 0.1f, 0.1f)),
-		m_directionalLight(BaseLight(maths::vec3(1.0f, 1.0f, 1.0f), 0.0f), maths::vec3(0.0f, 0.0f, 0.0f))
+	addUniform("pr_matrix");
+	addUniform("vw_matrix");
+	addUniform("ml_matrix");
+
+	addUniform("cameraPos");
+
+	addUniform("baseColor");
+	addUniform("specularIntensity");
+	addUniform("specularPower");
+
+	addUniform("ambientLight");
+	addUniform("directionalLight.base.color");
+	addUniform("directionalLight.base.intensity");
+	addUniform("directionalLight.direction");
+
+	for (int i = 0; i < MAX_POINT_LIGHTS; i++)
 	{
-		addVertexShader();
-		addFragmentShader();
-		compile();
+		std::string pointLightName = "pointLights[" + std::to_string(i) + "]";
 
-		addUniform("pr_matrix");
-		addUniform("vw_matrix");
-		addUniform("ml_matrix");
-
-		addUniform("cameraPos");
-
-		addUniform("baseColor");
-		addUniform("specularIntensity");
-		addUniform("specularPower");
-
-		addUniform("ambientLight");
-		addUniform("directionalLight.base.color");
-		addUniform("directionalLight.base.intensity");
-		addUniform("directionalLight.direction");
-
-		for (int i = 0; i < MAX_POINT_LIGHTS; i++)
-		{
-			std::string pointLightName = "pointLights[" + std::to_string(i) + "]";
-
-			addUniform(pointLightName + ".base.color");
-			addUniform(pointLightName + ".base.intensity");
-			addUniform(pointLightName + ".atten.constant");
-			addUniform(pointLightName + ".atten.linear");
-			addUniform(pointLightName + ".atten.exponent");
-			addUniform(pointLightName + ".pos");
-			addUniform(pointLightName + ".range");
-		}
-
-		for (int i = 0; i < MAX_SPOT_LIGHTS; i++)
-		{
-			std::string spotLightName = "spotLights[" + std::to_string(i) + "]";
-
-			addUniform(spotLightName + ".pointLight.base.color");
-			addUniform(spotLightName + ".pointLight.base.intensity");
-			addUniform(spotLightName + ".pointLight.atten.constant");
-			addUniform(spotLightName + ".pointLight.atten.linear");
-			addUniform(spotLightName + ".pointLight.atten.exponent");
-			addUniform(spotLightName + ".pointLight.pos");
-			addUniform(spotLightName + ".pointLight.range");
-			addUniform(spotLightName + ".direction");
-			addUniform(spotLightName + ".cutoff");
-		}
+		addUniform(pointLightName + ".base.color");
+		addUniform(pointLightName + ".base.intensity");
+		addUniform(pointLightName + ".atten.constant");
+		addUniform(pointLightName + ".atten.linear");
+		addUniform(pointLightName + ".atten.exponent");
+		addUniform(pointLightName + ".pos");
+		addUniform(pointLightName + ".range");
 	}
 
-	void PhongShader::updateUniforms(const Transform &transform, const Material &material, const Camera &camera, const maths::mat4 &projection) const
+	for (int i = 0; i < MAX_SPOT_LIGHTS; i++)
 	{
-		setUniformMat4("pr_matrix", projection);
-		setUniformMat4("vw_matrix", camera.getViewMatrix());
-		setUniformMat4("ml_matrix", transform.getTransformation());
+		std::string spotLightName = "spotLights[" + std::to_string(i) + "]";
 
-		setUniformVec3("cameraPos", camera.getTransform().getPos());
+		addUniform(spotLightName + ".pointLight.base.color");
+		addUniform(spotLightName + ".pointLight.base.intensity");
+		addUniform(spotLightName + ".pointLight.atten.constant");
+		addUniform(spotLightName + ".pointLight.atten.linear");
+		addUniform(spotLightName + ".pointLight.atten.exponent");
+		addUniform(spotLightName + ".pointLight.pos");
+		addUniform(spotLightName + ".pointLight.range");
+		addUniform(spotLightName + ".direction");
+		addUniform(spotLightName + ".cutoff");
+	}
+}
 
-		setUniformVec4("baseColor", material.getColor());
-		setUniformFloat("specularIntensity", material.getSpecularIntensity());
-		setUniformFloat("specularPower", material.getSpecularPower());
+void PhongShader::updateUniforms(const Transform &transform, const Material &material, const Camera &camera, const mat4 &projection) const
+{
+	setUniformMat4("pr_matrix", projection);
+	setUniformMat4("vw_matrix", camera.getViewMatrix());
+	setUniformMat4("ml_matrix", transform.getTransformation());
 
-		setUniformVec3("ambientLight", m_ambientLight);
-		setUniformDirectionalLight("directionalLight", m_directionalLight);
+	setUniformVec3("cameraPos", camera.getTransform().getPos());
 
-		for (int i = 0; i < m_numPointLights; i++)
-		{
-			setUniformPointLight("pointLights[" + std::to_string(i) + "]", m_pointLights[i]);
-		}
+	setUniformVec4("baseColor", material.getColor());
+	setUniformFloat("specularIntensity", material.getSpecularIntensity());
+	setUniformFloat("specularPower", material.getSpecularPower());
 
-		for (int i = 0; i < m_numSpotLights; i++)
-		{
-			setUniformSpotLight("spotLights[" + std::to_string(i) + "]", m_spotLights[i]);
-		}
+	setUniformVec3("ambientLight", m_ambientLight);
+	setUniformDirectionalLight("directionalLight", m_directionalLight);
+
+	for (int i = 0; i < m_numPointLights; i++)
+	{
+		setUniformPointLight("pointLights[" + std::to_string(i) + "]", m_pointLights[i]);
 	}
 
-
-	void PhongShader::setUniformBaseLight(const std::string &uniform, const BaseLight &baseLight) const
+	for (int i = 0; i < m_numSpotLights; i++)
 	{
-		glUniform3f(m_uniforms[uniform + ".color"], baseLight.color.x, baseLight.color.y, baseLight.color.z);
-		glUniform1f(m_uniforms[uniform + ".intensity"], baseLight.intensity);
-	} 
-
-	void PhongShader::setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight) const
-	{
-		setUniformBaseLight(uniform + ".base", directionalLight.base);
-		glUniform3f(m_uniforms[uniform + ".direction"], directionalLight.direction.x, directionalLight.direction.y, directionalLight.direction.z);
+		setUniformSpotLight("spotLights[" + std::to_string(i) + "]", m_spotLights[i]);
 	}
+}
 
-	void PhongShader::setUniformAttenuation(const std::string &uniform, const Attenuation &attenuation) const
+
+void PhongShader::setUniformBaseLight(const std::string &uniform, const BaseLight &baseLight) const
+{
+	glUniform3f(m_uniforms[uniform + ".color"], baseLight.color.x, baseLight.color.y, baseLight.color.z);
+	glUniform1f(m_uniforms[uniform + ".intensity"], baseLight.intensity);
+} 
+
+void PhongShader::setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight) const
+{
+	setUniformBaseLight(uniform + ".base", directionalLight.base);
+	glUniform3f(m_uniforms[uniform + ".direction"], directionalLight.direction.x, directionalLight.direction.y, directionalLight.direction.z);
+}
+
+void PhongShader::setUniformAttenuation(const std::string &uniform, const Attenuation &attenuation) const
+{
+	setUniformFloat(uniform + ".constant", attenuation.constant);
+	setUniformFloat(uniform + ".linear", attenuation.linear);
+	setUniformFloat(uniform + ".exponent", attenuation.exponent);
+}
+
+void PhongShader::setUniformPointLight(const std::string &uniform, const PointLight &pointLight) const
+{
+	setUniformBaseLight(uniform + ".base", pointLight.base);
+	setUniformAttenuation(uniform + ".atten", pointLight.atten);
+	setUniformVec3(uniform + ".pos", pointLight.pos);
+	setUniformFloat(uniform + ".range", pointLight.range);
+}
+
+void PhongShader::setUniformSpotLight(const std::string &uniform, const SpotLight &spotLight) const
+{
+	setUniformPointLight(uniform + ".pointLight", spotLight.pointLight);
+	setUniformVec3(uniform + ".direction", spotLight.direction);
+	setUniformFloat(uniform + ".cutoff", spotLight.cutoff);
+}
+
+void PhongShader::setPointLights(PointLight *pointLights, int numLights)
+{
+	if (numLights > MAX_POINT_LIGHTS)
 	{
-		setUniformFloat(uniform + ".constant", attenuation.constant);
-		setUniformFloat(uniform + ".linear", attenuation.linear);
-		setUniformFloat(uniform + ".exponent", attenuation.exponent);
+		std::cerr << "ERROR: Too many PointLights." << std::endl;
 	}
-
-	void PhongShader::setUniformPointLight(const std::string &uniform, const PointLight &pointLight) const
+	else
 	{
-		setUniformBaseLight(uniform + ".base", pointLight.base);
-		setUniformAttenuation(uniform + ".atten", pointLight.atten);
-		setUniformVec3(uniform + ".pos", pointLight.pos);
-		setUniformFloat(uniform + ".range", pointLight.range);
+		m_pointLights = pointLights;
+		m_numPointLights = numLights;
 	}
+}
 
-	void PhongShader::setUniformSpotLight(const std::string &uniform, const SpotLight &spotLight) const
+void PhongShader::setSpotLights(SpotLight *spotLights, int numLights)
+{
+	if (numLights > MAX_SPOT_LIGHTS)
 	{
-		setUniformPointLight(uniform + ".pointLight", spotLight.pointLight);
-		setUniformVec3(uniform + ".direction", spotLight.direction);
-		setUniformFloat(uniform + ".cutoff", spotLight.cutoff);
+		std::cerr << "ERROR: Too many SpotLights." << std::endl;
 	}
-
-	void PhongShader::setPointLights(PointLight *pointLights, int numLights)
+	else
 	{
-		if (numLights > MAX_POINT_LIGHTS)
-		{
-			std::cerr << "ERROR: Too many PointLights." << std::endl;
-		}
-		else
-		{
-			m_pointLights = pointLights;
-			m_numPointLights = numLights;
-		}
+		m_spotLights = spotLights;
+		m_numSpotLights = numLights;
 	}
-
-	void PhongShader::setSpotLights(SpotLight *spotLights, int numLights)
-	{
-		if (numLights > MAX_SPOT_LIGHTS)
-		{
-			std::cerr << "ERROR: Too many SpotLights." << std::endl;
-		}
-		else
-		{
-			m_spotLights = spotLights;
-			m_numSpotLights = numLights;
-		}
-	}
-
-} }
+}

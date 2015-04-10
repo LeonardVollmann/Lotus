@@ -6,14 +6,10 @@
 #include <string>
 #include <vector>
 
-namespace lotus { namespace graphics { 
-
-	class OBJLoader
-	{
-	public:
-		static IndexedModel loadIndexedModel(const std::string &fileName);
-	};
-
-} }
+class OBJLoader
+{
+public:
+	static IndexedModel loadIndexedModel(const std::string &fileName);
+};
 
 #endif

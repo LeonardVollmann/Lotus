@@ -5,14 +5,10 @@
 
 #include <GL/glew.h>
 
-namespace lotus { namespace graphics {
-
-	class IRenderer
-	{
-	public:
-		virtual void render(const Renderable &renderable) const = 0;
-	};
-
-} }
+class IRenderer
+{
+public:
+	virtual void render(const Renderable &renderable) const = 0;
+};
 
 #endif
