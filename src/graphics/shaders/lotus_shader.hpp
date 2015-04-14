@@ -15,8 +15,8 @@ class Shader
 protected:
 	std::string m_fileName;
 
-	GLuint m_program;
-	GLuint m_shaders[3];
+	GLuint 		m_program;
+	GLuint 		m_shaders[3];
 
 	mutable std::map<std::string, GLint> m_uniforms;
 public:

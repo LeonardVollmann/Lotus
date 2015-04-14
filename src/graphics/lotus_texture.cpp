@@ -1,5 +1,5 @@
 #include "lotus_texture.hpp"
-#include "../staticlibs/stb_image.h"
+#include "../../ext/stb_image.h"
 
 #include <iostream>
 #include <cassert>

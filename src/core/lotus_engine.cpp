@@ -5,17 +5,26 @@
 #include <string>
 #include <iostream>
 
-Engine::Engine(IGame *game, double fps, int width, int height, const char *title) :
-	m_game(game),
+Engine::Engine(double fps, int width, int height, const char *title) :
 	m_window(width, height, title),
 	m_fps(fps),
-	m_running(false)
-{
+	m_running(false) {}
 
+void Engine::setGame(IGame *game)
+{
+	m_game = game;
+	m_game->setEngine(this);
+	m_game->init();
 }
 
 void Engine::start()
 {
+	if (m_game == nullptr)
+	{
+		std::cout << "ERROR: Engine::start() called before Engine::setGame(IGame *game)." << std::endl;
+		return;
+	}
+
 	if (m_running)
 	{
 		return;
@@ -34,12 +43,24 @@ void Engine::stop()
 
 void Engine::update(double delta)
 {
+	glfwPollEvents();
+
 	m_game->update(delta);
 }
 
 void Engine::render()
 {
+	m_window.clear();
 
+	m_game->render();
+
+	m_window.update();
+
+	GLenum error = glGetError();
+	if (error != GL_NO_ERROR)
+	{
+		std::cout << "ERROR: OpenGL error: " << error << "." << std::endl;
+	}
 }
 
 void Engine::run()
@@ -48,7 +69,7 @@ void Engine::run()
 
 	double time_0 = Time::getTime();
 	double time_1 = 0;
-	double delta = 0;
+	double delta;
 	double unprocessed = 0;
 	double accumulatedDelta;
 	unsigned int frames;
@@ -62,12 +83,14 @@ void Engine::run()
 
 		time_1 = Time::getTime();
 		delta = time_1 - time_0;
+		time_0 = time_1;
+
 		unprocessed += delta;
 		accumulatedDelta += delta;
 
 		while (unprocessed >= freq)
 		{
-			unprocessed--;
+			unprocessed -= freq;
 			update(delta);
 			updates++;
 		}
@@ -82,7 +105,5 @@ void Engine::run()
 			frames = 0;
 			accumulatedDelta = 0;
 		}
-
-		time_0 = time_1;
 	}
 }

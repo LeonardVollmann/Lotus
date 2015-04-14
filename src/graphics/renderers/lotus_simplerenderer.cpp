@@ -1,6 +1,20 @@
 #include "lotus_simplerenderer.hpp"
 
-void SimpleRenderer::render(const Renderable &renderable) const
+void SimpleRenderer::submit(const Renderable *renderable)
 {
-	glDrawElements(GL_TRIANGLES, renderable.getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
+	m_renderQueue.push_back(renderable);
+}
+
+void SimpleRenderer::render()
+{
+	while (!m_renderQueue.empty())
+	{
+		const Renderable *renderable = m_renderQueue.front();
+
+		renderable->bind();
+		glDrawElements(GL_TRIANGLES, renderable->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
+		renderable->unbind();
+
+		m_renderQueue.pop_front();
+	}
 }

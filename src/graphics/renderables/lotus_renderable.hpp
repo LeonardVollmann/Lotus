@@ -4,26 +4,28 @@
 #include "../buffers/lotus_vertexarray.hpp"
 #include "../buffers/lotus_buffer.hpp"
 #include "../buffers/lotus_indexbuffer.hpp"
+#include "../../core/lotus_entitycomponent.hpp"
 
 #include <GL/glew.h>
 
-class IRenderer;
-
-class Renderable
+class Renderable : public EntityComponent
 {
 protected:
 	VertexArray 	m_vao;
 	IndexBuffer 	m_ibo;
 
 	const GLfloat 	*m_vertices;
-	const GLfloat 	*m_colors;
 	const GLushort 	*m_indices;
 	GLsizei 		m_numIndices;
 public:
-	Renderable(const GLfloat *vertices, GLsizei numVertices, const GLushort *indices, GLsizei indexCount);
+	Renderable(const GLfloat *vertices, GLsizei numVertices, const GLushort *indices, GLsizei numIndices);
 	virtual ~Renderable() {}
 
-	virtual void render(IRenderer *renderer) const;
+	void bind() const;
+	void unbind() const;
+	
+	virtual void submitToRenderer(IRenderer *renderer) const override;
+	virtual void update(double delta) override {}
 
 	inline GLsizei getNumIndices() const { return m_numIndices; }
 };

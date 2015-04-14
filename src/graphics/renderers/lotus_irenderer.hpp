@@ -1,14 +1,17 @@
 #ifndef LOTUS_I_RENDERER_HPP_INCLUDED
 #define LOTUS_I_RENDERER_HPP_INCLUDED
 
-#include "../renderables/lotus_renderable.hpp"
-
 #include <GL/glew.h>
+
+class Renderable;
 
 class IRenderer
 {
 public:
-	virtual void render(const Renderable &renderable) const = 0;
+	virtual ~IRenderer() {}
+
+	virtual void submit(const Renderable *renderable) = 0;
+	virtual void render() = 0;
 };
 
 #endif

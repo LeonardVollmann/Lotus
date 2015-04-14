@@ -26,11 +26,15 @@ endif ( CMAKE_BUILD_TYPE STREQUAL "Release" )
 file(GLOB_RECURSE HDRS 
 	${Lotus_SOURCE_DIR}/src/*.hpp
 	${Lotus_SOURCE_DIR}/src/*.h
+	${Lotus_SOURCE_DIR}/ext/*.hpp
+	${Lotus_SOURCE_DIR}/ext/*.h
 )
 
 file(GLOB_RECURSE SRCS
 	${Lotus_SOURCE_DIR}/src/*.cpp
 	${Lotus_SOURCE_DIR}/src/*.c
+	${Lotus_SOURCE_DIR}/ext/*.cpp
+	${Lotus_SOURCE_DIR}/ext/*.c
 )
 
 add_executable(Lotus ${HDRS} ${SRCS})

@@ -6,7 +6,7 @@ Entity::Entity(const Transform &transform) :
 
 Entity::~Entity()
 {
-	for (auto it = m_nodes.begin(); it < m_nodes.end(); it++)
+	for (auto it = m_children.begin(); it < m_children.end(); it++)
 	{
 		delete *it;
 	}
@@ -17,27 +17,29 @@ Entity::~Entity()
 	}
 }
 
-void Entity::update()
+void Entity::update(double delta)
 {
-	for (auto it = m_nodes.begin(); it < m_nodes.end(); it++)
+	for (auto it = m_children.begin(); it < m_children.end(); it++)
 	{
-		(*it)->update();
+		(*it)->update(delta);
 	}
 
 	for (auto it = m_components.begin(); it < m_components.end(); it++)
 	{
-		(*it)->update();
+		(*it)->update(delta);
 	}
 }
 
-void Entity::addNode(Entity *node)
+Entity &Entity::addChild(Entity *child)
 {
-	m_nodes.push_back(node);
+	m_children.push_back(child);
+	return *this;
 }
 
-void Entity::addComponent(EntityComponent *component)
+Entity &Entity::addComponent(EntityComponent *component)
 {
 	m_components.push_back(component);
+	return *this;
 }
 
 std::vector<Entity*> Entity::getAllDescendants() const
@@ -45,11 +47,24 @@ std::vector<Entity*> Entity::getAllDescendants() const
 	std::vector<Entity*> result;
 
 	result.push_back(const_cast<Entity*>(this));
-	for (auto it = m_nodes.begin(); it < m_nodes.end(); it++)
+	for (auto it = m_children.begin(); it < m_children.end(); it++)
 	{
 		std::vector<Entity*> descendants = (*it)->getAllDescendants();
 		result.insert(result.begin(), descendants.begin(), descendants.end());
 	}
 
 	return result;
+}
+
+void Entity::submitToRenderer(IRenderer *renderer) const
+{
+	for (auto it = m_children.begin(); it < m_children.end(); it++)
+	{
+		(*it)->submitToRenderer(renderer);
+	}
+
+	for (auto it = m_components.begin(); it < m_components.end(); it++)
+	{
+		(*it)->submitToRenderer(renderer);
+	}
 }

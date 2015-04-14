@@ -115,6 +115,30 @@ Lotus/fast:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/build
 .PHONY : Lotus/fast
 
+ext/stb_image.o: ext/stb_image.c.o
+.PHONY : ext/stb_image.o
+
+# target to build an object file
+ext/stb_image.c.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/ext/stb_image.c.o
+.PHONY : ext/stb_image.c.o
+
+ext/stb_image.i: ext/stb_image.c.i
+.PHONY : ext/stb_image.i
+
+# target to preprocess a source file
+ext/stb_image.c.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/ext/stb_image.c.i
+.PHONY : ext/stb_image.c.i
+
+ext/stb_image.s: ext/stb_image.c.s
+.PHONY : ext/stb_image.s
+
+# target to generate assembly for a file
+ext/stb_image.c.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/ext/stb_image.c.s
+.PHONY : ext/stb_image.c.s
+
 src/core/lotus_engine.o: src/core/lotus_engine.cpp.o
 .PHONY : src/core/lotus_engine.o
 
@@ -282,6 +306,54 @@ src/graphics/buffers/lotus_vertexarray.s: src/graphics/buffers/lotus_vertexarray
 src/graphics/buffers/lotus_vertexarray.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/buffers/lotus_vertexarray.cpp.s
 .PHONY : src/graphics/buffers/lotus_vertexarray.cpp.s
+
+src/graphics/layers/lotus_layer.o: src/graphics/layers/lotus_layer.cpp.o
+.PHONY : src/graphics/layers/lotus_layer.o
+
+# target to build an object file
+src/graphics/layers/lotus_layer.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/layers/lotus_layer.cpp.o
+.PHONY : src/graphics/layers/lotus_layer.cpp.o
+
+src/graphics/layers/lotus_layer.i: src/graphics/layers/lotus_layer.cpp.i
+.PHONY : src/graphics/layers/lotus_layer.i
+
+# target to preprocess a source file
+src/graphics/layers/lotus_layer.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/layers/lotus_layer.cpp.i
+.PHONY : src/graphics/layers/lotus_layer.cpp.i
+
+src/graphics/layers/lotus_layer.s: src/graphics/layers/lotus_layer.cpp.s
+.PHONY : src/graphics/layers/lotus_layer.s
+
+# target to generate assembly for a file
+src/graphics/layers/lotus_layer.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/layers/lotus_layer.cpp.s
+.PHONY : src/graphics/layers/lotus_layer.cpp.s
+
+src/graphics/layers/lotus_scenelayer.o: src/graphics/layers/lotus_scenelayer.cpp.o
+.PHONY : src/graphics/layers/lotus_scenelayer.o
+
+# target to build an object file
+src/graphics/layers/lotus_scenelayer.cpp.o:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/layers/lotus_scenelayer.cpp.o
+.PHONY : src/graphics/layers/lotus_scenelayer.cpp.o
+
+src/graphics/layers/lotus_scenelayer.i: src/graphics/layers/lotus_scenelayer.cpp.i
+.PHONY : src/graphics/layers/lotus_scenelayer.i
+
+# target to preprocess a source file
+src/graphics/layers/lotus_scenelayer.cpp.i:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/layers/lotus_scenelayer.cpp.i
+.PHONY : src/graphics/layers/lotus_scenelayer.cpp.i
+
+src/graphics/layers/lotus_scenelayer.s: src/graphics/layers/lotus_scenelayer.cpp.s
+.PHONY : src/graphics/layers/lotus_scenelayer.s
+
+# target to generate assembly for a file
+src/graphics/layers/lotus_scenelayer.cpp.s:
+	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/graphics/layers/lotus_scenelayer.cpp.s
+.PHONY : src/graphics/layers/lotus_scenelayer.cpp.s
 
 src/graphics/lotus_camera.o: src/graphics/lotus_camera.cpp.o
 .PHONY : src/graphics/lotus_camera.o
@@ -739,30 +811,6 @@ src/maths/lotus_vec4.cpp.s:
 	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/maths/lotus_vec4.cpp.s
 .PHONY : src/maths/lotus_vec4.cpp.s
 
-src/staticlibs/stb_image.o: src/staticlibs/stb_image.c.o
-.PHONY : src/staticlibs/stb_image.o
-
-# target to build an object file
-src/staticlibs/stb_image.c.o:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/staticlibs/stb_image.c.o
-.PHONY : src/staticlibs/stb_image.c.o
-
-src/staticlibs/stb_image.i: src/staticlibs/stb_image.c.i
-.PHONY : src/staticlibs/stb_image.i
-
-# target to preprocess a source file
-src/staticlibs/stb_image.c.i:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/staticlibs/stb_image.c.i
-.PHONY : src/staticlibs/stb_image.c.i
-
-src/staticlibs/stb_image.s: src/staticlibs/stb_image.c.s
-.PHONY : src/staticlibs/stb_image.s
-
-# target to generate assembly for a file
-src/staticlibs/stb_image.c.s:
-	$(MAKE) -f CMakeFiles/Lotus.dir/build.make CMakeFiles/Lotus.dir/src/staticlibs/stb_image.c.s
-.PHONY : src/staticlibs/stb_image.c.s
-
 src/utils/lotus_fileutils.o: src/utils/lotus_fileutils.cpp.o
 .PHONY : src/utils/lotus_fileutils.o
 
@@ -796,6 +844,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Lotus"
+	@echo "... ext/stb_image.o"
+	@echo "... ext/stb_image.i"
+	@echo "... ext/stb_image.s"
 	@echo "... src/core/lotus_engine.o"
 	@echo "... src/core/lotus_engine.i"
 	@echo "... src/core/lotus_engine.s"
@@ -817,6 +868,12 @@ help:
 	@echo "... src/graphics/buffers/lotus_vertexarray.o"
 	@echo "... src/graphics/buffers/lotus_vertexarray.i"
 	@echo "... src/graphics/buffers/lotus_vertexarray.s"
+	@echo "... src/graphics/layers/lotus_layer.o"
+	@echo "... src/graphics/layers/lotus_layer.i"
+	@echo "... src/graphics/layers/lotus_layer.s"
+	@echo "... src/graphics/layers/lotus_scenelayer.o"
+	@echo "... src/graphics/layers/lotus_scenelayer.i"
+	@echo "... src/graphics/layers/lotus_scenelayer.s"
 	@echo "... src/graphics/lotus_camera.o"
 	@echo "... src/graphics/lotus_camera.i"
 	@echo "... src/graphics/lotus_camera.s"
@@ -874,9 +931,6 @@ help:
 	@echo "... src/maths/lotus_vec4.o"
 	@echo "... src/maths/lotus_vec4.i"
 	@echo "... src/maths/lotus_vec4.s"
-	@echo "... src/staticlibs/stb_image.o"
-	@echo "... src/staticlibs/stb_image.i"
-	@echo "... src/staticlibs/stb_image.s"
 	@echo "... src/utils/lotus_fileutils.o"
 	@echo "... src/utils/lotus_fileutils.i"
 	@echo "... src/utils/lotus_fileutils.s"

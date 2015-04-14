@@ -10,12 +10,12 @@ private:
 	constexpr static int MAX_POINT_LIGHTS = 4;
 	constexpr static int MAX_SPOT_LIGHTS = 4;
 
-	vec3 m_ambientLight;
-	DirectionalLight m_directionalLight;
-	PointLight *m_pointLights;
-	int m_numPointLights;
-	SpotLight *m_spotLights;
-	int m_numSpotLights;
+	vec3 				m_ambientLight;
+	DirectionalLight 	m_directionalLight;
+	PointLight 			*m_pointLights;
+	int 				m_numPointLights;
+	SpotLight 			*m_spotLights;
+	int 				m_numSpotLights;
 public:
 	PhongShader();
 

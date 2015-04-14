@@ -8,15 +8,15 @@ class IGame;
 class Engine
 {
 private:
-	IGame 	*m_game;
 	Window 	m_window;
+	IGame 	*m_game;
 
 	double 	m_fps;
 	bool 	m_running;
 public:
-	Engine(IGame *game, double fps, int width, int height, const char *title);
-	~Engine();
+	Engine(double fps, int width, int height, const char *title);
 
+	void setGame(IGame *game);
 	void start();
 	void stop();
 	void update(double delta);

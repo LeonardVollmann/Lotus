@@ -1,5 +1,4 @@
 #include "lotus_renderable.hpp"
-#include "../renderers/lotus_irenderer.hpp"
 
 Renderable::Renderable(const GLfloat *vertices, GLsizei numVertices, const GLushort *indices, GLsizei numIndices) :
 	m_ibo(indices, numIndices),
@@ -10,13 +9,19 @@ Renderable::Renderable(const GLfloat *vertices, GLsizei numVertices, const GLush
 	m_vao.addBuffer(new Buffer(m_vertices, numVertices, 3));
 }
 
-void Renderable::render(IRenderer *renderer) const
+void Renderable::bind() const
 {
 	m_vao.bind();
 	m_ibo.bind();
+}
 
-	renderer->render(*this);
-
-	m_vao.unbind();
+void Renderable::unbind() const
+{
 	m_ibo.unbind();
+	m_vao.unbind();
+}
+
+void Renderable::submitToRenderer(IRenderer *renderer) const
+{
+	renderer->submit(this);
 }
