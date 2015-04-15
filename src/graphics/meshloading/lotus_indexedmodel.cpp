@@ -51,7 +51,7 @@ IndexedModel &IndexedModel::finalize()
 
 	if (m_texCoords.size() < m_vertices.size())
 	{
-		for (unsigned int i = m_texCoords.size(); i < m_vertices.size(); i++)
+		for (unsigned int i = (unsigned int) m_texCoords.size(); i < m_vertices.size(); i++)
 		{
 			m_texCoords.push_back(0.0f);
 		}

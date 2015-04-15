@@ -64,7 +64,7 @@ IndexedModel OBJLoader::loadIndexedModel(const std::string &fileName)
 			}
 			else if (strcmp(tokens[0], "f") == 0)
 			{
-				int numIndices = tokens.size() - 1;
+				int numIndices = (int) tokens.size() - 1;
 				GLushort indices[numIndices];
 				for (unsigned int i = 0; i < numIndices; i++)
 				{

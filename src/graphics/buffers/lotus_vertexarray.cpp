@@ -17,7 +17,7 @@ VertexArray::~VertexArray()
 
 void VertexArray::addBuffer(Buffer *buffer)
 {
-	GLuint index = m_buffers.size();
+	GLuint index = (GLuint) m_buffers.size();
 	m_buffers.push_back(buffer);
 	
 	bind();

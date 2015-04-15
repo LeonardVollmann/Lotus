@@ -26,14 +26,16 @@
 class TestGame : public IGame
 {
 private:
-	std::vector<Layer> m_layers;
 	PhongShader m_phongShader;
-	Entity m_dragon;
-	Entity m_plane;
+	Entity *m_dragon;
+	Entity *m_plane;
 	Camera m_camera;
+	SpotLight m_spotLight;
 public:
 	TestGame() :
-		IGame() {}
+		IGame(),
+		m_spotLight(PointLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 10.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 30.0f), vec3(m_camera.getTransform().getRot().getForward()), 0.7f)
+	{}
 		// m_texture("texture.png"),
 		// m_dragonMaterial(vec4(1.0f, 1.0f, 1.0f, 1.0f), m_texture, 2.0f, 32.0f),
 		// m_planeMaterial(vec4(0.0f, 0.0f, 0.0f, 0.0f), m_texture, 1.0f, 8.0f) {}
@@ -49,8 +51,7 @@ public:
 
 		IndexedModel dragonModel = OBJLoader::loadIndexedModel("dragon");
 		dragonModel.finalize();
-		Mesh dragonMesh(dragonModel);
-		Transform dragonTransform;
+		Mesh *dragonMesh = new Mesh(dragonModel);
 
 		const float size = 10.0f;
 		IndexedModel planeModel;
@@ -69,47 +70,56 @@ public:
 		planeModel.addFace(0, 1, 2);
 		planeModel.addFace(0, 2, 3);
 		planeModel.finalize();
-		Mesh planeMesh(planeModel);
+		Mesh *planeMesh = new Mesh(planeModel);
 		Transform planeTransform;
 
-		PointLight pointLights[]
-		{	
-			PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-6.0f, 0.0f, 0.0f), 8.0f),
-			PointLight(BaseLight(vec3(0.0f, 1.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-2.0f, 0.0f, 0.0f), 8.0f),
-			PointLight(BaseLight(vec3(0.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 2.0f, 0.0f, 0.0f), 8.0f),
-			PointLight(BaseLight(vec3(1.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 6.0f, 0.0f, 0.0f), 8.0f)
-		};
+//		PointLight pointLights[]
+//		{	
+//			PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-6.0f, 0.0f, 0.0f), 8.0f),
+//			PointLight(BaseLight(vec3(0.0f, 1.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-2.0f, 0.0f, 0.0f), 8.0f),
+//			PointLight(BaseLight(vec3(0.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 2.0f, 0.0f, 0.0f), 8.0f),
+//			PointLight(BaseLight(vec3(1.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 6.0f, 0.0f, 0.0f), 8.0f)
+//		};
 
-		SpotLight spotLights[]
-		{
-			SpotLight(PointLight(BaseLight(vec3(1.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
-			SpotLight(PointLight(BaseLight(vec3(0.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -2.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
-			SpotLight(PointLight(BaseLight(vec3(0.0f, 1.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f,  2.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
-			SpotLight(PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f,  6.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f)
-		};
-
-		SpotLight spotLight(PointLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 10.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 30.0f), vec3(m_camera.getTransform().getRot().getForward()), 0.7f);
+//		SpotLight spotLights[]
+//		{
+//			SpotLight(PointLight(BaseLight(vec3(1.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
+//			SpotLight(PointLight(BaseLight(vec3(0.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -2.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
+//			SpotLight(PointLight(BaseLight(vec3(0.0f, 1.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f,  2.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
+//			SpotLight(PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f,  6.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f)
+//		};
 
 		m_phongShader.setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
 		DirectionalLight directionalLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 0.1f), vec3(1.0f, 1.0f, 1.0f).normalize());
 		m_phongShader.setDirectionalLight(directionalLight);
-		m_phongShader.setPointLights(pointLights, 4);
+//		m_phongShader.setPointLights(pointLights, 4);
 		// m_phongShader.setSpotLights(spotLights, 4);
-		m_phongShader.setSpotLights(&spotLight, 1);
+		m_phongShader.setSpotLights(&m_spotLight, 1);
 
-		m_dragon = (new Entity(dragonTransform))->addComponent(&dragonMesh);
-		m_plane = (new Entity(planeTransform))->addComponent(&planeMesh);
+        m_dragon = new Entity();
+		m_plane = new Entity();
+		
+		m_dragon->getTransform().translate(vec3(0.0f, 1.0f, -7.5f));
+		m_plane->getTransform().translate(vec3(0.0f, -1.0f, 0.0f));
+		m_plane->getTransform().rotate(quat(toRadians(90.0f), vec3(-1.0f, 0.0f, 0.0f)));
+		
+        m_dragon->addComponent(dragonMesh);
+        m_plane->addComponent(planeMesh);
 
 		SceneLayer *scene = new SceneLayer(70.0f, 800.0f / 600.0f, 0.01f, 1000.0f, &m_phongShader);
-		scene->addChild(&m_dragon);
-		// scene->addChild(&m_plane);
+		scene->addChild(m_dragon);
+//		scene->addChild(m_plane);
 
 		addLayer(scene);
 	}
 
 	virtual void update(double delta) override
 	{
-		// m_root->update(delta);
+		m_root->update(delta);
+		m_camera.update();
+		m_spotLight.pointLight.pos = m_camera.getTransform().getPos();
+		m_spotLight.direction = m_camera.getTransform().getRot().getBack();
+		m_dragon->getTransform().rotate(quat(toRadians(1.5f), vec3(0.0f, 1.0f, 0.0f)));
 	}
 
 	virtual void render() override
@@ -119,8 +129,8 @@ public:
 		for (auto it = m_layers.begin(); it < m_layers.end(); it++)
 		{
 			m_phongShader.bind();
-			m_phongShader.updateUniforms(m_dragon.getTransform(), material, m_camera, it->getProjection());
-			it->render();
+			m_phongShader.updateUniforms(m_dragon->getTransform(), material, m_camera, (*it)->getProjection());
+			(*it)->render();
 			m_phongShader.unbind();
 		}
 		material.unbind();
@@ -195,10 +205,6 @@ int main()
 	// // m_phongShader.setSpotLights(spotLights, 4);
 	// m_phongShader.setSpotLights(&spotLight, 1);
 
-	// dragonTransform.translate(vec3(0.0f, 1.0f, -7.5f));
-	// planeTransform.translate(vec3(0.0f, -1.0f, 0.0f));
-	// planeTransform.rotate(quat(toRadians(90.0f), vec3(-1.0f, 0.0f, 0.0f)));
-
 	// float temp = 0.0f;
 	// while (!window.isClosed())
 	// {
@@ -255,12 +261,7 @@ int main()
 	// 		}
 	// 	}
 
-	// 	spotLight.pointLight.pos = camera.getTransform().getPos();
-	// 	spotLight.direction = camera.getTransform().getRot().getBack();
-
 	// 	window.clear();
-
-	// 	dragonTransform.rotate(quat(toRadians(1.5f), vec3(0.0f, 1.0f, 0.0f)));
 
 	// 	m_phongShader.bind();
 

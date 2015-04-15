@@ -55,12 +55,6 @@ void Engine::render()
 	m_game->render();
 
 	m_window.update();
-
-	GLenum error = glGetError();
-	if (error != GL_NO_ERROR)
-	{
-		std::cout << "ERROR: OpenGL error: " << error << "." << std::endl;
-	}
 }
 
 void Engine::run()
@@ -68,12 +62,12 @@ void Engine::run()
 	const double freq = 1.0 / (double) m_fps;
 
 	double time_0 = Time::getTime();
-	double time_1 = 0;
+	double time_1 = 0.0;
 	double delta;
-	double unprocessed = 0;
-	double accumulatedDelta;
-	unsigned int frames;
-	unsigned int updates;
+	double unprocessed = 0.0;
+	double accumulatedDelta = 0.0;
+	unsigned int frames = 0;
+	unsigned int updates = 0;
 	while (m_running)
 	{
 		if (m_window.isClosed())

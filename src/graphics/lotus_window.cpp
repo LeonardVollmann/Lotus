@@ -66,7 +66,6 @@ bool Window::init()
 	glfwSetKeyCallback(m_window, callback_key);
 	glfwSetMouseButtonCallback(m_window, callback_mouse_button);
 	glfwSetCursorPosCallback(m_window, callback_cursor_pos);
-
 	glfwMakeContextCurrent(m_window);
 
 	Input::setWindow(m_window);
@@ -77,6 +76,8 @@ bool Window::init()
 	{
 		std::cerr << "ERROR: Failed to initialize GLEW: status = " << status << std::endl;
 	}
+	
+	std::cout << "ERROR: OpenGL error: " << glGetError() << "." << std::endl;
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_DEPTH_CLAMP);
