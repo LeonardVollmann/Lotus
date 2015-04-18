@@ -16,7 +16,7 @@ void Layer::render()
 		(*it)->submitToRenderer(m_renderer);
 	}
 	
-	m_renderer->render();
+	m_renderer->render(m_shader);
 }
 
 void Layer::bind() const

@@ -43,8 +43,7 @@ public:
 		
 		Texture texture("texture.png");
 		Material dragonMaterial(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 32.0f);
-		Material planeMaterial(vec4(0.0f, 0.0f, 0.0f, 0.0f), texture, 1.0f, 8.0f);
-		dragonMaterial.bind();
+//		Material planeMaterial(vec4(0.0f, 0.0f, 0.0f, 0.0f), texture, 1.0f, 8.0f);
 
 		IndexedModel dragonModel = OBJLoader::loadIndexedModel("dragon");
 		dragonModel.finalize();
@@ -78,14 +77,13 @@ public:
         m_dragon = new Entity();
 		m_plane = new Entity();
 		
-		m_dragon->getTransform().translate(vec3(0.0f, -4.0f, -12.0f));
-		m_plane->getTransform().translate(vec3(0.0f, -1.0f, 0.0f));
+		m_dragon->getTransform().translate(vec3(0.0f, -5.0f, -12.0f));
 		m_plane->getTransform().rotate(quat(toRadians(90.0f), vec3(-1.0f, 0.0f, 0.0f)));
 		
         m_dragon->addComponent(dragonMesh);
         m_plane->addComponent(planeMesh);
 
-		SceneLayer *scene = new SceneLayer(70.0f, 800.0f / 600.0f, 0.01f, 1000.0f, &SimpleShader::getInstance());
+		SceneLayer *scene = new SceneLayer(70.0f, 800.0f / 600.0f, 0.01f, 1000.0f, &PhongShader::getInstance());
 		scene->addChild(m_dragon);
 
 		addLayer(scene);
@@ -106,11 +104,9 @@ public:
 		material.bind();
 		for (auto it = m_layers.begin(); it < m_layers.end(); it++)
 		{
-			(*it)->bind();
-			PhongShader::getInstance().bind();
-			PhongShader::getInstance().updateUniforms(m_dragon->getTransform());
 			(*it)->render();
 		}
+
 	}
 };
 

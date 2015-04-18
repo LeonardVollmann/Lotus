@@ -3,6 +3,7 @@
 
 #include "lotus_irenderer.hpp"
 #include "../renderables/lotus_renderable.hpp"
+#include "../shaders/lotus_shader.hpp"
 
 #include <deque>
 
@@ -12,7 +13,7 @@ private:
 	std::deque<const Renderable*> m_renderQueue;
 public:
 	virtual void submit(const Renderable *renderable) override;
-	virtual void render() override;
+	virtual void render(Shader *shader) override;
 };
 
 #endif

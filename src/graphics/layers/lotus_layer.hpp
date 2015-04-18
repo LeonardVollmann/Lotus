@@ -1,13 +1,13 @@
 #ifndef LOTUS_LAYER_HPP_INCLUDED
 #define LOTUS_LAYER_HPP_INCLUDED
 
-#include "../renderers/lotus_irenderer.hpp"
 #include "../../core/lotus_entity.hpp"
 #include "../../maths/lotus_mat4.hpp"
 
 #include <vector>
 
 class Shader;
+class IRenderer;
 
 class Layer : public Entity
 {

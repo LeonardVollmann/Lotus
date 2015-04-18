@@ -2,7 +2,7 @@
 #define LOTUS_SCENE_LAYER_HPP_INCLUDED
 
 #include "lotus_layer.hpp"
-#include "../renderers/lotus_simplerenderer.hpp"
+#include "../shaders/lotus_shader.hpp"
 
 class SceneLayer : public Layer
 {

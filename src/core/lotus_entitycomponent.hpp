@@ -14,6 +14,8 @@ public:
 	virtual void submitToRenderer(IRenderer *renderer) const {}
 
 	inline Transform &getTransform() const { return m_entity->getTransform(); }
+	
+	inline void setEntity(Entity *entity) { m_entity = entity; }
 };
 
 #endif

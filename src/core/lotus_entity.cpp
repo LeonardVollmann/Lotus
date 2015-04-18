@@ -39,6 +39,7 @@ Entity &Entity::addChild(Entity *child)
 Entity &Entity::addComponent(EntityComponent *component)
 {
 	m_components.push_back(component);
+	component->setEntity(this);
 	return *this;
 }
 
