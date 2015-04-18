@@ -18,7 +18,6 @@ public:
 	void addBuffer(Buffer *buffer);
 
 	void bind() const;
-	void unbind() const;
 };
 
 #endif

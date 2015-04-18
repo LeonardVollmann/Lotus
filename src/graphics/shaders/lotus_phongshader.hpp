@@ -17,9 +17,9 @@ private:
 	SpotLight 			*m_spotLights;
 	int 				m_numSpotLights;
 public:
-	PhongShader();
-
-	virtual void updateUniforms(const Transform &transform, const Material &material, const Camera &camera, const mat4 &projection) const override;
+	static PhongShader &getInstance();
+	
+	virtual void updateUniforms(const Transform &transform) const override;
 
 	void setUniformBaseLight(const std::string &uniform, const BaseLight &baseLight) const;
 	void setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight) const;
@@ -35,6 +35,8 @@ public:
 
 	inline void setAmbientLight(const vec3 &ambientLight) 						{ m_ambientLight = ambientLight; }
 	inline void setDirectionalLight(const DirectionalLight &directionalLight)	{ m_directionalLight = directionalLight; }
+private:
+	PhongShader();
 };
 
 #endif

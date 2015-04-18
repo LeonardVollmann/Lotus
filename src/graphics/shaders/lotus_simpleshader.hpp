@@ -6,9 +6,13 @@
 class SimpleShader : public Shader
 {
 public:
+	static SimpleShader &getInstance();
+	
+	virtual void updateUniforms(const Transform &transform) const override;
+private:
 	SimpleShader();
-
-	virtual void updateUniforms(const Transform &transform, const Material &material, const Camera &camera, const mat4 &projection) const override;
+	SimpleShader(SimpleShader const&) = delete;
+	void operator=(SimpleShader const&) = delete;
 };
 
 #endif

@@ -26,7 +26,6 @@
 class TestGame : public IGame
 {
 private:
-	PhongShader m_phongShader;
 	Entity *m_dragon;
 	Entity *m_plane;
 	Camera m_camera;
@@ -34,16 +33,14 @@ private:
 public:
 	TestGame() :
 		IGame(),
-		m_spotLight(PointLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 10.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 30.0f), vec3(m_camera.getTransform().getRot().getForward()), 0.7f)
-	{}
-		// m_texture("texture.png"),
-		// m_dragonMaterial(vec4(1.0f, 1.0f, 1.0f, 1.0f), m_texture, 2.0f, 32.0f),
-		// m_planeMaterial(vec4(0.0f, 0.0f, 0.0f, 0.0f), m_texture, 1.0f, 8.0f) {}
+		m_spotLight(PointLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 10.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 30.0f), vec3(m_camera.getTransform().getRot().getForward()), 0.7f) {}
 
 	virtual ~TestGame() {}
 
 	virtual void init() override
 	{
+//		glfwSwapInterval(0);
+		
 		Texture texture("texture.png");
 		Material dragonMaterial(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 32.0f);
 		Material planeMaterial(vec4(0.0f, 0.0f, 0.0f, 0.0f), texture, 1.0f, 8.0f);
@@ -73,42 +70,23 @@ public:
 		Mesh *planeMesh = new Mesh(planeModel);
 		Transform planeTransform;
 
-//		PointLight pointLights[]
-//		{	
-//			PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-6.0f, 0.0f, 0.0f), 8.0f),
-//			PointLight(BaseLight(vec3(0.0f, 1.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-2.0f, 0.0f, 0.0f), 8.0f),
-//			PointLight(BaseLight(vec3(0.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 2.0f, 0.0f, 0.0f), 8.0f),
-//			PointLight(BaseLight(vec3(1.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 6.0f, 0.0f, 0.0f), 8.0f)
-//		};
-
-//		SpotLight spotLights[]
-//		{
-//			SpotLight(PointLight(BaseLight(vec3(1.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
-//			SpotLight(PointLight(BaseLight(vec3(0.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -2.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
-//			SpotLight(PointLight(BaseLight(vec3(0.0f, 1.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f,  2.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
-//			SpotLight(PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f,  6.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f)
-//		};
-
-		m_phongShader.setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
+		PhongShader::getInstance().setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
 		DirectionalLight directionalLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 0.1f), vec3(1.0f, 1.0f, 1.0f).normalize());
-		m_phongShader.setDirectionalLight(directionalLight);
-//		m_phongShader.setPointLights(pointLights, 4);
-		// m_phongShader.setSpotLights(spotLights, 4);
-		m_phongShader.setSpotLights(&m_spotLight, 1);
+		PhongShader::getInstance().setDirectionalLight(directionalLight);
+		PhongShader::getInstance().setSpotLights(&m_spotLight, 1);
 
         m_dragon = new Entity();
 		m_plane = new Entity();
 		
-		m_dragon->getTransform().translate(vec3(0.0f, 1.0f, -7.5f));
+		m_dragon->getTransform().translate(vec3(0.0f, -4.0f, -12.0f));
 		m_plane->getTransform().translate(vec3(0.0f, -1.0f, 0.0f));
 		m_plane->getTransform().rotate(quat(toRadians(90.0f), vec3(-1.0f, 0.0f, 0.0f)));
 		
         m_dragon->addComponent(dragonMesh);
         m_plane->addComponent(planeMesh);
 
-		SceneLayer *scene = new SceneLayer(70.0f, 800.0f / 600.0f, 0.01f, 1000.0f, &m_phongShader);
+		SceneLayer *scene = new SceneLayer(70.0f, 800.0f / 600.0f, 0.01f, 1000.0f, &SimpleShader::getInstance());
 		scene->addChild(m_dragon);
-//		scene->addChild(m_plane);
 
 		addLayer(scene);
 	}
@@ -128,12 +106,11 @@ public:
 		material.bind();
 		for (auto it = m_layers.begin(); it < m_layers.end(); it++)
 		{
-			m_phongShader.bind();
-			m_phongShader.updateUniforms(m_dragon->getTransform(), material, m_camera, (*it)->getProjection());
+			(*it)->bind();
+			PhongShader::getInstance().bind();
+			PhongShader::getInstance().updateUniforms(m_dragon->getTransform());
 			(*it)->render();
-			m_phongShader.unbind();
 		}
-		material.unbind();
 	}
 };
 
@@ -143,142 +120,6 @@ int main()
 	TestGame game;
 	engine.setGame(&game);
 	engine.start();
-	// Window window(800, 600, "Lotus");
-
-	// Texture texture("texture.png");
-
-	// IndexedModel dragonModel = OBJLoader::loadIndexedModel("dragon");
-	// dragonModel.finalize();
-	// Mesh dragon(dragonModel);
-	// Transform dragonTransform;
-	// Material dragonMaterial(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 32.0f);
-
-	// const float size = 10.0f;
-	// IndexedModel planeModel;
-	// planeModel.addVertex(-size, -size, 0.0f);
-	// planeModel.addVertex( size, -size, 0.0f);
-	// planeModel.addVertex( size,  size, 0.0f);
-	// planeModel.addVertex(-size,  size, 0.0f);
-	// planeModel.addTexCoord(0.0f, 0.0f);
-	// planeModel.addTexCoord(1.0f, 0.0f);
-	// planeModel.addTexCoord(1.0f, 1.0f);
-	// planeModel.addTexCoord(0.0f, 1.0f);
-	// planeModel.addNormal(0.0f, 0.0f, 1.0f);
-	// planeModel.addNormal(0.0f, 0.0f, 1.0f);
-	// planeModel.addNormal(0.0f, 0.0f, 1.0f);
-	// planeModel.addNormal(0.0f, 0.0f, 1.0f);
-	// planeModel.addFace(0, 1, 2);
-	// planeModel.addFace(0, 2, 3);
-	// planeModel.finalize();
-	// Mesh plane(planeModel);
-	// Transform planeTransform;
-	// Material planeMaterial(vec4(0.0f, 0.0f, 0.0f, 0.0f), texture, 1.0f, 8.0f);
-
-	// SimpleRenderer renderer;
-	// Camera camera;
-
-	// mat4 perspective = mat4::perspective(70.0f, window.getAspect(), 0.001f, 1000.0f);
-
-	// PointLight pointLights[]
-	// {	
-	// 	PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-6.0f, 0.0f, 0.0f), 8.0f),
-	// 	PointLight(BaseLight(vec3(0.0f, 1.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-2.0f, 0.0f, 0.0f), 8.0f),
-	// 	PointLight(BaseLight(vec3(0.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 2.0f, 0.0f, 0.0f), 8.0f),
-	// 	PointLight(BaseLight(vec3(1.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 6.0f, 0.0f, 0.0f), 8.0f)
-	// };
-
-	// SpotLight spotLights[]
-	// {
-	// 	SpotLight(PointLight(BaseLight(vec3(1.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
-	// 	SpotLight(PointLight(BaseLight(vec3(0.0f, 0.0f, 1.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -2.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
-	// 	SpotLight(PointLight(BaseLight(vec3(0.0f, 1.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f,  2.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f),
-	// 	SpotLight(PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 1.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f,  6.0f), 8.0f), vec3(0.0f, -1.0f, 0.0f), 0.7f)
-	// };
-
-	// SpotLight spotLight(PointLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 10.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 30.0f), vec3(camera.getTransform().getRot().getForward()), 0.7f);
-
-	// m_phongShader m_phongShader;
-	// m_phongShader.setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
-	// DirectionalLight directionalLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 0.1f), vec3(1.0f, 1.0f, 1.0f).normalize());
-	// m_phongShader.setDirectionalLight(directionalLight);
-	// m_phongShader.setPointLights(pointLights, 4);
-	// // m_phongShader.setSpotLights(spotLights, 4);
-	// m_phongShader.setSpotLights(&spotLight, 1);
-
-	// float temp = 0.0f;
-	// while (!window.isClosed())
-	// {
-	// 	if (Input::getMouseButton(GLFW_MOUSE_BUTTON_1))
-	// 	{
-	// 		Input::setMouseLocked(true);
-	// 		Input::setCursorVisible(false);
-	// 	}
-	// 	if (Input::getKey(GLFW_KEY_ESCAPE))
-	// 	{
-	// 		Input::setMouseLocked(false);
-	// 		Input::setCursorVisible(true);
-	// 	}
-
-	// 	if (Input::getKey(GLFW_KEY_TAB)) spotLight.cutoff -= 0.007f;
-	// 	if (Input::getKey(GLFW_KEY_LEFT_SHIFT)) spotLight.cutoff += 0.007f;
-	// 	if (Input::getKey(GLFW_KEY_LEFT_ALT)) spotLight.pointLight.base.intensity -= 0.1f;
-	// 	if (Input::getKey(GLFW_KEY_LEFT_SUPER)) spotLight.pointLight.base.intensity += 0.1f;
-
-	// 	if (Input::getKey(GLFW_KEY_RIGHT_SUPER))
-	// 	{
-	// 		pointLights[0].base.intensity -= 0.1f;
-	// 		pointLights[1].base.intensity -= 0.1f;
-	// 		pointLights[2].base.intensity -= 0.1f;
-	// 		pointLights[3].base.intensity -= 0.1f;
-	// 	}
-	// 	if (Input::getKey(GLFW_KEY_RIGHT_ALT))
-	// 	{
-	// 		pointLights[0].base.intensity += 0.1f;
-	// 		pointLights[1].base.intensity += 0.1f;
-	// 		pointLights[2].base.intensity += 0.1f;
-	// 		pointLights[3].base.intensity += 0.1f;
-	// 	}
-
-	// 	temp += 0.025f;
-	// 	const float speed = 7.0f;
-	// 	const float sinTemp = sinf(temp);
-	// 	const float cosTemp = cosf(temp);
-
-	// 	for (unsigned int i = 0; i < 4; i++)
-	// 	{
-	// 		spotLights[i].direction.x = cosTemp;
-	// 		spotLights[i].direction.z = sinTemp;
-
-	// 		if (i % 2 == 0)
-	// 		{
-	// 			pointLights[i].pos.z = sinTemp * speed;
-	// 			spotLights[i].pointLight.pos.x = sinTemp * speed;
-	// 		}
-	// 		else
-	// 		{
-	// 			pointLights[i].pos.z = cosTemp * speed;
-	// 			spotLights[i].pointLight.pos.x = cosTemp * speed;
-	// 		}
-	// 	}
-
-	// 	window.clear();
-
-	// 	m_phongShader.bind();
-
-	// 	m_phongShader.updateUniforms(dragonTransform, dragonMaterial, camera, perspective);
-	// 	// dragon.render(&renderer);
-
-	// 	planeMaterial.bind();
-	// 	m_phongShader.updateUniforms(planeTransform, planeMaterial, camera, perspective);	
-	// 	// plane.render(&renderer);
-	// 	planeMaterial.unbind();
-
-	// 	m_phongShader.unbind();
-
-	// 	window.update();
-	// 	perspective = mat4::perspective(70.0f, window.getAspect(), 0.001f, 1000.0f);
-	// 	camera.update();
-	// }
 
 	return 0;
 }

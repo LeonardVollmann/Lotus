@@ -18,8 +18,3 @@ void Buffer::bind() const
 {
 	glBindBuffer(GL_ARRAY_BUFFER, m_id);
 }
-
-void Buffer::unbind() const
-{
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-}

@@ -1,5 +1,11 @@
 #include "lotus_simpleshader.hpp"
 
+SimpleShader &SimpleShader::getInstance()
+{
+	static SimpleShader instance;
+	return instance;
+}
+
 SimpleShader::SimpleShader() :
 	Shader("simple")
 {
@@ -14,11 +20,11 @@ SimpleShader::SimpleShader() :
 	addUniform("baseColor");
 }
 
-void SimpleShader::updateUniforms(const Transform &transform, const Material &material, const Camera &camera, const mat4 &projection) const
+void SimpleShader::updateUniforms(const Transform &transform) const
 {
-	setUniformMat4("pr_matrix", projection);
-	setUniformMat4("vw_matrix", camera.getViewMatrix());
+	setUniformMat4("pr_matrix", Layer::CURRENT->getProjection());
+	setUniformMat4("vw_matrix", Camera::CURRENT->getViewMatrix());
 	setUniformMat4("ml_matrix", transform.getTransformation());
 
-	setUniformVec4("baseColor", material.getColor());
+	setUniformVec4("baseColor", Material::CURRENT->getColor());
 }

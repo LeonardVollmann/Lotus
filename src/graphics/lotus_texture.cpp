@@ -45,9 +45,3 @@ void Texture::bind(unsigned int unit) const
 	glActiveTexture(GL_TEXTURE0 + unit);
 	glBindTexture(GL_TEXTURE_2D, m_texture);
 }
-
-void Texture::unbind() const
-{
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, 0);
-}

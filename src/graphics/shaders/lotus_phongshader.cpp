@@ -1,5 +1,11 @@
 #include "lotus_phongshader.hpp"
 
+PhongShader &PhongShader::getInstance()
+{
+	static PhongShader instance;
+	return instance;
+}
+
 PhongShader::PhongShader() :
 	Shader("phong"),
 	m_ambientLight(vec3(0.1f, 0.1f, 0.1f)),
@@ -53,17 +59,17 @@ PhongShader::PhongShader() :
 	}
 }
 
-void PhongShader::updateUniforms(const Transform &transform, const Material &material, const Camera &camera, const mat4 &projection) const
+void PhongShader::updateUniforms(const Transform &transform) const
 {
-	setUniformMat4("pr_matrix", projection);
-	setUniformMat4("vw_matrix", camera.getViewMatrix());
+	setUniformMat4("pr_matrix", Layer::CURRENT->getProjection());
+	setUniformMat4("vw_matrix", Camera::CURRENT->getViewMatrix());
 	setUniformMat4("ml_matrix", transform.getTransformation());
 
-	setUniformVec3("cameraPos", camera.getTransform().getPos());
+	setUniformVec3("cameraPos", Camera::CURRENT->getTransform().getPos());
 
-	setUniformVec4("baseColor", material.getColor());
-	setUniformFloat("specularIntensity", material.getSpecularIntensity());
-	setUniformFloat("specularPower", material.getSpecularPower());
+	setUniformVec4("baseColor", Material::CURRENT->getColor());
+	setUniformFloat("specularIntensity", Material::CURRENT->getSpecularIntensity());
+	setUniformFloat("specularPower", Material::CURRENT->getSpecularPower());
 
 	setUniformVec3("ambientLight", m_ambientLight);
 	setUniformDirectionalLight("directionalLight", m_directionalLight);

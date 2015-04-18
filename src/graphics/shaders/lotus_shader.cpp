@@ -28,11 +28,6 @@ void Shader::bind() const
 	glUseProgram(m_program);
 }
 
-void Shader::unbind() const
-{
-	glUseProgram(0);
-}
-
 Shader &Shader::addVertexShader()
 {
 	GLuint shader = create_shader(FileUtils::readFile("res/shaders/" + m_fileName + "-vert.glsl"), GL_VERTEX_SHADER);

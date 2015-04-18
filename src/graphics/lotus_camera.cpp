@@ -2,6 +2,13 @@
 #include "../core/lotus_input.hpp"
 #include "../maths/lotus_vec3.hpp"
 
+const Camera *Camera::CURRENT;
+
+Camera::Camera()
+{
+	bind();
+}
+
 void Camera::update()
 {
 	const float speed = 0.25f;
@@ -36,6 +43,11 @@ void Camera::update()
 mat4 Camera::getViewMatrix() const
 {
 	return mat4(m_transform.getRot().conjugate().normalize()) * mat4::translation(m_transform.getPos() * vec3(-1.0f));
+}
+
+void Camera::bind() const
+{
+	CURRENT = this;
 }
 
 void Camera::move(const vec3 &axis, float amount)

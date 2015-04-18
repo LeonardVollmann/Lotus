@@ -6,6 +6,8 @@
 
 class Material
 {
+public:
+	static const Material *CURRENT;
 private:
 	vec4 	m_color;
 	Texture m_texture;
@@ -16,7 +18,6 @@ public:
 	Material(const vec4 &color, const Texture &texture, float specularIntensity, float specularPower);
 
 	void bind() const;
-	void unbind() const;
 
 	inline const vec4 &getColor() 				const { return m_color; }
 	inline const Texture &getTexture() 			const { return m_texture; }

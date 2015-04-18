@@ -15,12 +15,6 @@ void Renderable::bind() const
 	m_ibo.bind();
 }
 
-void Renderable::unbind() const
-{
-	m_ibo.unbind();
-	m_vao.unbind();
-}
-
 void Renderable::submitToRenderer(IRenderer *renderer) const
 {
 	renderer->submit(this);

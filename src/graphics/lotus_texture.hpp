@@ -13,7 +13,6 @@ public:
 	virtual ~Texture();
 
 	void bind(unsigned int unit) const;
-	void unbind() const;
 };
 
 #endif

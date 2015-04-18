@@ -22,7 +22,6 @@ public:
 	virtual ~Renderable() {}
 
 	void bind() const;
-	void unbind() const;
 	
 	virtual void submitToRenderer(IRenderer *renderer) const override;
 	virtual void update(double delta) override {}

@@ -25,17 +25,9 @@ void VertexArray::addBuffer(Buffer *buffer)
 
 	glEnableVertexAttribArray(index);
 	glVertexAttribPointer(index, buffer->getNumComponents(), GL_FLOAT, GL_FALSE, 0, 0);
-
-	buffer->unbind();
-	unbind();
 }
 
 void VertexArray::bind() const
 {
 	glBindVertexArray(m_id);
-}
-
-void VertexArray::unbind() const
-{
-	glBindVertexArray(0);
 }

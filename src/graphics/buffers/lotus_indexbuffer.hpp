@@ -12,7 +12,6 @@ public:
 	virtual ~IndexBuffer();
 
 	void bind() const;
-	void unbind() const;
 };
 
 #endif

@@ -6,11 +6,16 @@
 
 class Camera
 {
+public:
+	static const Camera *CURRENT;
 private:
 	Transform m_transform;
 public:
+	Camera();
+	
 	void update();
 	mat4 getViewMatrix() const;
+	void bind() const;
 
 	inline const Transform &getTransform() const { return m_transform; }
 private:

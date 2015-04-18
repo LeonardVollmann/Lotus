@@ -13,7 +13,6 @@ void SimpleRenderer::render()
 
 		renderable->bind();
 		glDrawElements(GL_TRIANGLES, renderable->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
-		renderable->unbind();
 
 		m_renderQueue.pop_front();
 	}

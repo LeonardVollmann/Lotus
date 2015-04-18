@@ -15,7 +15,6 @@ public:
 	virtual ~Buffer();
 
 	void bind() const;
-	void unbind() const;
 
 	inline GLuint getNumComponents() const { return m_numComponents; }
 };

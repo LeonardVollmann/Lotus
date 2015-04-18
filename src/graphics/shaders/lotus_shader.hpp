@@ -3,6 +3,7 @@
 
 #include "../lotus_camera.hpp"
 #include "../lotus_material.hpp"
+#include "../layers/lotus_layer.hpp"
 #include "../../maths/lotus_maths.hpp"
 #include "../../core/lotus_transform.hpp"
 
@@ -20,18 +21,16 @@ protected:
 
 	mutable std::map<std::string, GLint> m_uniforms;
 public:
-	Shader(const std::string &fileName);
 	virtual ~Shader();
-
+	
 	virtual void bind() const;
-	virtual void unbind() const;
 
 	virtual Shader &addVertexShader();
 	virtual Shader &addFragmentShader();
 	virtual Shader &addGeometryShader();
 	virtual Shader &compile();
 
-	virtual void updateUniforms(const Transform &transform, const Material &material, const Camera &camera, const mat4 &projection) const = 0;
+	virtual void updateUniforms(const Transform &transform) const = 0;
 
 	virtual void addUniform(const std::string &uniform) const;
 	virtual void setUniformInteger(const std::string &uniform, int value) const;
@@ -39,6 +38,8 @@ public:
 	virtual void setUniformVec3(const std::string &uniform, const vec3 &value) const;
 	virtual void setUniformVec4(const std::string &uniform, const vec4 &value) const;
 	virtual void setUniformMat4(const std::string &uniform, const mat4 &value) const;
+protected:
+	Shader(const std::string &fileName);
 };
 
 #endif
