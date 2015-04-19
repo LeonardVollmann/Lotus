@@ -48,7 +48,7 @@ public:
 
 	virtual void init() override
 	{
-//		glfwSwapInterval(0);
+		glfwSwapInterval(0);
 		
 		Texture texture("texture.png");
 		Material dragonMaterial(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 32.0f);
@@ -100,7 +100,7 @@ public:
 
 		addLayer(scene);
 	}
-
+	
 	virtual void update(double delta) override
 	{
 		m_root->update(delta);

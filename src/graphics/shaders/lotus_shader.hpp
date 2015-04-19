@@ -13,6 +13,10 @@
 
 class Shader
 {
+public:
+	static const std::string SOURCE_DIRECTORY;
+	static const std::string INCLUDE_DIRECTIVE;
+	static const std::string UNIFORM_DIRECTIVE;
 protected:
 	std::string m_fileName;
 
@@ -29,7 +33,8 @@ public:
 	virtual Shader &addFragmentShader();
 	virtual Shader &addGeometryShader();
 	virtual Shader &compile();
-
+	
+	virtual std::string preprocess(const std::string &shaderText);
 	virtual void updateUniforms(const Transform &transform) const = 0;
 
 	virtual void addUniform(const std::string &uniform) const;

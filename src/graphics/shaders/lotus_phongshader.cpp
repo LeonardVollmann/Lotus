@@ -1,4 +1,5 @@
 #include "lotus_phongshader.hpp"
+#include "../../utils/lotus_fileutils.hpp"
 
 PhongShader &PhongShader::getInstance()
 {
@@ -14,17 +15,17 @@ PhongShader::PhongShader() :
 	addVertexShader();
 	addFragmentShader();
 	compile();
-
+	
 	addUniform("pr_matrix");
 	addUniform("vw_matrix");
 	addUniform("ml_matrix");
-
+	
 	addUniform("cameraPos");
-
+	
 	addUniform("baseColor");
 	addUniform("specularIntensity");
 	addUniform("specularPower");
-
+	
 	addUniform("ambientLight");
 	addUniform("directionalLight.base.color");
 	addUniform("directionalLight.base.intensity");

@@ -13,8 +13,6 @@ IndexedModel OBJLoader::loadIndexedModel(const std::string &fileName)
 	char *ctext = new char[text.length() + 1];
 	strcpy(ctext, text.c_str());
 
-	std::vector<char*> lines;
-
 	char *save_line;
 	char *line = strtok_r(ctext, "\n", &save_line);
 	while (line)
@@ -28,8 +26,7 @@ IndexedModel OBJLoader::loadIndexedModel(const std::string &fileName)
 			while (token)
 			{
 				tokens.push_back(token);
-
-				token = strtok_r(NULL, " ", &save_token);
+				token = strtok_r(nullptr, " ", &save_token);
 			}
 
 			if (strcmp(tokens[0], "v") == 0)
@@ -75,7 +72,7 @@ IndexedModel OBJLoader::loadIndexedModel(const std::string &fileName)
 			}
 		}
 
-		line = strtok_r(NULL, "\n", &save_line);
+		line = strtok_r(nullptr, "\n", &save_line);
 	}
 
 	delete ctext;

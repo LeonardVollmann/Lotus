@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+const std::string Shader::SOURCE_DIRECTORY = "res/shaders/";
+const std::string Shader::INCLUDE_DIRECTIVE = "#include";
+const std::string Shader::UNIFORM_DIRECTIVE = "uniform";
+
 void check_shader_error(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
 GLuint create_shader(const std::string &text, GLenum shaderType);
 
@@ -30,7 +34,8 @@ void Shader::bind() const
 
 Shader &Shader::addVertexShader()
 {
-	GLuint shader = create_shader(FileUtils::readFile("res/shaders/" + m_fileName + "-vert.glsl"), GL_VERTEX_SHADER);
+	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + m_fileName + "-vert.glsl"));
+	GLuint shader = create_shader(shaderText, GL_VERTEX_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[0] = shader;
 
@@ -39,7 +44,8 @@ Shader &Shader::addVertexShader()
 
 Shader &Shader::addFragmentShader()
 {
-	GLuint shader = create_shader(FileUtils::readFile("res/shaders/" + m_fileName + "-frag.glsl"), GL_FRAGMENT_SHADER);
+	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + m_fileName + "-frag.glsl"));
+	GLuint shader = create_shader(shaderText, GL_FRAGMENT_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[1] = shader;
 
@@ -48,7 +54,8 @@ Shader &Shader::addFragmentShader()
 
 Shader &Shader::addGeometryShader()
 {
-	GLuint shader = create_shader(FileUtils::readFile("res/shaders/" + m_fileName + "-geom-glsl"), GL_GEOMETRY_SHADER);
+	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + m_fileName + "-geom.glsl"));
+	GLuint shader = create_shader(shaderText, GL_GEOMETRY_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[2] = shader;
 
@@ -66,6 +73,48 @@ Shader &Shader::compile()
 	return *this;
 }
 
+std::string Shader::preprocess(const std::string &shaderText)
+{
+	std::string result;
+	char *ctext = new char[shaderText.size() + 1];
+	strcpy(ctext, shaderText.c_str());
+	
+	std::vector<std::string> lines;
+	
+	char *save_line;
+	char *line = strtok_r(ctext, "\n", &save_line);
+	while (line)
+	{
+		lines.push_back((std::string) line);
+		std::vector<char*> tokens;
+		
+		char *save_token;
+		char *token = strtok_r(line, " ", &save_token);
+		while (token)
+		{
+			tokens.push_back(token);
+			token = strtok_r(nullptr, " ", &save_token);
+		}
+		
+		if (tokens[0] == INCLUDE_DIRECTIVE)
+		{
+			std::string include = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + (std::string) tokens[1]));
+			lines.pop_back();
+			lines.push_back(include);
+		}
+		
+		line = strtok_r(nullptr, "\n", &save_line);
+	}
+	
+	for (auto it = lines.begin(); it < lines.end(); it++)
+	{
+		result.append(*it + "\n");
+	}
+	
+	delete ctext;
+	return result;
+}
+
 void Shader::addUniform(const std::string &uniform) const
 {
 	GLint location = glGetUniformLocation(m_program, uniform.c_str());
@@ -75,7 +124,7 @@ void Shader::addUniform(const std::string &uniform) const
 
 void Shader::setUniformInteger(const std::string &uniform, int value) const
 {
-glUniform1i(m_uniforms[uniform], value);
+	glUniform1i(m_uniforms[uniform], value);
 }
 
 void Shader::setUniformFloat(const std::string &uniform, float value) const
