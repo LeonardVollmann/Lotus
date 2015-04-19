@@ -14,8 +14,3 @@ void Renderable::bind() const
 	m_vao.bind();
 	m_ibo.bind();
 }
-
-void Renderable::submitToRenderer(IRenderer *renderer) const
-{
-	renderer->submit(this);
-}

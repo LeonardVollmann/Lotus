@@ -26,7 +26,7 @@ public:
 
 	inline void setWidth(int width)		{ m_width = width; }
 	inline void setHeight(int height)	{ m_height = height; }
-	private:
+private:
 	bool init();
 };
 

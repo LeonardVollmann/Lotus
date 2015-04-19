@@ -18,6 +18,7 @@
 #include "graphics/meshloading/lotus_indexedmodel.hpp"
 #include "graphics/meshloading/lotus_objloader.hpp"
 #include "graphics/layers/lotus_scenelayer.hpp"
+#include "components/lotus_renderablecomponent.hpp"
 #include "core/lotus_input.hpp"
 #include "core/lotus_transform.hpp"
 #include "core/lotus_engine.hpp"
@@ -30,10 +31,18 @@ private:
 	Entity *m_plane;
 	Camera m_camera;
 	SpotLight m_spotLight;
+	PointLight m_pointLights[4];
 public:
 	TestGame() :
 		IGame(),
-		m_spotLight(PointLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 10.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 30.0f), vec3(m_camera.getTransform().getRot().getForward()), 0.7f) {}
+		m_spotLight(PointLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 10.0f), Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), 30.0f), vec3(m_camera.getTransform().getRot().getForward()), 0.7f),
+		m_pointLights{
+			PointLight(BaseLight(vec3(1.0f, 0.0f, 0.0f), 0.5f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-6.0f, 0.0f, 0.0f), 8.0f),
+			PointLight(BaseLight(vec3(0.0f, 1.0f, 0.0f), 0.5f), Attenuation(0.0f, 0.0f, 1.0f), vec3(-2.0f, 0.0f, 0.0f), 8.0f),
+			PointLight(BaseLight(vec3(0.0f, 0.0f, 1.0f), 0.5f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 2.0f, 0.0f, 0.0f), 8.0f),
+			PointLight(BaseLight(vec3(1.0f, 0.0f, 1.0f), 0.5f), Attenuation(0.0f, 0.0f, 1.0f), vec3( 6.0f, 0.0f, 0.0f), 8.0f)
+		}
+	{}
 
 	virtual ~TestGame() {}
 
@@ -73,18 +82,21 @@ public:
 		DirectionalLight directionalLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 0.1f), vec3(1.0f, 1.0f, 1.0f).normalize());
 		PhongShader::getInstance().setDirectionalLight(directionalLight);
 		PhongShader::getInstance().setSpotLights(&m_spotLight, 1);
+		PhongShader::getInstance().setPointLights(m_pointLights, 4);
 
         m_dragon = new Entity();
 		m_plane = new Entity();
 		
-		m_dragon->getTransform().translate(vec3(0.0f, -5.0f, -12.0f));
+		m_dragon->getTransform().translate(vec3(0.0f, 2.0f, -7.5f));
 		m_plane->getTransform().rotate(quat(toRadians(90.0f), vec3(-1.0f, 0.0f, 0.0f)));
+		m_plane->getTransform().translate(vec3(0.0f, -1.0f, 0.0f));
 		
-        m_dragon->addComponent(dragonMesh);
-        m_plane->addComponent(planeMesh);
+        m_dragon->addComponent(new RenderableComponent(dragonMesh, new Material(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 32.0f)));
+		m_plane->addComponent(new RenderableComponent(planeMesh, new Material(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 8.0f)));
 
-		SceneLayer *scene = new SceneLayer(70.0f, 800.0f / 600.0f, 0.01f, 1000.0f, &PhongShader::getInstance());
-		scene->addChild(m_dragon);
+		SceneLayer *scene = new SceneLayer(70.0f, 800.0f / 600.0f, 0.01f, 1000.0f, new SimpleRenderer(), &PhongShader::getInstance());
+//		scene->addChild(m_dragon);
+		scene->addChild(m_plane);
 
 		addLayer(scene);
 	}
@@ -96,17 +108,6 @@ public:
 		m_spotLight.pointLight.pos = m_camera.getTransform().getPos();
 		m_spotLight.direction = m_camera.getTransform().getRot().getBack();
 		m_dragon->getTransform().rotate(quat(toRadians(1.5f), vec3(0.0f, 1.0f, 0.0f)));
-	}
-
-	virtual void render() override
-	{
-		Material material(vec4(1.0f, 1.0f, 1.0f, 1.0f), Texture("texture.png"), 2.0f, 32.0f);
-		material.bind();
-		for (auto it = m_layers.begin(); it < m_layers.end(); it++)
-		{
-			(*it)->render();
-		}
-
 	}
 };
 

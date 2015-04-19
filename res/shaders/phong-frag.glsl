@@ -122,11 +122,15 @@ void main()
 {
 	vec4 totalLight = vec4(ambientLight, 1.0);
 	vec4 textureColor = texture(diffuse, texCoord);
-	vec4 color = baseColor;
+	vec4 color = vec4(0.0, 0.0, 0.0, 0.0);
 
 	if (textureColor != vec4(0.0, 0.0, 0.0, 0.0))
 	{
-		color += textureColor;
+		color = textureColor;
+	}
+	else
+	{
+		color = baseColor;
 	}
 
 	totalLight += calcDirectionalLight(directionalLight, normal);

@@ -3,7 +3,7 @@
 
 #include <GL/glew.h>
 
-class Renderable;
+class RenderableComponent;
 class Shader;
 
 class IRenderer
@@ -11,7 +11,7 @@ class IRenderer
 public:
 	virtual ~IRenderer() {}
 
-	virtual void submit(const Renderable *renderable) = 0;
+	virtual void submit(const RenderableComponent *renderable) = 0;
 	virtual void render(Shader *shader) = 0;
 };
 

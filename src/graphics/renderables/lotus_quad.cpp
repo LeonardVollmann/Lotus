@@ -2,7 +2,8 @@
 
 Quad::Quad(const vec2 &size, const vec4 &color) :
 	Renderable(
-		(GLfloat[]) {
+		(GLfloat[])
+		{
 			-size.x, -size.y, 0.0f,
 			 size.x, -size.y, 0.0f,
 			 size.x,  size.y, 0.0f,
@@ -17,6 +18,6 @@ Quad::Quad(const vec2 &size, const vec4 &color) :
 		color.x, color.y, color.z, color.w,
 		color.x, color.y, color.z, color.w
 	};
-
+	
 	m_vao.addBuffer(new Buffer(colors, 4, 4));
 }

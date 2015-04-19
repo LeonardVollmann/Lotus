@@ -1,8 +1,8 @@
 #include "lotus_simplerenderer.hpp"
 
-void SimpleRenderer::submit(const Renderable *renderable)
+void SimpleRenderer::submit(const RenderableComponent *renderableComponent)
 {
-	m_renderQueue.push_back(renderable);
+	m_renderQueue.push_back(renderableComponent);
 }
 
 void SimpleRenderer::render(Shader *shader)
@@ -10,11 +10,11 @@ void SimpleRenderer::render(Shader *shader)
 	shader->bind();
 	while (!m_renderQueue.empty())
 	{
-		const Renderable *renderable = m_renderQueue.front();
+		const RenderableComponent *renderableComponent = m_renderQueue.front();
 		
-		renderable->bind();
-		shader->updateUniforms(renderable->getTransform());
-		glDrawElements(GL_TRIANGLES, renderable->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
+		renderableComponent->bind();
+		shader->updateUniforms(renderableComponent->getTransform());
+		glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 
 		m_renderQueue.pop_front();
 	}

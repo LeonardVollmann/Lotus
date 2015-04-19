@@ -8,7 +8,7 @@
 
 #include <GL/glew.h>
 
-class Renderable : public EntityComponent
+class Renderable
 {
 protected:
 	VertexArray 	m_vao;
@@ -22,9 +22,6 @@ public:
 	virtual ~Renderable() {}
 
 	void bind() const;
-	
-	virtual void submitToRenderer(IRenderer *renderer) const override;
-	virtual void update(double delta) override {}
 
 	inline GLsizei getNumIndices() const { return m_numIndices; }
 };
