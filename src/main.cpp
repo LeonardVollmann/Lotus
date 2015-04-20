@@ -15,6 +15,7 @@
 #include "graphics/renderables/lotus_quad.hpp"
 #include "graphics/renderables/lotus_mesh.hpp"
 #include "graphics/renderers/lotus_simplerenderer.hpp"
+#include "graphics/renderers/lotus_phongrenderer.hpp"
 #include "graphics/meshloading/lotus_indexedmodel.hpp"
 #include "graphics/meshloading/lotus_objloader.hpp"
 #include "graphics/layers/lotus_scenelayer.hpp"
@@ -94,15 +95,25 @@ public:
         m_dragon->addComponent(new RenderableComponent(dragonMesh, new Material(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 32.0f)));
 		m_plane->addComponent(new RenderableComponent(planeMesh, new Material(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 8.0f)));
 
-		SceneLayer *scene = new SceneLayer(70.0f, 800.0f / 600.0f, 0.01f, 1000.0f, new SimpleRenderer(), &PhongShader::getInstance());
+		SceneLayer *scene = new SceneLayer(70.0f, 800.0f / 600.0f, 0.01f, 1000.0f, new PhongRenderer());
 //		scene->addChild(m_dragon);
 		scene->addChild(m_plane);
 
 		addLayer(scene);
 	}
 	
+	float temp = 0.0;
 	virtual void update(double delta) override
 	{
+		temp += 0.025;
+		const float sinTemp = sinf(temp) * 7.0f;
+		const float cosTemp = cosf(temp) * 7.0f;
+		
+		m_pointLights[0].pos.z = sinTemp;
+		m_pointLights[1].pos.z = cosTemp;
+		m_pointLights[2].pos.z = sinTemp;
+		m_pointLights[3].pos.z = cosTemp;
+		
 		m_root->update(delta);
 		m_camera.update();
 		m_spotLight.pointLight.pos = m_camera.getTransform().getPos();

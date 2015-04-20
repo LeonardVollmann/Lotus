@@ -16,7 +16,7 @@ void Layer::render()
 		(*it)->submitToRenderer(m_renderer);
 	}
 	
-	m_renderer->render(m_shader);
+	m_renderer->render();
 }
 
 void Layer::bind() const
@@ -24,8 +24,7 @@ void Layer::bind() const
 	CURRENT = this;
 }
 
-Layer::Layer(const mat4 &projection, IRenderer *renderer, Shader *shader) :
+Layer::Layer(const mat4 &projection, IRenderer *renderer) :
 	Entity(Transform()),
 	m_projection(projection),
-	m_renderer(renderer),
-	m_shader(shader) {}
+	m_renderer(renderer) {}

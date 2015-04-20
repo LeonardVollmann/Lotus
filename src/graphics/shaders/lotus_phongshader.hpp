@@ -37,6 +37,8 @@ public:
 	inline void setDirectionalLight(const DirectionalLight &directionalLight)	{ m_directionalLight = directionalLight; }
 private:
 	PhongShader();
+	PhongShader(PhongShader const&) = delete;
+	void operator=(PhongShader const&) = delete;
 };
 
 #endif

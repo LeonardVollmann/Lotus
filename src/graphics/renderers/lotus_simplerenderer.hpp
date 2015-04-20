@@ -9,11 +9,11 @@
 
 class SimpleRenderer : public IRenderer
 {
-private:
+protected:
 	std::deque<const RenderableComponent*> m_renderQueue;
 public:
 	virtual void submit(const RenderableComponent *renderable) override;
-	virtual void render(Shader *shader) override;
+	virtual void render() override;
 };
 
 #endif

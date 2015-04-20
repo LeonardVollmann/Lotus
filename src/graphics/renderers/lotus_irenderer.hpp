@@ -12,7 +12,7 @@ public:
 	virtual ~IRenderer() {}
 
 	virtual void submit(const RenderableComponent *renderable) = 0;
-	virtual void render(Shader *shader) = 0;
+	virtual void render() = 0;
 };
 
 #endif

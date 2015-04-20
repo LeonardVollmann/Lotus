@@ -16,7 +16,6 @@ public:
 protected:
 	mat4 		m_projection;
 	IRenderer 	*m_renderer;
-	Shader 		*m_shader;
 public:
 	virtual ~Layer();
 
@@ -26,7 +25,7 @@ public:
 	inline const mat4 &getProjection() const { return m_projection; }
 	inline void setProjection(const mat4 &projection) { m_projection = projection; }
 protected:
-	Layer(const mat4 &m_projection, IRenderer *renderer, Shader *shader);
+	Layer(const mat4 &m_projection, IRenderer *renderer);
 };
 
 #endif

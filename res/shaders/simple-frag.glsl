@@ -9,5 +9,14 @@ uniform sampler2D diffuse;
 
 void main()
 {
-	frag_color = texture(diffuse, texCoord) + baseColor;
+	vec4 textureColor = texture(diffuse, texCoord);
+	
+	if (textureColor != vec4(0.0, 0.0, 0.0, 0.0))
+	{
+		frag_color = textureColor;
+	}
+	else
+	{
+		frag_color = baseColor;
+	}
 }

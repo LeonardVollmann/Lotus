@@ -7,8 +7,8 @@
 class SceneLayer : public Layer
 {
 public:
-	SceneLayer(float fov, float aspect, float near, float far, IRenderer *renderer, Shader *shader) :
-		Layer(mat4::perspective(fov, aspect, near, far), renderer, shader)
+	SceneLayer(float fov, float aspect, float near, float far, IRenderer *renderer) :
+		Layer(mat4::perspective(fov, aspect, near, far), renderer)
 	{}
 
 	void updateProjection(float fov, float aspect, float near, float far)
