@@ -6,9 +6,12 @@
 const std::string Shader::SOURCE_DIRECTORY = "res/shaders/";
 const std::string Shader::INCLUDE_DIRECTIVE = "#include";
 const std::string Shader::UNIFORM_DIRECTIVE = "uniform";
+const std::string Shader::VERT_EXTENSION = "-vert.glsl";
+const std::string Shader::FRAG_EXTENSION = "-frag.glsl";
+const std::string Shader::GEOM_EXTENSION = "-geom.glsl";
 
 void check_shader_error(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
-GLuint create_shader(const std::string &text, GLenum shaderType);
+GLuint create_shader(const std::string &text, const std::string &fileName, GLenum shaderType);
 
 Shader::Shader(const std::string &fileName) :
 	m_fileName(fileName)
@@ -34,8 +37,8 @@ void Shader::bind() const
 
 Shader &Shader::addVertexShader()
 {
-	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + m_fileName + "-vert.glsl"));
-	GLuint shader = create_shader(shaderText, GL_VERTEX_SHADER);
+	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + m_fileName + VERT_EXTENSION));
+	GLuint shader = create_shader(shaderText, m_fileName + VERT_EXTENSION, GL_VERTEX_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[0] = shader;
 
@@ -44,8 +47,8 @@ Shader &Shader::addVertexShader()
 
 Shader &Shader::addFragmentShader()
 {
-	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + m_fileName + "-frag.glsl"));
-	GLuint shader = create_shader(shaderText, GL_FRAGMENT_SHADER);
+	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + m_fileName + FRAG_EXTENSION));
+	GLuint shader = create_shader(shaderText, m_fileName + FRAG_EXTENSION, GL_FRAGMENT_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[1] = shader;
 
@@ -54,8 +57,8 @@ Shader &Shader::addFragmentShader()
 
 Shader &Shader::addGeometryShader()
 {
-	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + m_fileName + "-geom.glsl"));
-	GLuint shader = create_shader(shaderText, GL_GEOMETRY_SHADER);
+	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + m_fileName + GEOM_EXTENSION));
+	GLuint shader = create_shader(shaderText, m_fileName + GEOM_EXTENSION, GL_GEOMETRY_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[2] = shader;
 
@@ -65,10 +68,10 @@ Shader &Shader::addGeometryShader()
 Shader &Shader::compile()
 {
 	glLinkProgram(m_program);
-	check_shader_error(m_program, GL_LINK_STATUS, true, "Error: Shader linking failed: ");
+	check_shader_error(m_program, GL_LINK_STATUS, true, "Error: Linking of Shader: '" + m_fileName + "' failed: ");
 
 	glValidateProgram(m_program);
-	check_shader_error(m_program, GL_VALIDATE_STATUS, true, "Error: Shader validation failed: ");
+	check_shader_error(m_program, GL_VALIDATE_STATUS, true, "Error: Validation of Shader: '" + m_fileName + "'failed: ");
 
 	return *this;
 }
@@ -147,6 +150,40 @@ void Shader::setUniformMat4(const std::string &uniform, const mat4 &value) const
 	glUniformMatrix4fv(m_uniforms[uniform], 1, false, value.elements);
 }
 
+void Shader::setUniformBaseLight(const std::string &uniform, const BaseLight &baseLight) const
+{
+	glUniform3f(m_uniforms[uniform + ".color"], baseLight.color.x, baseLight.color.y, baseLight.color.z);
+	glUniform1f(m_uniforms[uniform + ".intensity"], baseLight.intensity);
+}
+
+void Shader::setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight) const
+{
+	setUniformBaseLight(uniform + ".base", directionalLight.base);
+	glUniform3f(m_uniforms[uniform + ".direction"], directionalLight.direction.x, directionalLight.direction.y, directionalLight.direction.z);
+}
+
+void Shader::setUniformAttenuation(const std::string &uniform, const Attenuation &attenuation) const
+{
+	setUniformFloat(uniform + ".constant", attenuation.constant);
+	setUniformFloat(uniform + ".linear", attenuation.linear);
+	setUniformFloat(uniform + ".exponent", attenuation.exponent);
+}
+
+void Shader::setUniformPointLight(const std::string &uniform, const PointLight &pointLight) const
+{
+	setUniformBaseLight(uniform + ".base", pointLight.base);
+	setUniformAttenuation(uniform + ".atten", pointLight.atten);
+	setUniformVec3(uniform + ".pos", pointLight.pos);
+	setUniformFloat(uniform + ".range", pointLight.range);
+}
+
+void Shader::setUniformSpotLight(const std::string &uniform, const SpotLight &spotLight) const
+{
+	setUniformPointLight(uniform + ".pointLight", spotLight.pointLight);
+	setUniformVec3(uniform + ".direction", spotLight.direction);
+	setUniformFloat(uniform + ".cutoff", spotLight.cutoff);
+}
+
 void check_shader_error(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)
 {
 	GLint success = 0;
@@ -176,7 +213,7 @@ void check_shader_error(GLuint shader, GLuint flag, bool isProgram, const std::s
 	}
 }
 
-GLuint create_shader(const std::string &text, GLenum shaderType)
+GLuint create_shader(const std::string &text, const std::string &fileName, GLenum shaderType)
 {
 	GLuint shader = glCreateShader(shaderType);
 	if (shader == 0)
@@ -192,7 +229,7 @@ GLuint create_shader(const std::string &text, GLenum shaderType)
 
 	glShaderSource(shader, 1, shaderSourceStrings, shaderSourceStringLengths);
 	glCompileShader(shader);
-	check_shader_error(shader, GL_COMPILE_STATUS, false, "Error: Shader compilation failed: ");
+	check_shader_error(shader, GL_COMPILE_STATUS, false, "Error: Compilation of shader: '" + fileName + "' failed: ");
 
 	return shader;
 }

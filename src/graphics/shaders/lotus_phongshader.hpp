@@ -2,7 +2,6 @@
 #define LOTUS_PHONG_SHADER_HPP_INCLUDED
 
 #include "lotus_shader.hpp"
-#include "../lotus_lighting.hpp"
 
 class PhongShader : public Shader
 {
@@ -20,12 +19,6 @@ public:
 	static PhongShader &getInstance();
 	
 	virtual void updateUniforms(const Transform &transform) const override;
-
-	void setUniformBaseLight(const std::string &uniform, const BaseLight &baseLight) const;
-	void setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight) const;
-	void setUniformAttenuation(const std::string &uniform, const Attenuation &attenuation) const;
-	void setUniformPointLight(const std::string &uniform, const PointLight &pointLight) const;
-	void setUniformSpotLight(const std::string &uniform, const SpotLight &spotLight) const;
 
 	void setPointLights(PointLight *pointLights, int numLights);
 	void setSpotLights(SpotLight *spotLights, int numLights);

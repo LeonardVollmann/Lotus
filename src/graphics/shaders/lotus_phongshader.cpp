@@ -86,41 +86,6 @@ void PhongShader::updateUniforms(const Transform &transform) const
 	}
 }
 
-
-void PhongShader::setUniformBaseLight(const std::string &uniform, const BaseLight &baseLight) const
-{
-	glUniform3f(m_uniforms[uniform + ".color"], baseLight.color.x, baseLight.color.y, baseLight.color.z);
-	glUniform1f(m_uniforms[uniform + ".intensity"], baseLight.intensity);
-} 
-
-void PhongShader::setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight) const
-{
-	setUniformBaseLight(uniform + ".base", directionalLight.base);
-	glUniform3f(m_uniforms[uniform + ".direction"], directionalLight.direction.x, directionalLight.direction.y, directionalLight.direction.z);
-}
-
-void PhongShader::setUniformAttenuation(const std::string &uniform, const Attenuation &attenuation) const
-{
-	setUniformFloat(uniform + ".constant", attenuation.constant);
-	setUniformFloat(uniform + ".linear", attenuation.linear);
-	setUniformFloat(uniform + ".exponent", attenuation.exponent);
-}
-
-void PhongShader::setUniformPointLight(const std::string &uniform, const PointLight &pointLight) const
-{
-	setUniformBaseLight(uniform + ".base", pointLight.base);
-	setUniformAttenuation(uniform + ".atten", pointLight.atten);
-	setUniformVec3(uniform + ".pos", pointLight.pos);
-	setUniformFloat(uniform + ".range", pointLight.range);
-}
-
-void PhongShader::setUniformSpotLight(const std::string &uniform, const SpotLight &spotLight) const
-{
-	setUniformPointLight(uniform + ".pointLight", spotLight.pointLight);
-	setUniformVec3(uniform + ".direction", spotLight.direction);
-	setUniformFloat(uniform + ".cutoff", spotLight.cutoff);
-}
-
 void PhongShader::setPointLights(PointLight *pointLights, int numLights)
 {
 	if (numLights > MAX_POINT_LIGHTS)

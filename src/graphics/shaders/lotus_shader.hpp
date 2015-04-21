@@ -3,6 +3,7 @@
 
 #include "../lotus_camera.hpp"
 #include "../lotus_material.hpp"
+#include "../lotus_lighting.hpp"
 #include "../layers/lotus_layer.hpp"
 #include "../../maths/lotus_maths.hpp"
 #include "../../core/lotus_transform.hpp"
@@ -17,6 +18,9 @@ public:
 	static const std::string SOURCE_DIRECTORY;
 	static const std::string INCLUDE_DIRECTIVE;
 	static const std::string UNIFORM_DIRECTIVE;
+	static const std::string VERT_EXTENSION;
+	static const std::string FRAG_EXTENSION;
+	static const std::string GEOM_EXTENSION;
 protected:
 	std::string m_fileName;
 
@@ -43,6 +47,11 @@ public:
 	virtual void setUniformVec3(const std::string &uniform, const vec3 &value) const;
 	virtual void setUniformVec4(const std::string &uniform, const vec4 &value) const;
 	virtual void setUniformMat4(const std::string &uniform, const mat4 &value) const;
+	virtual void setUniformBaseLight(const std::string &uniform, const BaseLight &baseLight) const;
+	virtual void setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight) const;
+	virtual void setUniformAttenuation(const std::string &uniform, const Attenuation &attenuation) const;
+	virtual void setUniformPointLight(const std::string &uniform, const PointLight &pointLight) const;
+	virtual void setUniformSpotLight(const std::string &uniform, const SpotLight &spotLight) const;
 protected:
 	Shader(const std::string &fileName);
 };
