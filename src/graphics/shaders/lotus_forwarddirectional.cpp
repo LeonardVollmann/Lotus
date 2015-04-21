@@ -7,14 +7,13 @@ ForwardDirectional &ForwardDirectional::getInstance()
 }
 
 ForwardDirectional::ForwardDirectional() :
-	Shader("forwarddirectional")
+	Shader("forward/directional")
 {
-	addVertexShader();
-	addFragmentShader();
+	addVertexShader("forward/shared");
+	addFragmentShader(m_fileName);
 	compile();
 	
-	addUniform("pr_matrix");
-	addUniform("vw_matrix");
+	addUniform("mvp_matrix");
 	addUniform("ml_matrix");
 	
 	addUniform("cameraPos");
@@ -39,9 +38,9 @@ ForwardDirectional::~ForwardDirectional()
 
 void ForwardDirectional::updateUniforms(const Transform &transform) const
 {
-	setUniformMat4("pr_matrix", Layer::CURRENT->getProjection());
-	setUniformMat4("vw_matrix", Camera::CURRENT->getViewMatrix());
-	setUniformMat4("ml_matrix", transform.getTransformation());
+	mat4 transformation = transform.getTransformation();
+	setUniformMat4("mvp_matrix", Layer::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transformation);
+	setUniformMat4("ml_matrix", transformation);
 	
 	setUniformVec3("cameraPos", Camera::CURRENT->getTransform().getPos());
 	

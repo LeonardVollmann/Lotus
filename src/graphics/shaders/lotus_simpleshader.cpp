@@ -9,12 +9,11 @@ SimpleShader &SimpleShader::getInstance()
 SimpleShader::SimpleShader() :
 	Shader("simple")
 {
-	addVertexShader();
-	addFragmentShader();
+	addVertexShader(m_fileName);
+	addFragmentShader(m_fileName);
 	compile();
 
-	addUniform("pr_matrix");
-	addUniform("vw_matrix");
+	addUniform("mvp_matrix");
 	addUniform("ml_matrix");
 
 	addUniform("baseColor");
@@ -22,9 +21,9 @@ SimpleShader::SimpleShader() :
 
 void SimpleShader::updateUniforms(const Transform &transform) const
 {
-	setUniformMat4("pr_matrix", Layer::CURRENT->getProjection());
-	setUniformMat4("vw_matrix", Camera::CURRENT->getViewMatrix());
-	setUniformMat4("ml_matrix", transform.getTransformation());
+	mat4 transformation = transform.getTransformation();
+	setUniformMat4("mvp_matrix", Layer::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transformation);
+	setUniformMat4("ml_matrix", transformation);
 
 	setUniformVec4("baseColor", Material::CURRENT->getColor());
 }

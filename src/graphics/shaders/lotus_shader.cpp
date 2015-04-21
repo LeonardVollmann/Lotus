@@ -35,9 +35,9 @@ void Shader::bind() const
 	glUseProgram(m_program);
 }
 
-Shader &Shader::addVertexShader()
+Shader &Shader::addVertexShader(const std::string &fileName)
 {
-	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + m_fileName + VERT_EXTENSION));
+	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + fileName + VERT_EXTENSION));
 	GLuint shader = create_shader(shaderText, m_fileName + VERT_EXTENSION, GL_VERTEX_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[0] = shader;
@@ -45,9 +45,9 @@ Shader &Shader::addVertexShader()
 	return *this;
 }
 
-Shader &Shader::addFragmentShader()
+Shader &Shader::addFragmentShader(const std::string &fileName)
 {
-	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + m_fileName + FRAG_EXTENSION));
+	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + fileName + FRAG_EXTENSION));
 	GLuint shader = create_shader(shaderText, m_fileName + FRAG_EXTENSION, GL_FRAGMENT_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[1] = shader;
@@ -55,9 +55,9 @@ Shader &Shader::addFragmentShader()
 	return *this;
 }
 
-Shader &Shader::addGeometryShader()
+Shader &Shader::addGeometryShader(const std::string &fileName)
 {
-	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + m_fileName + GEOM_EXTENSION));
+	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + fileName + GEOM_EXTENSION));
 	GLuint shader = create_shader(shaderText, m_fileName + GEOM_EXTENSION, GL_GEOMETRY_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[2] = shader;

@@ -33,9 +33,9 @@ public:
 	
 	virtual void bind() const;
 
-	virtual Shader &addVertexShader();
-	virtual Shader &addFragmentShader();
-	virtual Shader &addGeometryShader();
+	virtual Shader &addVertexShader(const std::string &fileName);
+	virtual Shader &addFragmentShader(const std::string &fileName);
+	virtual Shader &addGeometryShader(const std::string &fileName);
 	virtual Shader &compile();
 	
 	virtual std::string preprocess(const std::string &shaderText);
