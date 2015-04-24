@@ -4,14 +4,6 @@
 
 #include <iostream>
 
-const std::string Shader::SOURCE_DIRECTORY = "res/shaders/";
-const std::string Shader::INCLUDE_DIRECTIVE = "#include";
-const std::string Shader::UNIFORM_DIRECTIVE = "uniform";
-const std::string Shader::STRUCT_DIRECTIVE = "struct";
-const std::string Shader::VERT_EXTENSION = "-vert.glsl";
-const std::string Shader::FRAG_EXTENSION = "-frag.glsl";
-const std::string Shader::GEOM_EXTENSION = "-geom.glsl";
-
 Shader::Shader(const std::string &fileName) :
 	m_fileName(fileName)
 {
@@ -77,6 +69,11 @@ Shader &Shader::compile()
 	return *this;
 }
 
+void Shader::updateUniforms(const Transform &transform) const
+{
+	
+}
+
 void Shader::setUniformInteger(const std::string &uniform, int value) const
 {
 	glUniform1i(m_uniformLocations[uniform], value);
@@ -104,36 +101,36 @@ void Shader::setUniformMat4(const std::string &uniform, const mat4 &value) const
 
 void Shader::setUniformBaseLight(const std::string &uniform, const BaseLight &baseLight) const
 {
-	glUniform3f(m_uniformLocations[uniform + ".color"], baseLight.color.x, baseLight.color.y, baseLight.color.z);
-	glUniform1f(m_uniformLocations[uniform + ".intensity"], baseLight.intensity);
+	glUniform3f(m_uniformLocations[uniform + ".color"], baseLight.getColor().x, baseLight.getColor().y, baseLight.getColor().z);
+	glUniform1f(m_uniformLocations[uniform + ".intensity"], baseLight.getIntensity());
 }
 
 void Shader::setUniformDirectionalLight(const std::string &uniform, const DirectionalLight &directionalLight) const
 {
-	setUniformBaseLight(uniform + ".base", directionalLight.base);
-	glUniform3f(m_uniformLocations[uniform + ".direction"], directionalLight.direction.x, directionalLight.direction.y, directionalLight.direction.z);
+	setUniformBaseLight(uniform + ".base", BaseLight(directionalLight.getColor(), directionalLight.getIntensity()));
+	glUniform3f(m_uniformLocations[uniform + ".direction"], directionalLight.getDirection().x, directionalLight.getDirection().y, directionalLight.getDirection().z);
 }
 
 void Shader::setUniformAttenuation(const std::string &uniform, const Attenuation &attenuation) const
 {
-	setUniformFloat(uniform + ".constant", attenuation.constant);
-	setUniformFloat(uniform + ".linear", attenuation.linear);
-	setUniformFloat(uniform + ".exponent", attenuation.exponent);
+	setUniformFloat(uniform + ".constant", attenuation.getConstant());
+	setUniformFloat(uniform + ".linear", attenuation.getLinear());
+	setUniformFloat(uniform + ".exponent", attenuation.getExponent());
 }
 
 void Shader::setUniformPointLight(const std::string &uniform, const PointLight &pointLight) const
 {
-	setUniformBaseLight(uniform + ".base", pointLight.base);
-	setUniformAttenuation(uniform + ".atten", pointLight.atten);
-	setUniformVec3(uniform + ".pos", pointLight.pos);
-	setUniformFloat(uniform + ".range", pointLight.range);
+	setUniformBaseLight(uniform + ".base", BaseLight(pointLight.getColor(), pointLight.getIntensity()));
+	setUniformAttenuation(uniform + ".atten", pointLight.getAttenuation());
+	setUniformVec3(uniform + ".pos", pointLight.getPos());
+	setUniformFloat(uniform + ".range", pointLight.getRange());
 }
 
 void Shader::setUniformSpotLight(const std::string &uniform, const SpotLight &spotLight) const
 {
-	setUniformPointLight(uniform + ".pointLight", spotLight.pointLight);
-	setUniformVec3(uniform + ".direction", spotLight.direction);
-	setUniformFloat(uniform + ".cutoff", spotLight.cutoff);
+	setUniformPointLight(uniform + ".pointLight", PointLight(spotLight.getColor(), spotLight.getIntensity(), spotLight.getAttenuation(), spotLight.getPos()));
+	setUniformVec3(uniform + ".direction", spotLight.getDirection());
+	setUniformFloat(uniform + ".cutoff", spotLight.getCutoff());
 }
 
 std::string Shader::preprocess(const std::string &shaderText)
@@ -202,15 +199,6 @@ std::string Shader::preprocess(const std::string &shaderText)
 	{
 		result.append(*it + "\n");
 	}
-	
-//	for (auto it = m_uniformStructs.begin(); it != m_uniformStructs.end(); it++)
-//	{
-//		std::cout << it->first << std::endl;
-//		for (auto it2 = it->second.begin(); it2 != it->second.end(); it2++)
-//		{
-//			std::cout << "- " << it2->first + " " << it2->second << std::endl;
-//		}
-//	}
 	
 	delete ctext;
 	return result;

@@ -1,72 +1,98 @@
 #ifndef LOTUS_LIGHTING_HPP_INCLUDED
 #define LOTUS_LIGHTING_HPP_INCLUDED
 
+#include "../core/lotus_entitycomponent.hpp"
 #include "../maths/lotus_vec3.hpp"
 
-struct BaseLight
-{
-	vec3 	color;
-	float 	intensity;
+#define COLOR_DEPTH 256
 
-	BaseLight(const vec3 &color, float intensity)
-	{
-		this->color = color;
-		this->intensity = intensity; 
-	}
+class Attenuation
+{
+private:
+	float m_constant;
+	float m_linear;
+	float m_exponent;
+public:
+	Attenuation(float constant, float linear, float exponent);
+	Attenuation(const vec3 &attenuation);
+	
+	inline float getConstant()	const { return m_constant; }
+	inline float getLinear()	const { return m_linear; }
+	inline float getExponent()	const { return m_exponent; }
+	
+	inline void setConstant(float constant) { m_constant = constant; }
+	inline void setLinear(float linear)		{ m_linear = linear; }
+	inline void setExponent(float exponent) { m_exponent = exponent; }
 };
 
-struct DirectionalLight
+class BaseLight : public EntityComponent
 {
-	BaseLight 	base;
-	vec3 		direction;
-
-	DirectionalLight(const BaseLight &baseLight, const vec3 &direction) :
-		base(baseLight)
-	{
-		this->direction = direction;
-	}
+protected:
+	vec3 m_color;
+	float m_intensity;
+public:
+	BaseLight();
+	BaseLight(const vec3 &color, float intensity);
+	
+	inline const vec3 &getColor()	const { return m_color; }
+	inline float getIntensity()		const { return m_intensity; }
+	
+	inline void setColor(const vec3 &color)		{ m_color = color; }
+	inline void setIntensity(float intensity)	{ m_intensity = intensity; }
 };
 
-struct Attenuation
+class DirectionalLight : public BaseLight
 {
-	float constant, linear, exponent;
-
-	Attenuation(float constant, float linear, float exponent)
-	{
-		this->constant = constant;
-		this->linear = linear;
-		this->exponent = exponent;
-	}
+protected:
+	vec3 m_direction;
+public:
+	DirectionalLight();
+	DirectionalLight(const vec3 &color, float intensity, const vec3 &direction);
+	DirectionalLight(const vec3 &direction, const BaseLight &base = BaseLight());
+	
+	inline const vec3 &getDirection() const { return m_direction; }
+	
+	inline void setDirection(const vec3 &direction) { m_direction = direction; }
 };
 
-struct PointLight
+class PointLight : public BaseLight
 {
-	BaseLight 	base;
-	Attenuation atten;
-	vec3 		pos;
-	float 		range;
-
-	PointLight(const BaseLight &baseLight, const Attenuation &attenuation, const vec3 &pos, float range) :
-		base(baseLight),
-		atten(attenuation)
-	{
-		this->pos = pos;
-		this->range = range;
-	}
+protected:
+	Attenuation m_atten;
+	vec3 m_pos;
+	float m_range;
+public:
+	PointLight();
+	PointLight(const vec3 &color, float intensity, const Attenuation &atten, const vec3 &pos);
+	PointLight(const Attenuation &atten, const vec3 &pos, const BaseLight &base = BaseLight());
+	
+	inline vec3 &getPos()								{ return m_pos; }
+	inline const vec3 &getPos()					const	{ return m_pos; }
+	inline const Attenuation &getAttenuation()	const	{ return m_atten; }
+	inline float getRange()						const	{ return m_range; }
+	
+	inline void setAttenuation(const Attenuation &atten)	{ m_atten = atten; }
+	inline void setPos(const vec3 &pos)						{ m_pos = pos; }
+	inline void setRange(float range)						{ m_range = range; }
+protected:
+	static float calcRange(const PointLight &pointLight);
 };
 
-struct SpotLight
+class SpotLight : public PointLight
 {
-	PointLight 	pointLight;
-	vec3 		direction;
-	float 		cutoff;
-
-	SpotLight(const PointLight &point, const vec3 &direction, float cutoff) :
-		pointLight(point)
-	{
-		this->direction = direction;
-		this->cutoff = cutoff;
-	}
+private:
+	vec3 m_direction;
+	float m_cutoff;
+public:
+	SpotLight();
+	SpotLight(const vec3 &color, float intensity, const Attenuation &atten, const vec3 &pos, const vec3 &direction, float cutoff);
+	SpotLight(const vec3 &direction, float cutoff, const PointLight &pointLight = PointLight());
+	
+	inline const vec3 &getDirection()	const { return m_direction; }
+	inline float getCutoff()			const { return m_cutoff; }
+	
+	inline void setDirection(const vec3 &direction)		{ m_direction = direction; }
+	inline void setCutoff(float cutoff)					{ m_cutoff = cutoff; }
 };
 
 #endif

@@ -13,16 +13,16 @@
 #include <string>
 #include <vector>
 
+#define SOURCE_DIRECTORY	"res/shaders/"
+#define INCLUDE_DIRECTIVE	"#include"
+#define	STRUCT_DIRECTIVE	"struct"
+#define UNIFORM_DIRECTIVE	"uniform"
+#define VERT_EXTENSION		"-vert.glsl"
+#define FRAG_EXTENSION		"-frag.glsl"
+#define GEOM_EXTENSION		"-geom.glsl"
+
 class Shader
 {
-public:
-	static const std::string SOURCE_DIRECTORY;
-	static const std::string INCLUDE_DIRECTIVE;
-	static const std::string UNIFORM_DIRECTIVE;
-	static const std::string STRUCT_DIRECTIVE;
-	static const std::string VERT_EXTENSION;
-	static const std::string FRAG_EXTENSION;
-	static const std::string GEOM_EXTENSION;
 protected:
 	std::string															m_fileName;
 	GLuint																m_program;
@@ -40,7 +40,7 @@ public:
 	virtual Shader &addGeometryShader(const std::string &fileName);
 	virtual Shader &compile();
 
-	virtual void updateUniforms(const Transform &transform) const = 0;
+	virtual void updateUniforms(const Transform &transform) const;
 
 	virtual void setUniformInteger(const std::string &uniform, int value) const;
 	virtual void setUniformFloat(const std::string &uniform, float value) const;

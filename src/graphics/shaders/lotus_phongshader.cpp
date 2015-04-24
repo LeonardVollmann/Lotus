@@ -10,7 +10,7 @@ PhongShader &PhongShader::getInstance()
 PhongShader::PhongShader() :
 	Shader("phong"),
 	m_ambientLight(vec3(0.1f, 0.1f, 0.1f)),
-	m_directionalLight(BaseLight(vec3(1.0f, 1.0f, 1.0f), 0.0f), vec3(0.0f, 0.0f, 0.0f))
+	m_directionalLight(vec3(1.0f, 1.0f, 1.0f), 0.0f, vec3(0.0f, 0.0f, 0.0f))
 {
 	addVertexShader(m_fileName);
 	addFragmentShader(m_fileName);

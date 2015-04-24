@@ -7,8 +7,8 @@
 /Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/lotus_forwardambient.o
 /Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/lotus_material.o
 /Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/lotus_vertexarray.o
-/Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/main.o
 /Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/lotus_camera.o
+/Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/lotus_lighting.o
 /Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/lotus_window.o
 /Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/stb_image.o
 /Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/lotus_forwardrenderer.o
@@ -35,3 +35,4 @@
 /Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/lotus_buffer.o
 /Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/lotus_simpleshader.o
 /Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/lotus_quad.o
+/Users/Leonard/Documents/Programming/Workspaces/Lotus/Build/Intermediates/Lotus.build/Debug/Lotus.build/Objects-normal/x86_64/main.o

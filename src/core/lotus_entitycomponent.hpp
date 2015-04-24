@@ -10,7 +10,7 @@ protected:
 public:
 	virtual ~EntityComponent() {}
 
-	virtual void update(double delta) = 0;
+	virtual void update(double delta) {}
 	virtual void submitToRenderer(IRenderer *renderer) const {}
 
 	inline Transform &getTransform() const { return m_entity->getTransform(); }
