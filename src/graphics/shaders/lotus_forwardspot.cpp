@@ -12,25 +12,6 @@ ForwardSpot::ForwardSpot() :
 	addVertexShader("forward/shared");
 	addFragmentShader(m_fileName);
 	compile();
-	
-	addUniform("mvp_matrix");
-	addUniform("ml_matrix");
-	
-	addUniform("cameraPos");
-	
-	addUniform("baseColor");
-	addUniform("specularIntensity");
-	addUniform("specularPower");
-	
-	addUniform("spotLight.pointLight.base.color");
-	addUniform("spotLight.pointLight.base.intensity");
-	addUniform("spotLight.pointLight.atten.constant");
-	addUniform("spotLight.pointLight.atten.linear");
-	addUniform("spotLight.pointLight.atten.exponent");
-	addUniform("spotLight.pointLight.pos");
-	addUniform("spotLight.pointLight.range");
-	addUniform("spotLight.direction");
-	addUniform("spotLight.cutoff");
 }
 
 ForwardSpot::~ForwardSpot()

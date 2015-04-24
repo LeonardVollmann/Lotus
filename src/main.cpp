@@ -115,7 +115,7 @@ public:
 		ForwardSpot::getInstance().addSpotLight(m_spotLight);
 		
 		SceneLayer *scene = new SceneLayer(70.0f, 800.0f / 600.0f, 0.01f, 1000.0f, new ForwardRenderer());
-		scene->addChild(m_dragon);
+//		scene->addChild(m_dragon);
 		scene->addChild(m_plane);
 
 		addLayer(scene);

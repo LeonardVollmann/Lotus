@@ -12,19 +12,6 @@ ForwardDirectional::ForwardDirectional() :
 	addVertexShader("forward/shared");
 	addFragmentShader(m_fileName);
 	compile();
-	
-	addUniform("mvp_matrix");
-	addUniform("ml_matrix");
-	
-	addUniform("cameraPos");
-	
-	addUniform("baseColor");
-	addUniform("specularIntensity");
-	addUniform("specularPower");
-	
-	addUniform("directionalLight.base.color");
-	addUniform("directionalLight.base.intensity");
-	addUniform("directionalLight.direction");
 }
 
 ForwardDirectional::~ForwardDirectional()

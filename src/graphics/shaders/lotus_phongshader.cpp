@@ -16,20 +16,6 @@ PhongShader::PhongShader() :
 	addFragmentShader(m_fileName);
 	compile();
 	
-	addUniform("mvp_matrix");
-	addUniform("ml_matrix");
-	
-	addUniform("cameraPos");
-	
-	addUniform("baseColor");
-	addUniform("specularIntensity");
-	addUniform("specularPower");
-	
-	addUniform("ambientLight");
-	addUniform("directionalLight.base.color");
-	addUniform("directionalLight.base.intensity");
-	addUniform("directionalLight.direction");
-
 	for (int i = 0; i < MAX_POINT_LIGHTS; i++)
 	{
 		std::string pointLightName = "pointLights[" + std::to_string(i) + "]";

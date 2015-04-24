@@ -3,10 +3,9 @@
 
 #include <string>
 
-class FileUtils
+namespace FileUtils
 {
-public:
-	static std::string readFile(const std::string &fileName);
-};
+	std::string readFile(const std::string &fileName);
+}
 
 #endif

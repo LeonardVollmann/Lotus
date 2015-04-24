@@ -13,11 +13,6 @@ ForwardAmbient::ForwardAmbient() :
 	addVertexShader(m_fileName);
 	addFragmentShader(m_fileName);
 	compile();
-	
-	addUniform("mvp_matrix");
-	
-	addUniform("baseColor");
-	addUniform("ambientLight");
 }
 
 void ForwardAmbient::updateUniforms(const Transform &transform) const

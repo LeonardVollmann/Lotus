@@ -12,23 +12,6 @@ Shader("forward/point")
 	addVertexShader("forward/shared");
 	addFragmentShader(m_fileName);
 	compile();
-	
-	addUniform("mvp_matrix");
-	addUniform("ml_matrix");
-	
-	addUniform("cameraPos");
-	
-	addUniform("baseColor");
-	addUniform("specularIntensity");
-	addUniform("specularPower");
-	
-	addUniform("pointLight.base.color");
-	addUniform("pointLight.base.intensity");
-	addUniform("pointLight.atten.constant");
-	addUniform("pointLight.atten.linear");
-	addUniform("pointLight.atten.exponent");
-	addUniform("pointLight.pos");
-	addUniform("pointLight.range");
 }
 
 ForwardPoint::~ForwardPoint()

@@ -12,11 +12,6 @@ SimpleShader::SimpleShader() :
 	addVertexShader(m_fileName);
 	addFragmentShader(m_fileName);
 	compile();
-
-	addUniform("mvp_matrix");
-	addUniform("ml_matrix");
-
-	addUniform("baseColor");
 }
 
 void SimpleShader::updateUniforms(const Transform &transform) const
