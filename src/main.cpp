@@ -15,9 +15,7 @@
 #include "graphics/shaders/lotus_forwarddirectional.hpp"
 #include "graphics/shaders/lotus_forwardpoint.hpp"
 #include "graphics/shaders/lotus_forwardspot.hpp"
-#include "graphics/renderables/lotus_renderable.hpp"
-#include "graphics/renderables/lotus_quad.hpp"
-#include "graphics/renderables/lotus_mesh.hpp"
+#include "graphics/lotus_renderables.hpp"
 #include "graphics/renderers/lotus_simplerenderer.hpp"
 #include "graphics/renderers/lotus_phongrenderer.hpp"
 #include "graphics/renderers/lotus_forwardrenderer.hpp"
@@ -63,32 +61,6 @@ public:
 //		glfwSwapInterval(0);
 		
 		Texture texture("texture.png");
-		Material dragonMaterial(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 32.0f);
-//		Material planeMaterial(vec4(0.0f, 0.0f, 0.0f, 0.0f), texture, 1.0f, 8.0f);
-
-		IndexedModel dragonModel = OBJLoader::loadIndexedModel("dragon");
-		dragonModel.finalize();
-		Mesh *dragonMesh = new Mesh(dragonModel);
-
-		const float size = 10.0f;
-		IndexedModel planeModel;
-		planeModel.addVertex(-size, -size, 0.0f);
-		planeModel.addVertex( size, -size, 0.0f);
-		planeModel.addVertex( size,  size, 0.0f);
-		planeModel.addVertex(-size,  size, 0.0f);
-		planeModel.addTexCoord(0.0f, 0.0f);
-		planeModel.addTexCoord(1.0f, 0.0f);
-		planeModel.addTexCoord(1.0f, 1.0f);
-		planeModel.addTexCoord(0.0f, 1.0f);
-		planeModel.addNormal(0.0f, 0.0f, 1.0f);
-		planeModel.addNormal(0.0f, 0.0f, 1.0f);
-		planeModel.addNormal(0.0f, 0.0f, 1.0f);
-		planeModel.addNormal(0.0f, 0.0f, 1.0f);
-		planeModel.addFace(0, 1, 2);
-		planeModel.addFace(0, 2, 3);
-		planeModel.finalize();
-		Mesh *planeMesh = new Mesh(planeModel);
-		Transform planeTransform;
 
         m_dragon = new Entity();
 		m_plane = new Entity();
@@ -96,17 +68,17 @@ public:
 		m_dragon->getTransform().translate(vec3(0.0f, 2.0f, -7.5f));
 		m_plane->getTransform().rotate(quat(toRadians(90.0f), vec3(-1.0f, 0.0f, 0.0f)));
 		m_plane->getTransform().translate(vec3(0.0f, -1.0f, 0.0f));
+		m_plane->getTransform().scale(vec3(10.0f, 10.0f, 1.0f));
 		
-        m_dragon->addComponent(new RenderableComponent(dragonMesh, new Material(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 32.0f)));
-		m_plane->addComponent(new RenderableComponent(planeMesh, new Material(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 8.0f)));
+        m_dragon->addComponent(new RenderableComponent(new Mesh(OBJLoader::loadIndexedModel("dragon").finalize()), new Material(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 32.0f)));
+		m_plane->addComponent(new RenderableComponent(new Sprite(), new Material(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 8.0f)));
 		
 		ForwardAmbient::getInstance().setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
 		ForwardDirectional::getInstance().addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.3f, vec3(1.0f, 1.0f, 1.0f).normalize()));
 		ForwardDirectional::getInstance().addDirectionalLight(new DirectionalLight(vec3(0.0f, 0.0f, 1.0f), 0.3f, vec3(-1.0f, 1.0f, -1.0f).normalize()));
 		for (unsigned int i = 0; i < 8; i++)
 		{
-//			if (i % 2 == 0)
-				ForwardPoint::getInstance().addPointLight(m_pointLights[i]);
+			ForwardPoint::getInstance().addPointLight(m_pointLights[i]);
 		}
 		ForwardSpot::getInstance().addSpotLight(m_spotLight);
 		

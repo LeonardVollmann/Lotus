@@ -3,7 +3,7 @@
 
 #include "../core/lotus_entitycomponent.hpp"
 #include "../graphics/lotus_material.hpp"
-#include "../graphics/renderables/lotus_renderable.hpp"
+#include "../graphics/lotus_renderables.hpp"
 
 class RenderableComponent : public EntityComponent
 {
