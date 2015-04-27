@@ -19,6 +19,6 @@ void ForwardAmbient::updateUniforms(const Transform &transform) const
 {
 	setUniformMat4("mvp_matrix", Layer::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transform.getTransformation());
 	
-	setUniformVec4("baseColor", Material::CURRENT->getColor());
+	setUniformVec4("baseColor", Material::CURRENT->getVec4("color"));
 	setUniformVec3("ambientLight", m_ambientLight);
 }

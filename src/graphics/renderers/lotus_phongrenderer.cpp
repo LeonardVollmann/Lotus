@@ -1,7 +1,7 @@
 #include "lotus_phongrenderer.hpp"
 #include "../shaders/lotus_phongshader.hpp"
 
-void PhongRenderer::render()
+void PhongRenderer::flush()
 {
 	PhongShader::getInstance().bind();
 	while (!m_renderQueue.empty())

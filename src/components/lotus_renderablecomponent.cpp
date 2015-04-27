@@ -15,6 +15,7 @@ void RenderableComponent::bind() const
 {
 	m_renderable->bind();
 	m_material->bind();
+	m_material->bindTexture("diffuse", 0);
 }
 
 void RenderableComponent::render(IRenderer *renderer) const

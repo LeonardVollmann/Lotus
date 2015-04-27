@@ -31,9 +31,9 @@ void ForwardSpot::updateUniforms(const Transform &transform) const
 	
 	setUniformVec3("cameraPos", Camera::CURRENT->getTransform().getPos());
 	
-	setUniformVec4("baseColor", Material::CURRENT->getColor());
-	setUniformFloat("specularIntensity", Material::CURRENT->getSpecularIntensity());
-	setUniformFloat("specularPower", Material::CURRENT->getSpecularPower());
+	setUniformVec4("baseColor", Material::CURRENT->getVec4("color"));
+	setUniformFloat("specularIntensity", Material::CURRENT->getFloat("specularIntensity"));
+	setUniformFloat("specularPower", Material::CURRENT->getFloat("specularPower"));
 	
 	setUniformSpotLight("spotLight", **m_activeSpotLight);
 }

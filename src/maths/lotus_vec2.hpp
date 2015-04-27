@@ -5,6 +5,8 @@
 
 struct vec2
 {
+	static const vec2 ZERO;
+	
 	float x, y;
 
 	vec2();

@@ -7,6 +7,8 @@ struct quat;
 
 struct vec3
 {
+	static const vec3 ZERO;
+	
 	float x, y, z;
 
 	vec3();

@@ -2,6 +2,8 @@
 
 #include <cmath>
 
+const vec4 vec4::ZERO = vec4();
+
 vec4::vec4()
 {
 	this->x = 0.0f;

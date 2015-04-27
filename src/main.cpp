@@ -59,8 +59,13 @@ public:
 	{
 //		glfwSwapInterval(0);
 		
-		Texture texture("texture.png");
-
+		Texture texture("default.png");
+		Material *material = new Material();
+		material->addTexture("diffuse", texture);
+		material->addVec4("color", vec4(0.0f, 0.0f, 0.0f, 0.0f));
+		material->addFloat("specularIntensity", 2.0f);
+		material->addFloat("specularPower", 32.0f);
+		
         m_dragon = new Entity();
 		m_plane = new Entity();
 		
@@ -69,8 +74,8 @@ public:
 		m_plane->getTransform().translate(vec3(0.0f, -1.0f, 0.0f));
 		m_plane->getTransform().scale(vec3(10.0f, 10.0f, 1.0f));
 		
-        m_dragon->addComponent(new RenderableComponent(new Mesh(OBJLoader::loadIndexedModel("dragon").finalize()), new Material(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 32.0f)));
-		m_plane->addComponent(new RenderableComponent(new Sprite(), new Material(vec4(1.0f, 1.0f, 1.0f, 1.0f), texture, 2.0f, 8.0f)));
+        m_dragon->addComponent(new RenderableComponent(new Mesh(OBJLoader::loadIndexedModel("dragon").finalize()), material));
+		m_plane->addComponent(new RenderableComponent(new Sprite(), material));
 		
 		ForwardAmbient::getInstance().setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
 		ForwardDirectional::getInstance().addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.3f, vec3(1.0f, 1.0f, 1.0f).normalize()));

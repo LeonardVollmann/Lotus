@@ -3,6 +3,8 @@
 
 #include <cmath>
 
+const vec3 vec3::ZERO = vec3();
+
 vec3::vec3()
 {
 	this->x = 0.0f;

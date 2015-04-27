@@ -5,6 +5,8 @@
 
 struct vec4
 {
+	static const vec4 ZERO;
+	
 	float x, y, z, w;
 
 	vec4();
