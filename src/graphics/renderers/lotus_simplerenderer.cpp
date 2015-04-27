@@ -6,7 +6,7 @@ void SimpleRenderer::submit(const RenderableComponent *renderableComponent)
 	m_renderQueue.push_back(renderableComponent);
 }
 
-void SimpleRenderer::render()
+void SimpleRenderer::flush()
 {
 	SimpleShader::getInstance().bind();
 	while (!m_renderQueue.empty())

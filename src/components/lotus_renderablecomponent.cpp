@@ -17,7 +17,7 @@ void RenderableComponent::bind() const
 	m_material->bind();
 }
 
-void RenderableComponent::submitToRenderer(IRenderer *renderer) const
+void RenderableComponent::render(IRenderer *renderer) const
 {
 	renderer->submit(this);
 }

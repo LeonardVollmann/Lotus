@@ -2,6 +2,10 @@
 
 const Layer *Layer::CURRENT;
 
+Layer::Layer(const mat4 &projection, IRenderer *renderer) :
+	m_projection(projection),
+	m_renderer(renderer) {}
+
 Layer::~Layer()
 {
 	delete m_renderer;
@@ -13,18 +17,13 @@ void Layer::render()
 	
 	for (auto it = m_children.begin(); it < m_children.end(); it++)
 	{
-		(*it)->submitToRenderer(m_renderer);
+		(*it)->render(m_renderer);
 	}
 	
-	m_renderer->render();
+	m_renderer->flush();
 }
 
 void Layer::bind() const
 {
 	CURRENT = this;
 }
-
-Layer::Layer(const mat4 &projection, IRenderer *renderer) :
-	Entity(Transform()),
-	m_projection(projection),
-	m_renderer(renderer) {}

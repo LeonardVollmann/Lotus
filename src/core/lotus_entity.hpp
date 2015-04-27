@@ -20,10 +20,10 @@ public:
 	virtual ~Entity();
 
 	void update(double delta);
+	void render(IRenderer *renderer) const;
 	Entity &addChild(Entity *child);
 	Entity &addComponent(EntityComponent *component);
 	std::vector<Entity*> getAllDescendants() const;
-	void submitToRenderer(IRenderer *renderer) const;
 
 	inline Transform &getTransform() { return m_transform; }
 	inline Entity *getParent() const { return m_parent; }

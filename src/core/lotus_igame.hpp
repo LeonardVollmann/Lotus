@@ -3,7 +3,7 @@
 
 #include "lotus_engine.hpp"
 #include "lotus_entity.hpp"
-#include "../graphics/layers/lotus_layer.hpp"
+#include "../graphics/lotus_layer.hpp"
 
 #include <vector>
 

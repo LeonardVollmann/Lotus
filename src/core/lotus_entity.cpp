@@ -30,6 +30,19 @@ void Entity::update(double delta)
 	}
 }
 
+void Entity::render(IRenderer *renderer) const
+{
+	for (auto it = m_children.begin(); it < m_children.end(); it++)
+	{
+		(*it)->render(renderer);
+	}
+	
+	for (auto it = m_components.begin(); it < m_components.end(); it++)
+	{
+		(*it)->render(renderer);
+	}
+}
+
 Entity &Entity::addChild(Entity *child)
 {
 	m_children.push_back(child);
@@ -55,17 +68,4 @@ std::vector<Entity*> Entity::getAllDescendants() const
 	}
 
 	return result;
-}
-
-void Entity::submitToRenderer(IRenderer *renderer) const
-{
-	for (auto it = m_children.begin(); it < m_children.end(); it++)
-	{
-		(*it)->submitToRenderer(renderer);
-	}
-
-	for (auto it = m_components.begin(); it < m_components.end(); it++)
-	{
-		(*it)->submitToRenderer(renderer);
-	}
 }

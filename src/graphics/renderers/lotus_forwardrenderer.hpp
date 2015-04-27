@@ -6,7 +6,7 @@
 class ForwardRenderer : public SimpleRenderer
 {
 public:
-	virtual void render() override;
+	virtual void flush() override;
 };
 
 #endif

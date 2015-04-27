@@ -4,7 +4,7 @@
 #include "../lotus_camera.hpp"
 #include "../lotus_material.hpp"
 #include "../lotus_lighting.hpp"
-#include "../layers/lotus_layer.hpp"
+#include "../lotus_layer.hpp"
 #include "../../maths/lotus_maths.hpp"
 #include "../../core/lotus_transform.hpp"
 

@@ -14,7 +14,7 @@ public:
 	RenderableComponent(Renderable *renderable, Material *material);
 	virtual ~RenderableComponent();
 	
-	virtual void submitToRenderer(IRenderer *renderer) const override;
+	virtual void render(IRenderer *renderer) const override;
 	virtual void update(double delta) override {}
 	
 	void bind() const;

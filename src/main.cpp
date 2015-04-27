@@ -21,7 +21,6 @@
 #include "graphics/renderers/lotus_forwardrenderer.hpp"
 #include "graphics/meshloading/lotus_indexedmodel.hpp"
 #include "graphics/meshloading/lotus_objloader.hpp"
-#include "graphics/layers/lotus_scenelayer.hpp"
 #include "components/lotus_renderablecomponent.hpp"
 #include "core/lotus_input.hpp"
 #include "core/lotus_transform.hpp"
@@ -82,7 +81,7 @@ public:
 		}
 		ForwardSpot::getInstance().addSpotLight(m_spotLight);
 		
-		SceneLayer *scene = new SceneLayer(70.0f, 800.0f / 600.0f, 0.01f, 1000.0f, new ForwardRenderer());
+		Layer *scene = new Layer(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), new ForwardRenderer());
 //		scene->addChild(m_dragon);
 		scene->addChild(m_plane);
 
@@ -111,7 +110,7 @@ public:
 
 int main()
 {
-	Engine engine(60.0, 800, 600, "Lotus");
+	Engine engine(60.0, 1000, 800, "Lotus");
 	TestGame game;
 	engine.setGame(&game);
 	engine.start();

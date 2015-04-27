@@ -13,7 +13,7 @@ protected:
 	std::deque<const RenderableComponent*> m_renderQueue;
 public:
 	virtual void submit(const RenderableComponent *renderable) override;
-	virtual void render() override;
+	virtual void flush() override;
 };
 
 #endif

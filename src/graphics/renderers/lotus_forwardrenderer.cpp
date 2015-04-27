@@ -4,7 +4,7 @@
 #include "../shaders/lotus_forwardpoint.hpp"
 #include "../shaders/lotus_forwardspot.hpp"
 
-void ForwardRenderer::render()
+void ForwardRenderer::flush()
 {
 	while (!m_renderQueue.empty())
 	{
