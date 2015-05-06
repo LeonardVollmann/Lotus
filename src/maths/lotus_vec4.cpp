@@ -12,7 +12,7 @@ vec4::vec4()
 	this->w = 0.0f;
 }
 
-vec4::vec4(const float &value)
+vec4::vec4(float value)
 {
 	this->x = value;
 	this->y = value;
@@ -20,7 +20,7 @@ vec4::vec4(const float &value)
 	this->w = value;
 }
 
-vec4::vec4(const float &x, const float &y, const float &z, const float &w)
+vec4::vec4(float x, float y, float z, float w)
 {
 	this->x = x;
 	this->y = y;
@@ -28,44 +28,152 @@ vec4::vec4(const float &x, const float &y, const float &z, const float &w)
 	this->w = w;
 }
 
-vec4 &vec4::add(const vec4 &other)
+vec4 vec4::operator+(const vec4 &r) const
 {
-	x += other.x;
-	y += other.y;
-	z += other.z;
-	w += other.w;
+	vec4 result;
+	result.x = x + r.x;
+	result.y = y + r.y;
+	result.z = z + r.z;
+	result.w = w + r.w;
+	return result;
+}
 
+vec4 vec4::operator-(const vec4 &r) const
+{
+	vec4 result;
+	result.x = x - r.x;
+	result.y = y - r.y;
+	result.z = z - r.z;
+	result.w = w - r.w;
+	return result;
+}
+
+vec4 vec4::operator*(const vec4 &r) const
+{
+	vec4 result;
+	result.x = x * r.x;
+	result.y = y * r.y;
+	result.z = z * r.z;
+	result.w = w * r.w;
+	return result;
+}
+
+vec4 vec4::operator/(const vec4 &r) const
+{
+	vec4 result;
+	result.x = x / r.x;
+	result.y = y / r.y;
+	result.z = z / r.z;
+	result.w = w / r.w;
+	return result;
+}
+
+vec4 vec4::operator+(float r) const
+{
+	vec4 result;
+	result.x = x + r;
+	result.y = y + r;
+	result.z = z + r;
+	result.w = w + r;
+	return result;
+}
+
+vec4 vec4::operator-(float r) const
+{
+	vec4 result;
+	result.x = x - r;
+	result.y = y - r;
+	result.z = z - r;
+	result.w = w - r;
+	return result;
+}
+
+vec4 vec4::operator*(float r) const
+{
+	vec4 result;
+	result.x = x * r;
+	result.y = y * r;
+	result.z = z * r;
+	result.w = w * r;
+	return result;
+}
+
+vec4 vec4::operator/(float r) const
+{
+	vec4 result;
+	result.x = x / r;
+	result.y = y / r;
+	result.z = z / r;
+	result.w = w / r;
+	return result;
+}
+
+vec4 &vec4::operator+=(const vec4 &r)
+{
+	*this = operator+(r);
 	return *this;
 }
 
-vec4 &vec4::subtract(const vec4 &other)
+vec4 &vec4::operator-=(const vec4 &r)
 {
-	x -= other.x;
-	y -= other.y;
-	z -= other.z;
-	w -= other.w;
-	
+	*this = operator-(r);
 	return *this;
 }
 
-vec4 &vec4::multiply(const vec4 &other)
+vec4 &vec4::operator*=(const vec4 &r)
 {
-	x *= other.x;
-	y *= other.y;
-	z *= other.z;
-	w *= other.w;
-	
+	*this = operator*(r);
 	return *this;
 }
 
-vec4 &vec4::divide(const vec4 &other)
+vec4 &vec4::operator/=(const vec4 &r)
 {
-	x /= other.x;
-	y /= other.y;
-	z /= other.z;
-	w /= other.w;
-	
+	*this = operator/(r);
 	return *this;
+}
+
+vec4 &vec4::operator+=(float r)
+{
+	*this = operator+(r);
+	return *this;
+}
+
+vec4 &vec4::operator-=(float r)
+{
+	*this = operator-(r);
+	return *this;
+}
+
+vec4 &vec4::operator*=(float r)
+{
+	*this = operator*(r);
+	return *this;
+}
+
+vec4 &vec4::operator/=(float r)
+{
+	*this = operator/(r);
+	return *this;
+}
+
+bool vec4::operator==(const vec4 &r) const
+{
+	return x == r.x && y == r.y && z == r.z && w == r.w;
+}
+
+bool vec4::operator!=(const vec4 &r) const
+{
+	return !operator==(r);
+}
+
+bool vec4::operator==(float r) const
+{
+	return x == r && y == r && z == r && w == r;
+}
+
+bool vec4::operator!=(float r) const
+{
+	return !operator==(r);
 }
 
 float vec4::dot(const vec4 &other) const
@@ -83,54 +191,6 @@ float vec4::length() const
 	return sqrtf(lengthSqr());
 }
 
-vec4 operator+(const vec4 &left, const vec4 &right)
-{
-	vec4 result;
-
-	result.x = left.x + right.x;
-	result.y = left.y + right.y;
-	result.z = left.z + right.z;
-	result.w = left.w + right.w;
-
-	return result;
-}
-
-vec4 operator-(const vec4 &left, const vec4 &right)
-{
-	vec4 result;
-
-	result.x = left.x - right.x;
-	result.y = left.y - right.y;
-	result.z = left.z - right.z;
-	result.w = left.w - right.w;
-	
-	return result;
-}
-
-vec4 operator*(const vec4 &left, const vec4 &right)
-{
-	vec4 result;
-
-	result.x = left.x * right.x;
-	result.y = left.y * right.y;
-	result.z = left.z * right.z;
-	result.w = left.w * right.w;
-	
-	return result;
-}
-
-vec4 operator/(const vec4 &left, const vec4 &right)
-{
-	vec4 result;
-
-	result.x = left.x / right.x;
-	result.y = left.y / right.y;
-	result.z = left.z / right.z;
-	result.w = left.w / right.w;
-	
-	return result;
-}
-
 vec4 &vec4::normalize()
 {
 	float length = this->length();
@@ -140,36 +200,6 @@ vec4 &vec4::normalize()
 	w /= length;
 
 	return *this;
-}
-
-bool operator==(const vec4 &left, const vec4 &right)
-{
-	return left.x == right.x && left.y == right.y && left.z == right.z && left.w == right.w;
-}
-
-bool operator!=(const vec4 &left, const vec4 &right)
-{
-	return !(left == right);
-}
-
-vec4 &vec4::operator+=(const vec4 &other)
-{
-	return add(other);
-}	
-
-vec4 &vec4::operator-=(const vec4 &other)
-{
-	return subtract(other);
-}	
-
-vec4 &vec4::operator*=(const vec4 &other)
-{
-	return multiply(other);
-}	
-
-vec4 &vec4::operator/=(const vec4 &other)
-{
-	return divide(other);
 }
 
 std::ostream& operator<<(std::ostream& stream, const vec4& vector)

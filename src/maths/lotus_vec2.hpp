@@ -3,38 +3,47 @@
 
 #include <iostream>
 
-struct vec2
+class vec2
 {
+public:
 	static const vec2 ZERO;
 	
 	float x, y;
-
+	
 	vec2();
-	vec2(const float &value);
-	vec2(const float &x, const float &y);
+	vec2(float value);
+	vec2(float x, float y);
 
-	vec2 &add(const vec2 &other);
-	vec2 &subtract(const vec2 &other);
-	vec2 &multiply(const vec2 &other);
-	vec2 &divide(const vec2 &other);
-
+	vec2 operator+(const vec2 &r) const;
+	vec2 operator-(const vec2 &r) const;
+	vec2 operator*(const vec2 &r) const;
+	vec2 operator/(const vec2 &r) const;
+	
+	vec2 operator+(float r) const;
+	vec2 operator-(float r) const;
+	vec2 operator*(float r) const;
+	vec2 operator/(float r) const;
+	
+	vec2 &operator+=(const vec2 &r);
+	vec2 &operator-=(const vec2 &r);
+	vec2 &operator*=(const vec2 &r);
+	vec2 &operator/=(const vec2 &r);
+	
+	vec2 &operator+=(float r);
+	vec2 &operator-=(float r);
+	vec2 &operator*=(float r);
+	vec2 &operator/=(float r);
+	
+	bool operator==(const vec2 &r) const;
+	bool operator!=(const vec2 &r) const;
+	
+	bool operator==(float r) const;
+	bool operator!=(float r) const;
+	
 	float dot(const vec2 &other) const;
 	float lengthSqr() const;
 	float length() const;
 	vec2 &normalize();
-
-	friend vec2 operator+(const vec2 &left, const vec2 &right);
-	friend vec2 operator-(const vec2 &left, const vec2 &right);
-	friend vec2 operator*(const vec2 &left, const vec2 &right);
-	friend vec2 operator/(const vec2 &left, const vec2 &right);
-
-	friend bool operator==(const vec2 &left, const vec2 &right);
-	friend bool operator!=(const vec2 &left, const vec2 &right);
-
-	vec2 &operator+=(const vec2 &other);
-	vec2 &operator-=(const vec2 &other);
-	vec2 &operator*=(const vec2 &other);
-	vec2 &operator/=(const vec2 &other);
 
 	friend std::ostream &operator<<(std::ostream &stream, const vec2 &vector);
 };

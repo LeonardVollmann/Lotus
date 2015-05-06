@@ -10,48 +10,148 @@ vec2::vec2()
 	this->y = 0.0f;
 }
 
-vec2::vec2(const float &value)
+vec2::vec2(float value)
 {
 	this->x = value;
 	this->y = value;
 }
 
-vec2::vec2(const float &x, const float &y)
+vec2::vec2(float x, float y)
 {
 	this->x = x;
 	this->y = y;
 }
 
-vec2 &vec2::add(const vec2 &other)
+vec2 vec2::operator+(const vec2 &r) const
 {
-	x += other.x;
-	y += other.y;
+	vec2 result;
+	result.x = x + r.x;
+	result.y = y + r.y;
+	return result;
+}
 
+vec2 vec2::operator-(const vec2 &r) const
+{
+	vec2 result;
+	result.x = x - r.x;
+	result.y = y - r.y;
+	return result;
+}
+
+vec2 vec2::operator*(const vec2 &r) const
+{
+	vec2 result;
+	result.x = x * r.x;
+	result.y = y * r.y;
+	return result;
+}
+
+vec2 vec2::operator/(const vec2 &r) const
+{
+	vec2 result;
+	result.x = x / r.x;
+	result.y = y / r.y;
+	return result;
+}
+
+vec2 vec2::operator+(float r) const
+{
+	vec2 result;
+	result.x = x + r;
+	result.y = y + r;
+	return result;
+}
+
+vec2 vec2::operator-(float r) const
+{
+	vec2 result;
+	result.x = x - r;
+	result.y = y - r;
+	return result;
+}
+
+vec2 vec2::operator*(float r) const
+{
+	vec2 result;
+	result.x = x * r;
+	result.y = y * r;
+	return result;
+}
+
+vec2 vec2::operator/(float r) const
+{
+	vec2 result;
+	result.x = x / r;
+	result.y = y / r;
+	return result;
+}
+
+vec2 &vec2::operator+=(const vec2 &r)
+{
+	*this = operator+(r);
 	return *this;
 }
 
-vec2 &vec2::subtract(const vec2 &other)
+vec2 &vec2::operator-=(const vec2 &r)
 {
-	x -= other.x;
-	y -= other.y;
-	
+	*this = operator-(r);
 	return *this;
 }
 
-vec2 &vec2::multiply(const vec2 &other)
+vec2 &vec2::operator*=(const vec2 &r)
 {
-	x *= other.x;
-	y *= other.y;
-	
+	*this = operator*(r);
 	return *this;
 }
 
-vec2 &vec2::divide(const vec2 &other)
+vec2 &vec2::operator/=(const vec2 &r)
 {
-	x /= other.x;
-	y /= other.y;
-	
+	*this = operator/(r);
 	return *this;
+}
+
+vec2 &vec2::operator+=(float r)
+{
+	*this = operator+(r);
+	return *this;
+}
+
+vec2 &vec2::operator-=(float r)
+{
+	*this = operator-(r);
+	return *this;
+}
+
+vec2 &vec2::operator*=(float r)
+{
+	*this = operator*(r);
+	return *this;
+}
+
+vec2 &vec2::operator/=(float r)
+{
+	*this = operator/(r);
+	return *this;
+}
+
+bool vec2::operator==(const vec2 &r) const
+{
+	return x == r.x && y == r.y;
+}
+
+bool vec2::operator!=(const vec2 &r) const
+{
+	return !operator==(r);
+}
+
+bool vec2::operator==(float r) const
+{
+	return x == r && y == r;
+}
+
+bool vec2::operator!=(float r) const
+{
+	return !operator==(r);
 }
 
 float vec2::dot(const vec2 &other) const
@@ -76,76 +176,6 @@ vec2 &vec2::normalize()
 	y /= length;
 
 	return *this;
-}
-
-vec2 operator+(const vec2 &left, const vec2 &right)
-{
-	vec2 result;
-
-	result.x = left.x + right.x;
-	result.y = left.y + right.y;
-
-	return result;
-}
-
-vec2 operator-(const vec2 &left, const vec2 &right)
-{
-	vec2 result;
-
-	result.x = left.x - right.x;
-	result.y = left.y - right.y;
-	
-	return result;
-}
-
-vec2 operator*(const vec2 &left, const vec2 &right)
-{
-	vec2 result;
-
-	result.x = left.x * right.x;
-	result.y = left.y * right.y;
-	
-	return result;
-}
-
-vec2 operator/(const vec2 &left, const vec2 &right)
-{
-	vec2 result;
-
-	result.x = left.x / right.x;
-	result.y = left.y / right.y;
-	
-	return result;
-}
-
-bool operator==(const vec2 &left, const vec2 &right)
-{
-	return left.x == right.x && left.y == right.y;
-}
-
-bool operator!=(const vec2 &left, const vec2 &right)
-{
-	return !(left == right);
-}
-
-vec2 &vec2::operator+=(const vec2 &other)
-{
-	return add(other);
-}	
-
-vec2 &vec2::operator-=(const vec2 &other)
-{
-	return subtract(other);
-}	
-
-vec2 &vec2::operator*=(const vec2 &other)
-{
-	return multiply(other);
-}	
-
-vec2 &vec2::operator/=(const vec2 &other)
-{
-	return divide(other);
 }
 
 std::ostream& operator<<(std::ostream& stream, const vec2& vector)

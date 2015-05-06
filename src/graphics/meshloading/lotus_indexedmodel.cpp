@@ -88,7 +88,7 @@ void IndexedModel::calcNormals()
 		vec3 d1 = v1 - v0;
 		vec3 d2 = v2 - v0;
 		
-		vec3 normal = cross(d1, d2).normalize();
+		vec3 normal = d1.cross(d2).normalize();
 		
 		for (unsigned int j = 0; j < 3; j++)
 		{
@@ -98,13 +98,4 @@ void IndexedModel::calcNormals()
 			m_normals[index + 2] = m_normals[index + 2] + normal.z;
 		}
 	}
-	
-	// for(int i = 0; i < m_normals.size(); i += 3)
-	// {
-	// 	vec3 normal = vec3(m_normals[i], m_normals[i + 1], m_normals[i + 2]).normalize();
-
-	// 	m_normals[i + 0] = normal.x;
-	// 	m_normals[i + 1] = normal.y;
-	// 	m_normals[i + 2] = normal.z;
-	// }
 }

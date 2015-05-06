@@ -96,6 +96,7 @@ void Engine::run()
 
 		if (accumulatedDelta >= 1.0)
 		{
+			m_game->tick();
 			std::cout << updates << " updates, " << frames << " frames." << std::endl;
 			updates = 0;
 			frames = 0;

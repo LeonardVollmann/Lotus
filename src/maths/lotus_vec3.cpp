@@ -12,75 +12,174 @@ vec3::vec3()
 	this->z = 0.0f;
 }
 
-vec3::vec3(const float &value)
+vec3::vec3(float value)
 {
 	this->x = value;
 	this->y = value;
 	this->z = value;
 }
 
-vec3::vec3(const float &x, const float &y, const float &z)
+vec3::vec3(float x, float y, float z)
 {
 	this->x = x;
 	this->y = y;
 	this->z = z;
 }
 
-vec3 &vec3::add(const vec3 &other)
+vec3 vec3::operator+(const vec3 &r) const
 {
-	x += other.x;
-	y += other.y;
-	z += other.z;
+	vec3 result;
+	result.x = x + r.x;
+	result.y = y + r.y;
+	result.z = z + r.z;
+	return result;
+}
 
+vec3 vec3::operator-(const vec3 &r) const
+{
+	vec3 result;
+	result.x = x - r.x;
+	result.y = y - r.y;
+	result.z = z - r.z;
+	return result;
+}
+
+vec3 vec3::operator*(const vec3 &r) const
+{
+	vec3 result;
+	result.x = x * r.x;
+	result.y = y * r.y;
+	result.z = z * r.z;
+	return result;
+}
+
+vec3 vec3::operator/(const vec3 &r) const
+{
+	vec3 result;
+	result.x = x / r.x;
+	result.y = y / r.y;
+	result.z = z / r.z;
+	return result;
+}
+
+vec3 vec3::operator+(float r) const
+{
+	vec3 result;
+	result.x = x + r;
+	result.y = y + r;
+	result.z = z + r;
+	return result;
+}
+
+vec3 vec3::operator-(float r) const
+{
+	vec3 result;
+	result.x = x - r;
+	result.y = y - r;
+	result.z = z - r;
+	return result;
+}
+
+vec3 vec3::operator*(float r) const
+{
+	vec3 result;
+	result.x = x * r;
+	result.y = y * r;
+	result.z = z * r;
+	return result;
+}
+
+vec3 vec3::operator/(float r) const
+{
+	vec3 result;
+	result.x = x / r;
+	result.y = y / r;
+	result.z = z / r;
+	return result;
+}
+
+vec3 &vec3::operator+=(const vec3 &r)
+{
+	*this = operator+(r);
 	return *this;
 }
 
-vec3 &vec3::subtract(const vec3 &other)
+vec3 &vec3::operator-=(const vec3 &r)
 {
-	x -= other.x;
-	y -= other.y;
-	z -= other.z;
-	
+	*this = operator-(r);
 	return *this;
 }
 
-vec3 &vec3::multiply(const vec3 &other)
+vec3 &vec3::operator*=(const vec3 &r)
 {
-	x *= other.x;
-	y *= other.y;
-	z *= other.z;
-	
+	*this = operator*(r);
 	return *this;
 }
 
-vec3 &vec3::divide(const vec3 &other)
+vec3 &vec3::operator/=(const vec3 &r)
 {
-	x /= other.x;
-	y /= other.y;
-	z /= other.z;
-	
+	*this = operator/(r);
 	return *this;
 }
 
-vec3 &vec3::rotate(const quat &rotation)
+vec3 &vec3::operator+=(float r)
 {
-	quat q = rotation * (*this) * rotation.conjugate();
-
-	x = q.x;
-	y = q.y;
-	z = q.z;
-
+	*this = operator+(r);
 	return *this;
 }
 
-vec3 &vec3::rotate(float angle, const vec3 &axis)
+vec3 &vec3::operator-=(float r)
 {
-	return rotate(quat(angle, axis));
+	*this = operator-(r);
+	return *this;
+}
+
+vec3 &vec3::operator*=(float r)
+{
+	*this = operator*(r);
+	return *this;
+}
+
+vec3 &vec3::operator/=(float r)
+{
+	*this = operator/(r);
+	return *this;
+}
+
+bool vec3::operator==(const vec3 &r) const
+{
+	return x == r.x && y == r.y && z == r.z;
+}
+
+bool vec3::operator!=(const vec3 &r) const
+{
+	return !operator==(r);
+}
+
+bool vec3::operator==(float r) const
+{
+	return x == r && y == r && z == r;
+}
+
+bool vec3::operator!=(float r) const
+{
+	return !operator==(r);
 }
 
 float vec3::dot(const vec3 &other) const
 {
 	return x * other.x + y * other.y + z * other.z;
+}
+
+vec3 vec3::cross(const vec3 &other) const
+{
+	vec3 result;
+	
+	result.x = y * other.z - z * other.y;
+	result.y = z * other.x - x * other.z;
+	result.z = x * other.y - y * other.x;
+	
+	return result;
 }
 
 float vec3::lengthSqr() const
@@ -93,50 +192,6 @@ float vec3::length() const
 	return sqrtf(lengthSqr());
 }
 
-vec3 operator+(const vec3 &left, const vec3 &right)
-{
-	vec3 result;
-
-	result.x = left.x + right.x;
-	result.y = left.y + right.y;
-	result.z = left.z + right.z;
-
-	return result;
-}
-
-vec3 operator-(const vec3 &left, const vec3 &right)
-{
-	vec3 result;
-
-	result.x = left.x - right.x;
-	result.y = left.y - right.y;
-	result.z = left.z - right.z;
-	
-	return result;
-}
-
-vec3 operator*(const vec3 &left, const vec3 &right)
-{
-	vec3 result;
-
-	result.x = left.x * right.x;
-	result.y = left.y * right.y;
-	result.z = left.z * right.z;
-	
-	return result;
-}
-
-vec3 operator/(const vec3 &left, const vec3 &right)
-{
-	vec3 result;
-
-	result.x = left.x / right.x;
-	result.y = left.y / right.y;
-	result.z = left.z / right.z;
-	
-	return result;
-}
-
 vec3 &vec3::normalize()
 {
 	float length = this->length();
@@ -147,45 +202,20 @@ vec3 &vec3::normalize()
 	return *this;
 }
 
-vec3 cross(const vec3 &a, const vec3 &b)
+vec3 &vec3::rotate(const quat &rotation)
 {
-	vec3 result;
-
-	result.x = a.y * b.z - a.z * b.y;
-	result.y = a.z * b.x - a.x * b.z;
-	result.z = a.x * b.y - a.y * b.x;
-
-	return result;
+	quat q = rotation * (*this) * rotation.conjugate();
+	
+	x = q.x;
+	y = q.y;
+	z = q.z;
+	
+	return *this;
 }
 
-bool operator==(const vec3 &left, const vec3 &right)
+vec3 &vec3::rotate(float angle, const vec3 &axis)
 {
-	return left.x == right.x && left.y == right.y && left.z == right.z;
-}
-
-bool operator!=(const vec3 &left, const vec3 &right)
-{
-	return !(left == right);
-}
-
-vec3 &vec3::operator+=(const vec3 &other)
-{
-	return add(other);
-}	
-
-vec3 &vec3::operator-=(const vec3 &other)
-{
-	return subtract(other);
-}	
-
-vec3 &vec3::operator*=(const vec3 &other)
-{
-	return multiply(other);
-}	
-
-vec3 &vec3::operator/=(const vec3 &other)
-{
-	return divide(other);
+	return rotate(quat(angle, axis));
 }
 
 std::ostream& operator<<(std::ostream& stream, const vec3& vector)

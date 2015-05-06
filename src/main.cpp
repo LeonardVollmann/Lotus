@@ -57,6 +57,7 @@ public:
 	{}
 
 	virtual ~TestGame() {}
+	virtual void tick() {}
 
 	virtual void init() override
 	{

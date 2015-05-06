@@ -30,6 +30,54 @@ quat::quat(float angle, const vec3 &axis)
 	w = cosHalfAngle;
 }
 
+quat quat::operator*(const quat &r) const
+{
+	const float w_ = w * r.w - x * r.x - y * r.y - z * r.z;
+	const float x_ = x * r.w + w * r.x + y * r.z - z * r.y;
+	const float y_ = y * r.w + w * r.y + z * r.x - x * r.z;
+	const float z_ = z * r.w + w * r.z + x * r.y - y * r.x;
+	
+	return quat(x_, y_, z_, w_);
+}
+
+quat quat::operator*(const vec3 &r) const
+{
+	const float w_ = -x * r.x - y * r.y - z * r.z;
+	const float x_ =  w * r.x + y * r.z - z * r.y;
+	const float y_ =  w * r.y + z * r.x - x * r.z;
+	const float z_ =  w * r.z + x * r.y - y * r.x;
+	
+	return quat(x_, y_, z_, w_);
+}
+
+quat quat::operator*(float r) const
+{
+	quat result;
+	result.x = x * r;
+	result.y = y * r;
+	result.z = z * r;
+	result.w = w * r;
+	return result;
+}
+
+quat &quat::operator*=(const quat &r)
+{
+	*this = operator*(r);
+	return *this;
+}
+
+quat &quat::operator*=(const vec3 &r)
+{
+	*this = operator*(r);
+	return *this;
+}
+
+quat &quat::operator*=(float r)
+{
+	*this = operator*(r);
+	return *this;
+}
+
 float quat::lengthSqr() const
 {
 	return x * x + y * y + z * z + w * w;
@@ -55,37 +103,6 @@ quat &quat::normalize()
 quat quat::conjugate() const
 {
 	return quat(-x, -y, -z, w);
-}	
-
-quat operator*(const quat &left, const quat &right)
-{
-	const float w_ = left.w * right.w - left.x * right.x - left.y * right.y - left.z * right.z;
-	const float x_ = left.x * right.w + left.w * right.x + left.y * right.z - left.z * right.y;
-	const float y_ = left.y * right.w + left.w * right.y + left.z * right.x - left.x * right.z;
-	const float z_ = left.z * right.w + left.w * right.z + left.x * right.y - left.y * right.x;
-	
-	return quat(x_, y_, z_, w_);
-}
-
-quat operator*(const quat &left, const vec3 &right)
-{
-	const float w_ = -left.x * right.x - left.y * right.y - left.z * right.z;
-	const float x_ =  left.w * right.x + left.y * right.z - left.z * right.y;
-	const float y_ =  left.w * right.y + left.z * right.x - left.x * right.z;
-	const float z_ =  left.w * right.z + left.x * right.y - left.y * right.x;
-	
-	return quat(x_, y_, z_, w_);
-}
-
-quat &quat::multiply(const quat &other)
-{
-	*this = (*this) * other;
-	return *this;
-}
-
-quat &quat::operator*=(const quat &other)
-{
-	return multiply(other);
 }
 
 vec3 quat::getForward() const
