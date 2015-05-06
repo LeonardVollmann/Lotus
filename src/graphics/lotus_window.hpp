@@ -20,9 +20,10 @@ public:
 	void clear();
 	void update();
 
-	inline int getWidth() 		const { return m_width; }
-	inline int getHeight() 		const { return m_height; }
-	inline float getAspect() 	const { return (float) m_width / (float) m_height; }
+	inline GLFWwindow *getWindow()	const { return m_window; }
+	inline int getWidth()			const { return m_width; }
+	inline int getHeight()			const { return m_height; }
+	inline float getAspect()		const { return (float) m_width / (float) m_height; }
 
 	inline void setWidth(int width)		{ m_width = width; }
 	inline void setHeight(int height)	{ m_height = height; }

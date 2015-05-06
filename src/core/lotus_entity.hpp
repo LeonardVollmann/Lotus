@@ -19,14 +19,15 @@ public:
 	Entity(const Transform &transform = Transform());
 	virtual ~Entity();
 
-	void update(double delta);
-	void render(IRenderer *renderer) const;
+	virtual void update(float delta);
+	virtual void render(IRenderer *renderer) const;
 	Entity &addChild(Entity *child);
 	Entity &addComponent(EntityComponent *component);
 	std::vector<Entity*> getAllDescendants() const;
 
 	inline Transform &getTransform() { return m_transform; }
-	inline Entity *getParent() const { return m_parent; }
+	inline const Transform &getTransform()	const { return m_transform; }
+	inline Entity *getParent()				const { return m_parent; }
 };
 
 #endif

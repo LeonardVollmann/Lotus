@@ -19,7 +19,7 @@ public:
 	void setGame(IGame *game);
 	void start();
 	void stop();
-	void update(double delta);
+	void update(float delta);
 	void render();
 private:
 	void run();

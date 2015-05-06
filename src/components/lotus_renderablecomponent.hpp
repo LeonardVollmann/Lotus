@@ -15,7 +15,6 @@ public:
 	virtual ~RenderableComponent();
 	
 	virtual void render(IRenderer *renderer) const override;
-	virtual void update(double delta) override {}
 	
 	void bind() const;
 	

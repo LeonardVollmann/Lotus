@@ -6,7 +6,6 @@
 void callback_resize(GLFWwindow *window, int width, int height);
 void callback_key(GLFWwindow* window, int key, int scancode, int action, int mods);
 void callback_mouse_button(GLFWwindow* window, int button, int action, int mods);
-void callback_cursor_pos(GLFWwindow* window, double xpos, double ypos);
 
 Window::Window(int width, int height, const char *title) :
 	m_width(width),
@@ -65,7 +64,6 @@ bool Window::init()
 	glfwSetWindowSizeCallback(m_window, callback_resize);
 	glfwSetKeyCallback(m_window, callback_key);
 	glfwSetMouseButtonCallback(m_window, callback_mouse_button);
-	glfwSetCursorPosCallback(m_window, callback_cursor_pos);
 	glfwMakeContextCurrent(m_window);
 
 	Input::setWindow(m_window);
@@ -102,9 +100,4 @@ void callback_key(GLFWwindow* window, int key, int scancode, int action, int mod
 void callback_mouse_button(GLFWwindow* window, int button, int action, int mods)
 {
 	Input::mouseButtonCallback(window, button, action, mods);
-}
-
-void callback_cursor_pos(GLFWwindow* window, double xpos, double ypos)
-{
-	Input::cursorPosCallback(window, xpos, ypos);
 }

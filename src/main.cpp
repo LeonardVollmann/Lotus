@@ -22,6 +22,8 @@
 #include "graphics/meshloading/lotus_indexedmodel.hpp"
 #include "graphics/meshloading/lotus_objloader.hpp"
 #include "components/lotus_renderablecomponent.hpp"
+#include "components/lotus_freemove.hpp"
+#include "components/lotus_freelook.hpp"
 #include "core/lotus_input.hpp"
 #include "core/lotus_transform.hpp"
 #include "core/lotus_engine.hpp"
@@ -32,14 +34,15 @@ class TestGame : public IGame
 private:
 	Entity *m_dragon;
 	Entity *m_plane;
-	Camera m_camera;
+	Camera *m_camera;
 	SpotLight *m_spotLight;
 	PointLight *m_pointLights[8];
 	float m_temp = 0.0f;
 public:
 	TestGame() :
 		IGame(),
-		m_spotLight(new SpotLight(vec3(1.0f, 1.0f, 1.0f), 10.0f, Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), vec3(m_camera.getTransform().getRot().getForward()), 0.7f)),
+		m_camera(new Camera()),
+		m_spotLight(new SpotLight(vec3(1.0f, 1.0f, 1.0f), 10.0f, Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), vec3(m_camera->getTransform().getRot().getForward()), 0.7f)),
 		m_pointLights
 		{
 			new PointLight(vec3(1.0f, 1.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3(-7.0f, 0.0f, 0.0f)),
@@ -58,6 +61,7 @@ public:
 	virtual void init() override
 	{
 //		glfwSwapInterval(0);
+//		Input::setMouseLocked(true);
 		
 		Texture texture("default.png");
 		Material *material = new Material();
@@ -68,6 +72,11 @@ public:
 		
         m_dragon = new Entity();
 		m_plane = new Entity();
+		
+		m_camera->bind();
+		m_camera->addComponent(new FreeMove(10.0f));
+		m_camera->addComponent(new FreeLook(5.0f));
+		add(m_camera);
 		
 		m_dragon->getTransform().translate(vec3(0.0f, 2.0f, -7.5f));
 		m_plane->getTransform().rotate(quat(toRadians(90.0f), vec3(-1.0f, 0.0f, 0.0f)));
@@ -106,9 +115,8 @@ public:
 		}
 		
 		m_root->update(delta);
-		m_camera.update();
-		m_spotLight->setPos(m_camera.getTransform().getPos());
-		m_spotLight->setDirection(m_camera.getTransform().getRot().getBack());
+		m_spotLight->setPos(m_camera->getTransform().getPos());
+		m_spotLight->setDirection(m_camera->getTransform().getRot().getBack());
 		m_dragon->getTransform().rotate(quat(toRadians(1.5f), vec3(0.0f, 1.0f, 0.0f)));
 	}
 };

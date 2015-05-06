@@ -17,7 +17,7 @@ Entity::~Entity()
 	}
 }
 
-void Entity::update(double delta)
+void Entity::update(float delta)
 {
 	for (auto it = m_children.begin(); it < m_children.end(); it++)
 	{

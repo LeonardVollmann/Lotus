@@ -1,6 +1,7 @@
 #include "lotus_engine.hpp"
 #include "lotus_igame.hpp"
 #include "lotus_time.hpp"
+#include "lotus_input.hpp"
 
 #include <string>
 #include <iostream>
@@ -41,10 +42,11 @@ void Engine::stop()
 	m_running = false;
 }
 
-void Engine::update(double delta)
+void Engine::update(float delta)
 {
 	glfwPollEvents();
-
+	Input::update(m_window.getWindow());
+	
 	m_game->update(delta);
 }
 
@@ -85,7 +87,7 @@ void Engine::run()
 		while (unprocessed >= freq)
 		{
 			unprocessed -= freq;
-			update(delta);
+			update(freq);
 			updates++;
 		}
 
