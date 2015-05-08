@@ -32,8 +32,7 @@ Quad::Quad(const vec2 &size, const vec4 &color) :
 		-size.x, -size.y, 0.0f,
 		 size.x, -size.y, 0.0f,
 		 size.x,  size.y, 0.0f,
-		-size.x,  size.y, 0.0f }, 4, (GLushort[]) {0, 1, 2, 0, 2, 3}, 6),
-	m_size(size)
+		-size.x,  size.y, 0.0f }, 4, (GLushort[]) {0, 1, 2, 0, 2, 3}, 6)
 {
 	GLfloat colors[] {
 		color.x, color.y, color.z, color.w,
@@ -45,18 +44,18 @@ Quad::Quad(const vec2 &size, const vec4 &color) :
 	m_vao.addBuffer(new Buffer(colors, 4, 4));
 }
 
-Sprite::Sprite() :
+Sprite::Sprite(const vec2 &size) :
 	Renderable((GLfloat[]) {
-		-1.0f, -1.0f, 0.0f,
-		 1.0f, -1.0f, 0.0f,
-		 1.0f,  1.0f, 0.0f,
-		-1.0f,  1.0f, 0.0f }, 4, (GLushort[]) {0, 1, 2, 0, 2, 3}, 6)
+		-size.x, -size.y, 0.0f,
+		 size.x, -size.y, 0.0f,
+		 size.x,  size.y, 0.0f,
+		-size.x,  size.y, 0.0f  }, 4, (GLushort[]) {0, 1, 2, 0, 2, 3}, 6)
 {
 	GLfloat texCoords[] {
-		0.0f, 0.0f,
-		1.0f, 0.0f,
+		0.0f, 1.0f,
 		1.0f, 1.0f,
-		0.0f, 1.0f
+		1.0f, 0.0f,
+		0.0f, 0.0f,
 	};
 	
 	GLfloat normals[] {

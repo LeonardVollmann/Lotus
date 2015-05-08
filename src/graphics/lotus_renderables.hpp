@@ -39,16 +39,14 @@ public:
 
 class Quad : public Renderable
 {
-private:
-	vec2 m_size;
 public:
-	Quad(const vec2 &size, const vec4 &color) ;
+	Quad(const vec2 &size, const vec4 &color);
 };
 
 class Sprite : public Renderable
 {
 public:
-	Sprite();
+	Sprite(const vec2 &size);
 };
 
 #endif

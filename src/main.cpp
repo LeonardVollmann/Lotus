@@ -24,6 +24,7 @@
 #include "components/lotus_renderablecomponent.hpp"
 #include "components/lotus_freemove.hpp"
 #include "components/lotus_freelook.hpp"
+#include "components/lotus_animation2d.hpp"
 #include "core/lotus_input.hpp"
 #include "core/lotus_transform.hpp"
 #include "core/lotus_engine.hpp"
@@ -34,6 +35,7 @@ class TestGame : public IGame
 private:
 	Entity *m_dragon;
 	Entity *m_plane;
+	Entity *m_sprite;
 	Camera *m_camera;
 	SpotLight *m_spotLight;
 	PointLight *m_pointLights[8];
@@ -64,15 +66,21 @@ public:
 //		glfwSwapInterval(0);
 //		Input::setMouseLocked(true);
 		
-		Texture texture("default.png");
 		Material *material = new Material();
-		material->addTexture("diffuse", texture);
-		material->addVec4("color", vec4(0.0f, 0.0f, 0.0f, 0.0f));
 		material->addFloat("specularIntensity", 2.0f);
 		material->addFloat("specularPower", 32.0f);
 		
+		std::vector<Texture*> animationFrames;
+		Material *spriteMaterial = new Material();
+		material->addFloat("specularIntensity", 2.0f);
+		material->addFloat("specularPower", 8.0f);
+		animationFrames.push_back(new Texture("animation/0.png"));
+		animationFrames.push_back(new Texture("animation/1.png"));
+		animationFrames.push_back(new Texture("animation/2.png"));
+		
         m_dragon = new Entity();
 		m_plane = new Entity();
+		m_sprite = new Entity();
 		
 		m_camera->bind();
 		m_camera->addComponent(new FreeMove(10.0f));
@@ -83,9 +91,12 @@ public:
 		m_plane->getTransform().rotate(quat(toRadians(90.0f), vec3(-1.0f, 0.0f, 0.0f)));
 		m_plane->getTransform().translate(vec3(0.0f, -1.0f, 0.0f));
 		m_plane->getTransform().scale(vec3(10.0f, 10.0f, 1.0f));
+		m_sprite->getTransform().translate(vec3(0.0f, 2.0f, -5.0f));
+		m_sprite->getTransform().scale(vec3(2.0f, 2.0f, 1.0f));
 		
         m_dragon->addComponent(new RenderableComponent(new Mesh(OBJLoader::loadIndexedModel("dragon").finalize()), material));
-		m_plane->addComponent(new RenderableComponent(new Sprite(), material));
+		m_plane->addComponent(new RenderableComponent(new Sprite(vec2(1.0f, 1.0f)), material));
+		m_sprite->addComponent(new Animation2D(new Sprite(vec2(1.0f, 1.0f)), spriteMaterial, animationFrames, 1.0f, true));
 		
 		ForwardAmbient::getInstance().setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
 		ForwardDirectional::getInstance().addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.3f, vec3(1.0f, 1.0f, 1.0f).normalize()));
@@ -99,6 +110,7 @@ public:
 		Layer *scene = new Layer(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), new ForwardRenderer());
 //		scene->addChild(m_dragon);
 		scene->addChild(m_plane);
+		scene->addChild(m_sprite);
 
 		addLayer(scene);
 	}

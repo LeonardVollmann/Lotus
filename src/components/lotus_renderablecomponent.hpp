@@ -7,16 +7,15 @@
 
 class RenderableComponent : public EntityComponent
 {
-private:
+protected:
 	Renderable	*m_renderable;
 	Material	*m_material;
 public:
 	RenderableComponent(Renderable *renderable, Material *material);
 	virtual ~RenderableComponent();
 	
+	virtual void bind() const;
 	virtual void render(IRenderer *renderer) const override;
-	
-	void bind() const;
 	
 	inline const Renderable *getRenderable()	const { return m_renderable; }
 	inline const Material *getMaterial()		const { return m_material; }
