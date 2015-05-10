@@ -9,7 +9,7 @@ vec2 Input::s_cursorPos;
 vec2 Input::s_oldCursorPos;
 vec2 Input::s_cursorPosDelta;
 
-GLFWwindow *Input::s_window;
+Window *Input::s_window;
 
 void Input::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -21,15 +21,16 @@ void Input::mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 	s_mouseButtons[button] = action == GLFW_PRESS;
 }
 
-void Input::update(GLFWwindow *window)
+void Input::update()
 {
-	int width, height;
-	double xpos, ypos;
-	glfwGetWindowSize(window, &width, &height);
-	glfwGetCursorPos(window, &xpos, &ypos);
+	float width = (float) s_window->getWidth();
+	float height = (float) s_window->getHeight();
 	
-	const double xNormalized = (xpos / (double) width - 0.5) * 2.0;
-	const double yNormalized = (ypos / (double) height - 0.5) * 2.0;
+	double xpos, ypos;
+	glfwGetCursorPos(s_window->getWindow(), &xpos, &ypos);
+	
+	const float xNormalized = -(width / 2.0f - (float) xpos) / width * 2.0f;
+	const float yNormalized = -(height / 2.0f - (float) ypos) / height * 2.0f;
 	
 	s_oldCursorPos = s_cursorPos;
 	s_cursorPos = vec2(xNormalized, yNormalized);
@@ -37,8 +38,8 @@ void Input::update(GLFWwindow *window)
 	
 	if (s_mouseLocked)
 	{
-		glfwSetCursorPos(window, (float) width / 2.0f, (float) height / 2.0f);
-		s_cursorPos = vec2();
+		glfwSetCursorPos(s_window->getWindow(), (float) width / 2.0f, (float) height / 2.0f);
+		s_cursorPos = vec2::ZERO;
 	}
 }
 
@@ -48,10 +49,10 @@ void Input::setCursorVisible(bool visible)
 
 	if (s_cursorVisible)
 	{
-		glfwSetInputMode(s_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		glfwSetInputMode(s_window->getWindow(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	}
 	else
 	{
-		glfwSetInputMode(s_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+		glfwSetInputMode(s_window->getWindow(), GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 	}
 }

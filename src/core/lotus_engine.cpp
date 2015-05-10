@@ -45,7 +45,7 @@ void Engine::stop()
 void Engine::update(float delta)
 {
 	glfwPollEvents();
-	Input::update(m_window.getWindow());
+	Input::update();
 	
 	m_game->update(delta);
 }

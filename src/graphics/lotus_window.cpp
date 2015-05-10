@@ -66,7 +66,7 @@ bool Window::init()
 	glfwSetMouseButtonCallback(m_window, callback_mouse_button);
 	glfwMakeContextCurrent(m_window);
 
-	Input::setWindow(m_window);
+	Input::setWindow(this);
 
 	glewExperimental = GL_TRUE;
 	GLenum status = glewInit();

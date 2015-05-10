@@ -5,6 +5,7 @@ Animation2D::Animation2D(Sprite *sprite, Material *material, const std::vector<T
 	m_interval(interval),
 	m_looped(looped),
 	m_done(false),
+	m_current(0),
 	m_numFrames((unsigned int) frames.size())
 {
 	for (unsigned int i = 0; i < frames.size(); i++)

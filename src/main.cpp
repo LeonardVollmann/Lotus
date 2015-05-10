@@ -76,7 +76,6 @@ public:
 		material->addFloat("specularPower", 8.0f);
 		animationFrames.push_back(new Texture("animation/0.png"));
 		animationFrames.push_back(new Texture("animation/1.png"));
-		animationFrames.push_back(new Texture("animation/2.png"));
 		
         m_dragon = new Entity();
 		m_plane = new Entity();
@@ -96,7 +95,7 @@ public:
 		
         m_dragon->addComponent(new RenderableComponent(new Mesh(OBJLoader::loadIndexedModel("dragon").finalize()), material));
 		m_plane->addComponent(new RenderableComponent(new Sprite(vec2(1.0f, 1.0f)), material));
-		m_sprite->addComponent(new Animation2D(new Sprite(vec2(1.0f, 1.0f)), spriteMaterial, animationFrames, 1.0f, true));
+		m_sprite->addComponent(new Animation2D(new Sprite(vec2(1.0f, 1.0f)), spriteMaterial, animationFrames, 0.25f, true));
 		
 		ForwardAmbient::getInstance().setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
 		ForwardDirectional::getInstance().addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.3f, vec3(1.0f, 1.0f, 1.0f).normalize()));
