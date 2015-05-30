@@ -1,7 +1,7 @@
 #ifndef LOTUS_INDEXED_MODEL_HPP_INCLUDED
 #define LOTUS_INDEXED_MODEL_HPP_INCLUDED
 
-#include "../lotus_vertex3d.hpp"
+#include "lotus_vertex3d.hpp"
 
 #include <GL/glew.h>
 #include <vector>
@@ -12,10 +12,11 @@ private:
 	std::vector<GLfloat> 	m_positions;
 	std::vector<GLfloat>	m_texCoords;
 	std::vector<GLfloat> 	m_normals;
+	std::vector<GLfloat>	m_tangents;
 	std::vector<GLushort> 	m_indices;
 	std::vector<Vertex3D>	m_vertices;
 public:
-	IndexedModel(const std::vector<GLfloat> &positions, const std::vector<GLfloat> &texCoords, const std::vector<GLfloat> &normals, const std::vector<GLushort> &indices);
+	IndexedModel(const std::vector<GLfloat> &positions, const std::vector<GLfloat> &texCoords, const std::vector<GLfloat> &normals, const std::vector<GLfloat> &tangents, const std::vector<GLushort> &indices);
 	IndexedModel() {}
 
 	void addPosition(GLfloat x, GLfloat y, GLfloat z);
@@ -30,6 +31,7 @@ public:
 	inline const std::vector<GLushort> &getIndices() 	const { return m_indices; }
 private:
 	void calcNormals();
+	void calcTangents();
 };
 
 #endif

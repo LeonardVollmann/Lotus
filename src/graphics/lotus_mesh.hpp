@@ -16,6 +16,7 @@ private:
 public:
 	Mesh(const Vertex3D *vertices, GLsizei numVertices, const GLushort *indices, GLsizei numIndices);
 	Mesh(IndexedModel indexedModel);
+	Mesh(const std::string &fileName);
 	virtual ~Mesh();
 	
 	void bind() const;

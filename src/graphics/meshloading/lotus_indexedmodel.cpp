@@ -3,10 +3,11 @@
 
 #include <iostream>
 
-IndexedModel::IndexedModel(const std::vector<GLfloat> &positions, const std::vector<GLfloat> &texCoords, const std::vector<GLfloat> &normals, const std::vector<GLushort> &indices) :
+IndexedModel::IndexedModel(const std::vector<GLfloat> &positions, const std::vector<GLfloat> &texCoords, const std::vector<GLfloat> &normals, const std::vector<GLfloat> &tangents, const std::vector<GLushort> &indices) :
 	m_positions(positions),
 	m_texCoords(texCoords),
 	m_normals(normals),
+	m_tangents(tangents),
 	m_indices(indices) {}
 
 void IndexedModel::addPosition(GLfloat x, GLfloat y, GLfloat z)
@@ -38,7 +39,7 @@ void IndexedModel::addFace(GLushort i1, GLushort i2, GLushort i3)
 
 bool IndexedModel::isValid()
 {
-	return m_positions.size() == m_texCoords.size() && m_positions.size() == m_normals.size();
+	return m_positions.size() / 3 == m_texCoords.size() / 2 && m_positions.size() == m_normals.size() && m_positions.size() == m_tangents.size();
 }
 
 IndexedModel &IndexedModel::finalize()
@@ -61,17 +62,24 @@ IndexedModel &IndexedModel::finalize()
 		calcNormals();
 	}
 	
+	if (m_tangents.size() < m_positions.size())
+	{
+		calcTangents();
+	}
+	
 	unsigned int j = 0;
 	for (unsigned int i = 0; i < m_positions.size(); i += 3) {
 		m_vertices.push_back(Vertex3D(vec3(m_positions[i + 0], m_positions[i + 1], m_positions[i + 2]),
 									  vec2(m_texCoords[j + 0], m_texCoords[j + 1]),
-									  vec3(m_normals[i + 0], m_normals[i + 1], m_normals[i + 2])));
+									  vec3(m_normals[i + 0], m_normals[i + 1], m_normals[i + 2]),
+									  vec3(m_tangents[i + 0], m_tangents[i + 1], m_tangents[i + 2])));
 		j += 2;
 	}
 	
 	m_positions.clear();
 	m_texCoords.clear();
 	m_normals.clear();
+	m_tangents.clear();
 
 	return *this;
 }
@@ -81,12 +89,12 @@ void IndexedModel::calcNormals()
 	m_normals.clear();
 	m_normals.reserve(m_positions.size());
 	
-	for(unsigned int i = 0; i < m_positions.size() * 3; i++)
+	for (unsigned int i = 0; i < m_positions.size(); i++)
 	{
 		m_normals.push_back(0.0f);
 	}
 
-	for(unsigned int i = 0; i < m_indices.size(); i += 3)
+	for (unsigned int i = 0; i < m_indices.size(); i += 3)
 	{
 		GLushort i0 = m_indices[i];
 		GLushort i1 = m_indices[i + 1];
@@ -107,6 +115,53 @@ void IndexedModel::calcNormals()
 			m_normals[index + 0] = m_normals[index + 0] + normal.x;
 			m_normals[index + 1] = m_normals[index + 1] + normal.y;
 			m_normals[index + 2] = m_normals[index + 2] + normal.z;
+		}
+	}
+}
+
+void IndexedModel::calcTangents()
+{
+	m_tangents.clear();
+	m_tangents.reserve(m_positions.size());
+	
+	for (unsigned int i = 0; i < m_positions.size(); i++)
+	{
+		m_tangents.push_back(0.0f);
+	}
+	
+	for (unsigned int i = 0; i < m_indices.size(); i += 3)
+	{
+		GLushort i0 = m_indices[i];
+		GLushort i1 = m_indices[i + 1];
+		GLushort i2 = m_indices[i + 2];
+		
+		vec3 v0(m_positions[i0 * 3 + 0], m_positions[i0 * 3 + 1], m_positions[i0 * 3 + 2]);
+		vec3 v1(m_positions[i1 * 3 + 0], m_positions[i1 * 3 + 1], m_positions[i1 * 3 + 2]);
+		vec3 v2(m_positions[i2 * 3 + 0], m_positions[i2 * 3 + 1], m_positions[i2 * 3 + 2]);
+		
+		vec3 edge0 = v1 - v0;
+		vec3 edge1 = v2 - v0;
+		
+		float deltaU0 = m_texCoords[i1] - m_texCoords[i0];
+		float deltaU1 = m_texCoords[i2] - m_texCoords[i0];
+		float deltaV0 = m_texCoords[i1 + 1] - m_texCoords[i0 + 1];
+		float deltaV1 = m_texCoords[i2 + 1] - m_texCoords[i0 + 1];
+		
+		float dividend = (deltaU0 * deltaV1 - deltaU1 * deltaV0);
+		float f = dividend == 0.0f ? 0.0f : 1.0f / dividend;
+		
+		vec3 tangent = vec3::ZERO;
+		tangent.x = f * (deltaV1 * edge0.x - deltaV0 * edge1.x);
+		tangent.y = f * (deltaV1 * edge0.y - deltaV0 * edge1.y);
+		tangent.z = f * (deltaV1 * edge0.z - deltaV0 * edge1.z);
+		tangent.normalize();
+		
+		for (unsigned int j = 0; j < 3; j++)
+		{
+			unsigned int index = (i0 + j) * 3;
+			m_tangents[index + 0] = m_tangents[index + 0] + tangent.x;
+			m_tangents[index + 1] = m_tangents[index + 1] + tangent.y;
+			m_tangents[index + 2] = m_tangents[index + 2] + tangent.z;
 		}
 	}
 }
