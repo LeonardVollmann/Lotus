@@ -10,17 +10,5 @@ uniform vec3 ambientLight;
 
 void main()
 {
-	vec4 textureColor = texture(diffuse, texCoord);
-	vec4 color = vec4(0.0, 0.0, 0.0, 0.0);
-	
-	if (textureColor != vec4(0.0, 0.0, 0.0, 0.0))
-	{
-		color = textureColor;
-	}
-	else
-	{
-		color = baseColor;
-	}
-	
-	fragColor = color * vec4(ambientLight, 1.0);
+	fragColor = (texture(diffuse, texCoord) + baseColor) * vec4(ambientLight, 1.0);
 }

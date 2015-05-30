@@ -6,18 +6,17 @@
 
 #include <vector>
 
-class Shader;
-class IRenderer;
+class IRenderer3D;
 
 class Layer : public Entity
 {
 public:
 	static const Layer *CURRENT;
 protected:
-	mat4 		m_projection;
-	IRenderer 	*m_renderer;
+	mat4			m_projection;
+	IRenderer3D 	*m_renderer;
 public:
-	Layer(const mat4 &m_projection, IRenderer *renderer);
+	Layer(const mat4 &m_projection, IRenderer3D *renderer);
 	virtual ~Layer();
 
 	void render();

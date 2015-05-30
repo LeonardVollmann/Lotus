@@ -3,18 +3,17 @@
 
 #include <iostream>
 
-IndexedModel::IndexedModel(const std::vector<GLfloat> &vertices, const std::vector<GLfloat> &texCoords,
-	const std::vector<GLfloat> &normals, const std::vector<GLushort> &indices) :
-	m_vertices(vertices),
+IndexedModel::IndexedModel(const std::vector<GLfloat> &positions, const std::vector<GLfloat> &texCoords, const std::vector<GLfloat> &normals, const std::vector<GLushort> &indices) :
+	m_positions(positions),
 	m_texCoords(texCoords),
 	m_normals(normals),
 	m_indices(indices) {}
 
-void IndexedModel::addVertex(GLfloat x, GLfloat y, GLfloat z)
+void IndexedModel::addPosition(GLfloat x, GLfloat y, GLfloat z)
 {
-	m_vertices.push_back(x);
-	m_vertices.push_back(y);
-	m_vertices.push_back(z);
+	m_positions.push_back(x);
+	m_positions.push_back(y);
+	m_positions.push_back(z);
 }
 
 void IndexedModel::addTexCoord(GLfloat x, GLfloat y)
@@ -39,7 +38,7 @@ void IndexedModel::addFace(GLushort i1, GLushort i2, GLushort i3)
 
 bool IndexedModel::isValid()
 {
-	return m_vertices.size() == m_texCoords.size() && m_vertices.size() == m_normals.size();
+	return m_positions.size() == m_texCoords.size() && m_positions.size() == m_normals.size();
 }
 
 IndexedModel &IndexedModel::finalize()
@@ -49,18 +48,30 @@ IndexedModel &IndexedModel::finalize()
 		return *this;
 	} 
 
-	if (m_texCoords.size() < m_vertices.size())
+	if (m_texCoords.size() < m_positions.size())
 	{
-		for (unsigned int i = (unsigned int) m_texCoords.size(); i < m_vertices.size(); i++)
+		for (unsigned int i = (unsigned int) m_texCoords.size(); i < m_positions.size(); i++)
 		{
 			m_texCoords.push_back(0.0f);
 		}
 	}
 
-	if (m_normals.size() < m_vertices.size())
+	if (m_normals.size() < m_positions.size())
 	{
 		calcNormals();
 	}
+	
+	unsigned int j = 0;
+	for (unsigned int i = 0; i < m_positions.size(); i += 3) {
+		m_vertices.push_back(Vertex3D(vec3(m_positions[i + 0], m_positions[i + 1], m_positions[i + 2]),
+									  vec2(m_texCoords[j + 0], m_texCoords[j + 1]),
+									  vec3(m_normals[i + 0], m_normals[i + 1], m_normals[i + 2])));
+		j += 2;
+	}
+	
+	m_positions.clear();
+	m_texCoords.clear();
+	m_normals.clear();
 
 	return *this;
 }
@@ -68,9 +79,9 @@ IndexedModel &IndexedModel::finalize()
 void IndexedModel::calcNormals()
 {
 	m_normals.clear();
-	m_normals.reserve(m_vertices.size());
+	m_normals.reserve(m_positions.size());
 	
-	for(unsigned int i = 0; i < m_vertices.size() * 3; i++)
+	for(unsigned int i = 0; i < m_positions.size() * 3; i++)
 	{
 		m_normals.push_back(0.0f);
 	}
@@ -81,9 +92,9 @@ void IndexedModel::calcNormals()
 		GLushort i1 = m_indices[i + 1];
 		GLushort i2 = m_indices[i + 2];
 		
-		vec3 v0(m_vertices[i0 * 3 + 0], m_vertices[i0 * 3 + 1], m_vertices[i0 * 3 + 2]);
-		vec3 v1(m_vertices[i1 * 3 + 0], m_vertices[i1 * 3 + 1], m_vertices[i1 * 3 + 2]);
-		vec3 v2(m_vertices[i2 * 3 + 0], m_vertices[i2 * 3 + 1], m_vertices[i2 * 3 + 2]);
+		vec3 v0(m_positions[i0 * 3 + 0], m_positions[i0 * 3 + 1], m_positions[i0 * 3 + 2]);
+		vec3 v1(m_positions[i1 * 3 + 0], m_positions[i1 * 3 + 1], m_positions[i1 * 3 + 2]);
+		vec3 v2(m_positions[i2 * 3 + 0], m_positions[i2 * 3 + 1], m_positions[i2 * 3 + 2]);
 
 		vec3 d1 = v1 - v0;
 		vec3 d2 = v2 - v0;

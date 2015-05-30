@@ -2,7 +2,7 @@
 
 const Layer *Layer::CURRENT;
 
-Layer::Layer(const mat4 &projection, IRenderer *renderer) :
+Layer::Layer(const mat4 &projection, IRenderer3D *renderer) :
 	m_projection(projection),
 	m_renderer(renderer) {}
 

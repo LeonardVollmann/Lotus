@@ -11,5 +11,5 @@ uniform mat4 ml_matrix;
 void main()
 {
 	texCoord = vertex_texCoord;
-	gl_Position = pr_matrix * vw_matrix * ml_matrix * vec4(vertex_pos, 1.0);
+	gl_Position = mvp_matrix * vec4(vertex_pos, 1.0);
 }

@@ -30,7 +30,7 @@ void Entity::update(float delta)
 	}
 }
 
-void Entity::render(IRenderer *renderer) const
+void Entity::render(IRenderer3D *renderer) const
 {
 	for (auto it = m_children.begin(); it < m_children.end(); it++)
 	{

@@ -37,7 +37,7 @@ IndexedModel OBJLoader::loadIndexedModel(const std::string &fileName)
 					v[i] = atof(tokens[i + 1]);
 				}
 
-				result.addVertex(v[0], v[1], v[2]);
+				result.addPosition(v[0], v[1], v[2]);
 			}
 			else if (strcmp(tokens[0], "vt") == 0)
 			{

@@ -15,16 +15,14 @@
 #include "graphics/shaders/lotus_forwarddirectional.hpp"
 #include "graphics/shaders/lotus_forwardpoint.hpp"
 #include "graphics/shaders/lotus_forwardspot.hpp"
-#include "graphics/lotus_renderables.hpp"
-#include "graphics/renderers/lotus_simplerenderer.hpp"
-#include "graphics/renderers/lotus_phongrenderer.hpp"
-#include "graphics/renderers/lotus_forwardrenderer.hpp"
+#include "graphics/renderers/lotus_simplerenderer3d.hpp"
+#include "graphics/renderers/lotus_phongrenderer3d.hpp"
+#include "graphics/renderers/lotus_forwardrenderer3d.hpp"
 #include "graphics/meshloading/lotus_indexedmodel.hpp"
 #include "graphics/meshloading/lotus_objloader.hpp"
-#include "components/lotus_renderablecomponent.hpp"
+#include "components/lotus_meshcomponent.hpp"
 #include "components/lotus_freemove.hpp"
 #include "components/lotus_freelook.hpp"
-#include "components/lotus_animation2d.hpp"
 #include "core/lotus_input.hpp"
 #include "core/lotus_transform.hpp"
 #include "core/lotus_engine.hpp"
@@ -34,8 +32,6 @@ class TestGame : public IGame
 {
 private:
 	Entity *m_dragon;
-	Entity *m_plane;
-	Entity *m_sprite;
 	Camera *m_camera;
 	SpotLight *m_spotLight;
 	PointLight *m_pointLights[8];
@@ -44,7 +40,7 @@ public:
 	TestGame() :
 		IGame(),
 		m_camera(new Camera()),
-		m_spotLight(new SpotLight(vec3(1.0f, 1.0f, 1.0f), 10.0f, Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), vec3(m_camera->getTransform().getRot().getForward()), 0.7f)),
+		m_spotLight(new SpotLight(vec3(1.0f, 1.0f, 1.0f), 15.0f, Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), vec3(m_camera->getTransform().getRot().getForward()), 0.7f)),
 		m_pointLights
 		{
 			new PointLight(vec3(1.0f, 1.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3(-7.0f, 0.0f, 0.0f)),
@@ -69,33 +65,16 @@ public:
 		Material *material = new Material();
 		material->addFloat("specularIntensity", 2.0f);
 		material->addFloat("specularPower", 32.0f);
-		
-		std::vector<Texture*> animationFrames;
-		Material *spriteMaterial = new Material();
-		material->addFloat("specularIntensity", 2.0f);
-		material->addFloat("specularPower", 8.0f);
-		animationFrames.push_back(new Texture("animation/0.png"));
-		animationFrames.push_back(new Texture("animation/1.png"));
+		material->addVec4("color", vec4(0.2f, 0.2f, 0.2f, 1.0f));
 		
         m_dragon = new Entity();
-		m_plane = new Entity();
-		m_sprite = new Entity();
 		
 		m_camera->bind();
 		m_camera->addComponent(new FreeMove(10.0f));
 		m_camera->addComponent(new FreeLook(5.0f));
 		add(m_camera);
 		
-		m_dragon->getTransform().translate(vec3(0.0f, 2.0f, -7.5f));
-		m_plane->getTransform().rotate(quat(toRadians(90.0f), vec3(-1.0f, 0.0f, 0.0f)));
-		m_plane->getTransform().translate(vec3(0.0f, -1.0f, 0.0f));
-		m_plane->getTransform().scale(vec3(10.0f, 10.0f, 1.0f));
-		m_sprite->getTransform().translate(vec3(0.0f, 2.0f, -5.0f));
-		m_sprite->getTransform().scale(vec3(2.0f, 2.0f, 1.0f));
-		
-        m_dragon->addComponent(new RenderableComponent(new Mesh(OBJLoader::loadIndexedModel("dragon").finalize()), material));
-		m_plane->addComponent(new RenderableComponent(new Sprite(vec2(1.0f, 1.0f)), material));
-		m_sprite->addComponent(new Animation2D(new Sprite(vec2(1.0f, 1.0f)), spriteMaterial, animationFrames, 0.25f, true));
+		m_dragon->addComponent(new MeshComponent(new Mesh(OBJLoader::loadIndexedModel("dragon").finalize()), material));
 		
 		ForwardAmbient::getInstance().setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
 		ForwardDirectional::getInstance().addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.3f, vec3(1.0f, 1.0f, 1.0f).normalize()));
@@ -106,10 +85,8 @@ public:
 		}
 		ForwardSpot::getInstance().addSpotLight(m_spotLight);
 		
-		Layer *scene = new Layer(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), new ForwardRenderer());
-//		scene->addChild(m_dragon);
-		scene->addChild(m_plane);
-		scene->addChild(m_sprite);
+		Layer *scene = new Layer(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), new ForwardRenderer3D());
+		scene->addChild(m_dragon);
 
 		addLayer(scene);
 	}
