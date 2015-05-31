@@ -30,6 +30,13 @@ void IndexedModel::addNormal(GLfloat x, GLfloat y, GLfloat z)
 	m_normals.push_back(z);
 }
 
+void IndexedModel::addTangent(GLfloat x, GLfloat y, GLfloat z)
+{
+	m_tangents.push_back(x);
+	m_tangents.push_back(y);
+	m_tangents.push_back(z);
+}
+
 void IndexedModel::addFace(GLushort i1, GLushort i2, GLushort i3)
 {
 	m_indices.push_back(i1);
@@ -73,6 +80,10 @@ IndexedModel &IndexedModel::finalize()
 									  vec2(m_texCoords[j + 0], m_texCoords[j + 1]),
 									  vec3(m_normals[i + 0], m_normals[i + 1], m_normals[i + 2]),
 									  vec3(m_tangents[i + 0], m_tangents[i + 1], m_tangents[i + 2])));
+		
+		m_vertices[i / 3].normal.normalize();
+		m_vertices[i / 3].tangent.normalize();
+		
 		j += 2;
 	}
 	
@@ -107,7 +118,7 @@ void IndexedModel::calcNormals()
 		vec3 d1 = v1 - v0;
 		vec3 d2 = v2 - v0;
 		
-		vec3 normal = d1.cross(d2).normalize();
+		vec3 normal = d1.cross(d2);
 		
 		for (unsigned int j = 0; j < 3; j++)
 		{
@@ -142,10 +153,10 @@ void IndexedModel::calcTangents()
 		vec3 edge0 = v1 - v0;
 		vec3 edge1 = v2 - v0;
 		
-		float deltaU0 = m_texCoords[i1] - m_texCoords[i0];
-		float deltaU1 = m_texCoords[i2] - m_texCoords[i0];
-		float deltaV0 = m_texCoords[i1 + 1] - m_texCoords[i0 + 1];
-		float deltaV1 = m_texCoords[i2 + 1] - m_texCoords[i0 + 1];
+		float deltaU0 = m_texCoords[i1 * 2 + 0] - m_texCoords[i0 * 2 + 0];
+		float deltaU1 = m_texCoords[i2 * 2 + 0] - m_texCoords[i0 * 2 + 0];
+		float deltaV0 = m_texCoords[i1 * 2 + 1] - m_texCoords[i0 * 2 + 1];
+		float deltaV1 = m_texCoords[i2 * 2 + 1] - m_texCoords[i0 * 2 + 1];
 		
 		float dividend = (deltaU0 * deltaV1 - deltaU1 * deltaV0);
 		float f = dividend == 0.0f ? 0.0f : 1.0f / dividend;
@@ -154,7 +165,6 @@ void IndexedModel::calcTangents()
 		tangent.x = f * (deltaV1 * edge0.x - deltaV0 * edge1.x);
 		tangent.y = f * (deltaV1 * edge0.y - deltaV0 * edge1.y);
 		tangent.z = f * (deltaV1 * edge0.z - deltaV0 * edge1.z);
-		tangent.normalize();
 		
 		for (unsigned int j = 0; j < 3; j++)
 		{

@@ -58,7 +58,8 @@ Texture *Material::getTexture(const std::string &name) const
 	auto it = m_textureMap.find(name);
 	if (it == m_textureMap.end())
 	{
-		addTexture(name, new Texture("default.png"));
+		if (name == "diffuse") addTexture(name, new Texture("default.png"));
+		else if (name == "normalMap") addTexture(name, new Texture("default_normal.png"));
 		return getTexture(name);
 	}
 	else return it->second;

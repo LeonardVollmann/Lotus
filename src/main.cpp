@@ -40,7 +40,7 @@ public:
 	TestGame() :
 		IGame(),
 		m_camera(new Camera()),
-		m_spotLight(new SpotLight(vec3(1.0f, 1.0f, 1.0f), 15.0f, Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), vec3(m_camera->getTransform().getRot().getForward()), 0.7f)),
+		m_spotLight(new SpotLight(vec3(1.0f, 1.0f, 1.0f), 10.0f, Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), vec3(m_camera->getTransform().getRot().getForward()), 0.7f)),
 		m_pointLights
 		{
 			new PointLight(vec3(1.0f, 1.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3(-7.0f, 0.0f, 0.0f)),
@@ -62,12 +62,39 @@ public:
 //		glfwSwapInterval(0);
 //		Input::setMouseLocked(true);
 		
+		IndexedModel model;
+		const float size = 10.0f;
+		model.addPosition(-size, size, 0);
+		model.addPosition(-size, -size, 0);
+		model.addPosition(size, -size, 0);
+		model.addPosition(size, size, 0);
+		model.addTexCoord(0, 3);
+		model.addTexCoord(0, 0);
+		model.addTexCoord(3, 0);
+		model.addTexCoord(3, 3);
+		model.addFace(0, 1, 2);
+		model.addFace(2, 3, 0);
+		model.finalize();
+		
 		Material *material = new Material();
 		material->addFloat("specularIntensity", 2.0f);
 		material->addFloat("specularPower", 32.0f);
-		material->addVec4("color", vec4(0.2f, 0.2f, 0.2f, 1.0f));
+		material->addTexture("diffuse", new Texture("bricks.png"));
+		material->addTexture("normalMap", new Texture("bricks_normal.png"));
+		
+		Material *material2 = new Material();
+		material2->addFloat("specularIntensity", 2.0f);
+		material2->addFloat("specularPower", 32.0f);
+		material2->addTexture("diffuse", new Texture("bricks2.png"));
+		material2->addTexture("normalMap", new Texture("bricks2_normal.png"));
 		
         m_dragon = new Entity();
+		Entity *plane = new Entity();
+		Entity *plane2 = new Entity();
+		plane->getTransform().rotate(-MATH_PI / 2.0f, vec3(1.0f, 0.0f, 0.0f));
+		plane2->getTransform().rotate(-MATH_PI / 2.0f, vec3(1.0f, 0.0f, 0.0f));
+		plane2->getTransform().translate(vec3(5.0f, 2.0f, 5.0f));
+		plane2->getTransform().scale(vec3(0.3f, 0.3f, 0.3f));
 		
 		m_camera->bind();
 		m_camera->addComponent(new FreeMove(10.0f));
@@ -75,6 +102,8 @@ public:
 		add(m_camera);
 		
 		m_dragon->addComponent(new MeshComponent(new Mesh(OBJLoader::loadIndexedModel("dragon").finalize()), material));
+		plane->addComponent(new MeshComponent(new Mesh(model), material));
+		plane2->addComponent(new MeshComponent(new Mesh(model), material2));
 		
 		ForwardAmbient::getInstance().setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
 		ForwardDirectional::getInstance().addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.3f, vec3(1.0f, 1.0f, 1.0f).normalize()));
@@ -86,7 +115,9 @@ public:
 		ForwardSpot::getInstance().addSpotLight(m_spotLight);
 		
 		Layer *scene = new Layer(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), new ForwardRenderer3D());
-		scene->addChild(m_dragon);
+//		scene->addChild(m_dragon);
+		scene->addChild(plane);
+		scene->addChild(plane2);
 
 		addLayer(scene);
 	}

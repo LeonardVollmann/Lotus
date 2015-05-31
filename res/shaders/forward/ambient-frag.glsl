@@ -8,6 +8,7 @@ in DATA
 out vec4 fragColor;
 
 uniform sampler2D diffuse;
+
 uniform vec4 baseColor;
 uniform vec3 ambientLight;
 

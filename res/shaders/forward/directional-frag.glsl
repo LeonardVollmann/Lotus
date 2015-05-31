@@ -2,7 +2,9 @@
 
 uniform DirectionalLight directionalLight;
 
-void main()
+vec4 calcLightingEffect(vec3 normal, vec3 worldPos, vec3 cameraPos)
 {
-	fragColor = (texture(diffuse, fs_in.texCoord) + baseColor) * calcDirectionalLight(directionalLight, fs_in.normal, fs_in.worldPos, cameraPos);
+	return calcDirectionalLight(directionalLight, normal, worldPos, cameraPos);
 }
+
+#include forward/main-frag.glsl

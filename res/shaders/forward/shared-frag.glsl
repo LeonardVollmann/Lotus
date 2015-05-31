@@ -4,7 +4,7 @@ in DATA
 {
 	vec2 texCoord;
 	vec3 worldPos;
-	vec3 normal;
+	mat3 tbn_matrix;
 } fs_in;
 
 out vec4 fragColor;

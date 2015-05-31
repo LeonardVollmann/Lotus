@@ -71,7 +71,12 @@ Shader &Shader::compile()
 
 void Shader::updateUniforms(const Transform &transform) const
 {
-	
+	if (m_uniformLocations.find("diffuse") != m_uniformLocations.end()) {
+		setUniformInteger("diffuse", 0);
+	}
+	if (m_uniformLocations.find("normalMap") != m_uniformLocations.end()) {
+		setUniformInteger("normalMap", 1);
+	}
 }
 
 void Shader::setUniformInteger(const std::string &uniform, int value) const

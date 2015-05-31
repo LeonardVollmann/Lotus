@@ -14,6 +14,8 @@ void MeshComponent::bind() const
 {
 	m_mesh->bind();
 	m_material->bind();
+	m_material->bindTexture("diffuse", 0);
+	m_material->bindTexture("normalMap", 1);
 }
 
 void MeshComponent::render(IRenderer3D *renderer) const

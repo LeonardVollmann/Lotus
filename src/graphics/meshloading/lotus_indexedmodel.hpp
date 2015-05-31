@@ -22,6 +22,7 @@ public:
 	void addPosition(GLfloat x, GLfloat y, GLfloat z);
 	void addTexCoord(GLfloat x, GLfloat y);
 	void addNormal(GLfloat x, GLfloat y, GLfloat z);
+	void addTangent(GLfloat x, GLfloat y, GLfloat z);
 	void addFace(GLushort i1, GLushort i2, GLushort i3);
 
 	bool isValid();
