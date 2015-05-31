@@ -1,6 +1,9 @@
 #version 330 core
 
-in vec2 texCoord;
+in DATA
+{
+	vec2 texCoord;
+} fs_in;
 
 out vec4 fragColor;
 
@@ -10,5 +13,5 @@ uniform vec3 ambientLight;
 
 void main()
 {
-	fragColor = (texture(diffuse, texCoord) + baseColor) * vec4(ambientLight, 1.0);
+	fragColor = (texture(diffuse, fs_in.texCoord) + baseColor) * vec4(ambientLight, 1.0);
 }

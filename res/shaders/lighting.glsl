@@ -32,7 +32,7 @@ struct SpotLight
 	float cutoff;
 };
 
-vec4 calcLight(BaseLight base, vec3 direction, vec3 normal)
+vec4 calcLight(BaseLight base, vec3 direction, vec3 normal, vec3 worldPos, vec3 cameraPos)
 {
 	float diffuseFactor = dot(normal, -direction);
 	vec4 diffuseColor = vec4(0.0, 0.0, 0.0, 0.0);
@@ -56,12 +56,12 @@ vec4 calcLight(BaseLight base, vec3 direction, vec3 normal)
 	return diffuseColor + specularColor;
 }
 
-vec4 calcDirectionalLight(DirectionalLight directionalLight, vec3 normal)
+vec4 calcDirectionalLight(DirectionalLight directionalLight, vec3 normal, vec3 worldPos, vec3 cameraPos)
 {
-	return calcLight(directionalLight.base, -directionalLight.direction, normal);
+	return calcLight(directionalLight.base, -directionalLight.direction, normal, worldPos, cameraPos);
 }
 
-vec4 calcPointLight(PointLight pointLight, vec3 normal)
+vec4 calcPointLight(PointLight pointLight, vec3 normal, vec3 worldPos, vec3 cameraPos)
 {
 	vec3 lightDirection = worldPos - pointLight.pos;
 	float distance = length(lightDirection);
@@ -70,7 +70,7 @@ vec4 calcPointLight(PointLight pointLight, vec3 normal)
 	
 	lightDirection = normalize(lightDirection);
 	
-	vec4 color = calcLight(pointLight.base, lightDirection, normal);
+	vec4 color = calcLight(pointLight.base, lightDirection, normal, worldPos, cameraPos);
 	
 	float attenuation = pointLight.atten.constant +
 	pointLight.atten.linear * distance +
@@ -80,7 +80,7 @@ vec4 calcPointLight(PointLight pointLight, vec3 normal)
 	return color / attenuation;
 }
 
-vec4 calcSpotLight(SpotLight spotLight, vec3 normal)
+vec4 calcSpotLight(SpotLight spotLight, vec3 normal, vec3 worldPos, vec3 cameraPos)
 {
 	vec3 lightDirection = normalize(worldPos - spotLight.pointLight.pos);
 	float spotFactor = dot(lightDirection, spotLight.direction);
@@ -89,7 +89,7 @@ vec4 calcSpotLight(SpotLight spotLight, vec3 normal)
 	
 	if (spotFactor > spotLight.cutoff)
 	{
-		color = calcPointLight(spotLight.pointLight, normal) *
+		color = calcPointLight(spotLight.pointLight, normal, worldPos, cameraPos) *
 		(1.0 - (1.0 - spotFactor) / (1.0 - spotLight.cutoff));
 	}
 	

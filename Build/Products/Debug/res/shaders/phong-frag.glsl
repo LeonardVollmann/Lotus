@@ -3,9 +3,12 @@
 const int MAX_POINT_LIGHTS = 4;
 const int MAX_SPOT_LIGHTS = 4;
 
-in vec2 texCoord;
-in vec3 normal;
-in vec3 worldPos;
+in DATA
+{
+	vec2 texCoord;
+	vec3 worldPos;
+	vec3 normal;
+} fs_in;
 
 out vec4 fragColor;
 
@@ -25,18 +28,18 @@ uniform SpotLight spotLights[MAX_SPOT_LIGHTS];
 void main()
 {
 	vec4 totalLight = vec4(ambientLight, 1.0);
-	vec4 color = texture(diffuse, texCoord) + baseColor;
+	vec4 color = texture(diffuse, fs_in.texCoord) + baseColor;
 
-	totalLight += calcDirectionalLight(directionalLight, normal);
+	totalLight += calcDirectionalLight(directionalLight, fs_in.normal, fs_in.worldPos, cameraPos);
 
 	for (int i = 0; i < MAX_POINT_LIGHTS; i++)
 	{
-		if (pointLights[i].base.intensity > 0) totalLight += calcPointLight(pointLights[i], normal);
+		if (pointLights[i].base.intensity > 0) totalLight += calcPointLight(pointLights[i], fs_in.normal, fs_in.worldPos, cameraPos);
 	}
 
 	for (int i = 0; i < MAX_SPOT_LIGHTS; i++)
 	{
-		if (spotLights[i].pointLight.base.intensity > 0) totalLight += calcSpotLight(spotLights[i], normal);
+		if (spotLights[i].pointLight.base.intensity > 0) totalLight += calcSpotLight(spotLights[i], fs_in.normal, fs_in.worldPos, cameraPos);
 	}
 
 

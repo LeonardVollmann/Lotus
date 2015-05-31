@@ -4,5 +4,5 @@ uniform PointLight pointLight;
 
 void main()
 {
-	fragColor = (texture(diffuse, texCoord) + baseColor) * calcPointLight(pointLight, normal);
+	fragColor = (texture(diffuse, fs_in.texCoord) + baseColor) * calcPointLight(pointLight, fs_in.normal, fs_in.worldPos, cameraPos);
 }

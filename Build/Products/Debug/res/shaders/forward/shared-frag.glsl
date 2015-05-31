@@ -1,16 +1,20 @@
 #version 330 core
 
-in vec2 texCoord;
-in vec3 normal;
-in vec3 worldPos;
+in DATA
+{
+	vec2 texCoord;
+	vec3 worldPos;
+	vec3 normal;
+} fs_in;
 
 out vec4 fragColor;
 
-uniform vec3 cameraPos;
-
-uniform sampler2D diffuse;
 uniform vec4 baseColor;
 uniform float specularIntensity;
 uniform float specularPower;
+uniform vec3 cameraPos;
+
+uniform sampler2D diffuse;
+uniform sampler2D normalMap;
 
 #include lighting.glsl

@@ -1,6 +1,9 @@
 #version 330 core
 
-in vec2 texCoord;
+in DATA
+{
+	vec2 texCoord;
+} fs_in;
 
 out vec4 fragColor;
 
@@ -9,5 +12,5 @@ uniform sampler2D diffuse;
 
 void main()
 {
-	fragColor = texture(diffuse, texCoord) + baseColor;
+	fragColor = texture(diffuse, fs_in.texCoord) + baseColor;
 }
