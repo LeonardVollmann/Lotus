@@ -18,9 +18,20 @@ ForwardAmbient::ForwardAmbient() :
 void ForwardAmbient::updateUniforms(const Transform &transform) const
 {
 	Shader::updateUniforms(transform);
+
+	setUniformInteger("diffuse", 0);
+	setUniformInteger("normalMap", 1);
+	setUniformInteger("dispMap", 2);
 	
-	setUniformMat4("mvp_matrix", Layer::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transform.getTransformation());
+	mat4 transformation = transform.getTransformation();
+	setUniformMat4("mvp_matrix", Layer::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transformation);
+	setUniformMat4("ml_matrix", transformation);
+	
+	setUniformVec3("cameraPos", Camera::CURRENT->getTransform().getPos());
 	
 	setUniformVec4("baseColor", Material::CURRENT->getVec4("color"));
+	setUniformFloat("specularIntensity", Material::CURRENT->getFloat("specularIntensity"));
+	setUniformFloat("specularPower", Material::CURRENT->getFloat("specularPower"));
+
 	setUniformVec3("ambientLight", m_ambientLight);
 }

@@ -8,6 +8,8 @@ class EntityComponent
 protected:
 	Entity *m_entity;
 public:
+	virtual ~EntityComponent() {} 
+
 	virtual void update(float delta) {}
 	virtual void render(IRenderer3D *renderer) const {}
 

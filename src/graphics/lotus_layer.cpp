@@ -11,7 +11,7 @@ Layer::~Layer()
 	delete m_renderer;
 }
 
-void Layer::render()
+void Layer::render(IRenderer3D *renderer) const
 {
 	bind();
 	

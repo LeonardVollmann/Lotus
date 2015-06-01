@@ -1,18 +1,11 @@
-#version 330 core
+#include forward/shared-frag.glsl
 
-in DATA
-{
-	vec2 texCoord;
-} fs_in;
-
-out vec4 fragColor;
-
-uniform sampler2D diffuse;
-
-uniform vec4 baseColor;
 uniform vec3 ambientLight;
+
+#include forward/sampling.glsl
 
 void main()
 {
-	fragColor = (texture(diffuse, fs_in.texCoord) + baseColor) * vec4(ambientLight, 1.0);
+	fragColor = (texture(diffuse, calcParallaxTexCoords(dispMap, fs_in.tbn_matrix, normalize(cameraPos - fs_in.worldPos), fs_in.texCoord, dispMapScale, dispMapBias)) + baseColor) 
+		* vec4(ambientLight, 1.0);
 }

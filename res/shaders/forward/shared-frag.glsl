@@ -13,8 +13,11 @@ uniform vec4 baseColor;
 uniform float specularIntensity;
 uniform float specularPower;
 uniform vec3 cameraPos;
+uniform float dispMapScale;
+uniform float dispMapBias;
 
 uniform sampler2D diffuse;
 uniform sampler2D normalMap;
+uniform sampler2D dispMap;
 
 #include lighting.glsl

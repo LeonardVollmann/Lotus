@@ -27,6 +27,10 @@ void ForwardSpot::updateUniforms(const Transform &transform) const
 {
 	Shader::updateUniforms(transform);
 	
+	setUniformInteger("diffuse", 0);
+	setUniformInteger("normalMap", 1);
+	setUniformInteger("dispMap", 2);
+
 	mat4 transformation = transform.getTransformation();
 	setUniformMat4("mvp_matrix", Layer::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transformation);
 	setUniformMat4("ml_matrix", transformation);
@@ -36,6 +40,9 @@ void ForwardSpot::updateUniforms(const Transform &transform) const
 	setUniformVec4("baseColor", Material::CURRENT->getVec4("color"));
 	setUniformFloat("specularIntensity", Material::CURRENT->getFloat("specularIntensity"));
 	setUniformFloat("specularPower", Material::CURRENT->getFloat("specularPower"));
+
+	setUniformFloat("dispMapScale", Material::CURRENT->getFloat("dispMapScale"));
+	setUniformFloat("dispMapBias", Material::CURRENT->getFloat("dispMapBias"));
 	
 	setUniformSpotLight("spotLight", **m_activeSpotLight);
 }

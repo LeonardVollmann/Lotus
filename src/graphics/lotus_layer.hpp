@@ -19,7 +19,7 @@ public:
 	Layer(const mat4 &m_projection, IRenderer3D *renderer);
 	virtual ~Layer();
 
-	void render();
+	virtual void render(IRenderer3D *renderer = nullptr) const override;
 	void bind() const;
 
 	inline const mat4 &getProjection() const { return m_projection; }

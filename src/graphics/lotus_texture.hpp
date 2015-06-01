@@ -13,6 +13,8 @@ public:
 	virtual ~Texture();
 
 	void bind(unsigned int unit) const;
+
+	inline GLuint getTextureLocation() const { return m_texture; }
 };
 
 #endif

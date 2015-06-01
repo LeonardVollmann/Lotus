@@ -33,6 +33,7 @@ protected:
 public:
 	BaseLight();
 	BaseLight(const vec3 &color, float intensity);
+	virtual ~BaseLight() {}
 	
 	inline const vec3 &getColor()	const { return m_color; }
 	inline float getIntensity()		const { return m_intensity; }
@@ -49,6 +50,7 @@ public:
 	DirectionalLight();
 	DirectionalLight(const vec3 &color, float intensity, const vec3 &direction);
 	DirectionalLight(const vec3 &direction, const BaseLight &base = BaseLight());
+	virtual ~DirectionalLight() {}
 	
 	inline const vec3 &getDirection() const { return m_direction; }
 	
@@ -65,6 +67,7 @@ public:
 	PointLight();
 	PointLight(const vec3 &color, float intensity, const Attenuation &atten, const vec3 &pos);
 	PointLight(const Attenuation &atten, const vec3 &pos, const BaseLight &base = BaseLight());
+	virtual ~PointLight() {} 
 	
 	inline vec3 &getPos()								{ return m_pos; }
 	inline const vec3 &getPos()					const	{ return m_pos; }
@@ -87,6 +90,7 @@ public:
 	SpotLight();
 	SpotLight(const vec3 &color, float intensity, const Attenuation &atten, const vec3 &pos, const vec3 &direction, float cutoff);
 	SpotLight(const vec3 &direction, float cutoff, const PointLight &pointLight = PointLight());
+	virtual ~SpotLight() {}
 	
 	inline const vec3 &getDirection()	const { return m_direction; }
 	inline float getCutoff()			const { return m_cutoff; }

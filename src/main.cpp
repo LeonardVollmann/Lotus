@@ -76,17 +76,8 @@ public:
 		model.addFace(2, 3, 0);
 		model.finalize();
 		
-		Material *material = new Material();
-		material->addFloat("specularIntensity", 2.0f);
-		material->addFloat("specularPower", 32.0f);
-		material->addTexture("diffuse", new Texture("bricks.png"));
-		material->addTexture("normalMap", new Texture("bricks_normal.png"));
-		
-		Material *material2 = new Material();
-		material2->addFloat("specularIntensity", 2.0f);
-		material2->addFloat("specularPower", 32.0f);
-		material2->addTexture("diffuse", new Texture("bricks2.png"));
-		material2->addTexture("normalMap", new Texture("bricks2_normal.png"));
+		Material *material = new Material(new Texture("bricks.png"), vec4::ZERO, 2.0f, 32.0f, new Texture("bricks_normal.png"), new Texture("bricks_disp.png"), 0.04f);
+		Material *material2 = new Material(new Texture("bricks2.png"), vec4::ZERO, 2.0f, 32.0f, new Texture("bricks2_normal.png"), new Texture("bricks2_disp.png"), 0.04f);
 		
         m_dragon = new Entity();
 		Entity *plane = new Entity();
