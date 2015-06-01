@@ -1,7 +1,7 @@
 #ifndef LOTUS_INDEXED_MODEL_HPP_INCLUDED
 #define LOTUS_INDEXED_MODEL_HPP_INCLUDED
 
-#include "lotus_vertex3d.hpp"
+#include "../lotus_vertex3d.hpp"
 
 #include <GL/glew.h>
 #include <vector>
