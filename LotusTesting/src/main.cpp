@@ -2,31 +2,31 @@
 #include <cmath>
 #include <vector>
 
-#include "lotus_maths.hpp"
-#include "lotus_window.hpp"
-#include "lotus_lighting.hpp"
-#include "lotus_texture.hpp"
-#include "lotus_camera.hpp"
-#include "lotus_material.hpp"
-#include "lotus_shader.hpp"
-#include "lotus_simpleshader.hpp"
-#include "lotus_phongshader.hpp"
-#include "lotus_forwardambient.hpp"
-#include "lotus_forwarddirectional.hpp"
-#include "lotus_forwardpoint.hpp"
-#include "lotus_forwardspot.hpp"
-#include "lotus_simplerenderer3d.hpp"
-#include "lotus_phongrenderer3d.hpp"
-#include "lotus_forwardrenderer3d.hpp"
-#include "lotus_indexedmodel.hpp"
-#include "lotus_objloader.hpp"
-#include "lotus_meshcomponent.hpp"
-#include "lotus_freemove.hpp"
-#include "lotus_freelook.hpp"
-#include "lotus_input.hpp"
-#include "lotus_transform.hpp"
-#include "lotus_engine.hpp"
-#include "lotus_igame.hpp"
+#include <lotus_maths.hpp>
+#include <lotus_window.hpp>
+#include <lotus_lighting.hpp>
+#include <lotus_texture.hpp>
+#include <lotus_camera.hpp>
+#include <lotus_material.hpp>
+#include <lotus_shader.hpp>
+#include <lotus_simpleshader.hpp>
+#include <lotus_phongshader.hpp>
+#include <lotus_forwardambient.hpp>
+#include <lotus_forwarddirectional.hpp>
+#include <lotus_forwardpoint.hpp>
+#include <lotus_forwardspot.hpp>
+#include <lotus_simplerenderer3d.hpp>
+#include <lotus_phongrenderer3d.hpp>
+#include <lotus_forwardrenderer3d.hpp>
+#include <lotus_indexedmodel.hpp>
+#include <lotus_objloader.hpp>
+#include <lotus_meshcomponent.hpp>
+#include <lotus_freemove.hpp>
+#include <lotus_freelook.hpp>
+#include <lotus_input.hpp>
+#include <lotus_transform.hpp>
+#include <lotus_engine.hpp>
+#include <lotus_igame.hpp>
 
 class TestGame : public IGame
 {
