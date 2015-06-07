@@ -1,8 +1,9 @@
 #include "lotus_layer.hpp"
+#include "lotus_irenderer.hpp"
 
 const Layer *Layer::CURRENT;
 
-Layer::Layer(const mat4 &projection, IRenderer3D *renderer) :
+Layer::Layer(const mat4 &projection, IRenderer *renderer) :
 	m_projection(projection),
 	m_renderer(renderer) {}
 
@@ -11,7 +12,7 @@ Layer::~Layer()
 	delete m_renderer;
 }
 
-void Layer::render(IRenderer3D *renderer) const
+void Layer::render(IRenderer *renderer) const
 {
 	bind();
 	

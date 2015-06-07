@@ -6,7 +6,7 @@
 
 #include <vector>
 
-class IRenderer3D;
+class IRenderer;
 
 class Layer : public Entity
 {
@@ -14,12 +14,12 @@ public:
 	static const Layer *CURRENT;
 protected:
 	mat4			m_projection;
-	IRenderer3D 	*m_renderer;
+	IRenderer 	*m_renderer;
 public:
-	Layer(const mat4 &m_projection, IRenderer3D *renderer);
+	Layer(const mat4 &m_projection, IRenderer *renderer);
 	virtual ~Layer();
 
-	virtual void render(IRenderer3D *renderer = nullptr) const override;
+	virtual void render(IRenderer *renderer = nullptr) const override;
 	void bind() const;
 
 	inline const mat4 &getProjection() const { return m_projection; }

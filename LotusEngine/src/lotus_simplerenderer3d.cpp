@@ -1,9 +1,9 @@
 #include "lotus_simplerenderer3d.hpp"
 #include "lotus_simpleshader.hpp"
 
-void SimpleRenderer3D::submit(const MeshComponent *meshComponent)
+void SimpleRenderer3D::submit(const IRenderableComponent *meshComponent)
 {
-	m_renderQueue.push_back(meshComponent);
+	m_renderQueue.push_back((MeshComponent*) meshComponent);
 }
 
 void SimpleRenderer3D::flush()

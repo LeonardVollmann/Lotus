@@ -2,7 +2,7 @@
 #define LOTUS_ENTITY_HPP_INCLUDED
 
 #include "lotus_transform.hpp"
-#include "lotus_irenderer3d.hpp"
+#include "lotus_irenderer.hpp"
 
 #include <vector>
 
@@ -20,7 +20,7 @@ public:
 	virtual ~Entity();
 
 	virtual void update(float delta);
-	virtual void render(IRenderer3D *renderer) const;
+	virtual void render(IRenderer *renderer) const;
 	Entity &addChild(Entity *child);
 	Entity &addComponent(EntityComponent *component);
 	std::vector<Entity*> getAllDescendants() const;

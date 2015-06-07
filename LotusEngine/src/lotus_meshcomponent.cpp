@@ -19,7 +19,7 @@ void MeshComponent::bind() const
 	m_material->bindTexture("dispMap", 2);
 }
 
-void MeshComponent::render(IRenderer3D *renderer) const
+void MeshComponent::render(IRenderer *renderer) const
 {
 	renderer->submit(this);
 }

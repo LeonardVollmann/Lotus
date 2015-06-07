@@ -55,7 +55,7 @@
 		D719407A1B1E2EA80027ACBB /* lotus_lighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71940321B1E2EA80027ACBB /* lotus_lighting.cpp */; };
 		D719407B1B1E2EA80027ACBB /* lotus_layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D71940331B1E2EA80027ACBB /* lotus_layer.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D719407C1B1E2EA80027ACBB /* lotus_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71940341B1E2EA80027ACBB /* lotus_layer.cpp */; };
-		D719407D1B1E2EA80027ACBB /* lotus_irenderer3d.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D71940351B1E2EA80027ACBB /* lotus_irenderer3d.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		D719407D1B1E2EA80027ACBB /* lotus_irenderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D71940351B1E2EA80027ACBB /* lotus_irenderer.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D719407E1B1E2EA80027ACBB /* lotus_input.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D71940361B1E2EA80027ACBB /* lotus_input.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D719407F1B1E2EA80027ACBB /* lotus_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71940371B1E2EA80027ACBB /* lotus_input.cpp */; };
 		D71940801B1E2EA80027ACBB /* lotus_indexedmodel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D71940381B1E2EA80027ACBB /* lotus_indexedmodel.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -84,6 +84,7 @@
 		D71940971B1E2EA80027ACBB /* lotus_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D719404F1B1E2EA80027ACBB /* lotus_engine.cpp */; };
 		D71940981B1E2EA80027ACBB /* lotus_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D71940501B1E2EA80027ACBB /* lotus_camera.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D71940991B1E2EA80027ACBB /* lotus_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71940511B1E2EA80027ACBB /* lotus_camera.cpp */; };
+		D757E6891B24D24700319BF3 /* lotus_irenderablecomponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D757E6881B24D24700319BF3 /* lotus_irenderablecomponent.hpp */; };
 		D7EB2C691B1E38BA00E9B597 /* black.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C571B1E38A300E9B597 /* black.png */; };
 		D7EB2C6A1B1E38BA00E9B597 /* default.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C581B1E38A300E9B597 /* default.png */; };
 		D7EB2C6B1B1E38BA00E9B597 /* default_disp.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C591B1E38A300E9B597 /* default_disp.png */; };
@@ -191,7 +192,7 @@
 		D71940321B1E2EA80027ACBB /* lotus_lighting.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_lighting.cpp; sourceTree = "<group>"; };
 		D71940331B1E2EA80027ACBB /* lotus_layer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_layer.hpp; sourceTree = "<group>"; };
 		D71940341B1E2EA80027ACBB /* lotus_layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_layer.cpp; sourceTree = "<group>"; };
-		D71940351B1E2EA80027ACBB /* lotus_irenderer3d.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_irenderer3d.hpp; sourceTree = "<group>"; };
+		D71940351B1E2EA80027ACBB /* lotus_irenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_irenderer.hpp; sourceTree = "<group>"; };
 		D71940361B1E2EA80027ACBB /* lotus_input.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_input.hpp; sourceTree = "<group>"; };
 		D71940371B1E2EA80027ACBB /* lotus_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_input.cpp; sourceTree = "<group>"; };
 		D71940381B1E2EA80027ACBB /* lotus_indexedmodel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_indexedmodel.hpp; sourceTree = "<group>"; };
@@ -220,6 +221,7 @@
 		D719404F1B1E2EA80027ACBB /* lotus_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_engine.cpp; sourceTree = "<group>"; };
 		D71940501B1E2EA80027ACBB /* lotus_camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_camera.hpp; sourceTree = "<group>"; };
 		D71940511B1E2EA80027ACBB /* lotus_camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_camera.cpp; sourceTree = "<group>"; };
+		D757E6881B24D24700319BF3 /* lotus_irenderablecomponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_irenderablecomponent.hpp; sourceTree = "<group>"; };
 		D7EB2C571B1E38A300E9B597 /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black.png; sourceTree = "<group>"; };
 		D7EB2C581B1E38A300E9B597 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		D7EB2C591B1E38A300E9B597 /* default_disp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_disp.png; sourceTree = "<group>"; };
@@ -311,7 +313,8 @@
 				D719403A1B1E2EA80027ACBB /* lotus_igame.hpp */,
 				D71940381B1E2EA80027ACBB /* lotus_indexedmodel.hpp */,
 				D71940361B1E2EA80027ACBB /* lotus_input.hpp */,
-				D71940351B1E2EA80027ACBB /* lotus_irenderer3d.hpp */,
+				D757E6881B24D24700319BF3 /* lotus_irenderablecomponent.hpp */,
+				D71940351B1E2EA80027ACBB /* lotus_irenderer.hpp */,
 				D71940331B1E2EA80027ACBB /* lotus_layer.hpp */,
 				D71940311B1E2EA80027ACBB /* lotus_lighting.hpp */,
 				D719402F1B1E2EA80027ACBB /* lotus_mat4.hpp */,
@@ -418,7 +421,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D71940741B1E2EA80027ACBB /* lotus_maths.hpp in Headers */,
-				D719407D1B1E2EA80027ACBB /* lotus_irenderer3d.hpp in Headers */,
+				D719407D1B1E2EA80027ACBB /* lotus_irenderer.hpp in Headers */,
+				D757E6891B24D24700319BF3 /* lotus_irenderablecomponent.hpp in Headers */,
 				D71940871B1E2EA80027ACBB /* lotus_forwardspot.hpp in Headers */,
 				D71940551B1E2EA80027ACBB /* lotus_vec4.hpp in Headers */,
 				D719406E1B1E2EA80027ACBB /* lotus_objloader.hpp in Headers */,

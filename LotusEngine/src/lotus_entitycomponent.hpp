@@ -11,7 +11,7 @@ public:
 	virtual ~EntityComponent() {} 
 
 	virtual void update(float delta) {}
-	virtual void render(IRenderer3D *renderer) const {}
+	virtual void render(IRenderer *renderer) const {}
 
 	inline Transform &getTransform() const { return m_entity->getTransform(); }
 	
