@@ -8,12 +8,15 @@ void ForwardRenderer3D::flush()
 {
 	while (!m_renderQueue.empty())
 	{
-		const MeshComponent *meshComponent = m_renderQueue.front();
-		meshComponent->bind();
+		const RenderableComponent<Renderable<Vertex3D>> *renderableComponent = m_renderQueue.front();
+		renderableComponent->bind();
+		renderableComponent->getMaterial()->bindTexture("diffuse", 0);
+		renderableComponent->getMaterial()->bindTexture("normalMap", 1);
+		renderableComponent->getMaterial()->bindTexture("dispMap", 2);
 	
 		ForwardAmbient::getInstance().bind();
-		ForwardAmbient::getInstance().updateUniforms(meshComponent->getTransform());
-		glDrawElements(GL_TRIANGLES, meshComponent->getMesh()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
+		ForwardAmbient::getInstance().updateUniforms(renderableComponent->getTransform());
+		glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 	
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_ONE, GL_ONE);
@@ -25,8 +28,8 @@ void ForwardRenderer3D::flush()
 		for (auto it = directionalLights.begin(); it < directionalLights.end(); it++)
 		{
 			ForwardDirectional::getInstance().setActiveDirectionalLight(&(*it));
-			ForwardDirectional::getInstance().updateUniforms(meshComponent->getTransform());
-			glDrawElements(GL_TRIANGLES, meshComponent->getMesh()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
+			ForwardDirectional::getInstance().updateUniforms(renderableComponent->getTransform());
+			glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 		}
 		
 		ForwardPoint::getInstance().bind();
@@ -34,8 +37,8 @@ void ForwardRenderer3D::flush()
 		for (auto it = pointLights.begin(); it < pointLights.end(); it++)
 		{
 			ForwardPoint::getInstance().setActivePointLight(&(*it));
-			ForwardPoint::getInstance().updateUniforms(meshComponent->getTransform());
-			glDrawElements(GL_TRIANGLES, meshComponent->getMesh()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
+			ForwardPoint::getInstance().updateUniforms(renderableComponent->getTransform());
+			glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 		}
 		
 		ForwardSpot::getInstance().bind();
@@ -43,8 +46,8 @@ void ForwardRenderer3D::flush()
 		for (auto it = spotLights.begin(); it < spotLights.end(); it++)
 		{
 			ForwardSpot::getInstance().setActiveSpotLight(&(*it));
-			ForwardSpot::getInstance().updateUniforms(meshComponent->getTransform());
-			glDrawElements(GL_TRIANGLES, meshComponent->getMesh()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
+			ForwardSpot::getInstance().updateUniforms(renderableComponent->getTransform());
+			glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 		}
 		
 		glDepthFunc(GL_LESS);

@@ -3,14 +3,12 @@
 
 #include <GL/glew.h>
 
-class IRenderableComponent;
-
 class IRenderer
 {
 public:
 	virtual ~IRenderer() {}
 	
-	virtual void submit(const IRenderableComponent *mesh) = 0;
+	virtual void submit(const void *renderableComponent) = 0;
 	virtual void flush() = 0;
 };
 

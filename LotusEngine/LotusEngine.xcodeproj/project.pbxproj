@@ -14,7 +14,7 @@
 		D7193FEB1B1E2B3A0027ACBB /* libGLEW.1.11.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7193FE91B1E2B3A0027ACBB /* libGLEW.1.11.0.dylib */; };
 		D71940521B1E2EA80027ACBB /* lotus_window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D719400A1B1E2EA80027ACBB /* lotus_window.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D71940531B1E2EA80027ACBB /* lotus_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D719400B1B1E2EA80027ACBB /* lotus_window.cpp */; };
-		D71940541B1E2EA80027ACBB /* lotus_vertex3d.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D719400C1B1E2EA80027ACBB /* lotus_vertex3d.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		D71940541B1E2EA80027ACBB /* lotus_vertex.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D719400C1B1E2EA80027ACBB /* lotus_vertex.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D71940551B1E2EA80027ACBB /* lotus_vec4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D719400D1B1E2EA80027ACBB /* lotus_vec4.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D71940561B1E2EA80027ACBB /* lotus_vec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D719400E1B1E2EA80027ACBB /* lotus_vec4.cpp */; };
 		D71940571B1E2EA80027ACBB /* lotus_vec3.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D719400F1B1E2EA80027ACBB /* lotus_vec3.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,10 +42,6 @@
 		D719406D1B1E2EA80027ACBB /* lotus_phongrenderer3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71940251B1E2EA80027ACBB /* lotus_phongrenderer3d.cpp */; };
 		D719406E1B1E2EA80027ACBB /* lotus_objloader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D71940261B1E2EA80027ACBB /* lotus_objloader.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D719406F1B1E2EA80027ACBB /* lotus_objloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71940271B1E2EA80027ACBB /* lotus_objloader.cpp */; };
-		D71940701B1E2EA80027ACBB /* lotus_meshcomponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D71940281B1E2EA80027ACBB /* lotus_meshcomponent.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		D71940711B1E2EA80027ACBB /* lotus_meshcomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71940291B1E2EA80027ACBB /* lotus_meshcomponent.cpp */; };
-		D71940721B1E2EA80027ACBB /* lotus_mesh.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D719402A1B1E2EA80027ACBB /* lotus_mesh.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		D71940731B1E2EA80027ACBB /* lotus_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D719402B1B1E2EA80027ACBB /* lotus_mesh.cpp */; };
 		D71940741B1E2EA80027ACBB /* lotus_maths.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D719402C1B1E2EA80027ACBB /* lotus_maths.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D71940751B1E2EA80027ACBB /* lotus_material.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D719402D1B1E2EA80027ACBB /* lotus_material.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D71940761B1E2EA80027ACBB /* lotus_material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D719402E1B1E2EA80027ACBB /* lotus_material.cpp */; };
@@ -84,7 +80,10 @@
 		D71940971B1E2EA80027ACBB /* lotus_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D719404F1B1E2EA80027ACBB /* lotus_engine.cpp */; };
 		D71940981B1E2EA80027ACBB /* lotus_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D71940501B1E2EA80027ACBB /* lotus_camera.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D71940991B1E2EA80027ACBB /* lotus_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71940511B1E2EA80027ACBB /* lotus_camera.cpp */; };
-		D757E6891B24D24700319BF3 /* lotus_irenderablecomponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D757E6881B24D24700319BF3 /* lotus_irenderablecomponent.hpp */; };
+		D7C4D6721B2D96D6003C628A /* lotus_renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7C4D6701B2D96D6003C628A /* lotus_renderable.cpp */; };
+		D7C4D6731B2D96D6003C628A /* lotus_renderable.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D7C4D6711B2D96D6003C628A /* lotus_renderable.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		D7C4D6761B2D96E1003C628A /* lotus_renderablecomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7C4D6741B2D96E1003C628A /* lotus_renderablecomponent.cpp */; };
+		D7C4D6771B2D96E1003C628A /* lotus_renderablecomponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D7C4D6751B2D96E1003C628A /* lotus_renderablecomponent.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7EB2C691B1E38BA00E9B597 /* black.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C571B1E38A300E9B597 /* black.png */; };
 		D7EB2C6A1B1E38BA00E9B597 /* default.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C581B1E38A300E9B597 /* default.png */; };
 		D7EB2C6B1B1E38BA00E9B597 /* default_disp.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C591B1E38A300E9B597 /* default_disp.png */; };
@@ -151,7 +150,7 @@
 		D7193FE91B1E2B3A0027ACBB /* libGLEW.1.11.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.11.0.dylib; path = ../Dependencies/lib/libGLEW.1.11.0.dylib; sourceTree = "<group>"; };
 		D719400A1B1E2EA80027ACBB /* lotus_window.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_window.hpp; sourceTree = "<group>"; };
 		D719400B1B1E2EA80027ACBB /* lotus_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_window.cpp; sourceTree = "<group>"; };
-		D719400C1B1E2EA80027ACBB /* lotus_vertex3d.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_vertex3d.hpp; sourceTree = "<group>"; };
+		D719400C1B1E2EA80027ACBB /* lotus_vertex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_vertex.hpp; sourceTree = "<group>"; };
 		D719400D1B1E2EA80027ACBB /* lotus_vec4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_vec4.hpp; sourceTree = "<group>"; };
 		D719400E1B1E2EA80027ACBB /* lotus_vec4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_vec4.cpp; sourceTree = "<group>"; };
 		D719400F1B1E2EA80027ACBB /* lotus_vec3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_vec3.hpp; sourceTree = "<group>"; };
@@ -179,10 +178,6 @@
 		D71940251B1E2EA80027ACBB /* lotus_phongrenderer3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_phongrenderer3d.cpp; sourceTree = "<group>"; };
 		D71940261B1E2EA80027ACBB /* lotus_objloader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_objloader.hpp; sourceTree = "<group>"; };
 		D71940271B1E2EA80027ACBB /* lotus_objloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_objloader.cpp; sourceTree = "<group>"; };
-		D71940281B1E2EA80027ACBB /* lotus_meshcomponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_meshcomponent.hpp; sourceTree = "<group>"; };
-		D71940291B1E2EA80027ACBB /* lotus_meshcomponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_meshcomponent.cpp; sourceTree = "<group>"; };
-		D719402A1B1E2EA80027ACBB /* lotus_mesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_mesh.hpp; sourceTree = "<group>"; };
-		D719402B1B1E2EA80027ACBB /* lotus_mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_mesh.cpp; sourceTree = "<group>"; };
 		D719402C1B1E2EA80027ACBB /* lotus_maths.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_maths.hpp; sourceTree = "<group>"; };
 		D719402D1B1E2EA80027ACBB /* lotus_material.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_material.hpp; sourceTree = "<group>"; };
 		D719402E1B1E2EA80027ACBB /* lotus_material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_material.cpp; sourceTree = "<group>"; };
@@ -221,7 +216,10 @@
 		D719404F1B1E2EA80027ACBB /* lotus_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_engine.cpp; sourceTree = "<group>"; };
 		D71940501B1E2EA80027ACBB /* lotus_camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_camera.hpp; sourceTree = "<group>"; };
 		D71940511B1E2EA80027ACBB /* lotus_camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_camera.cpp; sourceTree = "<group>"; };
-		D757E6881B24D24700319BF3 /* lotus_irenderablecomponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_irenderablecomponent.hpp; sourceTree = "<group>"; };
+		D7C4D6701B2D96D6003C628A /* lotus_renderable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_renderable.cpp; sourceTree = "<group>"; };
+		D7C4D6711B2D96D6003C628A /* lotus_renderable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_renderable.hpp; sourceTree = "<group>"; };
+		D7C4D6741B2D96E1003C628A /* lotus_renderablecomponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_renderablecomponent.cpp; sourceTree = "<group>"; };
+		D7C4D6751B2D96E1003C628A /* lotus_renderablecomponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_renderablecomponent.hpp; sourceTree = "<group>"; };
 		D7EB2C571B1E38A300E9B597 /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black.png; sourceTree = "<group>"; };
 		D7EB2C581B1E38A300E9B597 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		D7EB2C591B1E38A300E9B597 /* default_disp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_disp.png; sourceTree = "<group>"; };
@@ -280,8 +278,78 @@
 		D7193F461B1E2ADE0027ACBB /* src */ = {
 			isa = PBXGroup;
 			children = (
-				D7EB2C311B1E32E400E9B597 /* sources */,
-				D7EB2C301B1E32C700E9B597 /* headers */,
+				D71940511B1E2EA80027ACBB /* lotus_camera.cpp */,
+				D71940501B1E2EA80027ACBB /* lotus_camera.hpp */,
+				D719404F1B1E2EA80027ACBB /* lotus_engine.cpp */,
+				D719404E1B1E2EA80027ACBB /* lotus_engine.hpp */,
+				D719404D1B1E2EA80027ACBB /* lotus_entity.cpp */,
+				D719404C1B1E2EA80027ACBB /* lotus_entity.hpp */,
+				D719404B1B1E2EA80027ACBB /* lotus_entitycomponent.hpp */,
+				D719404A1B1E2EA80027ACBB /* lotus_fileutils.cpp */,
+				D71940491B1E2EA80027ACBB /* lotus_fileutils.hpp */,
+				D71940481B1E2EA80027ACBB /* lotus_forwardambient.cpp */,
+				D71940471B1E2EA80027ACBB /* lotus_forwardambient.hpp */,
+				D71940461B1E2EA80027ACBB /* lotus_forwarddirectional.cpp */,
+				D71940451B1E2EA80027ACBB /* lotus_forwarddirectional.hpp */,
+				D71940441B1E2EA80027ACBB /* lotus_forwardpoint.cpp */,
+				D71940431B1E2EA80027ACBB /* lotus_forwardpoint.hpp */,
+				D71940421B1E2EA80027ACBB /* lotus_forwardrenderer3d.cpp */,
+				D71940411B1E2EA80027ACBB /* lotus_forwardrenderer3d.hpp */,
+				D71940401B1E2EA80027ACBB /* lotus_forwardspot.cpp */,
+				D719403F1B1E2EA80027ACBB /* lotus_forwardspot.hpp */,
+				D719403E1B1E2EA80027ACBB /* lotus_freelook.cpp */,
+				D719403D1B1E2EA80027ACBB /* lotus_freelook.hpp */,
+				D719403C1B1E2EA80027ACBB /* lotus_freemove.cpp */,
+				D719403B1B1E2EA80027ACBB /* lotus_freemove.hpp */,
+				D719403A1B1E2EA80027ACBB /* lotus_igame.hpp */,
+				D71940391B1E2EA80027ACBB /* lotus_indexedmodel.cpp */,
+				D71940381B1E2EA80027ACBB /* lotus_indexedmodel.hpp */,
+				D71940371B1E2EA80027ACBB /* lotus_input.cpp */,
+				D71940361B1E2EA80027ACBB /* lotus_input.hpp */,
+				D71940351B1E2EA80027ACBB /* lotus_irenderer.hpp */,
+				D71940341B1E2EA80027ACBB /* lotus_layer.cpp */,
+				D71940331B1E2EA80027ACBB /* lotus_layer.hpp */,
+				D71940321B1E2EA80027ACBB /* lotus_lighting.cpp */,
+				D71940311B1E2EA80027ACBB /* lotus_lighting.hpp */,
+				D71940301B1E2EA80027ACBB /* lotus_mat4.cpp */,
+				D719402F1B1E2EA80027ACBB /* lotus_mat4.hpp */,
+				D719402E1B1E2EA80027ACBB /* lotus_material.cpp */,
+				D719402D1B1E2EA80027ACBB /* lotus_material.hpp */,
+				D719402C1B1E2EA80027ACBB /* lotus_maths.hpp */,
+				D71940271B1E2EA80027ACBB /* lotus_objloader.cpp */,
+				D71940261B1E2EA80027ACBB /* lotus_objloader.hpp */,
+				D71940251B1E2EA80027ACBB /* lotus_phongrenderer3d.cpp */,
+				D71940241B1E2EA80027ACBB /* lotus_phongrenderer3d.hpp */,
+				D71940231B1E2EA80027ACBB /* lotus_phongshader.cpp */,
+				D71940221B1E2EA80027ACBB /* lotus_phongshader.hpp */,
+				D71940211B1E2EA80027ACBB /* lotus_quat.cpp */,
+				D71940201B1E2EA80027ACBB /* lotus_quat.hpp */,
+				D7C4D6701B2D96D6003C628A /* lotus_renderable.cpp */,
+				D7C4D6711B2D96D6003C628A /* lotus_renderable.hpp */,
+				D7C4D6741B2D96E1003C628A /* lotus_renderablecomponent.cpp */,
+				D7C4D6751B2D96E1003C628A /* lotus_renderablecomponent.hpp */,
+				D719401F1B1E2EA80027ACBB /* lotus_shader.cpp */,
+				D719401E1B1E2EA80027ACBB /* lotus_shader.hpp */,
+				D719401D1B1E2EA80027ACBB /* lotus_simplerenderer3d.cpp */,
+				D719401C1B1E2EA80027ACBB /* lotus_simplerenderer3d.hpp */,
+				D719401B1B1E2EA80027ACBB /* lotus_simpleshader.cpp */,
+				D719401A1B1E2EA80027ACBB /* lotus_simpleshader.hpp */,
+				D71940191B1E2EA80027ACBB /* lotus_stringutils.cpp */,
+				D71940181B1E2EA80027ACBB /* lotus_stringutils.hpp */,
+				D71940171B1E2EA80027ACBB /* lotus_texture.cpp */,
+				D71940161B1E2EA80027ACBB /* lotus_texture.hpp */,
+				D71940151B1E2EA80027ACBB /* lotus_time.hpp */,
+				D71940141B1E2EA80027ACBB /* lotus_transform.cpp */,
+				D71940131B1E2EA80027ACBB /* lotus_transform.hpp */,
+				D71940121B1E2EA80027ACBB /* lotus_vec2.cpp */,
+				D71940111B1E2EA80027ACBB /* lotus_vec2.hpp */,
+				D71940101B1E2EA80027ACBB /* lotus_vec3.cpp */,
+				D719400F1B1E2EA80027ACBB /* lotus_vec3.hpp */,
+				D719400E1B1E2EA80027ACBB /* lotus_vec4.cpp */,
+				D719400D1B1E2EA80027ACBB /* lotus_vec4.hpp */,
+				D719400C1B1E2EA80027ACBB /* lotus_vertex.hpp */,
+				D719400B1B1E2EA80027ACBB /* lotus_window.cpp */,
+				D719400A1B1E2EA80027ACBB /* lotus_window.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -293,93 +361,6 @@
 				D7193F9A1B1E2ADE0027ACBB /* stb_image.h */,
 			);
 			path = ext;
-			sourceTree = "<group>";
-		};
-		D7EB2C301B1E32C700E9B597 /* headers */ = {
-			isa = PBXGroup;
-			children = (
-				D71940501B1E2EA80027ACBB /* lotus_camera.hpp */,
-				D719404E1B1E2EA80027ACBB /* lotus_engine.hpp */,
-				D719404C1B1E2EA80027ACBB /* lotus_entity.hpp */,
-				D719404B1B1E2EA80027ACBB /* lotus_entitycomponent.hpp */,
-				D71940491B1E2EA80027ACBB /* lotus_fileutils.hpp */,
-				D71940471B1E2EA80027ACBB /* lotus_forwardambient.hpp */,
-				D71940451B1E2EA80027ACBB /* lotus_forwarddirectional.hpp */,
-				D71940431B1E2EA80027ACBB /* lotus_forwardpoint.hpp */,
-				D71940411B1E2EA80027ACBB /* lotus_forwardrenderer3d.hpp */,
-				D719403F1B1E2EA80027ACBB /* lotus_forwardspot.hpp */,
-				D719403D1B1E2EA80027ACBB /* lotus_freelook.hpp */,
-				D719403B1B1E2EA80027ACBB /* lotus_freemove.hpp */,
-				D719403A1B1E2EA80027ACBB /* lotus_igame.hpp */,
-				D71940381B1E2EA80027ACBB /* lotus_indexedmodel.hpp */,
-				D71940361B1E2EA80027ACBB /* lotus_input.hpp */,
-				D757E6881B24D24700319BF3 /* lotus_irenderablecomponent.hpp */,
-				D71940351B1E2EA80027ACBB /* lotus_irenderer.hpp */,
-				D71940331B1E2EA80027ACBB /* lotus_layer.hpp */,
-				D71940311B1E2EA80027ACBB /* lotus_lighting.hpp */,
-				D719402F1B1E2EA80027ACBB /* lotus_mat4.hpp */,
-				D719402D1B1E2EA80027ACBB /* lotus_material.hpp */,
-				D719402C1B1E2EA80027ACBB /* lotus_maths.hpp */,
-				D719402A1B1E2EA80027ACBB /* lotus_mesh.hpp */,
-				D71940281B1E2EA80027ACBB /* lotus_meshcomponent.hpp */,
-				D71940261B1E2EA80027ACBB /* lotus_objloader.hpp */,
-				D71940241B1E2EA80027ACBB /* lotus_phongrenderer3d.hpp */,
-				D71940221B1E2EA80027ACBB /* lotus_phongshader.hpp */,
-				D71940201B1E2EA80027ACBB /* lotus_quat.hpp */,
-				D719401E1B1E2EA80027ACBB /* lotus_shader.hpp */,
-				D719401C1B1E2EA80027ACBB /* lotus_simplerenderer3d.hpp */,
-				D719401A1B1E2EA80027ACBB /* lotus_simpleshader.hpp */,
-				D71940181B1E2EA80027ACBB /* lotus_stringutils.hpp */,
-				D71940161B1E2EA80027ACBB /* lotus_texture.hpp */,
-				D71940151B1E2EA80027ACBB /* lotus_time.hpp */,
-				D71940131B1E2EA80027ACBB /* lotus_transform.hpp */,
-				D71940111B1E2EA80027ACBB /* lotus_vec2.hpp */,
-				D719400F1B1E2EA80027ACBB /* lotus_vec3.hpp */,
-				D719400D1B1E2EA80027ACBB /* lotus_vec4.hpp */,
-				D719400C1B1E2EA80027ACBB /* lotus_vertex3d.hpp */,
-				D719400A1B1E2EA80027ACBB /* lotus_window.hpp */,
-			);
-			name = headers;
-			sourceTree = "<group>";
-		};
-		D7EB2C311B1E32E400E9B597 /* sources */ = {
-			isa = PBXGroup;
-			children = (
-				D71940511B1E2EA80027ACBB /* lotus_camera.cpp */,
-				D719404F1B1E2EA80027ACBB /* lotus_engine.cpp */,
-				D719404D1B1E2EA80027ACBB /* lotus_entity.cpp */,
-				D719404A1B1E2EA80027ACBB /* lotus_fileutils.cpp */,
-				D71940481B1E2EA80027ACBB /* lotus_forwardambient.cpp */,
-				D71940461B1E2EA80027ACBB /* lotus_forwarddirectional.cpp */,
-				D71940441B1E2EA80027ACBB /* lotus_forwardpoint.cpp */,
-				D71940421B1E2EA80027ACBB /* lotus_forwardrenderer3d.cpp */,
-				D71940401B1E2EA80027ACBB /* lotus_forwardspot.cpp */,
-				D719403E1B1E2EA80027ACBB /* lotus_freelook.cpp */,
-				D719403C1B1E2EA80027ACBB /* lotus_freemove.cpp */,
-				D71940391B1E2EA80027ACBB /* lotus_indexedmodel.cpp */,
-				D71940371B1E2EA80027ACBB /* lotus_input.cpp */,
-				D71940341B1E2EA80027ACBB /* lotus_layer.cpp */,
-				D71940321B1E2EA80027ACBB /* lotus_lighting.cpp */,
-				D71940301B1E2EA80027ACBB /* lotus_mat4.cpp */,
-				D719402E1B1E2EA80027ACBB /* lotus_material.cpp */,
-				D719402B1B1E2EA80027ACBB /* lotus_mesh.cpp */,
-				D71940291B1E2EA80027ACBB /* lotus_meshcomponent.cpp */,
-				D71940271B1E2EA80027ACBB /* lotus_objloader.cpp */,
-				D71940251B1E2EA80027ACBB /* lotus_phongrenderer3d.cpp */,
-				D71940231B1E2EA80027ACBB /* lotus_phongshader.cpp */,
-				D71940211B1E2EA80027ACBB /* lotus_quat.cpp */,
-				D719401F1B1E2EA80027ACBB /* lotus_shader.cpp */,
-				D719401D1B1E2EA80027ACBB /* lotus_simplerenderer3d.cpp */,
-				D719401B1B1E2EA80027ACBB /* lotus_simpleshader.cpp */,
-				D71940191B1E2EA80027ACBB /* lotus_stringutils.cpp */,
-				D71940171B1E2EA80027ACBB /* lotus_texture.cpp */,
-				D71940141B1E2EA80027ACBB /* lotus_transform.cpp */,
-				D71940121B1E2EA80027ACBB /* lotus_vec2.cpp */,
-				D71940101B1E2EA80027ACBB /* lotus_vec3.cpp */,
-				D719400E1B1E2EA80027ACBB /* lotus_vec4.cpp */,
-				D719400B1B1E2EA80027ACBB /* lotus_window.cpp */,
-			);
-			name = sources;
 			sourceTree = "<group>";
 		};
 		D7EB2C561B1E38A300E9B597 /* textures */ = {
@@ -422,17 +403,15 @@
 			files = (
 				D71940741B1E2EA80027ACBB /* lotus_maths.hpp in Headers */,
 				D719407D1B1E2EA80027ACBB /* lotus_irenderer.hpp in Headers */,
-				D757E6891B24D24700319BF3 /* lotus_irenderablecomponent.hpp in Headers */,
 				D71940871B1E2EA80027ACBB /* lotus_forwardspot.hpp in Headers */,
 				D71940551B1E2EA80027ACBB /* lotus_vec4.hpp in Headers */,
+				D7C4D6771B2D96E1003C628A /* lotus_renderablecomponent.hpp in Headers */,
 				D719406E1B1E2EA80027ACBB /* lotus_objloader.hpp in Headers */,
 				D719408D1B1E2EA80027ACBB /* lotus_forwarddirectional.hpp in Headers */,
 				D719405D1B1E2EA80027ACBB /* lotus_time.hpp in Headers */,
 				D71940771B1E2EA80027ACBB /* lotus_mat4.hpp in Headers */,
-				D71940721B1E2EA80027ACBB /* lotus_mesh.hpp in Headers */,
 				D719408B1B1E2EA80027ACBB /* lotus_forwardpoint.hpp in Headers */,
 				D719408F1B1E2EA80027ACBB /* lotus_forwardambient.hpp in Headers */,
-				D71940701B1E2EA80027ACBB /* lotus_meshcomponent.hpp in Headers */,
 				D71940641B1E2EA80027ACBB /* lotus_simplerenderer3d.hpp in Headers */,
 				D71940891B1E2EA80027ACBB /* lotus_forwardrenderer3d.hpp in Headers */,
 				D71940681B1E2EA80027ACBB /* lotus_quat.hpp in Headers */,
@@ -446,10 +425,11 @@
 				D71940661B1E2EA80027ACBB /* lotus_shader.hpp in Headers */,
 				D71940821B1E2EA80027ACBB /* lotus_igame.hpp in Headers */,
 				D71940941B1E2EA80027ACBB /* lotus_entity.hpp in Headers */,
-				D71940541B1E2EA80027ACBB /* lotus_vertex3d.hpp in Headers */,
+				D71940541B1E2EA80027ACBB /* lotus_vertex.hpp in Headers */,
 				D71940591B1E2EA80027ACBB /* lotus_vec2.hpp in Headers */,
 				D719405E1B1E2EA80027ACBB /* lotus_texture.hpp in Headers */,
 				D719407B1B1E2EA80027ACBB /* lotus_layer.hpp in Headers */,
+				D7C4D6731B2D96D6003C628A /* lotus_renderable.hpp in Headers */,
 				D71940571B1E2EA80027ACBB /* lotus_vec3.hpp in Headers */,
 				D71940521B1E2EA80027ACBB /* lotus_window.hpp in Headers */,
 				D71940791B1E2EA80027ACBB /* lotus_lighting.hpp in Headers */,
@@ -536,7 +516,6 @@
 				D719406B1B1E2EA80027ACBB /* lotus_phongshader.cpp in Sources */,
 				D71940531B1E2EA80027ACBB /* lotus_window.cpp in Sources */,
 				D719408A1B1E2EA80027ACBB /* lotus_forwardrenderer3d.cpp in Sources */,
-				D71940731B1E2EA80027ACBB /* lotus_mesh.cpp in Sources */,
 				D71940691B1E2EA80027ACBB /* lotus_quat.cpp in Sources */,
 				D71940841B1E2EA80027ACBB /* lotus_freemove.cpp in Sources */,
 				D719405A1B1E2EA80027ACBB /* lotus_vec2.cpp in Sources */,
@@ -548,13 +527,14 @@
 				D719407F1B1E2EA80027ACBB /* lotus_input.cpp in Sources */,
 				D71940811B1E2EA80027ACBB /* lotus_indexedmodel.cpp in Sources */,
 				D719405F1B1E2EA80027ACBB /* lotus_texture.cpp in Sources */,
+				D7C4D6721B2D96D6003C628A /* lotus_renderable.cpp in Sources */,
 				D71940921B1E2EA80027ACBB /* lotus_fileutils.cpp in Sources */,
 				D71940561B1E2EA80027ACBB /* lotus_vec4.cpp in Sources */,
 				D719407C1B1E2EA80027ACBB /* lotus_layer.cpp in Sources */,
 				D719406F1B1E2EA80027ACBB /* lotus_objloader.cpp in Sources */,
 				D71940971B1E2EA80027ACBB /* lotus_engine.cpp in Sources */,
 				D71940651B1E2EA80027ACBB /* lotus_simplerenderer3d.cpp in Sources */,
-				D71940711B1E2EA80027ACBB /* lotus_meshcomponent.cpp in Sources */,
+				D7C4D6761B2D96E1003C628A /* lotus_renderablecomponent.cpp in Sources */,
 				D71940671B1E2EA80027ACBB /* lotus_shader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
