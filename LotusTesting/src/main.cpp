@@ -2,31 +2,7 @@
 #include <cmath>
 #include <vector>
 
-#include <lotus_maths.hpp>
-#include <lotus_window.hpp>
-#include <lotus_lighting.hpp>
-#include <lotus_texture.hpp>
-#include <lotus_camera.hpp>
-#include <lotus_material.hpp>
-#include <lotus_shader.hpp>
-#include <lotus_simpleshader.hpp>
-#include <lotus_phongshader.hpp>
-#include <lotus_forwardambient.hpp>
-#include <lotus_forwarddirectional.hpp>
-#include <lotus_forwardpoint.hpp>
-#include <lotus_forwardspot.hpp>
-#include <lotus_simplerenderer3d.hpp>
-#include <lotus_phongrenderer3d.hpp>
-#include <lotus_forwardrenderer3d.hpp>
-#include <lotus_indexedmodel.hpp>
-#include <lotus_objloader.hpp>
-#include <lotus_renderablecomponent.hpp>
-#include <lotus_freemove.hpp>
-#include <lotus_freelook.hpp>
-#include <lotus_input.hpp>
-#include <lotus_transform.hpp>
-#include <lotus_engine.hpp>
-#include <lotus_igame.hpp>
+#include <lotus.hpp>
 
 class TestGame : public IGame
 {
@@ -90,8 +66,8 @@ public:
 		m_camera->addComponent(new FreeLook(5.0f));
 		add(m_camera);
 		
-		plane->addComponent(new RenderableComponent<Renderable<Vertex3D>>(new Renderable<Vertex3D>(model), material));
-		plane2->addComponent(new RenderableComponent<Renderable<Vertex3D>>(new Renderable<Vertex3D>(model), material2));
+		plane->addComponent(new RenderableComponent3D(new Renderable3D(model), material));
+		plane2->addComponent(new RenderableComponent3D(new Renderable3D(model), material2));
 		
 		ForwardAmbient::getInstance().setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
 		ForwardDirectional::getInstance().addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.3f, vec3(1.0f, 1.0f, 1.0f).normalize()));
