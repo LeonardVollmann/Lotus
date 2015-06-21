@@ -46,7 +46,6 @@ void Engine::update(float delta)
 {
 	glfwPollEvents();
 	Input::update();
-	
 	m_game->update(delta);
 }
 
