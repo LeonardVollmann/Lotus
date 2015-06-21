@@ -1,6 +1,5 @@
 #include "lotus_freelook.hpp"
 #include "lotus_input.hpp"
-#include <iostream>
 
 FreeLook::FreeLook(float turnSpeed) :
 	m_turnSpeed(turnSpeed) {}

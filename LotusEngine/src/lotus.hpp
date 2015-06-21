@@ -32,9 +32,10 @@
 #include "lotus_indexedmodel.hpp"
 #include "lotus_objloader.hpp"
 
+#include "lotus_scene.hpp"
+
 #include "lotus_transform.hpp"
 #include "lotus_entity.hpp"
-#include "lotus_layer.hpp"
 #include "lotus_renderablecomponent.hpp"
 #include "lotus_freemove.hpp"
 #include "lotus_freelook.hpp"

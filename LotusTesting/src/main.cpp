@@ -7,15 +7,13 @@
 class TestGame : public IGame
 {
 private:
-	Camera *m_camera;
 	SpotLight *m_spotLight;
 	PointLight *m_pointLights[8];
 	float m_temp = 0.0f;
 public:
 	TestGame() :
 		IGame(),
-		m_camera(new Camera()),
-		m_spotLight(new SpotLight(vec3(1.0f, 1.0f, 1.0f), 10.0f, Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), vec3(m_camera->getTransform().getRot().getForward()), 0.7f)),
+		m_spotLight(new SpotLight(vec3(1.0f, 1.0f, 1.0f), 10.0f, Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), vec3(Transform().getRot().getForward()), 0.7f)),
 		m_pointLights
 		{
 			new PointLight(vec3(1.0f, 1.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3(-7.0f, 0.0f, 0.0f)),
@@ -61,10 +59,9 @@ public:
 		plane2->getTransform().translate(vec3(5.0f, 2.0f, 5.0f));
 		plane2->getTransform().scale(vec3(0.3f, 0.3f, 0.3f));
 		
-		m_camera->bind();
 		m_camera->addComponent(new FreeMove(10.0f));
 		m_camera->addComponent(new FreeLook(5.0f));
-		add(m_camera);
+		m_camera->bind();
 		
 		plane->addComponent(new RenderableComponent3D(new Renderable3D(model), material));
 		plane2->addComponent(new RenderableComponent3D(new Renderable3D(model), material2));
@@ -78,14 +75,15 @@ public:
 		}
 		ForwardSpot::getInstance().addSpotLight(m_spotLight);
 		
-		Layer *scene = new Layer(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), new ForwardRenderer3D());
-		scene->addChild(plane);
-		scene->addChild(plane2);
-		addLayer(scene);
+		Scene *scene = new Scene(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), new ForwardRenderer3D());
+		scene->add(plane);
+		scene->add(plane2);
+		addScene(scene);
 	}
 	
 	virtual void update(double delta) override
 	{
+		IGame::update(delta);
 		m_temp += 0.025f;
 		const float sinTemp = sinf(m_temp) * 7.0f;
 		const float cosTemp = cosf(m_temp) * 7.0f;
@@ -96,7 +94,6 @@ public:
 			else			m_pointLights[i]->getPos().z = cosTemp;
 		}
 		
-		m_root->update(delta);
 		m_spotLight->setPos(m_camera->getTransform().getPos());
 		m_spotLight->setDirection(m_camera->getTransform().getRot().getBack());
 	}

@@ -12,8 +12,6 @@ class Entity
 {
 protected:
 	Transform 						m_transform;
-	Entity 							*m_parent;
-	std::vector<Entity*> 			m_children;
 	std::vector<EntityComponent*> 	m_components;
 public:
 	Entity(const Transform &transform = Transform());
@@ -21,13 +19,10 @@ public:
 
 	virtual void update(float delta);
 	virtual void render(IRenderer *renderer) const;
-	Entity &addChild(Entity *child);
 	Entity &addComponent(EntityComponent *component);
-	std::vector<Entity*> getAllDescendants() const;
 
 	inline Transform &getTransform() { return m_transform; }
 	inline const Transform &getTransform()	const { return m_transform; }
-	inline Entity *getParent()				const { return m_parent; }
 };
 
 #endif

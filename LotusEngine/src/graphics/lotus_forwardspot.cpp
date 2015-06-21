@@ -32,7 +32,7 @@ void ForwardSpot::updateUniforms(const Transform &transform) const
 	setUniformInteger("dispMap", 2);
 
 	mat4 transformation = transform.getTransformation();
-	setUniformMat4("mvp_matrix", Layer::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transformation);
+	setUniformMat4("mvp_matrix", Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transformation);
 	setUniformMat4("ml_matrix", transformation);
 	
 	setUniformVec3("cameraPos", Camera::CURRENT->getTransform().getPos());
