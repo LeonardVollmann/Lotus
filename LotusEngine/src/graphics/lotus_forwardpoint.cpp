@@ -37,12 +37,12 @@ void ForwardPoint::updateUniforms(const Transform &transform) const
 	
 	setUniformVec3("cameraPos", Camera::CURRENT->getTransform().getPos());
 	
-	setUniformVec4("baseColor", Material::CURRENT->getVec4("color"));
-	setUniformFloat("specularIntensity", Material::CURRENT->getFloat("specularIntensity"));
-	setUniformFloat("specularPower", Material::CURRENT->getFloat("specularPower"));
+	setUniformVec4("baseColor", *Material::CURRENT->getVec4("color"));
+	setUniformFloat("specularIntensity", *Material::CURRENT->getFloat("specularIntensity"));
+	setUniformFloat("specularPower", *Material::CURRENT->getFloat("specularPower"));
 	
-	setUniformFloat("dispMapScale", Material::CURRENT->getFloat("dispMapScale"));
-	setUniformFloat("dispMapBias", Material::CURRENT->getFloat("dispMapBias"));
+	setUniformFloat("dispMapScale", *Material::CURRENT->getFloat("dispMapScale"));
+	setUniformFloat("dispMapBias", *Material::CURRENT->getFloat("dispMapBias"));
 
 	setUniformPointLight("pointLight", **m_activePointLight);
 }

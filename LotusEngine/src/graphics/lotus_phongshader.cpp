@@ -55,9 +55,9 @@ void PhongShader::updateUniforms(const Transform &transform) const
 
 	setUniformVec3("cameraPos", Camera::CURRENT->getTransform().getPos());
 
-	setUniformVec4("baseColor", Material::CURRENT->getVec4("color"));
-	setUniformFloat("specularIntensity", Material::CURRENT->getFloat("specularIntensity"));
-	setUniformFloat("specularPower", Material::CURRENT->getFloat("specularPower"));
+	setUniformVec4("baseColor", *Material::CURRENT->getVec4("color"));
+	setUniformFloat("specularIntensity", *Material::CURRENT->getFloat("specularIntensity"));
+	setUniformFloat("specularPower", *Material::CURRENT->getFloat("specularPower"));
 
 	setUniformVec3("ambientLight", m_ambientLight);
 	setUniformDirectionalLight("directionalLight", m_directionalLight);

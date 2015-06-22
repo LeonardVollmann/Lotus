@@ -2,10 +2,10 @@
 #define LOTUS_MATERIAL_HPP_INCLUDED
 
 #include "lotus_texture.hpp"
+#include "lotus_vec2.hpp"
 #include "lotus_vec3.hpp"
 #include "lotus_vec4.hpp"
 
-#include <string>
 #include <map>
 
 class Material
@@ -13,10 +13,7 @@ class Material
 public:
 	static const Material *CURRENT;
 private:
-	mutable std::map<std::string, vec3>		m_vec3Map;
-	mutable std::map<std::string, vec4>		m_vec4Map;
-	mutable std::map<std::string, float>	m_floatMap;
-	mutable std::map<std::string, Texture*>	m_textureMap;
+	mutable std::map<const char*, void*> m_values;
 public:
 	Material() {}
 	Material(Texture *diffuse, vec4 color = vec4::ZERO, float specularIntensity = 2.0f, float specularPower = 8.0f,
@@ -25,17 +22,16 @@ public:
 	virtual ~Material();
 	
 	void bind() const;
-	void bindTexture(const std::string &name, unsigned int unit) const;
+	void bindTexture(const char *name, unsigned int unit) const;
 	
-	const vec3 &getVec3(const std::string &name) const;
-	const vec4 &getVec4(const std::string &name) const;
-	float getFloat(const std::string &name) const;
-	Texture *getTexture(const std::string &name) const;
+	void set(const char *name, void *value) const;
 	
-	void setVec3(const std::string &name, const vec3 &value) const;
-	void setVec4(const std::string &name, const vec4 &value) const;
-	void setFloat(const std::string name, float value) const;
-	void setTexture(const std::string &name, Texture *value) const;
+	inline const void *get(const char *name)			const { return m_values.at(name); }
+	inline const float *getFloat(const char *name)		const { return (const float*) get(name); }
+	inline const vec2 *getVec2(const char *name)		const { return (const vec2*) get(name); }
+	inline const vec3 *getVec3(const char *name)		const { return (const vec3*) get(name); }
+	inline const vec4 *getVec4(const char *name)		const { return (const vec4*) get(name); }
+	inline const Texture *getTexture(const char *name)	const { return (const Texture*) get(name); }
 };
 
 #endif

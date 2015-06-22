@@ -52,6 +52,8 @@ public:
 	virtual void setUniformAttenuation(const std::string &uniform, const Attenuation &attenuation) const;
 	virtual void setUniformPointLight(const std::string &uniform, const PointLight &pointLight) const;
 	virtual void setUniformSpotLight(const std::string &uniform, const SpotLight &spotLight) const;
+	
+	inline GLuint getShaderProgram() const { return m_program; }
 protected:
 	Shader(const std::string &fileName);
 	

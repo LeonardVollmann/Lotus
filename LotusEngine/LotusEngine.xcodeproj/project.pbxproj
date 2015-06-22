@@ -85,6 +85,8 @@
 		D7A59E6B1B36C4F500C89CDA /* lotus_stringutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7A59E221B36C4F500C89CDA /* lotus_stringutils.cpp */; };
 		D7A59E6C1B36C4F500C89CDA /* lotus_stringutils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D7A59E231B36C4F500C89CDA /* lotus_stringutils.hpp */; };
 		D7A59E6D1B36C4F500C89CDA /* lotus_time.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D7A59E241B36C4F500C89CDA /* lotus_time.hpp */; };
+		D7B88A3D1B38A25B00594AD6 /* lotus_uniform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7B88A3B1B38A25B00594AD6 /* lotus_uniform.cpp */; };
+		D7B88A3E1B38A25B00594AD6 /* lotus_uniform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D7B88A3C1B38A25B00594AD6 /* lotus_uniform.hpp */; };
 		D7EB2C691B1E38BA00E9B597 /* black.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C571B1E38A300E9B597 /* black.png */; };
 		D7EB2C6A1B1E38BA00E9B597 /* default.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C581B1E38A300E9B597 /* default.png */; };
 		D7EB2C6B1B1E38BA00E9B597 /* default_disp.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C591B1E38A300E9B597 /* default_disp.png */; };
@@ -222,6 +224,8 @@
 		D7A59E221B36C4F500C89CDA /* lotus_stringutils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_stringutils.cpp; sourceTree = "<group>"; };
 		D7A59E231B36C4F500C89CDA /* lotus_stringutils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_stringutils.hpp; sourceTree = "<group>"; };
 		D7A59E241B36C4F500C89CDA /* lotus_time.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_time.hpp; sourceTree = "<group>"; };
+		D7B88A3B1B38A25B00594AD6 /* lotus_uniform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_uniform.cpp; sourceTree = "<group>"; };
+		D7B88A3C1B38A25B00594AD6 /* lotus_uniform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_uniform.hpp; sourceTree = "<group>"; };
 		D7EB2C571B1E38A300E9B597 /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black.png; sourceTree = "<group>"; };
 		D7EB2C581B1E38A300E9B597 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		D7EB2C591B1E38A300E9B597 /* default_disp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_disp.png; sourceTree = "<group>"; };
@@ -371,6 +375,8 @@
 				D7A59E091B36C4F500C89CDA /* lotus_vertex.hpp */,
 				D7A59E0A1B36C4F500C89CDA /* lotus_window.cpp */,
 				D7A59E0B1B36C4F500C89CDA /* lotus_window.hpp */,
+				D7B88A3B1B38A25B00594AD6 /* lotus_uniform.cpp */,
+				D7B88A3C1B38A25B00594AD6 /* lotus_uniform.hpp */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -467,6 +473,7 @@
 				D7A59E571B36C4F500C89CDA /* lotus_window.hpp in Headers */,
 				D7A59E591B36C4F500C89CDA /* lotus_input.hpp in Headers */,
 				D7193FE51B1E2ADE0027ACBB /* stb_image.h in Headers */,
+				D7B88A3E1B38A25B00594AD6 /* lotus_uniform.hpp in Headers */,
 				D7A59E5C1B36C4F500C89CDA /* lotus_engine.hpp in Headers */,
 				D7A59E401B36C4F500C89CDA /* lotus_lighting.hpp in Headers */,
 				D7A59E4C1B36C4F500C89CDA /* lotus_scene.hpp in Headers */,
@@ -586,6 +593,7 @@
 				D7A59E3C1B36C4F500C89CDA /* lotus_indexedmodel.cpp in Sources */,
 				D7A59E491B36C4F500C89CDA /* lotus_renderable.cpp in Sources */,
 				D7A59E471B36C4F500C89CDA /* lotus_phongshader.cpp in Sources */,
+				D7B88A3D1B38A25B00594AD6 /* lotus_uniform.cpp in Sources */,
 				D7A59E4F1B36C4F500C89CDA /* lotus_simplerenderer3d.cpp in Sources */,
 				D7A59E5B1B36C4F500C89CDA /* lotus_engine.cpp in Sources */,
 			);
