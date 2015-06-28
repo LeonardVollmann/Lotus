@@ -14,20 +14,21 @@ class Shader;
 class IUniform
 {
 public:
-	virtual void update(Shader *shader) = 0;
+	virtual ~IUniform() {}
+	virtual void update(const Shader *shader) const = 0;
 };
 
 template<typename VAR_T>
 class Uniform : public IUniform
 {
 private:
-	GLint		m_location;
-	void		**m_owner;
-	size_t		m_varOffset;
+	GLint			m_location;
+	unsigned char	**m_owner;
+	size_t			m_varOffset;
 public:
-	Uniform(const Shader *shader, const char *name, void **owner, size_t m_varOffset);
+	Uniform(const Shader *shader, const char *name, unsigned char **owner, size_t m_varOffset);
 	
-	virtual void update(Shader *shader) const final;
+	virtual void update(const Shader *shader) const override;
 };
 
 #endif

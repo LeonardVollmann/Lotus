@@ -1,9 +1,16 @@
 #include "lotus_transform.hpp"
 
+const Transform *Transform::CURRENT;
+
 Transform::Transform(const vec3 &pos, const quat &rot, const vec3 &scale) :
 	m_pos(pos),
 	m_rot(rot),
 	m_scale(scale) {}
+
+void Transform::bind() const
+{
+	CURRENT = this;
+}
 
 mat4 Transform::getTransformation() const
 {

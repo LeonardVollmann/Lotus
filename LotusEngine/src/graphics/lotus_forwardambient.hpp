@@ -10,7 +10,7 @@ private:
 public:
 	static ForwardAmbient &getInstance();
 	
-	virtual void updateUniforms(const Transform &transform) const;
+	virtual void updateUniforms() const;
 	
 	inline const vec3 &getAmbientLight() const { return m_ambientLight; }
 	inline void setAmbientLight(const vec3 &ambientLight) { m_ambientLight = ambientLight; }

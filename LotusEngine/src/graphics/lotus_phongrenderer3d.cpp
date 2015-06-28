@@ -11,7 +11,7 @@ void PhongRenderer3D::flush()
 		renderableComponent->bind();
 		renderableComponent->getMaterial()->bindTexture("diffuse", 0);
 		
-		PhongShader::getInstance().updateUniforms(renderableComponent->getTransform());
+		PhongShader::getInstance().updateUniforms();
 		glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 		
 		m_renderQueue.pop_front();

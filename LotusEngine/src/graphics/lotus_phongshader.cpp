@@ -45,11 +45,11 @@ PhongShader::PhongShader() :
 	}
 }
 
-void PhongShader::updateUniforms(const Transform &transform) const
+void PhongShader::updateUniforms() const
 {
-	Shader::updateUniforms(transform);
+	Shader::updateUniforms();
 	
-	mat4 transformation = transform.getTransformation();
+	mat4 transformation = Transform::CURRENT->getTransformation();
 	setUniformMat4("mvp_matrix", Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transformation);
 	setUniformMat4("ml_matrix", transformation);
 

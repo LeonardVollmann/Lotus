@@ -8,7 +8,7 @@ class SimpleShader : public Shader
 public:
 	static SimpleShader &getInstance();
 	
-	virtual void updateUniforms(const Transform &transform) const override;
+	virtual void updateUniforms() const override;
 private:
 	SimpleShader();
 	SimpleShader(SimpleShader const&) = delete;

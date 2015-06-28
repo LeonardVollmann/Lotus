@@ -15,15 +15,15 @@ ForwardAmbient::ForwardAmbient() :
 	compile();
 }
 
-void ForwardAmbient::updateUniforms(const Transform &transform) const
+void ForwardAmbient::updateUniforms() const
 {
-	Shader::updateUniforms(transform);
+	Shader::updateUniforms();
 
 	setUniformInteger("diffuse", 0);
 	setUniformInteger("normalMap", 1);
 	setUniformInteger("dispMap", 2);
 	
-	mat4 transformation = transform.getTransformation();
+	mat4 transformation = Transform::CURRENT->getTransformation();
 	setUniformMat4("mvp_matrix", Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transformation);
 	setUniformMat4("ml_matrix", transformation);
 	

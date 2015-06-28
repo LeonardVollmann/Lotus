@@ -15,7 +15,7 @@ void ForwardRenderer3D::flush()
 		renderableComponent->getMaterial()->bindTexture("dispMap", 2);
 	
 		ForwardAmbient::getInstance().bind();
-		ForwardAmbient::getInstance().updateUniforms(renderableComponent->getTransform());
+		ForwardAmbient::getInstance().updateUniforms();
 		glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 	
 		glEnable(GL_BLEND);
@@ -28,7 +28,7 @@ void ForwardRenderer3D::flush()
 		for (auto it = directionalLights.begin(); it < directionalLights.end(); it++)
 		{
 			ForwardDirectional::getInstance().setActiveDirectionalLight(&(*it));
-			ForwardDirectional::getInstance().updateUniforms(renderableComponent->getTransform());
+			ForwardDirectional::getInstance().updateUniforms();
 			glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 		}
 		
@@ -37,7 +37,7 @@ void ForwardRenderer3D::flush()
 		for (auto it = pointLights.begin(); it < pointLights.end(); it++)
 		{
 			ForwardPoint::getInstance().setActivePointLight(&(*it));
-			ForwardPoint::getInstance().updateUniforms(renderableComponent->getTransform());
+			ForwardPoint::getInstance().updateUniforms();
 			glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 		}
 		
@@ -46,7 +46,7 @@ void ForwardRenderer3D::flush()
 		for (auto it = spotLights.begin(); it < spotLights.end(); it++)
 		{
 			ForwardSpot::getInstance().setActiveSpotLight(&(*it));
-			ForwardSpot::getInstance().updateUniforms(renderableComponent->getTransform());
+			ForwardSpot::getInstance().updateUniforms();
 			glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 		}
 		

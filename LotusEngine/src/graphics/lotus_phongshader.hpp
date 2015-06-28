@@ -18,7 +18,7 @@ private:
 public:
 	static PhongShader &getInstance();
 	
-	virtual void updateUniforms(const Transform &transform) const override;
+	virtual void updateUniforms() const override;
 
 	void setPointLights(PointLight *pointLights, int numLights);
 	void setSpotLights(SpotLight *spotLights, int numLights);

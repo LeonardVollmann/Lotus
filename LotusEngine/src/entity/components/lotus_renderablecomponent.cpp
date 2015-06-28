@@ -21,6 +21,7 @@ void RenderableComponent<RENDERABLE_T>::render(IRenderer *renderer) const
 template<typename RENDERABLE_T>
 void RenderableComponent<RENDERABLE_T>::bind() const
 {
+	getTransform().bind();
 	m_renderable->bind();
 	m_material->bind();
 }

@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+#define GET_BOUND_INSTANCE(t) (void*) t::CURRENT
+
 Shader::Shader(const std::string &fileName) :
 	m_fileName(fileName)
 {
@@ -12,6 +14,11 @@ Shader::Shader(const std::string &fileName) :
 
 Shader::~Shader()
 {
+	for (auto it = m_uniforms.begin(); it < m_uniforms.end(); it++)
+	{
+		delete *it;
+	}
+	
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		glDetachShader(m_program, m_shaders[i]);
@@ -69,7 +76,13 @@ Shader &Shader::compile()
 	return *this;
 }
 
-void Shader::updateUniforms(const Transform &transform) const {}
+void Shader::updateUniforms() const
+{
+	for (auto it = m_uniforms.begin(); it < m_uniforms.end(); it++)
+	{
+		(*it)->update(this);
+	}
+}
 
 void Shader::setUniformInteger(const std::string &uniform, int value) const
 {
@@ -128,6 +141,36 @@ void Shader::setUniformSpotLight(const std::string &uniform, const SpotLight &sp
 	setUniformPointLight(uniform + ".pointLight", PointLight(spotLight.getColor(), spotLight.getIntensity(), spotLight.getAttenuation(), spotLight.getPos()));
 	setUniformVec3(uniform + ".direction", spotLight.getDirection());
 	setUniformFloat(uniform + ".cutoff", spotLight.getCutoff());
+}
+
+void Shader::setUniform(GLint location, const int &value) const
+{
+	glUniform1i(location, value);
+}
+
+void Shader::setUniform(GLint location, const float &value) const
+{
+	glUniform1f(location, value);
+}
+
+void Shader::setUniform(GLint location, const vec2 &value) const
+{
+	glUniform2f(location, value.x, value.y);
+}
+
+void Shader::setUniform(GLint location, const vec3 &value) const
+{
+	glUniform3f(location, value.x, value.y, value.z);
+}
+
+void Shader::setUniform(GLint location, const vec4 &value) const
+{
+	glUniform4f(location, value.x, value.y, value.z, value.w);
+}
+
+void Shader::setUniform(GLint location, const mat4 &value) const
+{
+	glUniformMatrix4fv(location, 1, GL_FALSE, value.elements);
 }
 
 std::string Shader::preprocess(const std::string &shaderText)
@@ -211,7 +254,7 @@ void Shader::addAllUniforms() const
 		}
 		else
 		{
-			addUniform(it->first);
+			addUniform(it->first, it->second);
 		}
 	}
 }
@@ -227,7 +270,7 @@ void Shader::addUniformStruct(const std::string &uniform, const std::map<std::st
 		}
 		else
 		{
-			addUniform(prefix + it->first);
+			addUniform(prefix + it->first, it->second);
 		}
 	}
 }
@@ -237,11 +280,17 @@ bool Shader::isUniformStruct(const std::string &uniformType) const
 	return m_uniformStructs.find(uniformType) != m_uniformStructs.end();
 }
 
-void Shader::addUniform(const std::string &uniform) const
+void Shader::addUniform(const std::string &uniform, const std::string &type) const
 {
 	GLint location = glGetUniformLocation(m_program, uniform.c_str());
-	
 	m_uniformLocations.insert(std::pair<std::string, GLint>(uniform, location));
+	
+	if (type == "int") m_uniforms.push_back(new Uniform<int>(this, uniform.c_str(), nullptr, 0));
+	else if (type == "float") m_uniforms.push_back(new Uniform<float>(this, uniform.c_str(), nullptr, 0));
+	else if (type == "vec2") m_uniforms.push_back(new Uniform<vec2>(this, uniform.c_str(), nullptr, 0));
+	else if (type == "vec3") m_uniforms.push_back(new Uniform<vec3>(this, uniform.c_str(), nullptr, 0));
+	else if (type == "vec4") m_uniforms.push_back(new Uniform<vec4>(this, uniform.c_str(), nullptr, 0));
+	else if (type == "mat4") m_uniforms.push_back(new Uniform<mat4>(this, uniform.c_str(), nullptr, 0));
 }
 
 void Shader::checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)

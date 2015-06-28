@@ -13,7 +13,7 @@ public:
 	
 	virtual ~ForwardSpot();
 	
-	virtual void updateUniforms(const Transform &transform) const override;
+	virtual void updateUniforms() const override;
 	
 	void addSpotLight(SpotLight *pointLight);
 	

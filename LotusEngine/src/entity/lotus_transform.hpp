@@ -7,6 +7,8 @@
 
 class Transform
 {
+public:
+	static const Transform *CURRENT;
 private:
 	vec3 m_pos;
 	quat m_rot;
@@ -16,6 +18,8 @@ public:
 		const quat &rot = quat(0.0f, 0.0f, 0.0f, 1.0f),
 		const vec3 &scale = vec3(1.0f, 1.0f, 1.0f));
 
+	void bind() const;
+	
 	mat4 getTransformation() const;
 
 	void translate(const vec3 &translation);
