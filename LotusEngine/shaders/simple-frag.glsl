@@ -7,10 +7,10 @@ in DATA
 
 out vec4 fragColor;
 
-uniform vec4 baseColor;
-uniform sampler2D diffuse;
+uniform vec4 material_color;
+uniform sampler2D material_diffuse;
 
 void main()
 {
-	fragColor = texture(diffuse, fs_in.texCoord) + baseColor;
+	fragColor = texture(material_diffuse, fs_in.texCoord) + material_color;
 }

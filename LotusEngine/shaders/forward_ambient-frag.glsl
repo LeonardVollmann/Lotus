@@ -6,6 +6,6 @@ uniform vec3 ambientLight;
 
 void main()
 {
-	fragColor = (texture(diffuse, calcParallaxTexCoords(dispMap, fs_in.tbn_matrix, normalize(cameraPos - fs_in.worldPos), fs_in.texCoord, dispMapScale, dispMapBias)) + baseColor) 
-		* vec4(ambientLight, 1.0);
+	fragColor = (texture(material_diffuse, calcParallaxTexCoords(material_dispMap, fs_in.tbn_matrix, normalize(camera_pos - fs_in.worldPos),
+																 fs_in.texCoord, material_dispMapScale, material_dispMapBias)) + material_color) * vec4(ambientLight, 1.0);
 }

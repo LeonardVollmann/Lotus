@@ -7,7 +7,8 @@
 #define GET_BOUND_INSTANCE(t) (void*) t::CURRENT
 
 Shader::Shader(const std::string &fileName) :
-	m_fileName(fileName)
+	m_fileName(fileName),
+	m_samplerCount(0)
 {
 	m_program = glCreateProgram();
 }
@@ -284,13 +285,24 @@ void Shader::addUniform(const std::string &uniform, const std::string &type) con
 {
 	GLint location = glGetUniformLocation(m_program, uniform.c_str());
 	m_uniformLocations.insert(std::pair<std::string, GLint>(uniform, location));
+	std::vector<std::string> tokens = StringUtils::getTokens(uniform, "_");
 	
-	if (type == "int") m_uniforms.push_back(new Uniform<int>(this, uniform.c_str(), nullptr, 0));
-	else if (type == "float") m_uniforms.push_back(new Uniform<float>(this, uniform.c_str(), nullptr, 0));
-	else if (type == "vec2") m_uniforms.push_back(new Uniform<vec2>(this, uniform.c_str(), nullptr, 0));
-	else if (type == "vec3") m_uniforms.push_back(new Uniform<vec3>(this, uniform.c_str(), nullptr, 0));
-	else if (type == "vec4") m_uniforms.push_back(new Uniform<vec4>(this, uniform.c_str(), nullptr, 0));
-	else if (type == "mat4") m_uniforms.push_back(new Uniform<mat4>(this, uniform.c_str(), nullptr, 0));
+//	if (type == "sampler2D")
+//	{
+//		std::cout << uniform << std::endl;
+//		m_uniforms.push_back(new SamplerUniform(this, uniform.c_str(), m_samplerCount));
+//		m_samplerCount++;
+//	}
+	
+	if (tokens[0] == "material")
+	{
+		if (type == "int") m_uniforms.push_back(new MaterialUniform<int>(this, uniform.c_str(), tokens[1]));
+		else if (type == "float") m_uniforms.push_back(new MaterialUniform<float>(this, uniform.c_str(), tokens[1]));
+		else if (type == "vec2") m_uniforms.push_back(new MaterialUniform<vec2>(this, uniform.c_str(), tokens[1]));
+		else if (type == "vec3") m_uniforms.push_back(new MaterialUniform<vec3>(this, uniform.c_str(), tokens[1]));
+		else if (type == "vec4") m_uniforms.push_back(new MaterialUniform<vec4>(this, uniform.c_str(), tokens[1]));
+		else if (type == "mat4") m_uniforms.push_back(new MaterialUniform<mat4>(this, uniform.c_str(), tokens[1]));
+	}
 }
 
 void Shader::checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)

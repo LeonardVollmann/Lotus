@@ -12,11 +12,11 @@ in DATA
 
 out vec4 fragColor;
 
-uniform vec3 cameraPos;
-uniform sampler2D diffuse;
-uniform vec4 baseColor;
-uniform float specularIntensity;
-uniform float specularPower;
+uniform vec3 camera_pos;
+uniform sampler2D material_diffuse;
+uniform vec4 material_color;
+uniform float material_specularIntensity;
+uniform float material_specularPower;
 
 #include lighting.glsl
 

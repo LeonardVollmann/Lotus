@@ -8,80 +8,80 @@
 
 /* Begin PBXBuildFile section */
 		D703B7751B402CA200EDF489 /* lotus_freelook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7261B402CA200EDF489 /* lotus_freelook.cpp */; };
-		D703B7761B402CA200EDF489 /* lotus_freelook.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7271B402CA200EDF489 /* lotus_freelook.hpp */; };
+		D703B7761B402CA200EDF489 /* lotus_freelook.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7271B402CA200EDF489 /* lotus_freelook.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7771B402CA200EDF489 /* lotus_freemove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7281B402CA200EDF489 /* lotus_freemove.cpp */; };
-		D703B7781B402CA200EDF489 /* lotus_freemove.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7291B402CA200EDF489 /* lotus_freemove.hpp */; };
+		D703B7781B402CA200EDF489 /* lotus_freemove.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7291B402CA200EDF489 /* lotus_freemove.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7791B402CA200EDF489 /* lotus_renderablecomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B72A1B402CA200EDF489 /* lotus_renderablecomponent.cpp */; };
-		D703B77A1B402CA200EDF489 /* lotus_renderablecomponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B72B1B402CA200EDF489 /* lotus_renderablecomponent.hpp */; };
+		D703B77A1B402CA200EDF489 /* lotus_renderablecomponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B72B1B402CA200EDF489 /* lotus_renderablecomponent.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B77B1B402CA200EDF489 /* lotus_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B72D1B402CA200EDF489 /* lotus_engine.cpp */; };
-		D703B77C1B402CA200EDF489 /* lotus_engine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B72E1B402CA200EDF489 /* lotus_engine.hpp */; };
+		D703B77C1B402CA200EDF489 /* lotus_engine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B72E1B402CA200EDF489 /* lotus_engine.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B77D1B402CA200EDF489 /* lotus_entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B72F1B402CA200EDF489 /* lotus_entity.cpp */; };
-		D703B77E1B402CA200EDF489 /* lotus_entity.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7301B402CA200EDF489 /* lotus_entity.hpp */; };
-		D703B77F1B402CA200EDF489 /* lotus_entitycomponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7311B402CA200EDF489 /* lotus_entitycomponent.hpp */; };
-		D703B7801B402CA200EDF489 /* lotus_igame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7321B402CA200EDF489 /* lotus_igame.hpp */; };
+		D703B77E1B402CA200EDF489 /* lotus_entity.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7301B402CA200EDF489 /* lotus_entity.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		D703B77F1B402CA200EDF489 /* lotus_entitycomponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7311B402CA200EDF489 /* lotus_entitycomponent.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		D703B7801B402CA200EDF489 /* lotus_igame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7321B402CA200EDF489 /* lotus_igame.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7811B402CA200EDF489 /* lotus_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7331B402CA200EDF489 /* lotus_input.cpp */; };
-		D703B7821B402CA200EDF489 /* lotus_input.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7341B402CA200EDF489 /* lotus_input.hpp */; };
-		D703B7831B402CA200EDF489 /* lotus_time.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7351B402CA200EDF489 /* lotus_time.hpp */; };
+		D703B7821B402CA200EDF489 /* lotus_input.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7341B402CA200EDF489 /* lotus_input.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		D703B7831B402CA200EDF489 /* lotus_time.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7351B402CA200EDF489 /* lotus_time.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7841B402CA200EDF489 /* lotus_transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7361B402CA200EDF489 /* lotus_transform.cpp */; };
-		D703B7851B402CA200EDF489 /* lotus_transform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7371B402CA200EDF489 /* lotus_transform.hpp */; };
+		D703B7851B402CA200EDF489 /* lotus_transform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7371B402CA200EDF489 /* lotus_transform.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7861B402CA200EDF489 /* lotus_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7391B402CA200EDF489 /* lotus_camera.cpp */; };
-		D703B7871B402CA200EDF489 /* lotus_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B73A1B402CA200EDF489 /* lotus_camera.hpp */; };
+		D703B7871B402CA200EDF489 /* lotus_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B73A1B402CA200EDF489 /* lotus_camera.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7881B402CA200EDF489 /* lotus_forwardambient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B73B1B402CA200EDF489 /* lotus_forwardambient.cpp */; };
-		D703B7891B402CA200EDF489 /* lotus_forwardambient.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B73C1B402CA200EDF489 /* lotus_forwardambient.hpp */; };
+		D703B7891B402CA200EDF489 /* lotus_forwardambient.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B73C1B402CA200EDF489 /* lotus_forwardambient.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B78A1B402CA200EDF489 /* lotus_forwarddirectional.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B73D1B402CA200EDF489 /* lotus_forwarddirectional.cpp */; };
-		D703B78B1B402CA200EDF489 /* lotus_forwarddirectional.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B73E1B402CA200EDF489 /* lotus_forwarddirectional.hpp */; };
+		D703B78B1B402CA200EDF489 /* lotus_forwarddirectional.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B73E1B402CA200EDF489 /* lotus_forwarddirectional.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B78C1B402CA200EDF489 /* lotus_forwardpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B73F1B402CA200EDF489 /* lotus_forwardpoint.cpp */; };
-		D703B78D1B402CA200EDF489 /* lotus_forwardpoint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7401B402CA200EDF489 /* lotus_forwardpoint.hpp */; };
+		D703B78D1B402CA200EDF489 /* lotus_forwardpoint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7401B402CA200EDF489 /* lotus_forwardpoint.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B78E1B402CA200EDF489 /* lotus_forwardrenderer3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7411B402CA200EDF489 /* lotus_forwardrenderer3d.cpp */; };
-		D703B78F1B402CA200EDF489 /* lotus_forwardrenderer3d.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7421B402CA200EDF489 /* lotus_forwardrenderer3d.hpp */; };
+		D703B78F1B402CA200EDF489 /* lotus_forwardrenderer3d.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7421B402CA200EDF489 /* lotus_forwardrenderer3d.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7901B402CA200EDF489 /* lotus_forwardspot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7431B402CA200EDF489 /* lotus_forwardspot.cpp */; };
-		D703B7911B402CA200EDF489 /* lotus_forwardspot.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7441B402CA200EDF489 /* lotus_forwardspot.hpp */; };
+		D703B7911B402CA200EDF489 /* lotus_forwardspot.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7441B402CA200EDF489 /* lotus_forwardspot.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7921B402CA200EDF489 /* lotus_indexedmodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7451B402CA200EDF489 /* lotus_indexedmodel.cpp */; };
-		D703B7931B402CA200EDF489 /* lotus_indexedmodel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7461B402CA200EDF489 /* lotus_indexedmodel.hpp */; };
-		D703B7941B402CA200EDF489 /* lotus_irenderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7471B402CA200EDF489 /* lotus_irenderer.hpp */; };
+		D703B7931B402CA200EDF489 /* lotus_indexedmodel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7461B402CA200EDF489 /* lotus_indexedmodel.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		D703B7941B402CA200EDF489 /* lotus_irenderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7471B402CA200EDF489 /* lotus_irenderer.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7951B402CA200EDF489 /* lotus_lighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7481B402CA200EDF489 /* lotus_lighting.cpp */; };
-		D703B7961B402CA200EDF489 /* lotus_lighting.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7491B402CA200EDF489 /* lotus_lighting.hpp */; };
+		D703B7961B402CA200EDF489 /* lotus_lighting.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7491B402CA200EDF489 /* lotus_lighting.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7971B402CA200EDF489 /* lotus_material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B74A1B402CA200EDF489 /* lotus_material.cpp */; };
-		D703B7981B402CA200EDF489 /* lotus_material.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B74B1B402CA200EDF489 /* lotus_material.hpp */; };
+		D703B7981B402CA200EDF489 /* lotus_material.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B74B1B402CA200EDF489 /* lotus_material.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7991B402CA200EDF489 /* lotus_objloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B74C1B402CA200EDF489 /* lotus_objloader.cpp */; };
-		D703B79A1B402CA200EDF489 /* lotus_objloader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B74D1B402CA200EDF489 /* lotus_objloader.hpp */; };
+		D703B79A1B402CA200EDF489 /* lotus_objloader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B74D1B402CA200EDF489 /* lotus_objloader.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B79B1B402CA200EDF489 /* lotus_phongrenderer3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B74E1B402CA200EDF489 /* lotus_phongrenderer3d.cpp */; };
-		D703B79C1B402CA200EDF489 /* lotus_phongrenderer3d.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B74F1B402CA200EDF489 /* lotus_phongrenderer3d.hpp */; };
+		D703B79C1B402CA200EDF489 /* lotus_phongrenderer3d.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B74F1B402CA200EDF489 /* lotus_phongrenderer3d.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B79D1B402CA200EDF489 /* lotus_phongshader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7501B402CA200EDF489 /* lotus_phongshader.cpp */; };
-		D703B79E1B402CA200EDF489 /* lotus_phongshader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7511B402CA200EDF489 /* lotus_phongshader.hpp */; };
+		D703B79E1B402CA200EDF489 /* lotus_phongshader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7511B402CA200EDF489 /* lotus_phongshader.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B79F1B402CA200EDF489 /* lotus_renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7521B402CA200EDF489 /* lotus_renderable.cpp */; };
-		D703B7A01B402CA200EDF489 /* lotus_renderable.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7531B402CA200EDF489 /* lotus_renderable.hpp */; };
+		D703B7A01B402CA200EDF489 /* lotus_renderable.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7531B402CA200EDF489 /* lotus_renderable.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7A11B402CA200EDF489 /* lotus_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7541B402CA200EDF489 /* lotus_scene.cpp */; };
-		D703B7A21B402CA200EDF489 /* lotus_scene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7551B402CA200EDF489 /* lotus_scene.hpp */; };
+		D703B7A21B402CA200EDF489 /* lotus_scene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7551B402CA200EDF489 /* lotus_scene.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7A31B402CA200EDF489 /* lotus_shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7561B402CA200EDF489 /* lotus_shader.cpp */; };
-		D703B7A41B402CA200EDF489 /* lotus_shader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7571B402CA200EDF489 /* lotus_shader.hpp */; };
+		D703B7A41B402CA200EDF489 /* lotus_shader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7571B402CA200EDF489 /* lotus_shader.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7A51B402CA200EDF489 /* lotus_simplerenderer3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7581B402CA200EDF489 /* lotus_simplerenderer3d.cpp */; };
-		D703B7A61B402CA200EDF489 /* lotus_simplerenderer3d.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7591B402CA200EDF489 /* lotus_simplerenderer3d.hpp */; };
+		D703B7A61B402CA200EDF489 /* lotus_simplerenderer3d.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7591B402CA200EDF489 /* lotus_simplerenderer3d.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7A71B402CA200EDF489 /* lotus_simpleshader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B75A1B402CA200EDF489 /* lotus_simpleshader.cpp */; };
-		D703B7A81B402CA200EDF489 /* lotus_simpleshader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B75B1B402CA200EDF489 /* lotus_simpleshader.hpp */; };
+		D703B7A81B402CA200EDF489 /* lotus_simpleshader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B75B1B402CA200EDF489 /* lotus_simpleshader.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7A91B402CA200EDF489 /* lotus_texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B75C1B402CA200EDF489 /* lotus_texture.cpp */; };
-		D703B7AA1B402CA200EDF489 /* lotus_texture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B75D1B402CA200EDF489 /* lotus_texture.hpp */; };
+		D703B7AA1B402CA200EDF489 /* lotus_texture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B75D1B402CA200EDF489 /* lotus_texture.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7AB1B402CA200EDF489 /* lotus_uniform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B75E1B402CA200EDF489 /* lotus_uniform.cpp */; };
-		D703B7AC1B402CA200EDF489 /* lotus_uniform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B75F1B402CA200EDF489 /* lotus_uniform.hpp */; };
-		D703B7AD1B402CA200EDF489 /* lotus_vertex.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7601B402CA200EDF489 /* lotus_vertex.hpp */; };
+		D703B7AC1B402CA200EDF489 /* lotus_uniform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B75F1B402CA200EDF489 /* lotus_uniform.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		D703B7AD1B402CA200EDF489 /* lotus_vertex.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7601B402CA200EDF489 /* lotus_vertex.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7AE1B402CA200EDF489 /* lotus_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7611B402CA200EDF489 /* lotus_window.cpp */; };
-		D703B7AF1B402CA200EDF489 /* lotus_window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7621B402CA200EDF489 /* lotus_window.hpp */; };
-		D703B7B01B402CA200EDF489 /* lotus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7631B402CA200EDF489 /* lotus.hpp */; };
+		D703B7AF1B402CA200EDF489 /* lotus_window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7621B402CA200EDF489 /* lotus_window.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		D703B7B01B402CA200EDF489 /* lotus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7631B402CA200EDF489 /* lotus.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7B11B402CA200EDF489 /* lotus_mat4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7651B402CA200EDF489 /* lotus_mat4.cpp */; };
-		D703B7B21B402CA200EDF489 /* lotus_mat4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7661B402CA200EDF489 /* lotus_mat4.hpp */; };
-		D703B7B31B402CA200EDF489 /* lotus_maths.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7671B402CA200EDF489 /* lotus_maths.hpp */; };
+		D703B7B21B402CA200EDF489 /* lotus_mat4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7661B402CA200EDF489 /* lotus_mat4.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		D703B7B31B402CA200EDF489 /* lotus_maths.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7671B402CA200EDF489 /* lotus_maths.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7B41B402CA200EDF489 /* lotus_quat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7681B402CA200EDF489 /* lotus_quat.cpp */; };
-		D703B7B51B402CA200EDF489 /* lotus_quat.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7691B402CA200EDF489 /* lotus_quat.hpp */; };
+		D703B7B51B402CA200EDF489 /* lotus_quat.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7691B402CA200EDF489 /* lotus_quat.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7B61B402CA200EDF489 /* lotus_vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B76A1B402CA200EDF489 /* lotus_vec2.cpp */; };
-		D703B7B71B402CA200EDF489 /* lotus_vec2.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B76B1B402CA200EDF489 /* lotus_vec2.hpp */; };
+		D703B7B71B402CA200EDF489 /* lotus_vec2.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B76B1B402CA200EDF489 /* lotus_vec2.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7B81B402CA200EDF489 /* lotus_vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B76C1B402CA200EDF489 /* lotus_vec3.cpp */; };
-		D703B7B91B402CA200EDF489 /* lotus_vec3.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B76D1B402CA200EDF489 /* lotus_vec3.hpp */; };
+		D703B7B91B402CA200EDF489 /* lotus_vec3.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B76D1B402CA200EDF489 /* lotus_vec3.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7BA1B402CA200EDF489 /* lotus_vec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B76E1B402CA200EDF489 /* lotus_vec4.cpp */; };
-		D703B7BB1B402CA200EDF489 /* lotus_vec4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B76F1B402CA200EDF489 /* lotus_vec4.hpp */; };
+		D703B7BB1B402CA200EDF489 /* lotus_vec4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B76F1B402CA200EDF489 /* lotus_vec4.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7BC1B402CA200EDF489 /* lotus_fileutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7711B402CA200EDF489 /* lotus_fileutils.cpp */; };
-		D703B7BD1B402CA200EDF489 /* lotus_fileutils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7721B402CA200EDF489 /* lotus_fileutils.hpp */; };
+		D703B7BD1B402CA200EDF489 /* lotus_fileutils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7721B402CA200EDF489 /* lotus_fileutils.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7BE1B402CA200EDF489 /* lotus_stringutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7731B402CA200EDF489 /* lotus_stringutils.cpp */; };
-		D703B7BF1B402CA200EDF489 /* lotus_stringutils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7741B402CA200EDF489 /* lotus_stringutils.hpp */; };
+		D703B7BF1B402CA200EDF489 /* lotus_stringutils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7741B402CA200EDF489 /* lotus_stringutils.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7193FE41B1E2ADE0027ACBB /* stb_image.c in Sources */ = {isa = PBXBuildFile; fileRef = D7193F991B1E2ADE0027ACBB /* stb_image.c */; };
 		D7193FE51B1E2ADE0027ACBB /* stb_image.h in Headers */ = {isa = PBXBuildFile; fileRef = D7193F9A1B1E2ADE0027ACBB /* stb_image.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7193FE71B1E2B330027ACBB /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7193FE61B1E2B330027ACBB /* OpenGL.framework */; };
@@ -450,12 +450,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D703B7B01B402CA200EDF489 /* lotus.hpp in Headers */,
 				D703B7B31B402CA200EDF489 /* lotus_maths.hpp in Headers */,
 				D703B77C1B402CA200EDF489 /* lotus_engine.hpp in Headers */,
 				D703B7A01B402CA200EDF489 /* lotus_renderable.hpp in Headers */,
 				D703B77F1B402CA200EDF489 /* lotus_entitycomponent.hpp in Headers */,
 				D703B78D1B402CA200EDF489 /* lotus_forwardpoint.hpp in Headers */,
 				D703B79A1B402CA200EDF489 /* lotus_objloader.hpp in Headers */,
+				D7193FE51B1E2ADE0027ACBB /* stb_image.h in Headers */,
 				D703B7A21B402CA200EDF489 /* lotus_scene.hpp in Headers */,
 				D703B7891B402CA200EDF489 /* lotus_forwardambient.hpp in Headers */,
 				D703B7AC1B402CA200EDF489 /* lotus_uniform.hpp in Headers */,
@@ -468,8 +470,6 @@
 				D703B7BF1B402CA200EDF489 /* lotus_stringutils.hpp in Headers */,
 				D703B7871B402CA200EDF489 /* lotus_camera.hpp in Headers */,
 				D703B79C1B402CA200EDF489 /* lotus_phongrenderer3d.hpp in Headers */,
-				D7193FE51B1E2ADE0027ACBB /* stb_image.h in Headers */,
-				D703B7B01B402CA200EDF489 /* lotus.hpp in Headers */,
 				D703B7A81B402CA200EDF489 /* lotus_simpleshader.hpp in Headers */,
 				D703B7B91B402CA200EDF489 /* lotus_vec3.hpp in Headers */,
 				D703B7B51B402CA200EDF489 /* lotus_quat.hpp in Headers */,

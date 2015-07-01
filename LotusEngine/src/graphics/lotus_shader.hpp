@@ -32,6 +32,7 @@ protected:
 	mutable std::map<std::string, std::map<std::string, std::string>>	m_uniformStructs;
 	mutable std::map<std::string, GLint>								m_uniformLocations;
 	mutable std::vector<IUniform*>										m_uniforms;
+	mutable unsigned int												m_samplerCount;
 public:
 	virtual ~Shader();
 

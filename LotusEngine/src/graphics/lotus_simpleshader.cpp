@@ -21,6 +21,4 @@ void SimpleShader::updateUniforms() const
 	mat4 transformation = Transform::CURRENT->getTransformation();
 	setUniformMat4("mvp_matrix", Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transformation);
 	setUniformMat4("ml_matrix", transformation);
-
-	setUniformVec4("baseColor", *Material::CURRENT->getVec4("color"));
 }

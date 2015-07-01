@@ -45,11 +45,11 @@ vec4 calcLight(BaseLight base, vec3 direction, vec3 normal, vec3 worldPos, vec3 
 		vec3 directionToCamera = normalize(cameraPos - worldPos);
 		vec3 reflectDirection = normalize(reflect(direction, normal));
 		
-		float specularFactor = pow(dot(directionToCamera, reflectDirection), specularPower);
+		float specularFactor = pow(dot(directionToCamera, reflectDirection), material_specularPower);
 		
 		if (specularFactor > 0)
 		{
-			specularColor = vec4(base.color, 1.0) * specularIntensity * specularFactor * base.intensity;
+			specularColor = vec4(base.color, 1.0) * material_specularIntensity * specularFactor * base.intensity;
 		}
 	}
 	

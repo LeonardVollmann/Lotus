@@ -36,12 +36,12 @@ void Material::bind() const
 	CURRENT = this;
 }
 
-void Material::bindTexture(const char *name, unsigned int unit) const
+void Material::bindTexture(const std::string &name, unsigned int unit) const
 {
 	getTexture(name)->bind(unit);
 }
 
-void Material::set(const char *name, void *value) const
+void Material::set(const std::string &name, void *value) const
 {
-	m_values.insert(std::pair<const char*, void*>(name, value));
+	m_values.insert(std::pair<std::string, void*>(name, value));
 }

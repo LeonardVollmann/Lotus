@@ -8,6 +8,7 @@
 #include "lotus_material.hpp"
 
 #include <GL/glew.h>
+#include <string>
 
 class Shader;
 
@@ -28,7 +29,30 @@ private:
 public:
 	Uniform(const Shader *shader, const char *name, unsigned char **owner, size_t m_varOffset);
 	
-	virtual void update(const Shader *shader) const override;
+	virtual void update(const Shader *shader) const final;
+};
+
+template<typename VAR_T>
+class MaterialUniform : public IUniform
+{
+private:
+	GLint		m_location;
+	std::string m_name;
+public:
+	MaterialUniform(const Shader *shader, const char *uniformName, const std::string &varName);
+	
+	virtual void update(const Shader *shader) const final;
+};
+
+class SamplerUniform : public IUniform
+{
+private:
+	GLint	m_location;
+	int		m_samplerSlot;
+public:
+	SamplerUniform(const Shader *shader, const char *name, int samplerSlot);
+	
+	virtual void update(const Shader *shader) const final;
 };
 
 #endif
