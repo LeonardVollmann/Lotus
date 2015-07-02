@@ -7,8 +7,7 @@
 #define GET_BOUND_INSTANCE(t) (void*) t::CURRENT
 
 Shader::Shader(const std::string &fileName) :
-	m_fileName(fileName),
-	m_samplerCount(0)
+	m_fileName(fileName)
 {
 	m_program = glCreateProgram();
 }
@@ -198,7 +197,14 @@ std::string Shader::preprocess(const std::string &shaderText)
 		else if (tokens[0] == UNIFORM_DIRECTIVE)
 		{
 			tokens[2].pop_back();
-			m_uniformTypes.insert(std::pair<std::string, std::string>(tokens[2], tokens[1]));
+			if (tokens[1] == "sampler2D")
+			{
+				addSampler(tokens[2]);
+			}
+			else
+			{
+				m_uniformTypes.insert(std::pair<std::string, std::string>(tokens[2], tokens[1]));
+			}
 		}
 		else if (tokens[0] == STRUCT_DIRECTIVE)
 		{
@@ -258,6 +264,14 @@ void Shader::addAllUniforms() const
 			addUniform(it->first, it->second);
 		}
 	}
+	
+	for (unsigned int i = 0; i < m_samplers.size(); i++)
+	{
+		m_uniforms.push_back(new SamplerUniform(this, m_samplers[i].c_str(), i));
+	}
+	m_uniformStructs.clear();
+	m_uniformTypes.clear();
+	m_samplers.clear();
 }
 
 void Shader::addUniformStruct(const std::string &uniform, const std::map<std::string, std::string> &uniformStruct) const
@@ -287,13 +301,6 @@ void Shader::addUniform(const std::string &uniform, const std::string &type) con
 	m_uniformLocations.insert(std::pair<std::string, GLint>(uniform, location));
 	std::vector<std::string> tokens = StringUtils::getTokens(uniform, "_");
 	
-//	if (type == "sampler2D")
-//	{
-//		std::cout << uniform << std::endl;
-//		m_uniforms.push_back(new SamplerUniform(this, uniform.c_str(), m_samplerCount));
-//		m_samplerCount++;
-//	}
-	
 	if (tokens[0] == "material")
 	{
 		if (type == "int") m_uniforms.push_back(new MaterialUniform<int>(this, uniform.c_str(), tokens[1]));
@@ -303,6 +310,11 @@ void Shader::addUniform(const std::string &uniform, const std::string &type) con
 		else if (type == "vec4") m_uniforms.push_back(new MaterialUniform<vec4>(this, uniform.c_str(), tokens[1]));
 		else if (type == "mat4") m_uniforms.push_back(new MaterialUniform<mat4>(this, uniform.c_str(), tokens[1]));
 	}
+}
+
+void Shader::addSampler(const std::string &uniform)
+{
+	m_samplers.push_back(uniform);
 }
 
 void Shader::checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)

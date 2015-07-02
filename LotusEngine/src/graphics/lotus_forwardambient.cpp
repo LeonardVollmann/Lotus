@@ -18,10 +18,6 @@ ForwardAmbient::ForwardAmbient() :
 void ForwardAmbient::updateUniforms() const
 {
 	Shader::updateUniforms();
-
-	setUniformInteger("material_diffuse", 0);
-	setUniformInteger("material_normalMap", 1);
-	setUniformInteger("material_dispMap", 2);
 	
 	mat4 transformation = Transform::CURRENT->getTransformation();
 	setUniformMat4("mvp_matrix", Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transformation);

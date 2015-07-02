@@ -32,7 +32,7 @@ protected:
 	mutable std::map<std::string, std::map<std::string, std::string>>	m_uniformStructs;
 	mutable std::map<std::string, GLint>								m_uniformLocations;
 	mutable std::vector<IUniform*>										m_uniforms;
-	mutable unsigned int												m_samplerCount;
+	mutable std::vector<std::string>									m_samplers;
 public:
 	virtual ~Shader();
 
@@ -73,6 +73,7 @@ protected:
 	void addUniformStruct(const std::string &uniform, const std::map<std::string, std::string> &uniformStruct) const;
 	bool isUniformStruct(const std::string &uniformType) const;
 	void addUniform(const std::string &uniform, const std::string &type = "") const;
+	void addSampler(const std::string &uniform);
 	
 	void checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
 	GLuint createShader(const std::string &text, const std::string &fileName, GLenum shaderType);

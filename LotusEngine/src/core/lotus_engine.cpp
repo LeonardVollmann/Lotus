@@ -1,3 +1,4 @@
+
 #include "lotus_engine.hpp"
 #include "lotus_igame.hpp"
 #include "lotus_time.hpp"
@@ -44,7 +45,6 @@ void Engine::stop()
 
 void Engine::update(float delta)
 {
-	glfwPollEvents();
 	Input::update();
 	m_game->update(delta);
 }
