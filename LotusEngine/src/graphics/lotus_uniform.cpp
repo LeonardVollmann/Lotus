@@ -2,23 +2,23 @@
 #include "lotus_shader.hpp"
 
 template<typename VAR_T>
-Uniform<VAR_T>::Uniform(const Shader *shader, const char *name, unsigned char **owner, size_t varOffset) :
+VarUniform<VAR_T>::VarUniform(const Shader *shader, const char *name, unsigned char **owner, size_t varOffset) :
 	m_location(glGetUniformLocation(shader->getShaderProgram(), name)),
 	m_owner(owner),
 	m_varOffset(varOffset) {}
 
 template<typename VAR_T>
-void Uniform<VAR_T>::update(const Shader *shader) const
+void VarUniform<VAR_T>::update(const Shader *shader) const
 {
 	shader->setUniform(m_location, *(VAR_T*) (*m_owner + m_varOffset));
 }
 
-template class Uniform<int>;
-template class Uniform<float>;
-template class Uniform<vec2>;
-template class Uniform<vec3>;
-template class Uniform<vec4>;
-template class Uniform<mat4>;
+template class VarUniform<int>;
+template class VarUniform<float>;
+template class VarUniform<vec2>;
+template class VarUniform<vec3>;
+template class VarUniform<vec4>;
+template class VarUniform<mat4>;
 
 template<typename VAR_T>
 MaterialUniform<VAR_T>::MaterialUniform(const Shader *shader, const char *uniformName, const std::string &varName) :
@@ -46,3 +46,21 @@ void SamplerUniform::update(const Shader *shader) const
 {
 	shader->setUniform(m_location, m_samplerSlot);
 }
+
+template<typename VAR_T>
+FunctionUniform<VAR_T>::FunctionUniform(const Shader *shader, const char *name, VAR_T (*getUniformValue)()) :
+	m_location(glGetUniformLocation(shader->getShaderProgram(), name)),
+	m_getUniformValue(getUniformValue) {}
+
+template<typename VAR_T>
+void FunctionUniform<VAR_T>::FunctionUniform::update(const Shader *shader) const
+{
+	shader->setUniform(m_location, m_getUniformValue());
+}
+
+template class FunctionUniform<int>;
+template class FunctionUniform<float>;
+template class FunctionUniform<vec2>;
+template class FunctionUniform<vec3>;
+template class FunctionUniform<vec4>;
+template class FunctionUniform<mat4>;

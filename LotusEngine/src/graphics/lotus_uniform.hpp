@@ -20,14 +20,14 @@ public:
 };
 
 template<typename VAR_T>
-class Uniform : public IUniform
+class VarUniform : public IUniform
 {
 private:
 	GLint			m_location;
 	unsigned char	**m_owner;
 	size_t			m_varOffset;
 public:
-	Uniform(const Shader *shader, const char *name, unsigned char **owner, size_t m_varOffset);
+	VarUniform(const Shader *shader, const char *name, unsigned char **owner, size_t m_varOffset);
 	
 	virtual void update(const Shader *shader) const final;
 };
@@ -51,6 +51,18 @@ private:
 	int		m_samplerSlot;
 public:
 	SamplerUniform(const Shader *shader, const char *name, int samplerSlot);
+	
+	virtual void update(const Shader *shader) const final;
+};
+
+template<typename VAR_T>
+class FunctionUniform : public IUniform
+{
+private:
+	GLuint m_location;
+	VAR_T (*m_getUniformValue)();
+public:
+	FunctionUniform(const Shader *shader, const char *name, VAR_T (*getUniformValue)());
 	
 	virtual void update(const Shader *shader) const final;
 };
