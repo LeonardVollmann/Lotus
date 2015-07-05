@@ -18,8 +18,6 @@ ForwardAmbient::ForwardAmbient() :
 void ForwardAmbient::updateUniforms() const
 {
 	Shader::updateUniforms();
-	
-	setUniformVec3("camera_pos", Camera::CURRENT->getTransform().getPos());
 
 	setUniformVec3("ambientLight", m_ambientLight);
 }

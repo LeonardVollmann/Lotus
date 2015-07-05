@@ -26,8 +26,6 @@ ForwardPoint::~ForwardPoint()
 void ForwardPoint::updateUniforms() const
 {
 	Shader::updateUniforms();
-	
-	setUniformVec3("camera_pos", Camera::CURRENT->getTransform().getPos());
 
 	setUniformPointLight("pointLight", **m_activePointLight);
 }

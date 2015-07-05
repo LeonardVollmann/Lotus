@@ -27,8 +27,6 @@ void ForwardDirectional::updateUniforms() const
 {
 	Shader::updateUniforms();
 	
-	setUniformVec3("camera_pos", Camera::CURRENT->getTransform().getPos());
-	
 	setUniformDirectionalLight("directionalLight", **m_activeDirectionalLight);
 }
 
