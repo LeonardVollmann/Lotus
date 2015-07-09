@@ -16,7 +16,6 @@
 
 #define SOURCE_DIRECTORY	"res/shaders/"
 #define INCLUDE_DIRECTIVE	"#include"
-#define	STRUCT_DIRECTIVE	"struct"
 #define UNIFORM_DIRECTIVE	"uniform"
 #define VERT_EXTENSION		"-vert.glsl"
 #define FRAG_EXTENSION		"-frag.glsl"
@@ -70,8 +69,6 @@ protected:
 	std::string preprocess(const std::string &shaderText);
 	
 	void addAllUniforms() const;
-	void addUniformStruct(const std::string &uniform, const std::map<std::string, std::string> &uniformStruct) const;
-	bool isUniformStruct(const std::string &uniformType) const;
 	void addUniform(const std::string &uniform, const std::string &type = "") const;
 	void addSampler(const std::string &uniform);
 	

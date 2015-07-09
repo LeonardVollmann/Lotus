@@ -19,5 +19,5 @@ void ForwardAmbient::updateUniforms() const
 {
 	Shader::updateUniforms();
 
-	setUniformVec3("ambientLight", m_ambientLight);
+	setUniformVec3("ambientLight", m_ambientLight.getLight());
 }

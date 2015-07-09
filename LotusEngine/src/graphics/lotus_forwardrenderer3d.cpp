@@ -24,28 +24,28 @@ void ForwardRenderer3D::flush()
 		glDepthFunc(GL_EQUAL);
 		
 		ForwardDirectional::getInstance().bind();
-		std::vector<DirectionalLight*> directionalLights = ForwardDirectional::getInstance().getDirectionalLights();
+		const std::vector<DirectionalLight*> &directionalLights = ForwardDirectional::getInstance().getDirectionalLights();
 		for (auto it = directionalLights.begin(); it < directionalLights.end(); it++)
 		{
-			ForwardDirectional::getInstance().setActiveDirectionalLight(&(*it));
+			(*it)->bind();
 			ForwardDirectional::getInstance().updateUniforms();
 			glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 		}
 		
 		ForwardPoint::getInstance().bind();
-		std::vector<PointLight*> pointLights = ForwardPoint::getInstance().getPointLights();
+		const std::vector<PointLight*> &pointLights = ForwardPoint::getInstance().getPointLights();
 		for (auto it = pointLights.begin(); it < pointLights.end(); it++)
 		{
-			ForwardPoint::getInstance().setActivePointLight(&(*it));
+			(*it)->bind();
 			ForwardPoint::getInstance().updateUniforms();
 			glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 		}
 		
 		ForwardSpot::getInstance().bind();
-		std::vector<SpotLight*> spotLights = ForwardSpot::getInstance().getSpotLights();
+		const std::vector<SpotLight*> &spotLights = ForwardSpot::getInstance().getSpotLights();
 		for (auto it = spotLights.begin(); it < spotLights.end(); it++)
 		{
-			ForwardSpot::getInstance().setActiveSpotLight(&(*it));
+			(*it)->bind();
 			ForwardSpot::getInstance().updateUniforms();
 			glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 		}

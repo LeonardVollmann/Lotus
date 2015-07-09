@@ -22,14 +22,6 @@ ForwardDirectional::~ForwardDirectional()
 	}
 }
 
-
-void ForwardDirectional::updateUniforms() const
-{
-	Shader::updateUniforms();
-	
-	setUniformDirectionalLight("directionalLight", **m_activeDirectionalLight);
-}
-
 void ForwardDirectional::addDirectionalLight(DirectionalLight *directionalLight)
 {
 	m_directionalLights.push_back(directionalLight);

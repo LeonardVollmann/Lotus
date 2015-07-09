@@ -22,14 +22,6 @@ ForwardPoint::~ForwardPoint()
 	}
 }
 
-
-void ForwardPoint::updateUniforms() const
-{
-	Shader::updateUniforms();
-
-	setUniformPointLight("pointLight", **m_activePointLight);
-}
-
 void ForwardPoint::addPointLight(PointLight *pointLight)
 {
 	m_pointLights.push_back(pointLight);

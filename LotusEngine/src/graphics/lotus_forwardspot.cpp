@@ -22,14 +22,6 @@ ForwardSpot::~ForwardSpot()
 	}
 }
 
-
-void ForwardSpot::updateUniforms() const
-{
-	Shader::updateUniforms();
-	
-	setUniformSpotLight("spotLight", **m_activeSpotLight);
-}
-
 void ForwardSpot::addSpotLight(SpotLight *spotLight)
 {
 	m_spotLights.push_back(spotLight);

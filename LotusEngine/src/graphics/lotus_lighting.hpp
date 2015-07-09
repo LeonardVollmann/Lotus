@@ -4,7 +4,11 @@
 #include "lotus_entitycomponent.hpp"
 #include "lotus_vec3.hpp"
 
+#include <GL/glew.h>
+
 #define COLOR_DEPTH 256
+
+class Shader;
 
 class Attenuation
 {
@@ -23,6 +27,21 @@ public:
 	inline void setConstant(float constant) { m_constant = constant; }
 	inline void setLinear(float linear)		{ m_linear = linear; }
 	inline void setExponent(float exponent) { m_exponent = exponent; }
+};
+
+class AmbientLight
+{
+public:
+	static const AmbientLight *CURRENT;
+private:
+	vec3 m_light;
+public:
+	AmbientLight(const vec3 &light);
+	AmbientLight(float r, float g, float b);
+	
+	void bind() const;
+	
+	inline const vec3 &getLight() const { return m_light; }
 };
 
 class BaseLight : public EntityComponent
@@ -44,13 +63,20 @@ public:
 
 class DirectionalLight : public BaseLight
 {
+public:
+	static const DirectionalLight *CURRENT;
 protected:
 	vec3 m_direction;
 public:
+	static void getUniformLocations(const Shader *shader, const char *name, GLuint *locations);
+	static void setUniformValues(const Shader *shader, GLuint *locations);
+	
 	DirectionalLight();
 	DirectionalLight(const vec3 &color, float intensity, const vec3 &direction);
 	DirectionalLight(const vec3 &direction, const BaseLight &base = BaseLight());
 	virtual ~DirectionalLight() {}
+	
+	void bind() const;
 	
 	inline const vec3 &getDirection() const { return m_direction; }
 	
@@ -59,15 +85,22 @@ public:
 
 class PointLight : public BaseLight
 {
+public:
+	static const PointLight *CURRENT;
 protected:
 	Attenuation m_atten;
 	vec3 m_pos;
 	float m_range;
 public:
+	static void getUniformLocations(const Shader *shader, const char *name, GLuint *locations);
+	static void setUniformValues(const Shader *shader, GLuint *locations);
+	
 	PointLight();
 	PointLight(const vec3 &color, float intensity, const Attenuation &atten, const vec3 &pos);
 	PointLight(const Attenuation &atten, const vec3 &pos, const BaseLight &base = BaseLight());
-	virtual ~PointLight() {} 
+	virtual ~PointLight() {}
+	
+	void bind() const;
 	
 	inline vec3 &getPos()								{ return m_pos; }
 	inline const vec3 &getPos()					const	{ return m_pos; }
@@ -83,14 +116,21 @@ protected:
 
 class SpotLight : public PointLight
 {
+public:
+	static const SpotLight *CURRENT;
 private:
 	vec3 m_direction;
 	float m_cutoff;
 public:
+	static void getUniformLocations(const Shader *shader, const char *name, GLuint *locations);
+	static void setUniformValues(const Shader *shader, GLuint *locations);
+	
 	SpotLight();
 	SpotLight(const vec3 &color, float intensity, const Attenuation &atten, const vec3 &pos, const vec3 &direction, float cutoff);
 	SpotLight(const vec3 &direction, float cutoff, const PointLight &pointLight = PointLight());
 	virtual ~SpotLight() {}
+	
+	void bind() const;
 	
 	inline const vec3 &getDirection()	const { return m_direction; }
 	inline float getCutoff()			const { return m_cutoff; }

@@ -206,38 +206,6 @@ std::string Shader::preprocess(const std::string &shaderText)
 				m_uniformTypes.insert(std::pair<std::string, std::string>(tokens[2], tokens[1]));
 			}
 		}
-		else if (tokens[0] == STRUCT_DIRECTIVE)
-		{
-			std::string structName = tokens[1];
-			std::map<std::string, std::string> uniformStruct;
-			while (tokens[0] != "};")
-			{
-				line = strtok_r(nullptr, "\n", &save_line);
-				if (!line)
-				{
-					std::cerr << "ERROR: Unterminated uniform struct detected" << std::endl;
-					return result;
-				}
-				lines.push_back((std::string) line);
-				tokens = StringUtils::getTokens((std::string)line, " ");
-				
-				for (auto it = tokens.begin(); it < tokens.end(); it++)
-				{
-					StringUtils::removeWhiteSpace(*it);
-				}
-				
-				if (tokens.size() > 1)
-				{
-					tokens[1].pop_back();
-					uniformStruct.insert(std::pair<std::string, std::string>(tokens[1], tokens[0]));
-				}
-			}
-			
-			if (m_uniformStructs.find(structName) == m_uniformStructs.end())
-			{
-				m_uniformStructs.insert(std::pair<std::string, std::map<std::string, std::string>>(structName, uniformStruct));
-			}
-		}
 		
 		line = strtok_r(nullptr, "\n", &save_line);
 	}
@@ -255,44 +223,17 @@ void Shader::addAllUniforms() const
 {
 	for (auto it = m_uniformTypes.begin(); it != m_uniformTypes.end(); it++)
 	{
-		if (isUniformStruct(it->second))
-		{
-			addUniformStruct(it->first, m_uniformStructs.at(it->second));
-		}
-		else
-		{
-			addUniform(it->first, it->second);
-		}
+		addUniform(it->first, it->second);
 	}
 	
 	for (unsigned int i = 0; i < m_samplers.size(); i++)
 	{
 		m_uniforms.push_back(new SamplerUniform(this, m_samplers[i].c_str(), i));
 	}
+	
 	m_uniformStructs.clear();
 	m_uniformTypes.clear();
 	m_samplers.clear();
-}
-
-void Shader::addUniformStruct(const std::string &uniform, const std::map<std::string, std::string> &uniformStruct) const
-{
-	std::string prefix = uniform + ".";
-	for (auto it = uniformStruct.begin(); it != uniformStruct.end(); it++)
-	{
-		if (isUniformStruct(it->second))
-		{
-			addUniformStruct(prefix + it->first, m_uniformStructs.at(it->second));
-		}
-		else
-		{
-			addUniform(prefix + it->first, it->second);
-		}
-	}
-}
-
-bool Shader::isUniformStruct(const std::string &uniformType) const
-{
-	return m_uniformStructs.find(uniformType) != m_uniformStructs.end();
 }
 
 void Shader::addUniform(const std::string &uniform, const std::string &type) const
@@ -364,6 +305,12 @@ void Shader::addUniform(const std::string &uniform, const std::string &type) con
 		else if (type == "vec3") m_uniforms.push_back(new MaterialUniform<vec3>(this, uniform.c_str(), tokens[1]));
 		else if (type == "vec4") m_uniforms.push_back(new MaterialUniform<vec4>(this, uniform.c_str(), tokens[1]));
 		else if (type == "mat4") m_uniforms.push_back(new MaterialUniform<mat4>(this, uniform.c_str(), tokens[1]));
+	}
+	else if (tokens[0] == "light")
+	{
+		if (tokens[1] == "directional") m_uniforms.push_back(new StructUniform<DirectionalLight, 3, DirectionalLight::getUniformLocations>(this, uniform.c_str()));
+		else if (tokens[1] == "point") m_uniforms.push_back(new StructUniform<PointLight, 7, PointLight::getUniformLocations>(this, uniform.c_str()));
+		else if (tokens[1] == "spot") m_uniforms.push_back(new StructUniform<SpotLight, 9, SpotLight::getUniformLocations>(this, uniform.c_str()));
 	}
 }
 

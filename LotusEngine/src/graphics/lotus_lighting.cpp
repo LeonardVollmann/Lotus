@@ -1,6 +1,8 @@
 #include "lotus_lighting.hpp"
+#include "lotus_shader.hpp"
 
 #include <cmath>
+#include <string>
 
 Attenuation::Attenuation(float constant, float linear, float exponent) :
 	m_constant(constant),
@@ -12,6 +14,19 @@ Attenuation::Attenuation(const vec3 &attenuation) :
 	m_linear(attenuation.y),
 	m_exponent(attenuation.z) {}
 
+const AmbientLight *AmbientLight::CURRENT;
+
+AmbientLight::AmbientLight(const vec3 &light) :
+	m_light(light) {}
+
+AmbientLight::AmbientLight(float r, float g, float b) :
+	m_light(r, g, b) {}
+
+void AmbientLight::bind() const
+{
+	CURRENT = this;
+}
+
 BaseLight::BaseLight() :
 	m_color(1.0f, 1.0f, 1.0f),
 	m_intensity(1.0f) {}
@@ -19,6 +34,23 @@ BaseLight::BaseLight() :
 BaseLight::BaseLight(const vec3 &color, float intensity) :
 	m_color(color),
 	m_intensity(intensity) {}
+
+const DirectionalLight *DirectionalLight::CURRENT;
+
+void DirectionalLight::getUniformLocations(const Shader *shader, const char *name, GLuint *locations)
+{
+	std::string str(name);
+	locations[0] = glGetUniformLocation(shader->getShaderProgram(), (str + ".base.color").c_str());
+	locations[1] = glGetUniformLocation(shader->getShaderProgram(), (str + ".base.intensity").c_str());
+	locations[2] = glGetUniformLocation(shader->getShaderProgram(), (str + ".direction").c_str());
+}
+
+void DirectionalLight::setUniformValues(const Shader *shader, GLuint *locations)
+{
+	shader->setUniform(locations[0], CURRENT->getColor());
+	shader->setUniform(locations[1], CURRENT->getIntensity());
+	shader->setUniform(locations[2], CURRENT->getDirection());
+}
 
 DirectionalLight::DirectionalLight() :
 	BaseLight(),
@@ -31,6 +63,36 @@ DirectionalLight::DirectionalLight(const vec3 &color, float intensity, const vec
 DirectionalLight::DirectionalLight(const vec3 &direction, const BaseLight &base) :
 	BaseLight(base),
 	m_direction(direction) {}
+
+void DirectionalLight::bind() const
+{
+	CURRENT = this;
+}
+
+const PointLight *PointLight::CURRENT;
+
+void PointLight::getUniformLocations(const Shader *shader, const char *name, GLuint *locations)
+{
+	std::string str(name);
+	locations[0] = glGetUniformLocation(shader->getShaderProgram(), (str + ".base.color").c_str());
+	locations[1] = glGetUniformLocation(shader->getShaderProgram(), (str + ".base.intensity").c_str());
+	locations[2] = glGetUniformLocation(shader->getShaderProgram(), (str + ".atten.constant").c_str());
+	locations[3] = glGetUniformLocation(shader->getShaderProgram(), (str + ".atten.linear").c_str());
+	locations[4] = glGetUniformLocation(shader->getShaderProgram(), (str + ".atten.exponent").c_str());
+	locations[5] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pos").c_str());
+	locations[6] = glGetUniformLocation(shader->getShaderProgram(), (str + ".range").c_str());
+}
+
+void PointLight::setUniformValues(const Shader *shader, GLuint *locations)
+{
+	shader->setUniform(locations[0], CURRENT->getColor());
+	shader->setUniform(locations[1], CURRENT->getIntensity());
+	shader->setUniform(locations[2], CURRENT->getAttenuation().getConstant());
+	shader->setUniform(locations[3], CURRENT->getAttenuation().getLinear());
+	shader->setUniform(locations[4], CURRENT->getAttenuation().getExponent());
+	shader->setUniform(locations[5], CURRENT->getPos());
+	shader->setUniform(locations[6], CURRENT->getRange());
+}
 
 PointLight::PointLight() :
 	BaseLight(),
@@ -50,6 +112,11 @@ PointLight::PointLight(const Attenuation &atten, const vec3 &pos, const BaseLigh
 	m_pos(pos),
 	m_range(calcRange(*this)) {}
 
+void PointLight::bind() const
+{
+	CURRENT = this;
+}
+
 float PointLight::calcRange(const PointLight &pointLight)
 {
 	float maxColorValue = pointLight.getColor().x > pointLight.getColor().y ? pointLight.getColor().x : pointLight.getColor().y;
@@ -60,6 +127,35 @@ float PointLight::calcRange(const PointLight &pointLight)
 	float c = pointLight.getAttenuation().getConstant() - COLOR_DEPTH * pointLight.getIntensity() * maxColorValue;
 	
 	return (-b + sqrtf(b * b - 4 * a * c)) / (2 * a);
+}
+
+const SpotLight *SpotLight::CURRENT;
+
+void SpotLight::getUniformLocations(const Shader *shader, const char *name, GLuint *locations)
+{
+	std::string str(name);
+	locations[0] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.base.color").c_str());
+	locations[1] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.base.intensity").c_str());
+	locations[2] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.atten.constant").c_str());
+	locations[3] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.atten.linear").c_str());
+	locations[4] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.atten.exponent").c_str());
+	locations[5] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.pos").c_str());
+	locations[6] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.range").c_str());
+	locations[7] = glGetUniformLocation(shader->getShaderProgram(), (str + ".direction").c_str());
+	locations[8] = glGetUniformLocation(shader->getShaderProgram(), (str + ".cutoff").c_str());
+}
+
+void SpotLight::setUniformValues(const Shader *shader, GLuint *locations)
+{
+	shader->setUniform(locations[0], CURRENT->getColor());
+	shader->setUniform(locations[1], CURRENT->getIntensity());
+	shader->setUniform(locations[2], CURRENT->getAttenuation().getConstant());
+	shader->setUniform(locations[3], CURRENT->getAttenuation().getLinear());
+	shader->setUniform(locations[4], CURRENT->getAttenuation().getExponent());
+	shader->setUniform(locations[5], CURRENT->getPos());
+	shader->setUniform(locations[6], CURRENT->getRange());
+	shader->setUniform(locations[7], CURRENT->getDirection());
+	shader->setUniform(locations[8], CURRENT->getCutoff());
 }
 
 SpotLight::SpotLight() :
@@ -76,3 +172,8 @@ SpotLight::SpotLight(const vec3 &direction, float cutoff, const PointLight &poin
 	PointLight(pointLight),
 	m_direction(direction),
 	m_cutoff(cutoff) {}
+
+void SpotLight::bind() const
+{
+	CURRENT = this;
+}

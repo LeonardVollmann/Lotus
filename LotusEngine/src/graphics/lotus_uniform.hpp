@@ -19,7 +19,7 @@ public:
 	virtual void update(const Shader *shader) const = 0;
 };
 
-template<typename VAR_T>
+template <typename VAR_T>
 class VarUniform : public IUniform
 {
 private:
@@ -32,7 +32,7 @@ public:
 	virtual void update(const Shader *shader) const final;
 };
 
-template<typename VAR_T>
+template <typename VAR_T>
 class MaterialUniform : public IUniform
 {
 private:
@@ -55,7 +55,7 @@ public:
 	virtual void update(const Shader *shader) const final;
 };
 
-template<typename VAR_T>
+template <typename VAR_T>
 class FunctionUniform : public IUniform
 {
 private:
@@ -63,6 +63,17 @@ private:
 	VAR_T (*m_getUniformValue)();
 public:
 	FunctionUniform(const Shader *shader, const char *name, VAR_T (*getUniformValue)());
+	
+	virtual void update(const Shader *shader) const final;
+};
+
+template <typename VAR_T, unsigned int NUM_MEMBERS, void GET_LOCATIONS(const Shader *shader, const char *name, GLuint *locations)>
+class StructUniform : public IUniform
+{
+private:
+	GLuint m_locations[NUM_MEMBERS];
+public:
+	StructUniform(const Shader *shader, const char *name);
 	
 	virtual void update(const Shader *shader) const final;
 };
