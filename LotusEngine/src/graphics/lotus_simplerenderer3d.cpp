@@ -13,6 +13,7 @@ void SimpleRenderer3D::flush()
 	{
 		const RenderableComponent<Renderable<Vertex3D>> *renderableComponent = m_renderQueue.front();
 		renderableComponent->bind();
+		renderableComponent->getMaterial()->bindTexture("diffuse", 0);
 		
 		SimpleShader::getInstance().updateUniforms();
 		glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);

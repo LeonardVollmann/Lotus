@@ -45,10 +45,6 @@
 		D703B7981B402CA200EDF489 /* lotus_material.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B74B1B402CA200EDF489 /* lotus_material.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7991B402CA200EDF489 /* lotus_objloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B74C1B402CA200EDF489 /* lotus_objloader.cpp */; };
 		D703B79A1B402CA200EDF489 /* lotus_objloader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B74D1B402CA200EDF489 /* lotus_objloader.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		D703B79B1B402CA200EDF489 /* lotus_phongrenderer3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B74E1B402CA200EDF489 /* lotus_phongrenderer3d.cpp */; };
-		D703B79C1B402CA200EDF489 /* lotus_phongrenderer3d.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B74F1B402CA200EDF489 /* lotus_phongrenderer3d.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		D703B79D1B402CA200EDF489 /* lotus_phongshader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7501B402CA200EDF489 /* lotus_phongshader.cpp */; };
-		D703B79E1B402CA200EDF489 /* lotus_phongshader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7511B402CA200EDF489 /* lotus_phongshader.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B79F1B402CA200EDF489 /* lotus_renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7521B402CA200EDF489 /* lotus_renderable.cpp */; };
 		D703B7A01B402CA200EDF489 /* lotus_renderable.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D703B7531B402CA200EDF489 /* lotus_renderable.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		D703B7A11B402CA200EDF489 /* lotus_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D703B7541B402CA200EDF489 /* lotus_scene.cpp */; };
@@ -101,7 +97,6 @@
 		D7EB2C751B1E38C800E9B597 /* forward_shared-vert.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C631B1E38A300E9B597 /* forward_shared-vert.glsl */; };
 		D7EB2C761B1E38C800E9B597 /* forward_spot-frag.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C641B1E38A300E9B597 /* forward_spot-frag.glsl */; };
 		D7EB2C771B1E38C800E9B597 /* lighting.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C651B1E38A300E9B597 /* lighting.glsl */; };
-		D7EB2C781B1E38C800E9B597 /* phong-frag.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C661B1E38A300E9B597 /* phong-frag.glsl */; };
 		D7EB2C791B1E38C800E9B597 /* simple-frag.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C671B1E38A300E9B597 /* simple-frag.glsl */; };
 		D7EB2C7A1B1E38C800E9B597 /* simple-vert.glsl in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7EB2C681B1E38A300E9B597 /* simple-vert.glsl */; };
 /* End PBXBuildFile section */
@@ -136,7 +131,6 @@
 				D7EB2C751B1E38C800E9B597 /* forward_shared-vert.glsl in CopyFiles */,
 				D7EB2C761B1E38C800E9B597 /* forward_spot-frag.glsl in CopyFiles */,
 				D7EB2C771B1E38C800E9B597 /* lighting.glsl in CopyFiles */,
-				D7EB2C781B1E38C800E9B597 /* phong-frag.glsl in CopyFiles */,
 				D7EB2C791B1E38C800E9B597 /* simple-frag.glsl in CopyFiles */,
 				D7EB2C7A1B1E38C800E9B597 /* simple-vert.glsl in CopyFiles */,
 			);
@@ -183,10 +177,6 @@
 		D703B74B1B402CA200EDF489 /* lotus_material.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_material.hpp; sourceTree = "<group>"; };
 		D703B74C1B402CA200EDF489 /* lotus_objloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_objloader.cpp; sourceTree = "<group>"; };
 		D703B74D1B402CA200EDF489 /* lotus_objloader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_objloader.hpp; sourceTree = "<group>"; };
-		D703B74E1B402CA200EDF489 /* lotus_phongrenderer3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_phongrenderer3d.cpp; sourceTree = "<group>"; };
-		D703B74F1B402CA200EDF489 /* lotus_phongrenderer3d.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_phongrenderer3d.hpp; sourceTree = "<group>"; };
-		D703B7501B402CA200EDF489 /* lotus_phongshader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_phongshader.cpp; sourceTree = "<group>"; };
-		D703B7511B402CA200EDF489 /* lotus_phongshader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_phongshader.hpp; sourceTree = "<group>"; };
 		D703B7521B402CA200EDF489 /* lotus_renderable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_renderable.cpp; sourceTree = "<group>"; };
 		D703B7531B402CA200EDF489 /* lotus_renderable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lotus_renderable.hpp; sourceTree = "<group>"; };
 		D703B7541B402CA200EDF489 /* lotus_scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lotus_scene.cpp; sourceTree = "<group>"; };
@@ -240,7 +230,6 @@
 		D7EB2C631B1E38A300E9B597 /* forward_shared-vert.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forward_shared-vert.glsl"; sourceTree = "<group>"; };
 		D7EB2C641B1E38A300E9B597 /* forward_spot-frag.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "forward_spot-frag.glsl"; sourceTree = "<group>"; };
 		D7EB2C651B1E38A300E9B597 /* lighting.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lighting.glsl; sourceTree = "<group>"; };
-		D7EB2C661B1E38A300E9B597 /* phong-frag.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phong-frag.glsl"; sourceTree = "<group>"; };
 		D7EB2C671B1E38A300E9B597 /* simple-frag.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "simple-frag.glsl"; sourceTree = "<group>"; };
 		D7EB2C681B1E38A300E9B597 /* simple-vert.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "simple-vert.glsl"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -327,10 +316,6 @@
 				D703B74B1B402CA200EDF489 /* lotus_material.hpp */,
 				D703B74C1B402CA200EDF489 /* lotus_objloader.cpp */,
 				D703B74D1B402CA200EDF489 /* lotus_objloader.hpp */,
-				D703B74E1B402CA200EDF489 /* lotus_phongrenderer3d.cpp */,
-				D703B74F1B402CA200EDF489 /* lotus_phongrenderer3d.hpp */,
-				D703B7501B402CA200EDF489 /* lotus_phongshader.cpp */,
-				D703B7511B402CA200EDF489 /* lotus_phongshader.hpp */,
 				D703B7521B402CA200EDF489 /* lotus_renderable.cpp */,
 				D703B7531B402CA200EDF489 /* lotus_renderable.hpp */,
 				D703B7541B402CA200EDF489 /* lotus_scene.cpp */,
@@ -436,7 +421,6 @@
 				D7EB2C631B1E38A300E9B597 /* forward_shared-vert.glsl */,
 				D7EB2C641B1E38A300E9B597 /* forward_spot-frag.glsl */,
 				D7EB2C651B1E38A300E9B597 /* lighting.glsl */,
-				D7EB2C661B1E38A300E9B597 /* phong-frag.glsl */,
 				D7EB2C671B1E38A300E9B597 /* simple-frag.glsl */,
 				D7EB2C681B1E38A300E9B597 /* simple-vert.glsl */,
 			);
@@ -469,7 +453,6 @@
 				D703B7A61B402CA200EDF489 /* lotus_simplerenderer3d.hpp in Headers */,
 				D703B7BF1B402CA200EDF489 /* lotus_stringutils.hpp in Headers */,
 				D703B7871B402CA200EDF489 /* lotus_camera.hpp in Headers */,
-				D703B79C1B402CA200EDF489 /* lotus_phongrenderer3d.hpp in Headers */,
 				D703B7A81B402CA200EDF489 /* lotus_simpleshader.hpp in Headers */,
 				D703B7B91B402CA200EDF489 /* lotus_vec3.hpp in Headers */,
 				D703B7B51B402CA200EDF489 /* lotus_quat.hpp in Headers */,
@@ -485,7 +468,6 @@
 				D703B7831B402CA200EDF489 /* lotus_time.hpp in Headers */,
 				D703B7961B402CA200EDF489 /* lotus_lighting.hpp in Headers */,
 				D703B7AD1B402CA200EDF489 /* lotus_vertex.hpp in Headers */,
-				D703B79E1B402CA200EDF489 /* lotus_phongshader.hpp in Headers */,
 				D703B7BD1B402CA200EDF489 /* lotus_fileutils.hpp in Headers */,
 				D703B7851B402CA200EDF489 /* lotus_transform.hpp in Headers */,
 				D703B7B21B402CA200EDF489 /* lotus_mat4.hpp in Headers */,
@@ -561,7 +543,6 @@
 				D703B7751B402CA200EDF489 /* lotus_freelook.cpp in Sources */,
 				D703B7B81B402CA200EDF489 /* lotus_vec3.cpp in Sources */,
 				D703B78C1B402CA200EDF489 /* lotus_forwardpoint.cpp in Sources */,
-				D703B79B1B402CA200EDF489 /* lotus_phongrenderer3d.cpp in Sources */,
 				D703B79F1B402CA200EDF489 /* lotus_renderable.cpp in Sources */,
 				D703B7991B402CA200EDF489 /* lotus_objloader.cpp in Sources */,
 				D703B7771B402CA200EDF489 /* lotus_freemove.cpp in Sources */,
@@ -578,7 +559,6 @@
 				D703B7B11B402CA200EDF489 /* lotus_mat4.cpp in Sources */,
 				D703B7971B402CA200EDF489 /* lotus_material.cpp in Sources */,
 				D703B7841B402CA200EDF489 /* lotus_transform.cpp in Sources */,
-				D703B79D1B402CA200EDF489 /* lotus_phongshader.cpp in Sources */,
 				D703B7BC1B402CA200EDF489 /* lotus_fileutils.cpp in Sources */,
 				D703B7B41B402CA200EDF489 /* lotus_quat.cpp in Sources */,
 				D703B7AB1B402CA200EDF489 /* lotus_uniform.cpp in Sources */,

@@ -13,12 +13,3 @@ SimpleShader::SimpleShader() :
 	addFragmentShader(m_fileName);
 	compile();
 }
-
-void SimpleShader::updateUniforms() const
-{
-	Shader::updateUniforms();
-	
-	mat4 transformation = Transform::CURRENT->getTransformation();
-	setUniformMat4("mvp_matrix", Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * transformation);
-	setUniformMat4("ml_matrix", transformation);
-}

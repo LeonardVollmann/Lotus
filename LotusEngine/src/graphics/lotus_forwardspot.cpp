@@ -13,16 +13,3 @@ ForwardSpot::ForwardSpot() :
 	addFragmentShader(m_fileName);
 	compile();
 }
-
-ForwardSpot::~ForwardSpot()
-{
-	for (auto it = m_spotLights.begin(); it < m_spotLights.end(); it++)
-	{
-		delete *it;
-	}
-}
-
-void ForwardSpot::addSpotLight(SpotLight *spotLight)
-{
-	m_spotLights.push_back(spotLight);
-}

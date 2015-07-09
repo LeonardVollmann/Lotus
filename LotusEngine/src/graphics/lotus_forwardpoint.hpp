@@ -5,16 +5,8 @@
 
 class ForwardPoint : public Shader
 {
-private:
-	std::vector<PointLight*>	m_pointLights;
 public:
 	static ForwardPoint &getInstance();
-	
-	virtual ~ForwardPoint();
-	
-	void addPointLight(PointLight *pointLight);
-	
-	inline const std::vector<PointLight*> &getPointLights()	const { return m_pointLights; }
 private:
 	ForwardPoint();
 	ForwardPoint(ForwardPoint const&) = delete;

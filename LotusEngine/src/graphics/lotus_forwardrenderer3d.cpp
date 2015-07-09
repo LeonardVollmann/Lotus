@@ -4,6 +4,9 @@
 #include "lotus_forwardpoint.hpp"
 #include "lotus_forwardspot.hpp"
 
+ForwardRenderer3D::ForwardRenderer3D() :
+	m_ambientLight(0.0f) {}
+
 void ForwardRenderer3D::flush()
 {
 	while (!m_renderQueue.empty())
@@ -14,6 +17,7 @@ void ForwardRenderer3D::flush()
 		renderableComponent->getMaterial()->bindTexture("normalMap", 1);
 		renderableComponent->getMaterial()->bindTexture("dispMap", 2);
 	
+		m_ambientLight.bind();
 		ForwardAmbient::getInstance().bind();
 		ForwardAmbient::getInstance().updateUniforms();
 		glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
@@ -24,8 +28,7 @@ void ForwardRenderer3D::flush()
 		glDepthFunc(GL_EQUAL);
 		
 		ForwardDirectional::getInstance().bind();
-		const std::vector<DirectionalLight*> &directionalLights = ForwardDirectional::getInstance().getDirectionalLights();
-		for (auto it = directionalLights.begin(); it < directionalLights.end(); it++)
+		for (auto it = m_directionalLights.begin(); it < m_directionalLights.end(); it++)
 		{
 			(*it)->bind();
 			ForwardDirectional::getInstance().updateUniforms();
@@ -33,8 +36,7 @@ void ForwardRenderer3D::flush()
 		}
 		
 		ForwardPoint::getInstance().bind();
-		const std::vector<PointLight*> &pointLights = ForwardPoint::getInstance().getPointLights();
-		for (auto it = pointLights.begin(); it < pointLights.end(); it++)
+		for (auto it = m_pointLights.begin(); it < m_pointLights.end(); it++)
 		{
 			(*it)->bind();
 			ForwardPoint::getInstance().updateUniforms();
@@ -42,8 +44,7 @@ void ForwardRenderer3D::flush()
 		}
 		
 		ForwardSpot::getInstance().bind();
-		const std::vector<SpotLight*> &spotLights = ForwardSpot::getInstance().getSpotLights();
-		for (auto it = spotLights.begin(); it < spotLights.end(); it++)
+		for (auto it = m_spotLights.begin(); it < m_spotLights.end(); it++)
 		{
 			(*it)->bind();
 			ForwardSpot::getInstance().updateUniforms();

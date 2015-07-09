@@ -7,8 +7,8 @@
 class TestGame : public IGame
 {
 private:
-	SpotLight *m_spotLight;
-	PointLight *m_pointLights[8];
+	SpotLight	*m_spotLight;
+	PointLight	*m_pointLights[8];
 	float m_temp = 0.0f;
 public:
 	TestGame() :
@@ -66,16 +66,17 @@ public:
 		plane->addComponent(new RenderableComponent3D(new Renderable3D(model), material));
 		plane2->addComponent(new RenderableComponent3D(new Renderable3D(model), material2));
 		
-		ForwardAmbient::getInstance().setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
-		ForwardDirectional::getInstance().addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.3f, vec3(1.0f, 1.0f, 1.0f).normalize()));
-		ForwardDirectional::getInstance().addDirectionalLight(new DirectionalLight(vec3(0.0f, 0.0f, 1.0f), 0.3f, vec3(-1.0f, 1.0f, -1.0f).normalize()));
+		ForwardRenderer3D *renderer = new ForwardRenderer3D();
+		renderer->setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
+		renderer->addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.3f, vec3(1.0f, 1.0f, 1.0f).normalize()));
+		renderer->addDirectionalLight(new DirectionalLight(vec3(0.0f, 0.0f, 1.0f), 0.3f, vec3(-1.0f, 1.0f, -1.0f).normalize()));
 		for (unsigned int i = 0; i < 8; i++)
 		{
-			ForwardPoint::getInstance().addPointLight(m_pointLights[i]);
+			renderer->addPointLight(m_pointLights[i]);
 		}
-		ForwardSpot::getInstance().addSpotLight(m_spotLight);
+		renderer->addSpotLight(m_spotLight);
 		
-		Scene *scene = new Scene(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), new ForwardRenderer3D());
+		Scene *scene = new Scene(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), renderer);
 		scene->add(plane);
 		scene->add(plane2);
 		addScene(scene);

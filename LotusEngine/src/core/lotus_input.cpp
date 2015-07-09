@@ -22,7 +22,7 @@ void Input::mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 }
 
 void Input::update()
-{
+{	
 	float width = (float) s_window->getWidth();
 	float height = (float) s_window->getHeight();
 	
