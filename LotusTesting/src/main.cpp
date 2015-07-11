@@ -2,7 +2,46 @@
 #include <cmath>
 #include <vector>
 
-#include <lotus.hpp>
+#include <igame.hpp>
+#include <engine.hpp>
+#include <input.hpp>
+#include <time.hpp>
+#include <window.hpp>
+#include <maths.hpp>
+
+#include <shader.hpp>
+
+#include <lighting.hpp>
+#include <camera.hpp>
+
+#include <simplerenderer3d.hpp>
+#include <forwardrenderer3d.hpp>
+
+#include <vertex.hpp>
+#include <renderable.hpp>
+
+#include <texture.hpp>
+#include <material.hpp>
+
+#include <indexedmodel.hpp>
+#include <objloader.hpp>
+
+#include <scene.hpp>
+
+#include <transform.hpp>
+#include <entity.hpp>
+#include <renderablecomponent.hpp>
+#include <freemove.hpp>
+#include <freelook.hpp>
+
+using namespace lotus;
+using namespace lotus::maths;
+using namespace lotus::graphics;
+
+typedef Renderable<Vertex2D> Renderable2D;
+typedef Renderable<Vertex3D> Renderable3D;
+typedef RenderableComponent<Renderable2D> RenderableComponent2D;
+typedef RenderableComponent<Renderable3D> RenderableComponent3D;
 
 class TestGame : public IGame
 {
