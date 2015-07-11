@@ -1,13 +1,11 @@
 #include "lotus_shader.hpp"
-#include "lotus_fileutils.hpp"
-#include "lotus_stringutils.hpp"
 
 #include <iostream>
 
 #define GET_BOUND_INSTANCE(t) (void*) t::CURRENT
 
-Shader::Shader(const std::string &fileName) :
-	m_fileName(fileName)
+Shader::Shader(const std::string &name) :
+	m_name(name)
 {
 	m_program = glCreateProgram();
 }
@@ -33,32 +31,29 @@ void Shader::bind() const
 	glUseProgram(m_program);
 }
 
-Shader &Shader::addVertexShader(const std::string &fileName)
+Shader &Shader::addVertexShader(const std::string &name, const std::string &source)
 {
-	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + fileName + VERT_EXTENSION));
-	GLuint shader = createShader(shaderText, m_fileName + VERT_EXTENSION, GL_VERTEX_SHADER);
+	GLuint shader = createShader(preprocess(source), name, GL_VERTEX_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[0] = shader;
 
 	return *this;
 }
 
-Shader &Shader::addFragmentShader(const std::string &fileName)
+Shader &Shader::addFragmentShader(const std::string &name, const std::string &source)
 {
-	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + fileName + FRAG_EXTENSION));
-	GLuint shader = createShader(shaderText, m_fileName + FRAG_EXTENSION, GL_FRAGMENT_SHADER);
+	GLuint shader = createShader(preprocess(source), name, GL_FRAGMENT_SHADER);
 	glAttachShader(m_program, shader);
-	m_shaders[1] = shader;
-
+	m_shaders[0] = shader;
+	
 	return *this;
 }
 
-Shader &Shader::addGeometryShader(const std::string &fileName)
+Shader &Shader::addGeometryShader(const std::string &name, const std::string &source)
 {
-	std::string shaderText = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + fileName + GEOM_EXTENSION));
-	GLuint shader = createShader(shaderText, m_fileName + GEOM_EXTENSION, GL_GEOMETRY_SHADER);
+	GLuint shader = createShader(preprocess(source), name, GL_GEOMETRY_SHADER);
 	glAttachShader(m_program, shader);
-	m_shaders[2] = shader;
+	m_shaders[0] = shader;
 
 	return *this;
 }
@@ -66,10 +61,10 @@ Shader &Shader::addGeometryShader(const std::string &fileName)
 Shader &Shader::compile()
 {
 	glLinkProgram(m_program);
-	checkShaderError(m_program, GL_LINK_STATUS, true, "Error: Linking of Shader: '" + m_fileName + "' failed: ");
+	checkShaderError(m_program, GL_LINK_STATUS, true, "Error: Linking of Shader: '" + m_name + "' failed: ");
 
 	glValidateProgram(m_program);
-	checkShaderError(m_program, GL_VALIDATE_STATUS, true, "Error: Validation of Shader: '" + m_fileName + "'failed: ");
+	checkShaderError(m_program, GL_VALIDATE_STATUS, true, "Error: Validation of Shader: '" + m_name + "'failed: ");
 	
 	addAllUniforms();
 
@@ -186,15 +181,9 @@ std::string Shader::preprocess(const std::string &shaderText)
 	while (line)
 	{
 		lines.push_back((std::string) line);
-		std::vector<std::string> tokens = StringUtils::getTokens(line, " ");
+		std::vector<std::string> tokens = tokenizeString(line, " ");
 		
-		if (tokens[0] == INCLUDE_DIRECTIVE)
-		{
-			std::string include = preprocess(FileUtils::readFile(SOURCE_DIRECTORY + (std::string) tokens[1]));
-			lines.pop_back();
-			lines.push_back(include);
-		}
-		else if (tokens[0] == UNIFORM_DIRECTIVE)
+		if (tokens[0] == "uniform")
 		{
 			tokens[2].pop_back();
 			if (tokens[1] == "sampler2D")
@@ -231,7 +220,6 @@ void Shader::addAllUniforms() const
 		m_uniforms.push_back(new SamplerUniform(this, m_samplers[i].c_str(), i));
 	}
 	
-	m_uniformStructs.clear();
 	m_uniformTypes.clear();
 	m_samplers.clear();
 }
@@ -241,7 +229,7 @@ void Shader::addUniform(const std::string &uniform, const std::string &type) con
 	GLint location = glGetUniformLocation(m_program, uniform.c_str());
 	m_uniformLocations.insert(std::pair<std::string, GLint>(uniform, location));
 	
-	std::vector<std::string> tokens = StringUtils::getTokens(uniform, "_");
+	std::vector<std::string> tokens = tokenizeString(uniform, "_");
 	
 	if (uniform == "mvp_matrix")
 	{
@@ -317,6 +305,30 @@ void Shader::addUniform(const std::string &uniform, const std::string &type) con
 void Shader::addSampler(const std::string &uniform)
 {
 	m_samplers.push_back(uniform);
+}
+
+std::vector<std::string> Shader::tokenizeString(const std::string &string, const std::string &delim) const
+{
+	std::vector<std::string> result;
+	char *ctext = new char[string.size() + 1];
+	strcpy(ctext, string.c_str());
+	
+	char *token = strtok(ctext, delim.c_str());
+	while (token)
+	{
+		result.push_back((std::string) token);
+		token = strtok(nullptr, delim.c_str());
+	}
+	
+	delete ctext;
+	return result;
+}
+
+std::string &Shader::removeWhiteSpace(std::string &string) const
+{
+	string.erase(remove(string.begin(), string.end(), ' '), string.end());
+	string.erase(remove(string.begin(), string.end(), '\t'), string.end());
+	return string;
 }
 
 void Shader::checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage)

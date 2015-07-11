@@ -23,6 +23,7 @@ public:
 	void render();
 private:
 	void run();
+	void cleanUp();
 };
 
 #endif

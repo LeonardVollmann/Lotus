@@ -1,15 +1,31 @@
 #include "lotus_objloader.hpp"
-#include "lotus_fileutils.hpp"
 
 #include <GL/glew.h>
 #include <string.h>
+#include <fstream>
 #include <stdlib.h>
 
 IndexedModel OBJLoader::loadIndexedModel(const std::string &fileName)
 {
 	IndexedModel result;
-
-	std::string text = FileUtils::readFile("res/models/" + fileName + ".obj");
+	
+	std::ifstream file;
+	file.open("res/models/" + fileName + ".obj");
+	std::string text;
+	std::string l;
+	if (file.is_open())
+	{
+		while(file.good())
+		{
+			getline(file, l);
+			text.append(l + "\n");
+		}
+	}
+	else
+	{
+		std::cerr << "Unable to read file: " << fileName << std::endl;
+	}
+	
 	char *ctext = new char[text.length() + 1];
 	strcpy(ctext, text.c_str());
 

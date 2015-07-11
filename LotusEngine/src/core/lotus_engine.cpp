@@ -3,6 +3,7 @@
 #include "lotus_igame.hpp"
 #include "lotus_time.hpp"
 #include "lotus_input.hpp"
+#include "lotus_shaderfactory.hpp"
 
 #include <string>
 #include <iostream>
@@ -102,4 +103,11 @@ void Engine::run()
 			accumulatedDelta = 0;
 		}
 	}
+	
+	cleanUp();
+}
+
+void Engine::cleanUp()
+{
+	ShaderFactory::cleanUp();
 }
