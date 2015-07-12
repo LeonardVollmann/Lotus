@@ -1,13 +1,13 @@
 #ifndef LOTUS_SHADER_HPP_INCLUDED
 #define LOTUS_SHADER_HPP_INCLUDED
 
-#include "camera.hpp"
-#include "material.hpp"
-#include "lighting.hpp"
-#include "scene.hpp"
-#include "maths.hpp"
-#include "transform.hpp"
 #include "uniform.hpp"
+#include "../camera.hpp"
+#include "../material.hpp"
+#include "../lighting.hpp"
+#include "../scene.hpp"
+#include "../../maths/maths.hpp"
+#include "../../core/transform.hpp"
 
 #include <GL/glew.h>
 #include <map>

@@ -1,5 +1,5 @@
 #include "scene.hpp"
-#include "irenderer.hpp"
+#include "renderers/irenderer.hpp"
 
 namespace lotus { namespace graphics {
 

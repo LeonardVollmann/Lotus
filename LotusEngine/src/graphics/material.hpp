@@ -2,9 +2,9 @@
 #define LOTUS_MATERIAL_HPP_INCLUDED
 
 #include "texture.hpp"
-#include "vec2.hpp"
-#include "vec3.hpp"
-#include "vec4.hpp"
+#include "../maths/vec2.hpp"
+#include "../maths/vec3.hpp"
+#include "../maths/vec4.hpp"
 
 #include <map>
 #include <string>

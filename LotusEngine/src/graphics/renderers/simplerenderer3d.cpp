@@ -1,5 +1,5 @@
 #include "simplerenderer3d.hpp"
-#include "shaderfactory.hpp"
+#include "../shaders/shaderfactory.hpp"
 
 namespace lotus { namespace graphics {
 

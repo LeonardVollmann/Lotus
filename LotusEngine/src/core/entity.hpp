@@ -2,7 +2,7 @@
 #define LOTUS_ENTITY_HPP_INCLUDED
 
 #include "transform.hpp"
-#include "irenderer.hpp"
+#include "../graphics/renderers/irenderer.hpp"
 
 #include <vector>
 

@@ -2,37 +2,29 @@
 #include <cmath>
 #include <vector>
 
-#include <igame.hpp>
-#include <engine.hpp>
-#include <input.hpp>
-#include <time.hpp>
-#include <window.hpp>
-#include <maths.hpp>
-
-#include <shader.hpp>
-
-#include <lighting.hpp>
-#include <camera.hpp>
-
-#include <simplerenderer3d.hpp>
-#include <forwardrenderer3d.hpp>
-
-#include <vertex.hpp>
-#include <renderable.hpp>
-
-#include <texture.hpp>
-#include <material.hpp>
-
-#include <indexedmodel.hpp>
-#include <objloader.hpp>
-
-#include <scene.hpp>
-
-#include <transform.hpp>
-#include <entity.hpp>
-#include <renderablecomponent.hpp>
-#include <freemove.hpp>
-#include <freelook.hpp>
+#include <core/igame.hpp>
+#include <core/engine.hpp>
+#include <core/input.hpp>
+#include <core/time.hpp>
+#include <core/transform.hpp>
+#include <core/entity.hpp>
+#include <maths/maths.hpp>
+#include <graphics/window.hpp>
+#include <graphics/lighting.hpp>
+#include <graphics/camera.hpp>
+#include <graphics/vertex.hpp>
+#include <graphics/renderable.hpp>
+#include <graphics/texture.hpp>
+#include <graphics/material.hpp>
+#include <graphics/indexedmodel.hpp>
+#include <graphics/objloader.hpp>
+#include <graphics/scene.hpp>
+#include <graphics/shaders/shader.hpp>
+#include <graphics/renderers/simplerenderer3d.hpp>
+#include <graphics/renderers/forwardrenderer3d.hpp>
+#include <components/renderablecomponent.hpp>
+#include <components/freemove.hpp>
+#include <components/freelook.hpp>
 
 using namespace lotus;
 using namespace lotus::maths;

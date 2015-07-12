@@ -1,8 +1,8 @@
 #ifndef LOTUS_LIGHTING_HPP_INCLUDED
 #define LOTUS_LIGHTING_HPP_INCLUDED
 
-#include "entitycomponent.hpp"
-#include "vec3.hpp"
+#include "../core/entitycomponent.hpp"
+#include "../maths/vec3.hpp"
 
 #include <GL/glew.h>
 

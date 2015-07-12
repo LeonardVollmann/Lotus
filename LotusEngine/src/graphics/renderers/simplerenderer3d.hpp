@@ -2,8 +2,8 @@
 #define LOTUS_SIMPLE_RENDERER_3D_HPP_INCLUDED
 
 #include "irenderer.hpp"
-#include "renderablecomponent.hpp"
-#include "shader.hpp"
+#include "../shaders/shader.hpp"
+#include "../../components/renderablecomponent.hpp"
 
 #include <deque>
 

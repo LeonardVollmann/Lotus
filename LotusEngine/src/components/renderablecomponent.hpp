@@ -1,10 +1,10 @@
 #ifndef LOTUS_RENDERABLE_COMPONENT_HPP_INCLUDED
 #define LOTUS_RENDERABLE_COMPONENT_HPP_INCLUDED
 
-#include "entitycomponent.hpp"
-#include "renderable.hpp"
-#include "material.hpp"
-#include "irenderer.hpp"
+#include "../core/entitycomponent.hpp"
+#include "../graphics/renderable.hpp"
+#include "../graphics/material.hpp"
+#include "../graphics/renderers/irenderer.hpp"
 
 namespace lotus { namespace graphics {
 

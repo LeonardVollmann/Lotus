@@ -1,9 +1,9 @@
 #ifndef LOTUS_TRANSFORM_HPP_INCLUDED
 #define LOTUS_TRANSFORM_HPP_INCLUDED
 
-#include "vec3.hpp"
-#include "mat4.hpp"
-#include "quat.hpp"
+#include "../maths/vec3.hpp"
+#include "../maths/mat4.hpp"
+#include "../maths/quat.hpp"
 
 namespace lotus {
 

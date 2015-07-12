@@ -1,5 +1,5 @@
 #include "lighting.hpp"
-#include "shader.hpp"
+#include "shaders/shader.hpp"
 
 #include <cmath>
 #include <string>

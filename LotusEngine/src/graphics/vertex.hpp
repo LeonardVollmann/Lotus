@@ -1,8 +1,8 @@
 #ifndef LOTUS_VERTEX_HPP_INCLUDED
 #define LOTUS_VERTEX_HPP_INCLUDED
 
-#include "vec3.hpp"
-#include "vec2.hpp"
+#include "../maths/vec3.hpp"
+#include "../maths/vec2.hpp"
 
 namespace lotus { namespace graphics {
 

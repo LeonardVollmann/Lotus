@@ -1,7 +1,7 @@
 #ifndef LOTUS_ENGINE_HPP_INCLUDED
 #define LOTUS_ENGINE_HPP_INCLUDED
 
-#include "window.hpp"
+#include "../graphics/window.hpp"
 
 namespace lotus {
 

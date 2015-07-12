@@ -1,8 +1,8 @@
 #ifndef LOTUS_CAMERA_HPP_INCLUDED
 #define LOTUS_CAMERA_HPP_INCLUDED
 
-#include "entitycomponent.hpp"
-#include "mat4.hpp"
+#include "../core/entity.hpp"
+#include "../maths/mat4.hpp"
 
 namespace lotus { namespace graphics {
 

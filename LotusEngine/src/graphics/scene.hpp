@@ -1,8 +1,8 @@
 #ifndef LOTUS_SCENE_HPP_INCLUDED
 #define LOTUS_SCENE_HPP_INCLUDED
 
-#include "entity.hpp"
-#include "mat4.hpp"
+#include "../core/entity.hpp"
+#include "../maths/mat4.hpp"
 
 #include <vector>
 

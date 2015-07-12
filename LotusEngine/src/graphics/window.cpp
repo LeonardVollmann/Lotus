@@ -1,5 +1,5 @@
 #include "window.hpp"
-#include "input.hpp"
+#include "../core/input.hpp"
 
 #include <iostream>
 

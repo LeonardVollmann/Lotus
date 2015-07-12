@@ -1,11 +1,11 @@
 #ifndef LOTUS_UNIFORM_HPP_INCLUDED
 #define LOTUS_UNIFORM_HPP_INCLUDED
 
-#include "vec2.hpp"
-#include "vec3.hpp"
-#include "vec4.hpp"
-#include "mat4.hpp"
-#include "material.hpp"
+#include "../../maths/vec2.hpp"
+#include "../../maths/vec3.hpp"
+#include "../../maths/vec4.hpp"
+#include "../../maths/mat4.hpp"
+#include "../material.hpp"
 
 #include <GL/glew.h>
 #include <string>

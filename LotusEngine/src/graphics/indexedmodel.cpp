@@ -1,5 +1,5 @@
 #include "indexedmodel.hpp"
-#include "vec3.hpp"
+#include "../maths/vec3.hpp"
 
 #include <iostream>
 

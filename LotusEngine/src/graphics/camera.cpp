@@ -1,6 +1,6 @@
 #include "camera.hpp"
-#include "input.hpp"
-#include "vec3.hpp"
+#include "../core/input.hpp"
+#include "../maths/vec3.hpp"
 
 namespace lotus { namespace graphics {
 

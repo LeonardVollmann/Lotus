@@ -1,7 +1,7 @@
 #ifndef LOTUS_FREE_MOVE_HPP_INCLUDED
 #define LOTUS_FREE_MOVE_HPP_INCLUDED
 
-#include "entitycomponent.hpp"
+#include "../core/entitycomponent.hpp"
 
 namespace lotus {
 

@@ -1,8 +1,8 @@
 #ifndef LOTUS_INPUT_HPP_INCLUDED
 #define LOTUS_INPUT_HPP_INCLUDED
 
-#include "vec2.hpp"
-#include "window.hpp"
+#include "../maths/vec2.hpp"
+#include "../graphics/window.hpp"
 
 #include <GLFW/glfw3.h>
 

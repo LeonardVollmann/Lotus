@@ -3,8 +3,8 @@
 
 #include "engine.hpp"
 #include "entity.hpp"
-#include "scene.hpp"
-#include "camera.hpp"
+#include "../graphics/scene.hpp"
+#include "../graphics/camera.hpp"
 
 #include <vector>
 

@@ -2,7 +2,7 @@
 #define LOTUS_FORWARD_RENDERER_3D_HPP_INCLUDED
 
 #include "simplerenderer3d.hpp"
-#include "lighting.hpp"
+#include "../lighting.hpp"
 
 #include <vector>
 
