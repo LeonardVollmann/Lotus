@@ -30,6 +30,7 @@ namespace lotus { namespace graphics {
 	{
 		bind();
 		
+		m_renderer->prepare();
 		for (auto it = m_entities.begin(); it < m_entities.end(); it++)
 		{
 			(*it)->render(m_renderer);

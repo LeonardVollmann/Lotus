@@ -20,7 +20,8 @@
 #include <graphics/objloader.hpp>
 #include <graphics/scene.hpp>
 #include <graphics/shaders/shader.hpp>
-#include <graphics/renderers/simplerenderer3d.hpp>
+#include <graphics/shaders/shaderfactory.hpp>
+#include <graphics/renderers/simplerenderer.hpp>
 #include <graphics/renderers/forwardrenderer3d.hpp>
 #include <components/renderablecomponent.hpp>
 #include <components/freemove.hpp>

@@ -13,7 +13,7 @@ namespace lotus { namespace graphics {
 		m_numVertices(numVertices),
 		m_numIndices(numIndices)
 	{
-		unsigned char vertexType;
+		unsigned char vertexType = 0;
 		const std::type_info &vertexInfo = typeid(VERTEX_T);
 		if (vertexInfo == typeid(Vertex2D))
 		{

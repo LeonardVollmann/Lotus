@@ -20,12 +20,12 @@ namespace lotus { namespace graphics {
 	{
 	friend class ShaderFactory;
 	protected:
-		std::string															m_name;
-		GLuint																m_program;
-		GLuint																m_shaders[3];
-		mutable std::map<std::string, std::string>							m_uniformTypes;
-		mutable std::vector<IUniform*>										m_uniforms;
-		mutable std::vector<std::string>									m_samplers;
+		std::string									m_name;
+		GLuint										m_program;
+		GLuint										m_shaders[3];
+		mutable std::map<std::string, std::string>	m_uniformTypes;
+		mutable std::vector<IUniform*>				m_uniforms;
+		mutable std::vector<std::string>			m_samplers;
 	public:
 		virtual ~Shader();
 
@@ -36,7 +36,7 @@ namespace lotus { namespace graphics {
 		Shader &addGeometryShader(const std::string &name, const std::string &source);
 		Shader &compile();
 
-		virtual void updateUniforms() const;
+		void updateUniforms() const;
 		
 		void setUniform(GLint location, const int &value) const;
 		void setUniform(GLint location, const float &value) const;

@@ -9,7 +9,8 @@ namespace lotus { namespace graphics {
 	{
 	public:
 		virtual ~IRenderer() {}
-		
+
+		virtual void prepare() {}
 		virtual void submit(const void *renderableComponent) = 0;
 		virtual void flush() = 0;
 	};

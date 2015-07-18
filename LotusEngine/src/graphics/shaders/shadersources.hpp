@@ -108,27 +108,20 @@ namespace lotus { namespace graphics {
 	"layout(location = 0) in vec3 vertex_pos;\n"				\
 	"layout(location = 1) in vec2 vertex_texCoord;\n"			\
 	"\n"														\
-	"out DATA\n"												\
-	"{\n"														\
-	"	vec2 texCoord;\n"										\
-	"} vs_out;\n"												\
+	"out vec2 texCoord;\n"										\
 	"\n"														\
 	"uniform mat4 mvp_matrix;\n"								\
-	"uniform mat4 ml_matrix;\n"									\
 	"\n"														\
 	"void main()\n"												\
 	"{\n"														\
-	"	vs_out.texCoord = vertex_texCoord;\n"					\
+	"	texCoord = vertex_texCoord;\n"							\
 	"	gl_Position = mvp_matrix * vec4(vertex_pos, 1.0);\n"	\
 	"}\n"
 
 #define SOURCE_BASIC_FRAG															\
 	"#version 330 core\n"															\
 	"\n"																			\
-	"in DATA\n"																		\
-	"{\n"																			\
-	"	vec2 texCoord;\n"															\
-	"} fs_in;\n"																	\
+	"in vec2 texCoord;\n"															\
 	"\n"																			\
 	"out vec4 fragColor;\n"															\
 	"\n"																			\
@@ -137,7 +130,7 @@ namespace lotus { namespace graphics {
 	"\n"																			\
 	"void main()\n"																	\
 	"{\n"																			\
-	"	fragColor = GLSLure(material_diffuse, fs_in.texCoord) + material_color;\n"	\
+	"	fragColor = texture(material_diffuse, texCoord) + material_color;\n"		\
 	"}\n"
 
 #define SOURCE_FORWARD_SAMPLING																											\
@@ -245,6 +238,23 @@ namespace lotus { namespace graphics {
 	"vec4 calcLightingEffect(vec3 normal, vec3 worldPos, vec3 cameraPos)\n"	\
 	"{\n"																	\
 	"	return calcSpotLight(light_spot, normal, worldPos, cameraPos);\n"	\
+	"}\n"
+
+#define SOURCE_BATCH2D_VERT																	\
+	"#version 330 core\n"																	\
+	"\n"																					\
+	"layout(location = 0) in vec3 vertex_pos;\n"											\
+	"layout(location = 1) in vec2 vertex_texCoord;\n"										\
+	"\n"																					\
+	"uniform mat4 camera_viewMatrix;\n"														\
+	"uniform mat4 transform_modelMatrix;\n"													\
+	"\n"																					\
+	"out vec2 texCoord;\n"																	\
+	"\n"																					\
+	"void main()\n"																			\
+	"{\n"																					\
+	"	texCoord = vertex_texCoord;\n"														\
+	"	gl_Position = camera_viewMatrix * transform_modelMatrix * vec4(vertex_pos, 1.0);\n"	\
 	"}\n"
 
 } }

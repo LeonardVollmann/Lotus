@@ -37,7 +37,7 @@ include(${Sandbox_CMAKE_DIR}/FindGLFW3.cmake)
 include_directories(
 	${Sandbox_SOURCE_DIR}/headers
 	${Sandbox_SOURCE_DIR}/sources
-	${Sandbox_SOURCE_DIR}/../bin/include
+	${Sandbox_SOURCE_DIR}/../LotusEngine/src
 	${OPENGL_INCLUDE_DIRS}
 	${GLEW_INCLUDE_DIRS}
 	${GLFW3_INCLUDE_DIRS}

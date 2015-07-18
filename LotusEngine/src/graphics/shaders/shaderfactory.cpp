@@ -10,12 +10,15 @@ namespace lotus { namespace graphics {
 	const char *ShaderFactory::s_source_forward_directional_frag = SOURCE_FORWARD_FRAG SOURCE_LIGHTING SOURCE_FORWARD_SAMPLING SOURCE_FORWARD_DIRECTIONAL_FRAG SOURCE_FORWARD_MAIN_FRAG;
 	const char *ShaderFactory::s_source_forward_point_frag = SOURCE_FORWARD_FRAG SOURCE_LIGHTING SOURCE_FORWARD_SAMPLING SOURCE_FORWARD_POINT_FRAG SOURCE_FORWARD_MAIN_FRAG;
 	const char *ShaderFactory::s_source_forward_spot_frag = SOURCE_FORWARD_FRAG SOURCE_LIGHTING SOURCE_FORWARD_SAMPLING SOURCE_FORWARD_SPOT_FRAG SOURCE_FORWARD_MAIN_FRAG;
+	const char *ShaderFactory::s_source_batch2d_vert = SOURCE_BATCH2D_VERT;
+	const char *ShaderFactory::s_source_batch2d_frag = SOURCE_BASIC_FRAG;
 
 	Shader *ShaderFactory::s_basic = nullptr;
 	Shader *ShaderFactory::s_forwardAmbient = nullptr;
 	Shader *ShaderFactory::s_forwardDirectional = nullptr;
 	Shader *ShaderFactory::s_forwardPoint = nullptr;
 	Shader *ShaderFactory::s_forwardSpot = nullptr;
+	Shader *ShaderFactory::s_batch2d = nullptr;
 
 	Shader *ShaderFactory::getBasic()
 	{
@@ -80,6 +83,18 @@ namespace lotus { namespace graphics {
 		}
 		
 		return s_forwardSpot;
+	}
+
+	Shader *ShaderFactory::getBatch2D()
+	{
+		if (s_batch2d == nullptr)
+		{
+			s_batch2d = new Shader("batch2d");
+			s_batch2d->addVertexShader("batch2dVertex", s_source_batch2d_vert);
+			s_batch2d->addFragmentShader("batch2dFragment", s_source_batch2d_frag);
+		}
+
+		return s_batch2d;
 	}
 
 	void ShaderFactory::cleanUp()
