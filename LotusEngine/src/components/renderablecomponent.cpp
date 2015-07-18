@@ -15,9 +15,9 @@ namespace lotus { namespace graphics {
 	}
 
 	template<typename RENDERABLE_T>
-	void RenderableComponent<RENDERABLE_T>::render(IRenderer *renderer) const
+	void RenderableComponent<RENDERABLE_T>::render() const
 	{
-		renderer->submit(this);
+		// renderer->submit(this);
 	}
 
 	template<typename RENDERABLE_T>

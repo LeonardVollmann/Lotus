@@ -6,7 +6,8 @@ namespace lotus { namespace graphics {
 
 	const Camera *Camera::CURRENT;
 
-	Camera::Camera()
+	Camera::Camera(const maths::mat4 &projection) :
+		m_projection(projection)
 	{
 		bind();
 	}

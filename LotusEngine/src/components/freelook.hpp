@@ -1,11 +1,11 @@
 #ifndef LOTUS_FREE_LOOK_HPP_INCLUDED
 #define LOTUS_FREE_LOOK_HPP_INCLUDED
 
-#include "../core/entitycomponent.hpp"
+#include "../scene/nodecomponent.hpp"
 
 namespace lotus {
 
-	class FreeLook : public EntityComponent
+	class FreeLook : public NodeComponent
 	{
 	private:
 		float m_turnSpeed;

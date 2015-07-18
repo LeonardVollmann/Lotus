@@ -11,7 +11,7 @@ namespace lotus {
 	{
 	private:
 		graphics::Window 	m_window;
-		IGame 	*m_game;
+		IGame 				*m_game;
 
 		double 	m_fps;
 		bool 	m_running;

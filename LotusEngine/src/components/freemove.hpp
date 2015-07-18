@@ -1,11 +1,11 @@
 #ifndef LOTUS_FREE_MOVE_HPP_INCLUDED
 #define LOTUS_FREE_MOVE_HPP_INCLUDED
 
-#include "../core/entitycomponent.hpp"
+#include "../scene/nodecomponent.hpp"
 
 namespace lotus {
 
-	class FreeMove : public EntityComponent
+	class FreeMove : public NodeComponent
 	{
 	private:
 		float m_speed;
