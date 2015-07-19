@@ -1,13 +1,13 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
-#include <memory>
 
 #include <core/igame.hpp>
 #include <core/engine.hpp>
 #include <core/input.hpp>
 #include <core/time.hpp>
 #include <core/transform.hpp>
+#include <core/entity.hpp>
 #include <maths/maths.hpp>
 #include <graphics/window.hpp>
 #include <graphics/lighting.hpp>
@@ -18,6 +18,7 @@
 #include <graphics/material.hpp>
 #include <graphics/indexedmodel.hpp>
 #include <graphics/objloader.hpp>
+#include <graphics/scene.hpp>
 #include <graphics/shaders/shader.hpp>
 #include <graphics/shaders/shaderfactory.hpp>
 #include <graphics/renderers/simplerenderer.hpp>
@@ -25,7 +26,6 @@
 #include <components/renderablecomponent.hpp>
 #include <components/freemove.hpp>
 #include <components/freelook.hpp>
-#include <scene/node.hpp>
 
 using namespace lotus;
 using namespace lotus::maths;
@@ -42,7 +42,6 @@ private:
 	SpotLight	*m_spotLight;
 	PointLight	*m_pointLights[8];
 	float m_temp = 0.0f;
-	std::unique_ptr<Camera> m_camera;
 public:
 	TestGame() :
 		IGame(),
@@ -67,8 +66,6 @@ public:
 	{
 		glfwSwapInterval(0);
 //		Input::setMouseLocked(true);
-
-		m_camera = std::unique_ptr<Camera>(new Camera(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f)));
 		
 		IndexedModel model;
 		const float size = 10.0f;
@@ -87,19 +84,19 @@ public:
 		Material *material = new Material(new Texture("bricks.png"), vec4::ZERO, 2.0f, 32.0f, new Texture("bricks_normal.png"), new Texture("bricks_disp.png"), 0.04f);
 		Material *material2 = new Material(new Texture("bricks2.png"), vec4::ZERO, 2.0f, 32.0f, new Texture("bricks2_normal.png"), new Texture("bricks2_disp.png"), 0.04f, -1.0f);
 		
-		std::unique_ptr<Node> plane = std::unique_ptr<Node>(new Node());
-		std::unique_ptr<Node> plane2 = std::unique_ptr<Node>(new Node());
+		Entity *plane = new Entity();
+		Entity *plane2 = new Entity();
 		plane->getTransform().rotate(-MATH_PI / 2.0f, vec3(1.0f, 0.0f, 0.0f));
 		plane2->getTransform().rotate(-MATH_PI / 2.0f, vec3(1.0f, 0.0f, 0.0f));
 		plane2->getTransform().translate(vec3(5.0f, 2.0f, 5.0f));
 		plane2->getTransform().scale(vec3(0.3f, 0.3f, 0.3f));
 		
-		m_camera->addComponent(std::unique_ptr<FreeMove>(new FreeMove(10.0f)));
-		m_camera->addComponent(std::unique_ptr<FreeLook>(new FreeLook(5.0f)));
+		m_camera->addComponent(new FreeMove(10.0f));
+		m_camera->addComponent(new FreeLook(5.0f));
 		m_camera->bind();
 		
-		plane->addComponent(std::unique_ptr<RenderableComponent3D>(new RenderableComponent3D(new Renderable3D(model), material)));
-		plane2->addComponent(std::unique_ptr<RenderableComponent3D>(new RenderableComponent3D(new Renderable3D(model), material2)));
+		plane->addComponent(new RenderableComponent3D(new Renderable3D(model), material));
+		plane2->addComponent(new RenderableComponent3D(new Renderable3D(model), material2));
 		
 		ForwardRenderer3D *renderer = new ForwardRenderer3D();
 		renderer->setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
@@ -110,11 +107,16 @@ public:
 			renderer->addPointLight(m_pointLights[i]);
 		}
 		renderer->addSpotLight(m_spotLight);
+		
+		Scene *scene = new Scene(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), renderer);
+		scene->add(plane);
+		scene->add(plane2);
+		addScene(scene);
 	}
 	
 	virtual void update(double delta) override
 	{
-		m_root->update(delta);
+		IGame::update(delta);
 		m_temp += 0.025f;
 		const float sinTemp = sinf(m_temp) * 7.0f;
 		const float cosTemp = cosf(m_temp) * 7.0f;
@@ -127,11 +129,6 @@ public:
 		
 		m_spotLight->setPos(m_camera->getTransform().getPos());
 		m_spotLight->setDirection(m_camera->getTransform().getRot().getBack());
-	}
-
-	virtual void render()
-	{
-		m_root->render();
 	}
 };
 

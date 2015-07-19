@@ -173,7 +173,7 @@ namespace lotus { namespace graphics {
 		
 		if (uniform == "mvp_matrix")
 		{
-			maths::mat4(*getMVPMatrix)() = []()->maths::mat4 { return Camera::CURRENT->getProjectionMatrix() * Camera::CURRENT->getViewMatrix() * Transform::CURRENT->getTransformation(); };
+			maths::mat4(*getMVPMatrix)() = []()->maths::mat4 { return Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * Transform::CURRENT->getTransformation(); };
 			m_uniforms.push_back(new FunctionUniform<maths::mat4>(this, "mvp_matrix", getMVPMatrix));
 		}
 		else if (tokens[0] == "transform")
@@ -199,6 +199,14 @@ namespace lotus { namespace graphics {
 				m_uniforms.push_back(new FunctionUniform<maths::mat4>(this, uniform.c_str(), getModelMatrix));
 			}
 		}
+		else if (tokens[0] == "scene")
+		{
+			if (tokens[1] == "projection")
+			{
+				maths::mat4(*getProjectionMatrix)() = []()->maths::mat4 { return Scene::CURRENT->getProjection(); };
+				m_uniforms.push_back(new FunctionUniform<maths::mat4>(this, uniform.c_str(), getProjectionMatrix));
+			}
+		}
 		else if (tokens[0] == "camera")
 		{
 			if (tokens[1] == "pos")
@@ -215,11 +223,6 @@ namespace lotus { namespace graphics {
 			{
 				maths::mat4(*getCameraViewMatrix)() = []()->maths::mat4 { return Camera::CURRENT->getViewMatrix(); };
 				m_uniforms.push_back(new FunctionUniform<maths::mat4>(this, uniform.c_str(), getCameraViewMatrix));
-			}
-			else if (tokens[1] == "projection")
-			{
-				maths::mat4(*getProjectionMatrix)() = []()->maths::mat4 { return Camera::CURRENT->getProjectionMatrix(); };
-				m_uniforms.push_back(new FunctionUniform<maths::mat4>(this, uniform.c_str(), getProjectionMatrix));
 			}
 		}
 		else if (tokens[0] == "material")

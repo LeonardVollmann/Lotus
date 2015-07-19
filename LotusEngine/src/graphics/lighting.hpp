@@ -1,7 +1,7 @@
 #ifndef LOTUS_LIGHTING_HPP_INCLUDED
 #define LOTUS_LIGHTING_HPP_INCLUDED
 
-#include "../scene/nodecomponent.hpp"
+#include "../core/entitycomponent.hpp"
 #include "../maths/vec3.hpp"
 
 #include <GL/glew.h>
@@ -46,7 +46,7 @@ namespace lotus { namespace graphics {
 		inline const maths::vec3 &getLight() const { return m_light; }
 	};
 
-	class BaseLight : public NodeComponent
+	class BaseLight : public EntityComponent
 	{
 	protected:
 		maths::vec3 m_color;

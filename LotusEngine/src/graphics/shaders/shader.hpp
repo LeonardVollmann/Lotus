@@ -5,6 +5,7 @@
 #include "../camera.hpp"
 #include "../material.hpp"
 #include "../lighting.hpp"
+#include "../scene.hpp"
 #include "../../maths/maths.hpp"
 #include "../../core/transform.hpp"
 
