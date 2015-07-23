@@ -1,4 +1,5 @@
 #include "freemove.hpp"
+#include "../core/entity.hpp"
 #include "../core/input.hpp"
 
 namespace lotus {
@@ -10,25 +11,25 @@ FreeMove::FreeMove(float speed) :
 	{
 		if (Input::getKey(GLFW_KEY_W))
 		{
-			move(getTransform().getRot().getBack(), m_speed * delta);
+			move(m_entity->getTransform().getRot().getBack(), m_speed * delta);
 		}
 		if (Input::getKey(GLFW_KEY_A))
 		{
-			move(getTransform().getRot().getLeft(), m_speed * delta);
+			move(m_entity->getTransform().getRot().getLeft(), m_speed * delta);
 		}
 		if (Input::getKey(GLFW_KEY_S))
 		{
-			move(getTransform().getRot().getForward(), m_speed * delta);
+			move(m_entity->getTransform().getRot().getForward(), m_speed * delta);
 		}
 		if (Input::getKey(GLFW_KEY_D))
 		{
-			move(getTransform().getRot().getRight(), m_speed * delta);
+			move(m_entity->getTransform().getRot().getRight(), m_speed * delta);
 		}
 	}
 
 	void FreeMove::move(const maths::vec3 &axis, float amount)
 	{
-		getTransform().translate(axis * maths::vec3(amount));
+		m_entity->getTransform().translate(axis * maths::vec3(amount));
 	}
 
 }

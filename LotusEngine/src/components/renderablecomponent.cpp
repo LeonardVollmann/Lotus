@@ -1,4 +1,5 @@
 #include "renderablecomponent.hpp"
+#include "../core/entity.hpp"
 
 namespace lotus { namespace graphics {
 
@@ -23,7 +24,7 @@ namespace lotus { namespace graphics {
 	template<typename RENDERABLE_T>
 	void RenderableComponent<RENDERABLE_T>::bind() const
 	{
-		getTransform().bind();
+		m_entity->getTransform().bind();
 		m_renderable->bind();
 		m_material->bind();
 	}

@@ -91,12 +91,12 @@ public:
 		plane2->getTransform().translate(vec3(5.0f, 2.0f, 5.0f));
 		plane2->getTransform().scale(vec3(0.3f, 0.3f, 0.3f));
 		
-		m_camera->addComponent(new FreeMove(10.0f));
-		m_camera->addComponent(new FreeLook(5.0f));
+		m_camera->addComponent<FreeMove>(10.0f);
+		m_camera->addComponent<FreeLook>(5.0f);
 		m_camera->bind();
 		
-		plane->addComponent(new RenderableComponent3D(new Renderable3D(model), material));
-		plane2->addComponent(new RenderableComponent3D(new Renderable3D(model), material2));
+		plane->addComponent<RenderableComponent3D>(new Renderable3D(model), material);
+		plane2->addComponent<RenderableComponent3D>(new Renderable3D(model), material2);
 		
 		ForwardRenderer3D *renderer = new ForwardRenderer3D();
 		renderer->setAmbientLight(vec3(0.1f, 0.1f, 0.1f));

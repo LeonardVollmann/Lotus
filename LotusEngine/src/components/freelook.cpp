@@ -1,4 +1,5 @@
 #include "freelook.hpp"
+#include "../core/entity.hpp"
 #include "../core/input.hpp"
 
 namespace lotus {
@@ -16,19 +17,19 @@ namespace lotus {
 		{
 			if (Input::getKey(GLFW_KEY_UP))
 			{
-				getTransform().rotate(m_turnSpeed * delta, getTransform().getRot().getRight());
+				m_entity->getTransform().rotate(m_turnSpeed * delta, m_entity->getTransform().getRot().getRight());
 			}
 			if (Input::getKey(GLFW_KEY_DOWN))
 			{
-				getTransform().rotate(-m_turnSpeed * delta, getTransform().getRot().getRight());
+				m_entity->getTransform().rotate(-m_turnSpeed * delta, m_entity->getTransform().getRot().getRight());
 			}
 			if (Input::getKey(GLFW_KEY_LEFT))
 			{
-				getTransform().rotate(m_turnSpeed * delta, maths::vec3(0.0f, 1.0f, 0.0f));
+				m_entity->getTransform().rotate(m_turnSpeed * delta, maths::vec3(0.0f, 1.0f, 0.0f));
 			}
 			if (Input::getKey(GLFW_KEY_RIGHT))
 			{
-				getTransform().rotate(-m_turnSpeed * delta, maths::vec3(0.0f, 1.0f, 0.0f));
+				m_entity->getTransform().rotate(-m_turnSpeed * delta, maths::vec3(0.0f, 1.0f, 0.0f));
 			}
 		}
 	}

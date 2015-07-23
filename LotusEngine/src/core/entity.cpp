@@ -6,13 +6,6 @@ namespace lotus {
 	Entity::Entity(const Transform &transform) :
 		m_transform(transform) {}
 
-	Entity::~Entity()
-	{
-		for (auto it = m_components.begin(); it < m_components.end(); it++)
-		{
-			delete *it;
-		}
-	}
 
 	void Entity::update(float delta)
 	{
@@ -28,13 +21,6 @@ namespace lotus {
 		{
 			(*it)->render(renderer);
 		}
-	}
-
-	Entity &Entity::addComponent(EntityComponent *component)
-	{
-		m_components.push_back(component);
-		component->setEntity(this);
-		return *this;
 	}
 
 }
