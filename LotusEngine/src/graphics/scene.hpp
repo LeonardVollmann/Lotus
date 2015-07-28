@@ -5,6 +5,7 @@
 #include "../maths/mat4.hpp"
 
 #include <vector>
+#include <memory>
 
 namespace lotus { namespace graphics {
 
@@ -15,12 +16,15 @@ namespace lotus { namespace graphics {
 	public:
 		static const Scene *CURRENT;
 	protected:
-		maths::mat4					m_projection;
-		IRenderer				*m_renderer;
-		std::vector<Entity*>	m_entities;
+		maths::mat4								m_projection;
+		IRenderer								*m_renderer;
+		std::vector<std::unique_ptr<Entity>>	m_entities;
 	public:
 		Scene(const maths::mat4 &m_projection, IRenderer *renderer);
 		virtual ~Scene();
+
+		template <typename ENTITY_T, typename... ARGS>
+		void add(ARGS&&... args);
 
 		void update(double delta);
 		void render() const;

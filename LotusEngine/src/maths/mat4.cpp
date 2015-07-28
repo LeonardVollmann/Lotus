@@ -168,6 +168,23 @@ namespace lotus { namespace maths {
 		return *this;
 	}
 
+	vec3 mat4::operator*(const vec3 &r) const
+	{
+		return vec3(
+			columns[0].x * r.x + columns[1].x * r.y + columns[2].x * r.z + columns[3].x,
+			columns[0].y * r.x + columns[1].y * r.y + columns[2].y * r.z + columns[3].y,
+			columns[0].z * r.x + columns[1].z * r.y + columns[2].z * r.z + columns[3].z);
+	}
+
+	vec4 mat4::operator*(const vec4 &r) const
+	{
+		return vec4(
+			columns[0].x * r.x + columns[1].x * r.y + columns[2].x * r.z + columns[3].x * r.w,
+			columns[0].y * r.x + columns[1].y * r.y + columns[2].y * r.z + columns[3].y * r.w,
+			columns[0].z * r.x + columns[1].z * r.y + columns[2].z * r.z + columns[3].z * r.w,
+			columns[0].w * r.x + columns[1].w * r.y + columns[2].w * r.z + columns[3].w * r.w);
+	}
+
 	float &mat4::operator[](int index)
 	{
 		return elements[index];

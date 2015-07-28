@@ -176,6 +176,11 @@ namespace lotus { namespace graphics {
 			maths::mat4(*getMVPMatrix)() = []()->maths::mat4 { return Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * Transform::CURRENT->getTransformation(); };
 			m_uniforms.push_back(new FunctionUniform<maths::mat4>(this, "mvp_matrix", getMVPMatrix));
 		}
+		else if (uniform == "vp_matrix")
+		{
+			maths::mat4(*getVPMatrix)() = []()->maths::mat4 { return Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix(); };
+			m_uniforms.push_back(new FunctionUniform<maths::mat4>(this, "vp_matrix", getVPMatrix));
+		}
 		else if (tokens[0] == "transform")
 		{
 			if (tokens[1] == "pos")

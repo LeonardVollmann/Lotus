@@ -240,21 +240,32 @@ namespace lotus { namespace graphics {
 	"	return calcSpotLight(light_spot, normal, worldPos, cameraPos);\n"	\
 	"}\n"
 
-#define SOURCE_BATCH2D_VERT																	\
-	"#version 330 core\n"																	\
-	"\n"																					\
-	"layout(location = 0) in vec3 vertex_pos;\n"											\
-	"layout(location = 1) in vec2 vertex_texCoord;\n"										\
-	"\n"																					\
-	"uniform mat4 camera_viewMatrix;\n"														\
-	"uniform mat4 transform_modelMatrix;\n"													\
-	"\n"																					\
-	"out vec2 texCoord;\n"																	\
-	"\n"																					\
-	"void main()\n"																			\
-	"{\n"																					\
-	"	texCoord = vertex_texCoord;\n"														\
-	"	gl_Position = camera_viewMatrix * transform_modelMatrix * vec4(vertex_pos, 1.0);\n"	\
+#define SOURCE_BATCH2D_VERT										\
+	"#version 330 core\n"										\
+	"\n"														\
+	"layout(location = 0) in vec3 vertex_pos;\n"				\
+	"layout(location = 1) in vec2 vertex_texCoord;\n"			\
+	"\n"														\
+	"uniform mat4 vp_matrix;\n"									\
+	"\n"														\
+	"out vec2 texCoord;\n"										\
+	"\n"														\
+	"void main()\n"												\
+	"{\n"														\
+	"	texCoord = vertex_texCoord;\n"							\
+	"	gl_Position = vp_matrix * vec4(vertex_pos, 1.0);\n"		\
+	"}\n"
+
+#define SOURCE_BATCH2D_FRAG							\
+	"#version 330 core\n"							\
+	"\n"											\
+	"in vec2 texCoord;\n"							\
+	"\n"											\
+	"out vec4 fragColor;\n"							\
+	"\n"											\
+	"void main()\n"									\
+	"{\n"											\
+	"	fragColor = vec4(1.0, 1.0, 1.0, 1.0);\n"		\
 	"}\n"
 
 } }

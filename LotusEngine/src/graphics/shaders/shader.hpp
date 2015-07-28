@@ -51,7 +51,7 @@ namespace lotus { namespace graphics {
 		
 		std::string preprocess(const std::string &shaderText);
 		
-		void addAllUniforms() const;
+		virtual void addAllUniforms() const;
 		void addUniform(const std::string &uniform, const std::string &type = "") const;
 		void addSampler(const std::string &uniform);
 		

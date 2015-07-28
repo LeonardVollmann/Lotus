@@ -8,7 +8,10 @@ namespace lotus { namespace maths {
 	class mat4
 	{
 	public:
-		float elements[4 * 4];
+		union {
+			float elements[4 * 4];
+			vec4 columns[4];
+		};
 
 		static mat4 identity();
 		
@@ -27,6 +30,10 @@ namespace lotus { namespace maths {
 
 		mat4 operator*(const mat4 &r) const;
 		mat4 &operator*=(const mat4 &r);
+
+		vec3 operator*(const vec3 &r) const;
+		vec4 operator*(const vec4 &r) const;
+
 		float &operator[](int index);
 	};
 

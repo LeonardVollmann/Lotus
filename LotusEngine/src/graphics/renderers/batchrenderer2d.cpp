@@ -1,7 +1,8 @@
 #include "batchrenderer2d.hpp"
-#include "../sprite.hpp"
-#include "../../maths/vec2.hpp"
-#include "../../maths/vec3.hpp"
+#include "../shaders/shaderfactory.hpp"
+#include "../../maths/mat4.hpp"
+#include "../../core/entity.hpp"
+#include "../../components/spritecomponent.hpp"
 
 #include <cstdlib>
 
@@ -53,15 +54,22 @@ namespace lotus { namespace graphics{
 
 	void BatchRenderer2D::submit(const void *sprite) 
 	{
-		float halfSize = ((const Sprite*) sprite)->size / 2.0f;
+		maths::mat4 transformation = ((const SpriteComponent*) sprite)->getEntity()->getTransform().getTransformation();
+		
+		m_buffer->position = transformation * maths::vec3(-0.5f, 0.5f, 0.0f);
+		m_buffer->texCoord = maths::vec2(0.0f, 1.0f);
+		m_buffer++;
 
-		*m_buffer = Vertex2D(maths::vec3(-halfSize, halfSize, 0.0f) + ((const Sprite*) sprite)->pos, maths::vec2(0.0f, 1.0f));
+		m_buffer->position = transformation * maths::vec3(-0.5f, -0.5f, 0.0f);
+		m_buffer->texCoord = maths::vec2(0.0f, 0.0f);
 		m_buffer++;
-		*m_buffer = Vertex2D(maths::vec3(-halfSize, -halfSize, 0.0f) + ((const Sprite*) sprite)->pos, maths::vec2(0.0f, 0.0f));
+
+		m_buffer->position = transformation * maths::vec3(0.5f, -0.5f, 0.0f);
+		m_buffer->texCoord = maths::vec2(1.0f, 0.0f);
 		m_buffer++;
-		*m_buffer = Vertex2D(maths::vec3(halfSize, -halfSize, 0.0f) + ((const Sprite*) sprite)->pos, maths::vec2(1.0f, 0.0f));
-		m_buffer++;
-		*m_buffer = Vertex2D(maths::vec3(halfSize, halfSize, 0.0f) + ((const Sprite*) sprite)->pos, maths::vec2(1.0f, 1.0f));
+
+		m_buffer->position = transformation * maths::vec3(0.5f, 0.5f, 0.0f);
+		m_buffer->texCoord = maths::vec2(1.0f, 1.0f);
 		m_buffer++;
 
 		m_numIndices += 6;
@@ -70,6 +78,9 @@ namespace lotus { namespace graphics{
 	void BatchRenderer2D::flush() 
 	{
 		glUnmapBuffer(GL_ARRAY_BUFFER);
+
+		ShaderFactory::getBatch2D()->bind();
+		ShaderFactory::getBatch2D()->updateUniforms();
 
 		glBindVertexArray(m_vao);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);

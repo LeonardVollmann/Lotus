@@ -11,7 +11,7 @@ namespace lotus { namespace graphics {
 	const char *ShaderFactory::s_source_forward_point_frag = SOURCE_FORWARD_FRAG SOURCE_LIGHTING SOURCE_FORWARD_SAMPLING SOURCE_FORWARD_POINT_FRAG SOURCE_FORWARD_MAIN_FRAG;
 	const char *ShaderFactory::s_source_forward_spot_frag = SOURCE_FORWARD_FRAG SOURCE_LIGHTING SOURCE_FORWARD_SAMPLING SOURCE_FORWARD_SPOT_FRAG SOURCE_FORWARD_MAIN_FRAG;
 	const char *ShaderFactory::s_source_batch2d_vert = SOURCE_BATCH2D_VERT;
-	const char *ShaderFactory::s_source_batch2d_frag = SOURCE_BASIC_FRAG;
+	const char *ShaderFactory::s_source_batch2d_frag = SOURCE_BATCH2D_FRAG;
 
 	Shader *ShaderFactory::s_basic = nullptr;
 	Shader *ShaderFactory::s_forwardAmbient = nullptr;

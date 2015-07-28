@@ -23,9 +23,11 @@
 #include <graphics/shaders/shaderfactory.hpp>
 #include <graphics/renderers/simplerenderer.hpp>
 #include <graphics/renderers/forwardrenderer3d.hpp>
+#include <graphics/renderers/batchrenderer2d.hpp>
 #include <components/renderablecomponent.hpp>
 #include <components/freemove.hpp>
 #include <components/freelook.hpp>
+#include <components/spritecomponent.hpp>
 
 using namespace lotus;
 using namespace lotus::maths;
@@ -107,13 +109,13 @@ public:
 			renderer->addPointLight(m_pointLights[i]);
 		}
 		renderer->addSpotLight(m_spotLight);
-		
+
 		Scene *scene = new Scene(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), renderer);
 		scene->add(plane);
 		scene->add(plane2);
 		addScene(scene);
 	}
-	
+
 	virtual void update(double delta) override
 	{
 		IGame::update(delta);
