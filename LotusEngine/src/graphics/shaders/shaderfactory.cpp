@@ -97,7 +97,7 @@ namespace lotus { namespace graphics {
 		return s_batch2d;
 	}
 
-	void ShaderFactory::cleanUp()
+	void ShaderFactory::shutdown()
 	{
 		delete s_basic;
 		delete s_forwardAmbient;

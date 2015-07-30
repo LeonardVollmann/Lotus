@@ -138,7 +138,7 @@ namespace lotus { namespace graphics {
 					m_uniformTypes.insert(std::pair<std::string, std::string>(tokens[2], tokens[1]));
 				}
 			}
-			
+
 			line = strtok_r(nullptr, "\n", &save_line);
 		}
 		

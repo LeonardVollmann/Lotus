@@ -3,6 +3,7 @@
 #include "time.hpp"
 #include "input.hpp"
 #include "../graphics/shaders/shaderfactory.hpp"
+#include "../memory/memory.hpp"
 
 #include <string>
 #include <iostream>
@@ -12,13 +13,21 @@ namespace lotus {
 	Engine::Engine(double fps, int width, int height, const char *title) :
 		m_window(width, height, title),
 		m_fps(fps),
-		m_running(false) {}
+		m_running(false)
+	{
+		initSubsystems();
+	}
 
 	void Engine::setGame(IGame *game)
 	{
 		m_game = game;
 		m_game->setEngine(this);
 		m_game->init();
+	}
+
+	void Engine::initSubsystems() const
+	{
+		memory::init();
 	}
 
 	void Engine::start()
@@ -105,12 +114,13 @@ namespace lotus {
 			}
 		}
 		
-		cleanUp();
+		shutdownSubsystems();
 	}
 
-	void Engine::cleanUp()
+	void Engine::shutdownSubsystems() const;
 	{
-		graphics::ShaderFactory::cleanUp();
+		ShaderFactory::shutdown();
+		memory::shutdown();
 	}
 
 }

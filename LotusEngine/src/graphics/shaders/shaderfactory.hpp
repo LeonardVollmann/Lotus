@@ -32,7 +32,7 @@ namespace lotus { namespace graphics {
 		static Shader *getForwardSpot();
 		static Shader *getBatch2D();
 		
-		static void cleanUp();
+		static void shutdown();
 	};
 
 } }
