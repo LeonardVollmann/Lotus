@@ -117,9 +117,10 @@ namespace lotus {
 		shutdownSubsystems();
 	}
 
-	void Engine::shutdownSubsystems() const;
+	void Engine::shutdownSubsystems() const
 	{
-		ShaderFactory::shutdown();
+		m_game->shutdown();
+		graphics::ShaderFactory::shutdown();
 		memory::shutdown();
 	}
 

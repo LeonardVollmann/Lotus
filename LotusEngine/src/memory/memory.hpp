@@ -18,21 +18,33 @@ namespace lotus { namespace memory {
 		} g_memoryGlobals;
 	}
 
-	void init()
+	inline void init()
 	{
 		unsigned char *ptr = g_memoryGlobals.buffer;
 
 		g_memoryGlobals.defaultAllocator = new (ptr) HeapAllocator();
 	}
 
-	void shutdown()
+	inline void shutdown()
 	{
 		g_memoryGlobals.defaultAllocator->~HeapAllocator();
 	}
 
-	IAllocator &defaultAllocator()
+	inline IAllocator &getDefaultAllocator()
 	{
 		return *g_memoryGlobals.defaultAllocator;
+	}
+
+	template <typename T, typename... ARGS>
+	inline T *make_new(ARGS&&... args)
+	{
+		return getDefaultAllocator().make_new<T>(args...);
+	}
+
+	template <typename T>
+	inline void make_delete(T *ptr)
+	{
+		getDefaultAllocator().make_delete<T>(ptr);
 	}
 
 } }

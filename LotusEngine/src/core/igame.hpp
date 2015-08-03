@@ -13,14 +13,15 @@ namespace lotus {
 	class IGame
 	{
 	protected:
-		Engine 				*m_engine;
-		std::vector<graphics::Scene*> m_scenes;
+		Engine 							*m_engine;
+		std::vector<graphics::Scene*> 	m_scenes;
 		graphics::Camera				*m_camera;
 	public:
 		IGame() :
 			m_camera(new graphics::Camera) {}
 		
 		virtual void init() = 0;
+		virtual void shutdown() = 0;
 		virtual void tick() = 0;
 		
 		virtual void update(double delta)

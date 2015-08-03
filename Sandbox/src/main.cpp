@@ -8,6 +8,7 @@
 #include <core/time.hpp>
 #include <core/transform.hpp>
 #include <core/entity.hpp>
+#include <memory/memory.hpp>
 #include <maths/maths.hpp>
 #include <graphics/window.hpp>
 #include <graphics/lighting.hpp>
@@ -32,6 +33,7 @@
 using namespace lotus;
 using namespace lotus::maths;
 using namespace lotus::graphics;
+using namespace lotus::memory;
 
 typedef Renderable<Vertex2D> Renderable2D;
 typedef Renderable<Vertex3D> Renderable3D;
@@ -114,6 +116,14 @@ public:
 		scene->add(plane);
 		scene->add(plane2);
 		addScene(scene);
+	}
+	
+	virtual void shutdown() override
+	{
+		for (unsigned int i = 0; i < 8; i++)
+		{
+			delete m_pointLights[1];
+		}
 	}
 
 	virtual void update(double delta) override
