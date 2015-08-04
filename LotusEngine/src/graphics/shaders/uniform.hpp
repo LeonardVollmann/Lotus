@@ -69,13 +69,13 @@ namespace lotus { namespace graphics {
 		virtual void update(const Shader *shader) const final;
 	};
 
-	template <typename VAR_T, unsigned int NUM_MEMBERS, void GET_LOCATIONS(const Shader *shader, const char *name, GLuint *locations)>
+	template <typename VAR_T, unsigned int NUM_MEMBERS, void GET_LOCATIONS(const Shader *shader, const std::string &name, GLuint *locations)>
 	class StructUniform : public IUniform
 	{
 	private:
 		GLuint m_locations[NUM_MEMBERS];
 	public:
-		StructUniform(const Shader *shader, const char *name);
+		StructUniform(const Shader *shader, const std::string &name);
 		
 		virtual void update(const Shader *shader) const final;
 	};

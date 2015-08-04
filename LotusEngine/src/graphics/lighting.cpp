@@ -18,6 +18,16 @@ namespace lotus { namespace graphics {
 
 	const AmbientLight *AmbientLight::CURRENT;
 
+	void AmbientLight::getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations)
+	{
+		locations[0] = glGetUniformLocation(shader->getShaderProgram(), name.c_str());
+	}
+
+	void AmbientLight::setUniformValues(const Shader *shader, GLuint *locations)
+	{
+		shader->setUniform(locations[0], CURRENT->getLight());
+	}
+
 	AmbientLight::AmbientLight(const maths::vec3 &light) :
 		m_light(light) {}
 
@@ -39,12 +49,11 @@ namespace lotus { namespace graphics {
 
 	const DirectionalLight *DirectionalLight::CURRENT;
 
-	void DirectionalLight::getUniformLocations(const Shader *shader, const char *name, GLuint *locations)
+	void DirectionalLight::getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations)
 	{
-		std::string str(name);
-		locations[0] = glGetUniformLocation(shader->getShaderProgram(), (str + ".base.color").c_str());
-		locations[1] = glGetUniformLocation(shader->getShaderProgram(), (str + ".base.intensity").c_str());
-		locations[2] = glGetUniformLocation(shader->getShaderProgram(), (str + ".direction").c_str());
+		locations[0] = glGetUniformLocation(shader->getShaderProgram(), (name + ".base.color").c_str());
+		locations[1] = glGetUniformLocation(shader->getShaderProgram(), (name + ".base.intensity").c_str());
+		locations[2] = glGetUniformLocation(shader->getShaderProgram(), (name + ".direction").c_str());
 	}
 
 	void DirectionalLight::setUniformValues(const Shader *shader, GLuint *locations)
@@ -73,16 +82,15 @@ namespace lotus { namespace graphics {
 
 	const PointLight *PointLight::CURRENT;
 
-	void PointLight::getUniformLocations(const Shader *shader, const char *name, GLuint *locations)
+	void PointLight::getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations)
 	{
-		std::string str(name);
-		locations[0] = glGetUniformLocation(shader->getShaderProgram(), (str + ".base.color").c_str());
-		locations[1] = glGetUniformLocation(shader->getShaderProgram(), (str + ".base.intensity").c_str());
-		locations[2] = glGetUniformLocation(shader->getShaderProgram(), (str + ".atten.constant").c_str());
-		locations[3] = glGetUniformLocation(shader->getShaderProgram(), (str + ".atten.linear").c_str());
-		locations[4] = glGetUniformLocation(shader->getShaderProgram(), (str + ".atten.exponent").c_str());
-		locations[5] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pos").c_str());
-		locations[6] = glGetUniformLocation(shader->getShaderProgram(), (str + ".range").c_str());
+		locations[0] = glGetUniformLocation(shader->getShaderProgram(), (name + ".base.color").c_str());
+		locations[1] = glGetUniformLocation(shader->getShaderProgram(), (name + ".base.intensity").c_str());
+		locations[2] = glGetUniformLocation(shader->getShaderProgram(), (name + ".atten.constant").c_str());
+		locations[3] = glGetUniformLocation(shader->getShaderProgram(), (name + ".atten.linear").c_str());
+		locations[4] = glGetUniformLocation(shader->getShaderProgram(), (name + ".atten.exponent").c_str());
+		locations[5] = glGetUniformLocation(shader->getShaderProgram(), (name + ".pos").c_str());
+		locations[6] = glGetUniformLocation(shader->getShaderProgram(), (name + ".range").c_str());
 	}
 
 	void PointLight::setUniformValues(const Shader *shader, GLuint *locations)
@@ -133,18 +141,17 @@ namespace lotus { namespace graphics {
 
 	const SpotLight *SpotLight::CURRENT;
 
-	void SpotLight::getUniformLocations(const Shader *shader, const char *name, GLuint *locations)
+	void SpotLight::getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations)
 	{
-		std::string str(name);
-		locations[0] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.base.color").c_str());
-		locations[1] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.base.intensity").c_str());
-		locations[2] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.atten.constant").c_str());
-		locations[3] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.atten.linear").c_str());
-		locations[4] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.atten.exponent").c_str());
-		locations[5] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.pos").c_str());
-		locations[6] = glGetUniformLocation(shader->getShaderProgram(), (str + ".pointLight.range").c_str());
-		locations[7] = glGetUniformLocation(shader->getShaderProgram(), (str + ".direction").c_str());
-		locations[8] = glGetUniformLocation(shader->getShaderProgram(), (str + ".cutoff").c_str());
+		locations[0] = glGetUniformLocation(shader->getShaderProgram(), (name + ".pointLight.base.color").c_str());
+		locations[1] = glGetUniformLocation(shader->getShaderProgram(), (name + ".pointLight.base.intensity").c_str());
+		locations[2] = glGetUniformLocation(shader->getShaderProgram(), (name + ".pointLight.atten.constant").c_str());
+		locations[3] = glGetUniformLocation(shader->getShaderProgram(), (name + ".pointLight.atten.linear").c_str());
+		locations[4] = glGetUniformLocation(shader->getShaderProgram(), (name + ".pointLight.atten.exponent").c_str());
+		locations[5] = glGetUniformLocation(shader->getShaderProgram(), (name + ".pointLight.pos").c_str());
+		locations[6] = glGetUniformLocation(shader->getShaderProgram(), (name + ".pointLight.range").c_str());
+		locations[7] = glGetUniformLocation(shader->getShaderProgram(), (name + ".direction").c_str());
+		locations[8] = glGetUniformLocation(shader->getShaderProgram(), (name + ".cutoff").c_str());
 	}
 
 	void SpotLight::setUniformValues(const Shader *shader, GLuint *locations)

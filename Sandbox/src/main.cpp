@@ -49,7 +49,7 @@ private:
 public:
 	TestGame() :
 		IGame(),
-		m_spotLight(new SpotLight(vec3(1.0f, 1.0f, 1.0f), 10.0f, Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), vec3(Transform().getRot().getForward()), 0.7f)),
+		m_spotLight(new SpotLight(vec3(1.0f, 1.0f, 1.0f), 3.0f, Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), vec3(Transform().getRot().getForward()), 0.7f)),
 		m_pointLights
 		{
 			new PointLight(vec3(1.0f, 1.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3(-7.0f, 0.0f, 0.0f)),
@@ -70,7 +70,7 @@ public:
 	{
 		glfwSwapInterval(0);
 //		Input::setMouseLocked(true);
-		
+
 		IndexedModel model;
 		const float size = 10.0f;
 		model.addPosition(-size, size, 0);
@@ -84,28 +84,32 @@ public:
 		model.addFace(0, 1, 2);
 		model.addFace(2, 3, 0);
 		model.finalize();
-		
+
 		Material *material = new Material(new Texture("bricks.png"), vec4::ZERO, 2.0f, 32.0f, new Texture("bricks_normal.png"), new Texture("bricks_disp.png"), 0.04f);
 		Material *material2 = new Material(new Texture("bricks2.png"), vec4::ZERO, 2.0f, 32.0f, new Texture("bricks2_normal.png"), new Texture("bricks2_disp.png"), 0.04f, -1.0f);
-		
+		Material *material3 = new Material(new Texture("white.png"), vec4::ZERO, 0.0f, 0.0f, new Texture("default_normal.png"), new Texture("default_disp.png"), 0.0f, 0.0f);
+
 		Entity *plane = new Entity();
 		Entity *plane2 = new Entity();
+		Entity *monkey = new Entity();
 		plane->getTransform().rotate(-MATH_PI / 2.0f, vec3(1.0f, 0.0f, 0.0f));
 		plane2->getTransform().rotate(-MATH_PI / 2.0f, vec3(1.0f, 0.0f, 0.0f));
 		plane2->getTransform().translate(vec3(5.0f, 2.0f, 5.0f));
 		plane2->getTransform().scale(vec3(0.3f, 0.3f, 0.3f));
-		
+		monkey->getTransform().translate(vec3(0.0f, 3.0f, 0.0f));
+
 		m_camera->addComponent<FreeMove>(10.0f);
 		m_camera->addComponent<FreeLook>(5.0f);
 		m_camera->bind();
-		
+
 		plane->addComponent<RenderableComponent3D>(new Renderable3D(model), material);
 		plane2->addComponent<RenderableComponent3D>(new Renderable3D(model), material2);
-		
+		monkey->addComponent<RenderableComponent3D>(new Renderable3D("monkey"), material3);
+
 		ForwardRenderer3D *renderer = new ForwardRenderer3D();
-		renderer->setAmbientLight(vec3(0.1f, 0.1f, 0.1f));
-		renderer->addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.3f, vec3(1.0f, 1.0f, 1.0f).normalize()));
-		renderer->addDirectionalLight(new DirectionalLight(vec3(0.0f, 0.0f, 1.0f), 0.3f, vec3(-1.0f, 1.0f, -1.0f).normalize()));
+		renderer->setAmbientLight(vec3(0.1f));
+		renderer->addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.0f, vec3(1.0f, 1.0f, 1.0f).normalize()));
+		renderer->addDirectionalLight(new DirectionalLight(vec3(0.0f, 0.0f, 1.0f), 0.0f, vec3(-1.0f, 1.0f, -1.0f).normalize()));
 		for (unsigned int i = 0; i < 8; i++)
 		{
 			renderer->addPointLight(m_pointLights[i]);
@@ -115,16 +119,11 @@ public:
 		Scene *scene = new Scene(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), renderer);
 		scene->add(plane);
 		scene->add(plane2);
+		scene->add(monkey);
 		addScene(scene);
 	}
-	
-	virtual void shutdown() override
-	{
-		for (unsigned int i = 0; i < 8; i++)
-		{
-			delete m_pointLights[1];
-		}
-	}
+
+	virtual void shutdown() override {}
 
 	virtual void update(double delta) override
 	{
@@ -132,13 +131,13 @@ public:
 		m_temp += 0.025f;
 		const float sinTemp = sinf(m_temp) * 7.0f;
 		const float cosTemp = cosf(m_temp) * 7.0f;
-		
+
 		for (unsigned int i = 0; i < 8; i++)
 		{
 			if (i % 2 == 0) m_pointLights[i]->getPos().z = sinTemp;
 			else			m_pointLights[i]->getPos().z = cosTemp;
 		}
-		
+
 		m_spotLight->setPos(m_camera->getTransform().getPos());
 		m_spotLight->setDirection(m_camera->getTransform().getRot().getBack());
 	}

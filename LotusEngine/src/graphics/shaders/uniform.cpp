@@ -67,18 +67,19 @@ namespace lotus { namespace graphics {
 	template class FunctionUniform<maths::vec4>;
 	template class FunctionUniform<maths::mat4>;
 
-	template <typename VAR_T, unsigned int NUM_MEMBERS, void GET_LOCATIONS(const Shader *shader, const char *name, GLuint *locations)>
-	StructUniform<VAR_T, NUM_MEMBERS, GET_LOCATIONS>::StructUniform(const Shader *shader, const char *name)
+	template <typename VAR_T, unsigned int NUM_MEMBERS, void GET_LOCATIONS(const Shader *shader, const std::string &name, GLuint *locations)>
+	StructUniform<VAR_T, NUM_MEMBERS, GET_LOCATIONS>::StructUniform(const Shader *shader, const std::string &name)
 	{
 		GET_LOCATIONS(shader, name, m_locations);
 	}
 
-	template <typename VAR_T, unsigned int NUM_MEMBERS, void GET_LOCATIONS(const Shader *shader, const char *name, GLuint *locations)>
+	template <typename VAR_T, unsigned int NUM_MEMBERS, void GET_LOCATIONS(const Shader *shader, const std::string &name, GLuint *locations)>
 	void StructUniform<VAR_T, NUM_MEMBERS, GET_LOCATIONS>::update(const Shader *shader) const
 	{
 		VAR_T::setUniformValues(shader, (GLuint*) m_locations);
 	}
 
+	template class StructUniform<AmbientLight, 1, AmbientLight::getUniformLocations>;
 	template class StructUniform<DirectionalLight, 3, DirectionalLight::getUniformLocations>;
 	template class StructUniform<PointLight, 7, PointLight::getUniformLocations>;
 	template class StructUniform<SpotLight, 9, SpotLight::getUniformLocations>;

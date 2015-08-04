@@ -241,9 +241,10 @@ namespace lotus { namespace graphics {
 		}
 		else if (tokens[0] == "light")
 		{
-			if (tokens[1] == "directional") m_uniforms.push_back(new StructUniform<DirectionalLight, 3, DirectionalLight::getUniformLocations>(this, uniform.c_str()));
-			else if (tokens[1] == "point") m_uniforms.push_back(new StructUniform<PointLight, 7, PointLight::getUniformLocations>(this, uniform.c_str()));
-			else if (tokens[1] == "spot") m_uniforms.push_back(new StructUniform<SpotLight, 9, SpotLight::getUniformLocations>(this, uniform.c_str()));
+			if (tokens[1] == "ambient") m_uniforms.push_back(new StructUniform<AmbientLight, 1, AmbientLight::getUniformLocations>(this, uniform));
+			else if (tokens[1] == "directional") m_uniforms.push_back(new StructUniform<DirectionalLight, 3, DirectionalLight::getUniformLocations>(this, uniform));
+			else if (tokens[1] == "point") m_uniforms.push_back(new StructUniform<PointLight, 7, PointLight::getUniformLocations>(this, uniform));
+			else if (tokens[1] == "spot") m_uniforms.push_back(new StructUniform<SpotLight, 9, SpotLight::getUniformLocations>(this, uniform));
 		}
 	}
 
