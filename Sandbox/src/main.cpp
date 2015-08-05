@@ -8,6 +8,7 @@
 #include <core/time.hpp>
 #include <core/transform.hpp>
 #include <core/entity.hpp>
+#include <core/stringfunc.hpp>
 #include <memory/memory.hpp>
 #include <maths/maths.hpp>
 #include <graphics/window.hpp>
@@ -18,7 +19,6 @@
 #include <graphics/texture.hpp>
 #include <graphics/material.hpp>
 #include <graphics/indexedmodel.hpp>
-#include <graphics/objloader.hpp>
 #include <graphics/scene.hpp>
 #include <graphics/shaders/shader.hpp>
 #include <graphics/shaders/shaderfactory.hpp>
@@ -34,6 +34,7 @@ using namespace lotus;
 using namespace lotus::maths;
 using namespace lotus::graphics;
 using namespace lotus::memory;
+using namespace lotus::internal;
 
 typedef Renderable<Vertex2D> Renderable2D;
 typedef Renderable<Vertex3D> Renderable3D;
@@ -71,6 +72,16 @@ public:
 		glfwSwapInterval(0);
 //		Input::setMouseLocked(true);
 
+		std::string s = "   Hello,  World!  ";
+		std::vector<std::string> tokens = tokenize(s, ' ');
+		for (auto it = tokens.begin(); it < tokens.end(); it++) std::cout << *it << std::endl;
+		std::cout << removeWhiteSpace(s) << std::endl;
+		std::cout << startsWith(s, "Hello,") << std::endl;
+		std::cout << endsWith(s, "World!") << std::endl;
+		std::cout << join(tokens, " ") << std::endl;
+		std::cout << toUpperCase(s) << ", " << toLowerCase(s) << std::endl;
+		std::cout << contains(s, "llo,w") << std::endl;
+
 		IndexedModel model;
 		const float size = 10.0f;
 		model.addPosition(-size, size, 0);
@@ -104,12 +115,12 @@ public:
 
 		plane->addComponent<RenderableComponent3D>(new Renderable3D(model), material);
 		plane2->addComponent<RenderableComponent3D>(new Renderable3D(model), material2);
-		monkey->addComponent<RenderableComponent3D>(new Renderable3D("monkey"), material3);
+		monkey->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey").finalize()), material3);
 
 		ForwardRenderer3D *renderer = new ForwardRenderer3D();
 		renderer->setAmbientLight(vec3(0.1f));
-		renderer->addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.0f, vec3(1.0f, 1.0f, 1.0f).normalize()));
-		renderer->addDirectionalLight(new DirectionalLight(vec3(0.0f, 0.0f, 1.0f), 0.0f, vec3(-1.0f, 1.0f, -1.0f).normalize()));
+		renderer->addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.4f, vec3(1.0f, 1.0f, 1.0f).normalize()));
+		renderer->addDirectionalLight(new DirectionalLight(vec3(0.0f, 0.0f, 1.0f), 0.4f, vec3(-1.0f, 1.0f, -1.0f).normalize()));
 		for (unsigned int i = 0; i < 8; i++)
 		{
 			renderer->addPointLight(m_pointLights[i]);
