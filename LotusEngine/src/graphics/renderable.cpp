@@ -1,5 +1,4 @@
 #include "renderable.hpp"
-#include "objloader.hpp"
 
 #include <typeinfo>
 #include <cstdlib>
@@ -60,10 +59,6 @@ namespace lotus { namespace graphics {
 	template<typename VERTEX_T>
 	Renderable<VERTEX_T>::Renderable(IndexedModel indexedModel) :
 		Renderable<VERTEX_T>((const VERTEX_T*) indexedModel.getVertices().data(), indexedModel.getIndices().data(), (GLsizei) indexedModel.getVertices().size(), (GLsizei) indexedModel.getIndices().size()) {}
-
-	template<typename VERTEX_T>
-	Renderable<VERTEX_T>::Renderable(const std::string &fileName) :
-		Renderable<VERTEX_T>(OBJLoader::loadIndexedModel(fileName).finalize()) {}
 
 	template<typename VERTEX_T>
 	Renderable<VERTEX_T>::~Renderable()

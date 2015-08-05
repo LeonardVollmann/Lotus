@@ -9,7 +9,7 @@
 #include <core/transform.hpp>
 #include <core/entity.hpp>
 #include <core/stringfunc.hpp>
-#include <memory/memory.hpp>
+#include <core/memory/memory.hpp>
 #include <maths/maths.hpp>
 #include <graphics/window.hpp>
 #include <graphics/lighting.hpp>
@@ -24,11 +24,9 @@
 #include <graphics/shaders/shaderfactory.hpp>
 #include <graphics/renderers/simplerenderer.hpp>
 #include <graphics/renderers/forwardrenderer3d.hpp>
-#include <graphics/renderers/batchrenderer2d.hpp>
 #include <components/renderablecomponent.hpp>
 #include <components/freemove.hpp>
 #include <components/freelook.hpp>
-#include <components/spritecomponent.hpp>
 
 using namespace lotus;
 using namespace lotus::maths;

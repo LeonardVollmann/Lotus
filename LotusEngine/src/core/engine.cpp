@@ -2,8 +2,8 @@
 #include "igame.hpp"
 #include "time.hpp"
 #include "input.hpp"
+#include "memory/memory.hpp"
 #include "../graphics/shaders/shaderfactory.hpp"
-#include "../memory/memory.hpp"
 
 #include <string>
 #include <iostream>
