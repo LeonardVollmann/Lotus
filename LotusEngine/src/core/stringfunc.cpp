@@ -5,14 +5,14 @@
 #include <iterator>
 #include <algorithm>
 
-namespace lotus { namespace internal {
+namespace lotus {
 
 	std::vector<std::string> tokenize(const std::string &str, char delim)
 	{
 		std::vector<std::string> result;
 
 		std::istringstream stream(str);
-		for(std::string token; getline(stream, token, delim); )
+		for(std::string token; getline(stream, token, delim);)
 		{
 			if (token.size() == 0) continue;
 			result.push_back(token);
@@ -110,4 +110,4 @@ namespace lotus { namespace internal {
 		return result;
 	}
 
-} }
+}

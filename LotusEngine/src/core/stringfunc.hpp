@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace lotus { namespace internal {
+namespace lotus {
 
 	std::vector<std::string> tokenize(const std::string &str, char delim);
 
@@ -21,6 +21,6 @@ namespace lotus { namespace internal {
 
 	std::string join(const std::vector<std::string> &strings, const std::string &separator);
 
-} }
+}
 
 #endif

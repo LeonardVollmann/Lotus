@@ -36,9 +36,9 @@ namespace lotus { namespace graphics {
 		Renderable(const VERTEX_T *vertices, const GLushort *indices, GLsizei numVertices, GLsizei numIndices);
 		Renderable(IndexedModel indexedModel);
 		virtual ~Renderable();
-		
+
 		void bind() const;
-		
+
 		inline const VERTEX_T *getVertices()	const { return m_vertices; }
 		inline const GLushort *getIndices()		const { return m_indices; }
 		inline GLsizei getNumVertices()			const { return m_numVertices; }

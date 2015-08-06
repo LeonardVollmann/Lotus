@@ -1,42 +1,62 @@
 #include "indexedmodel.hpp"
-#include "../maths/vec3.hpp"
+#include "../core/stringfunc.hpp"
 
 #include <iostream>
+#include <fstream>
 
 namespace lotus { namespace graphics {
 
-	IndexedModel::IndexedModel(const std::vector<GLfloat> &positions, const std::vector<GLfloat> &texCoords, const std::vector<GLfloat> &normals, const std::vector<GLfloat> &tangents, const std::vector<GLushort> &indices) :
+	IndexedModel::IndexedModel(const std::vector<maths::vec3> &positions, const std::vector<maths::vec2> &texCoords,
+							const std::vector<maths::vec3> &normals, const std::vector<maths::vec3> &tangents,
+							const std::vector<GLushort> &indices) :
 		m_positions(positions),
 		m_texCoords(texCoords),
 		m_normals(normals),
 		m_tangents(tangents),
 		m_indices(indices) {}
 
-	void IndexedModel::addPosition(GLfloat x, GLfloat y, GLfloat z)
+	IndexedModel::IndexedModel(OBJModel objModel)
 	{
-		m_positions.push_back(x);
-		m_positions.push_back(y);
-		m_positions.push_back(z);
+		for (unsigned int i = 0; i < objModel.getIndices().size(); i++)
+		{
+			const OBJIndex &index = objModel.getIndices()[i];
+			maths::vec3 position = objModel.getPositions()[index.positionIndex];
+			maths::vec2 texCoord = objModel.hasTexCoords() ? objModel.getTexCoords()[index.texCoordIndex] : maths::vec2::ZERO;
+			maths::vec3 normal = objModel.hasNormals() ? objModel.getNormals()[index.normalIndex] : maths::vec3::ZERO;
+
+			m_positions.push_back(position);
+			m_texCoords.push_back(texCoord);
+			if (normal != maths::vec3::ZERO)
+			{
+				m_normals.push_back(normal);
+			}
+			m_indices.push_back(i);
+		}
+		
+		finalize();
 	}
 
-	void IndexedModel::addTexCoord(GLfloat x, GLfloat y)
+	IndexedModel::IndexedModel(const std::string &fileName) :
+		IndexedModel(OBJModel(fileName)) {}
+
+	void IndexedModel::addPosition(const maths::vec3 &position)
 	{
-		m_texCoords.push_back(x);
-		m_texCoords.push_back(y);
+		m_positions.push_back(position);
 	}
 
-	void IndexedModel::addNormal(GLfloat x, GLfloat y, GLfloat z)
+	void IndexedModel::addTexCoord(const maths::vec2 &texCoord)
 	{
-		m_normals.push_back(x);
-		m_normals.push_back(y);
-		m_normals.push_back(z);
+		m_texCoords.push_back(texCoord);
 	}
 
-	void IndexedModel::addTangent(GLfloat x, GLfloat y, GLfloat z)
+	void IndexedModel::addNormal(const maths::vec3 &normal)
 	{
-		m_tangents.push_back(x);
-		m_tangents.push_back(y);
-		m_tangents.push_back(z);
+		m_normals.push_back(normal);
+	}
+
+	void IndexedModel::addTangent(const maths::vec3 &tangent)
+	{
+		m_tangents.push_back(tangent);
 	}
 
 	void IndexedModel::addFace(GLushort i1, GLushort i2, GLushort i3)
@@ -48,7 +68,8 @@ namespace lotus { namespace graphics {
 
 	bool IndexedModel::isValid()
 	{
-		return m_positions.size() / 3 == m_texCoords.size() / 2 && m_positions.size() == m_normals.size() && m_positions.size() == m_tangents.size();
+		return m_positions.size() / 3 == m_texCoords.size() / 2 &&
+				m_positions.size() == m_normals.size() && m_positions.size() == m_tangents.size();
 	}
 
 	IndexedModel &IndexedModel::finalize()
@@ -56,39 +77,25 @@ namespace lotus { namespace graphics {
 		if (isValid())
 		{
 			return *this;
-		} 
-
-		if (m_texCoords.size() < m_positions.size())
-		{
-			for (unsigned int i = (unsigned int) m_texCoords.size(); i < m_positions.size(); i++)
-			{
-				m_texCoords.push_back(0.0f);
-			}
 		}
 
 		if (m_normals.size() < m_positions.size())
 		{
 			calcNormals();
 		}
-		
-		if (m_tangents.size() < m_positions.size())
+
+		calcTangents();
+
+		for (unsigned int i = 0; i < m_positions.size(); i++)
 		{
-			calcTangents();
+			Vertex3D vertex;
+			vertex.position = m_positions[i];
+			vertex.texCoord = m_texCoords[i];
+			vertex.normal = m_normals[i];
+			vertex.tangent = m_tangents[i];
+			m_vertices.push_back(vertex);
 		}
-		
-		unsigned int j = 0;
-		for (unsigned int i = 0; i < m_positions.size(); i += 3) {
-			m_vertices.push_back(Vertex3D(maths::vec3(m_positions[i + 0], m_positions[i + 1], m_positions[i + 2]),
-										  maths::vec2(m_texCoords[j + 0], m_texCoords[j + 1]),
-										  maths::vec3(m_normals[i + 0], m_normals[i + 1], m_normals[i + 2]),
-										  maths::vec3(m_tangents[i + 0], m_tangents[i + 1], m_tangents[i + 2])));
-			
-			m_vertices[i / 3].normal.normalize();
-			m_vertices[i / 3].tangent.normalize();
-			
-			j += 2;
-		}
-		
+
 		m_positions.clear();
 		m_texCoords.clear();
 		m_normals.clear();
@@ -101,10 +108,10 @@ namespace lotus { namespace graphics {
 	{
 		m_normals.clear();
 		m_normals.reserve(m_positions.size());
-		
+
 		for (unsigned int i = 0; i < m_positions.size(); i++)
 		{
-			m_normals.push_back(0.0f);
+			m_normals.push_back(maths::vec3(0.0f));
 		}
 
 		for (unsigned int i = 0; i < m_indices.size(); i += 3)
@@ -112,69 +119,57 @@ namespace lotus { namespace graphics {
 			GLushort i0 = m_indices[i];
 			GLushort i1 = m_indices[i + 1];
 			GLushort i2 = m_indices[i + 2];
-			
-			maths::vec3 v0(m_positions[i0 * 3 + 0], m_positions[i0 * 3 + 1], m_positions[i0 * 3 + 2]);
-			maths::vec3 v1(m_positions[i1 * 3 + 0], m_positions[i1 * 3 + 1], m_positions[i1 * 3 + 2]);
-			maths::vec3 v2(m_positions[i2 * 3 + 0], m_positions[i2 * 3 + 1], m_positions[i2 * 3 + 2]);
 
-			maths::vec3 d1 = v1 - v0;
-			maths::vec3 d2 = v2 - v0;
-			
+			maths::vec3 d1 = m_positions[i1] - m_positions[i0];
+			maths::vec3 d2 = m_positions[i2] - m_positions[i0];
+
 			maths::vec3 normal = d1.cross(d2);
-			
-			for (unsigned int j = 0; j < 3; j++)
-			{
-				unsigned int index = (i0 + j) * 3;
-				m_normals[index + 0] = m_normals[index + 0] + normal.x;
-				m_normals[index + 1] = m_normals[index + 1] + normal.y;
-				m_normals[index + 2] = m_normals[index + 2] + normal.z;
-			}
+
+			m_normals[i0] += normal;
+			m_normals[i1] += normal;
+			m_normals[i2] += normal;
+		}
+
+		for (auto it = m_normals.begin(); it < m_normals.end(); it++)
+		{
+			it->normalize();
 		}
 	}
 
 	void IndexedModel::calcTangents()
 	{
-		m_tangents.clear();
 		m_tangents.reserve(m_positions.size());
-		
+
 		for (unsigned int i = 0; i < m_positions.size(); i++)
 		{
-			m_tangents.push_back(0.0f);
+			m_tangents.push_back(maths::vec3(0.0f));
 		}
-		
+
 		for (unsigned int i = 0; i < m_indices.size(); i += 3)
 		{
 			GLushort i0 = m_indices[i];
 			GLushort i1 = m_indices[i + 1];
 			GLushort i2 = m_indices[i + 2];
-			
-			maths::vec3 v0(m_positions[i0 * 3 + 0], m_positions[i0 * 3 + 1], m_positions[i0 * 3 + 2]);
-			maths::vec3 v1(m_positions[i1 * 3 + 0], m_positions[i1 * 3 + 1], m_positions[i1 * 3 + 2]);
-			maths::vec3 v2(m_positions[i2 * 3 + 0], m_positions[i2 * 3 + 1], m_positions[i2 * 3 + 2]);
-			
-			maths::vec3 edge0 = v1 - v0;
-			maths::vec3 edge1 = v2 - v0;
-			
-			float deltaU0 = m_texCoords[i1 * 2 + 0] - m_texCoords[i0 * 2 + 0];
-			float deltaU1 = m_texCoords[i2 * 2 + 0] - m_texCoords[i0 * 2 + 0];
-			float deltaV0 = m_texCoords[i1 * 2 + 1] - m_texCoords[i0 * 2 + 1];
-			float deltaV1 = m_texCoords[i2 * 2 + 1] - m_texCoords[i0 * 2 + 1];
-			
-			float dividend = (deltaU0 * deltaV1 - deltaU1 * deltaV0);
+
+			maths::vec3 edge0 = m_positions[i1] - m_positions[i0];
+			maths::vec3 edge1 = m_positions[i2] - m_positions[i0];
+
+			maths::vec2 deltaUV0 = m_texCoords[i1] - m_texCoords[i0];
+			maths::vec2 deltaUV1 = m_texCoords[i2] - m_texCoords[i0];
+
+			float dividend = (deltaUV0.x * deltaUV1.y - deltaUV1.x * deltaUV0.y);
 			float f = dividend == 0.0f ? 0.0f : 1.0f / dividend;
+
+			maths::vec3 tangent = (edge0 * deltaUV1.y - edge1 * deltaUV0.y) * f;
 			
-			maths::vec3 tangent = maths::vec3::ZERO;
-			tangent.x = f * (deltaV1 * edge0.x - deltaV0 * edge1.x);
-			tangent.y = f * (deltaV1 * edge0.y - deltaV0 * edge1.y);
-			tangent.z = f * (deltaV1 * edge0.z - deltaV0 * edge1.z);
-			
-			for (unsigned int j = 0; j < 3; j++)
-			{
-				unsigned int index = (i0 + j) * 3;
-				m_tangents[index + 0] = m_tangents[index + 0] + tangent.x;
-				m_tangents[index + 1] = m_tangents[index + 1] + tangent.y;
-				m_tangents[index + 2] = m_tangents[index + 2] + tangent.z;
-			}
+			m_tangents[i0] += tangent;
+			m_tangents[i1] += tangent;
+			m_tangents[i2] += tangent;
+		}
+
+		for (auto it = m_tangents.begin(); it < m_tangents.end(); it++)
+		{
+			it->normalize();
 		}
 	}
 

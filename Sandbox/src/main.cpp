@@ -32,7 +32,6 @@ using namespace lotus;
 using namespace lotus::maths;
 using namespace lotus::graphics;
 using namespace lotus::memory;
-using namespace lotus::internal;
 
 typedef Renderable<Vertex2D> Renderable2D;
 typedef Renderable<Vertex3D> Renderable3D;
@@ -70,26 +69,16 @@ public:
 		glfwSwapInterval(0);
 //		Input::setMouseLocked(true);
 
-		std::string s = "   Hello,  World!  ";
-		std::vector<std::string> tokens = tokenize(s, ' ');
-		for (auto it = tokens.begin(); it < tokens.end(); it++) std::cout << *it << std::endl;
-		std::cout << removeWhiteSpace(s) << std::endl;
-		std::cout << startsWith(s, "Hello,") << std::endl;
-		std::cout << endsWith(s, "World!") << std::endl;
-		std::cout << join(tokens, " ") << std::endl;
-		std::cout << toUpperCase(s) << ", " << toLowerCase(s) << std::endl;
-		std::cout << contains(s, "llo,w") << std::endl;
-
 		IndexedModel model;
 		const float size = 10.0f;
-		model.addPosition(-size, size, 0);
-		model.addPosition(-size, -size, 0);
-		model.addPosition(size, -size, 0);
-		model.addPosition(size, size, 0);
-		model.addTexCoord(0, 3);
-		model.addTexCoord(0, 0);
-		model.addTexCoord(3, 0);
-		model.addTexCoord(3, 3);
+		model.addPosition(vec3(-size, size, 0));
+		model.addPosition(vec3(-size, -size, 0));
+		model.addPosition(vec3(size, -size, 0));
+		model.addPosition(vec3(size, size, 0));
+		model.addTexCoord(vec2(0, 3));
+		model.addTexCoord(vec2(0, 0));
+		model.addTexCoord(vec2(3, 0));
+		model.addTexCoord(vec2(3, 3));
 		model.addFace(0, 1, 2);
 		model.addFace(2, 3, 0);
 		model.finalize();
@@ -113,7 +102,7 @@ public:
 
 		plane->addComponent<RenderableComponent3D>(new Renderable3D(model), material);
 		plane2->addComponent<RenderableComponent3D>(new Renderable3D(model), material2);
-		monkey->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey").finalize()), material3);
+		monkey->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
 
 		ForwardRenderer3D *renderer = new ForwardRenderer3D();
 		renderer->setAmbientLight(vec3(0.1f));
