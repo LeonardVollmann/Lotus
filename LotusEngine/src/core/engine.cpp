@@ -2,7 +2,6 @@
 #include "igame.hpp"
 #include "time.hpp"
 #include "input.hpp"
-#include "memory/memory.hpp"
 #include "../graphics/shaders/shaderfactory.hpp"
 
 #include <string>
@@ -27,7 +26,6 @@ namespace lotus {
 
 	void Engine::initSubsystems() const
 	{
-		memory::init();
 	}
 
 	void Engine::start()
@@ -121,7 +119,6 @@ namespace lotus {
 	{
 		m_game->shutdown();
 		graphics::ShaderFactory::shutdown();
-		memory::shutdown();
 	}
 
 }

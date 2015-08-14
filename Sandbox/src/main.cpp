@@ -9,7 +9,6 @@
 #include <core/transform.hpp>
 #include <core/entity.hpp>
 #include <core/stringfunc.hpp>
-#include <core/memory/memory.hpp>
 #include <maths/maths.hpp>
 #include <graphics/window.hpp>
 #include <graphics/lighting.hpp>
@@ -31,7 +30,6 @@
 using namespace lotus;
 using namespace lotus::maths;
 using namespace lotus::graphics;
-using namespace lotus::memory;
 
 typedef Renderable<Vertex2D> Renderable2D;
 typedef Renderable<Vertex3D> Renderable3D;
