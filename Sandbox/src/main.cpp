@@ -41,6 +41,11 @@ class TestGame : public IGame
 private:
 	SpotLight	*m_spotLight;
 	PointLight	*m_pointLights[8];
+	Entity 		*m_monkey1;
+	Entity 		*m_monkey2;
+	Entity 		*m_monkey3;
+	Entity 		*m_monkey4;
+	Entity 		*m_monkey5;
 	float m_temp = 0.0f;
 public:
 	TestGame() :
@@ -64,7 +69,7 @@ public:
 
 	virtual void init() override
 	{
-		glfwSwapInterval(0);
+		// glfwSwapInterval(0);
 //		Input::setMouseLocked(true);
 
 		IndexedModel model;
@@ -87,12 +92,25 @@ public:
 
 		Entity *plane = new Entity();
 		Entity *plane2 = new Entity();
-		Entity *monkey = new Entity();
+		m_monkey1 = new Entity();
+		m_monkey2 = new Entity();
+		m_monkey3 = new Entity();
+		m_monkey4 = new Entity();
+		m_monkey5 = new Entity();
 		plane->getTransform().rotate(-MATH_PI / 2.0f, vec3(1.0f, 0.0f, 0.0f));
 		plane2->getTransform().rotate(-MATH_PI / 2.0f, vec3(1.0f, 0.0f, 0.0f));
 		plane2->getTransform().translate(vec3(5.0f, 2.0f, 5.0f));
 		plane2->getTransform().scale(vec3(0.3f, 0.3f, 0.3f));
-		monkey->getTransform().translate(vec3(0.0f, 3.0f, 0.0f));
+		m_monkey1->getTransform().translate(vec3(0.0f, 3.0f, 0.0f));
+		m_monkey2->getTransform().scale(vec3(0.25f));
+		m_monkey3->getTransform().scale(vec3(0.25f));
+		m_monkey4->getTransform().scale(vec3(0.25f));
+		m_monkey5->getTransform().scale(vec3(0.25f));
+
+		m_monkey1->addChild(m_monkey2);
+		m_monkey1->addChild(m_monkey3);
+		// m_monkey1->addChild(m_monkey4);
+		// m_monkey1->addChild(m_monkey5);
 
 		m_camera->addComponent<FreeMove>(10.0f);
 		m_camera->addComponent<FreeLook>(5.0f);
@@ -100,7 +118,11 @@ public:
 
 		plane->addComponent<RenderableComponent3D>(new Renderable3D(model), material);
 		plane2->addComponent<RenderableComponent3D>(new Renderable3D(model), material2);
-		monkey->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
+		m_monkey1->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
+		m_monkey2->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
+		m_monkey3->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
+		// m_monkey4->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
+		// m_monkey5->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
 
 		ForwardRenderer3D *renderer = new ForwardRenderer3D();
 		renderer->setAmbientLight(vec3(0.1f));
@@ -115,7 +137,7 @@ public:
 		Scene *scene = new Scene(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), renderer);
 		scene->add(plane);
 		scene->add(plane2);
-		scene->add(monkey);
+		scene->add(m_monkey1);
 		addScene(scene);
 	}
 
@@ -124,18 +146,29 @@ public:
 	virtual void update(double delta) override
 	{
 		IGame::update(delta);
-		m_temp += 0.025f;
-		const float sinTemp = sinf(m_temp) * 7.0f;
-		const float cosTemp = cosf(m_temp) * 7.0f;
+		m_temp += 0.02f;
+		const float sinTemp = sinf(m_temp);
+		const float cosTemp = cosf(m_temp);
 
 		for (unsigned int i = 0; i < 8; i++)
 		{
-			if (i % 2 == 0) m_pointLights[i]->getPos().z = sinTemp;
-			else			m_pointLights[i]->getPos().z = cosTemp;
+			if (i % 2 == 0) m_pointLights[i]->getPos().z = sinTemp * 7.0f;
+			else			m_pointLights[i]->getPos().z = cosTemp * 7.0f;
 		}
 
 		m_spotLight->setPos(m_camera->getTransform().getPos());
 		m_spotLight->setDirection(m_camera->getTransform().getRot().getBack());
+
+		m_monkey1->getTransform().rotate(0.01f, vec3(0.0f, 1.0f, 0.0f));
+
+		m_monkey2->getTransform().getPos().x = sinTemp * 2.0f;
+		m_monkey2->getTransform().getPos().z = cosTemp * 2.0f;
+		m_monkey3->getTransform().getPos().x = sinTemp * 2.0f;
+		m_monkey3->getTransform().getPos().y = cosTemp * 2.0f;
+		m_monkey4->getTransform().getPos().x = -sinTemp * 2.0f;
+		m_monkey4->getTransform().getPos().z = -cosTemp * 2.0f;
+		m_monkey5->getTransform().getPos().x = -sinTemp * 2.0f;
+		m_monkey5->getTransform().getPos().y = -cosTemp * 2.0f;
 	}
 };
 

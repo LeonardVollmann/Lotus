@@ -7,7 +7,8 @@ namespace lotus {
 	Transform::Transform(const maths::vec3 &pos, const maths::quat &rot, const maths::vec3 &scale) :
 		m_pos(pos),
 		m_rot(rot),
-		m_scale(scale) {}
+		m_scale(scale),
+		m_parent(nullptr) {}
 
 	void Transform::bind() const
 	{
@@ -16,9 +17,12 @@ namespace lotus {
 
 	maths::mat4 Transform::getTransformation() const
 	{
-		return maths::mat4::translation(m_pos) * 
-			maths::mat4::rotation(m_rot) * 
-			maths::mat4::scale(m_scale);
+		maths::mat4 transformation = maths::mat4::translation(m_pos) *
+									 maths::mat4::rotation(m_rot) *
+									 maths::mat4::scale(m_scale);
+
+		transformation = m_parent ? m_parent->getTransformation() * transformation : transformation;
+		return transformation;
 	}
 
 	void Transform::translate(const maths::vec3 &translation)
