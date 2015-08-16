@@ -4,7 +4,7 @@
 namespace lotus { namespace graphics {
 
 	template <typename VAR_T>
-	VarUniform<VAR_T>::VarUniform(const Shader *shader, const char *name, unsigned char **owner, size_t varOffset) :
+	VarUniform<VAR_T>::VarUniform(const ShaderResource *shader, const char *name, unsigned char **owner, size_t varOffset) :
 		m_location(glGetUniformLocation(shader->getShaderProgram(), name)),
 		m_owner(owner),
 		m_varOffset(varOffset) {}
@@ -23,7 +23,7 @@ namespace lotus { namespace graphics {
 	template class VarUniform<maths::mat4>;
 
 	template <typename VAR_T>
-	MaterialUniform<VAR_T>::MaterialUniform(const Shader *shader, const char *uniformName, const std::string &varName) :
+	MaterialUniform<VAR_T>::MaterialUniform(const ShaderResource *shader, const char *uniformName, const std::string &varName) :
 		m_location(glGetUniformLocation(shader->getShaderProgram(), uniformName)),
 		m_name(varName) {}
 
@@ -40,7 +40,7 @@ namespace lotus { namespace graphics {
 	template class MaterialUniform<maths::vec4>;
 	template class MaterialUniform<maths::mat4>;
 
-	SamplerUniform::SamplerUniform(const Shader *shader, const char *name, int samplerSlot) :
+	SamplerUniform::SamplerUniform(const ShaderResource *shader, const char *name, int samplerSlot) :
 		m_location(glGetUniformLocation(shader->getShaderProgram(), name)),
 		m_samplerSlot(samplerSlot) {}
 
@@ -50,7 +50,7 @@ namespace lotus { namespace graphics {
 	}
 
 	template <typename VAR_T>
-	FunctionUniform<VAR_T>::FunctionUniform(const Shader *shader, const char *name, VAR_T (*getUniformValue)()) :
+	FunctionUniform<VAR_T>::FunctionUniform(const ShaderResource *shader, const char *name, VAR_T (*getUniformValue)()) :
 		m_location(glGetUniformLocation(shader->getShaderProgram(), name)),
 		m_getUniformValue(getUniformValue) {}
 
@@ -67,13 +67,13 @@ namespace lotus { namespace graphics {
 	template class FunctionUniform<maths::vec4>;
 	template class FunctionUniform<maths::mat4>;
 
-	template <typename VAR_T, unsigned int NUM_MEMBERS, void GET_LOCATIONS(const Shader *shader, const std::string &name, GLuint *locations)>
-	StructUniform<VAR_T, NUM_MEMBERS, GET_LOCATIONS>::StructUniform(const Shader *shader, const std::string &name)
+	template <typename VAR_T, unsigned int NUM_MEMBERS, void GET_LOCATIONS(const ShaderResource *shader, const std::string &name, GLuint *locations)>
+	StructUniform<VAR_T, NUM_MEMBERS, GET_LOCATIONS>::StructUniform(const ShaderResource *shader, const std::string &name)
 	{
 		GET_LOCATIONS(shader, name, m_locations);
 	}
 
-	template <typename VAR_T, unsigned int NUM_MEMBERS, void GET_LOCATIONS(const Shader *shader, const std::string &name, GLuint *locations)>
+	template <typename VAR_T, unsigned int NUM_MEMBERS, void GET_LOCATIONS(const ShaderResource *shader, const std::string &name, GLuint *locations)>
 	void StructUniform<VAR_T, NUM_MEMBERS, GET_LOCATIONS>::update(const Shader *shader) const
 	{
 		VAR_T::setUniformValues(shader, (GLuint*) m_locations);

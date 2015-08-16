@@ -1,5 +1,5 @@
 #include "lighting.hpp"
-#include "shaders/shader.hpp"
+#include "shader.hpp"
 
 #include <cmath>
 #include <string>
@@ -18,7 +18,7 @@ namespace lotus { namespace graphics {
 
 	const AmbientLight *AmbientLight::CURRENT;
 
-	void AmbientLight::getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations)
+	void AmbientLight::getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations)
 	{
 		locations[0] = glGetUniformLocation(shader->getShaderProgram(), name.c_str());
 	}
@@ -49,7 +49,7 @@ namespace lotus { namespace graphics {
 
 	const DirectionalLight *DirectionalLight::CURRENT;
 
-	void DirectionalLight::getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations)
+	void DirectionalLight::getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations)
 	{
 		locations[0] = glGetUniformLocation(shader->getShaderProgram(), (name + ".base.color").c_str());
 		locations[1] = glGetUniformLocation(shader->getShaderProgram(), (name + ".base.intensity").c_str());
@@ -82,7 +82,7 @@ namespace lotus { namespace graphics {
 
 	const PointLight *PointLight::CURRENT;
 
-	void PointLight::getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations)
+	void PointLight::getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations)
 	{
 		locations[0] = glGetUniformLocation(shader->getShaderProgram(), (name + ".base.color").c_str());
 		locations[1] = glGetUniformLocation(shader->getShaderProgram(), (name + ".base.intensity").c_str());
@@ -141,7 +141,7 @@ namespace lotus { namespace graphics {
 
 	const SpotLight *SpotLight::CURRENT;
 
-	void SpotLight::getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations)
+	void SpotLight::getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations)
 	{
 		locations[0] = glGetUniformLocation(shader->getShaderProgram(), (name + ".pointLight.base.color").c_str());
 		locations[1] = glGetUniformLocation(shader->getShaderProgram(), (name + ".pointLight.base.intensity").c_str());

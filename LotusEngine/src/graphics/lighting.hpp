@@ -11,6 +11,7 @@ namespace lotus { namespace graphics {
 	#define COLOR_DEPTH 256
 
 	class Shader;
+	class ShaderResource;
 
 	class Attenuation
 	{
@@ -38,7 +39,7 @@ namespace lotus { namespace graphics {
 	private:
 		maths::vec3 m_light;
 	public:
-		static void getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations);
+		static void getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
 		static void setUniformValues(const Shader *shader, GLuint *locations);
 
 		AmbientLight(const maths::vec3 &light);
@@ -60,10 +61,10 @@ namespace lotus { namespace graphics {
 		virtual ~BaseLight() {}
 
 		inline const maths::vec3 &getColor()	const { return m_color; }
-		inline float getIntensity()		const { return m_intensity; }
+		inline float getIntensity()				const { return m_intensity; }
 
-		inline void setColor(const maths::vec3 &color)		{ m_color = color; }
-		inline void setIntensity(float intensity)	{ m_intensity = intensity; }
+		inline void setColor(const maths::vec3 &color)	{ m_color = color; }
+		inline void setIntensity(float intensity)		{ m_intensity = intensity; }
 	};
 
 	class DirectionalLight : public BaseLight
@@ -73,7 +74,7 @@ namespace lotus { namespace graphics {
 	protected:
 		maths::vec3 m_direction;
 	public:
-		static void getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations);
+		static void getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
 		static void setUniformValues(const Shader *shader, GLuint *locations);
 
 		DirectionalLight();
@@ -97,7 +98,7 @@ namespace lotus { namespace graphics {
 		maths::vec3 m_pos;
 		float m_range;
 	public:
-		static void getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations);
+		static void getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
 		static void setUniformValues(const Shader *shader, GLuint *locations);
 
 		PointLight();
@@ -107,13 +108,13 @@ namespace lotus { namespace graphics {
 
 		void bind() const;
 
-		inline maths::vec3 &getPos()								{ return m_pos; }
-		inline const maths::vec3 &getPos()					const	{ return m_pos; }
+		inline maths::vec3 &getPos()						{ return m_pos; }
+		inline const maths::vec3 &getPos()			const	{ return m_pos; }
 		inline const Attenuation &getAttenuation()	const	{ return m_atten; }
 		inline float getRange()						const	{ return m_range; }
 
 		inline void setAttenuation(const Attenuation &atten)	{ m_atten = atten; }
-		inline void setPos(const maths::vec3 &pos)						{ m_pos = pos; }
+		inline void setPos(const maths::vec3 &pos)				{ m_pos = pos; }
 		inline void setRange(float range)						{ m_range = range; }
 	protected:
 		static float calcRange(const PointLight &pointLight);
@@ -127,7 +128,7 @@ namespace lotus { namespace graphics {
 		maths::vec3 m_direction;
 		float m_cutoff;
 	public:
-		static void getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations);
+		static void getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
 		static void setUniformValues(const Shader *shader, GLuint *locations);
 
 		SpotLight();
@@ -138,10 +139,10 @@ namespace lotus { namespace graphics {
 		void bind() const;
 
 		inline const maths::vec3 &getDirection()	const { return m_direction; }
-		inline float getCutoff()			const { return m_cutoff; }
+		inline float getCutoff()					const { return m_cutoff; }
 
-		inline void setDirection(const maths::vec3 &direction)		{ m_direction = direction; }
-		inline void setCutoff(float cutoff)					{ m_cutoff = cutoff; }
+		inline void setDirection(const maths::vec3 &direction)	{ m_direction = direction; }
+		inline void setCutoff(float cutoff)						{ m_cutoff = cutoff; }
 	};
 
 } }

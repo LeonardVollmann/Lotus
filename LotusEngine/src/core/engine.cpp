@@ -2,7 +2,7 @@
 #include "igame.hpp"
 #include "time.hpp"
 #include "input.hpp"
-#include "../graphics/shaders/shaderfactory.hpp"
+#include "../graphics/shader.hpp"
 
 #include <string>
 #include <iostream>
@@ -26,6 +26,7 @@ namespace lotus {
 
 	void Engine::initSubsystems() const
 	{
+		graphics::Shader::initShaders();
 	}
 
 	void Engine::start()
@@ -111,14 +112,13 @@ namespace lotus {
 				accumulatedDelta = 0;
 			}
 		}
-		
+
 		shutdownSubsystems();
 	}
 
 	void Engine::shutdownSubsystems() const
 	{
 		m_game->shutdown();
-		graphics::ShaderFactory::shutdown();
 	}
 
 }

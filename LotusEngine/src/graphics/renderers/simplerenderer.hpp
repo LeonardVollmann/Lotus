@@ -2,7 +2,7 @@
 #define LOTUS_SIMPLE_RENDERER_HPP_INCLUDED
 
 #include "irenderer.hpp"
-#include "../shaders/shader.hpp"
+#include "../shader.hpp"
 #include "../../components/renderablecomponent.hpp"
 
 #include <deque>
@@ -13,8 +13,11 @@ namespace lotus { namespace graphics {
 	class SimpleRenderer : public IRenderer
 	{
 	protected:
-		std::deque<const RenderableComponent<RENDERABLE_T>*> m_renderQueue;
+		std::deque<const RenderableComponent<RENDERABLE_T>*>	m_renderQueue;
+		Shader													m_shader;
 	public:
+		SimpleRenderer();
+
 		virtual void submit(const void *renderableComponent) override;
 		virtual void flush() override;
 	};
