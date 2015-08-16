@@ -1,9 +1,12 @@
 #include "forwardrenderer3d.hpp"
-#include "../shaders/shaderfactory.hpp"
 
 namespace lotus { namespace graphics {
 
 	ForwardRenderer3D::ForwardRenderer3D() :
+		m_ambientShader("forward3d_ambient"),
+		m_directionalShader("forward3d_directional"),
+		m_pointShader("forward3d_point"),
+		m_spotShader("forward3d_spot"),
 		m_ambientLight(0.0f) {}
 
 	void ForwardRenderer3D::flush()
@@ -17,8 +20,8 @@ namespace lotus { namespace graphics {
 			renderableComponent->getMaterial()->bindTexture("dispMap", 2);
 
 			m_ambientLight.bind();
-			ShaderFactory::getForwardAmbient()->bind();
-			ShaderFactory::getForwardAmbient()->updateUniforms();
+			m_ambientShader.bind();
+			m_ambientShader.updateUniforms();
 			glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 
 			glEnable(GL_BLEND);
@@ -26,27 +29,27 @@ namespace lotus { namespace graphics {
 			glDepthMask(GL_FALSE);
 			glDepthFunc(GL_EQUAL);
 
-			ShaderFactory::getForwardDirectional()->bind();
+			m_directionalShader.bind();
 			for (auto it = m_directionalLights.begin(); it < m_directionalLights.end(); it++)
 			{
 				(*it)->bind();
-				ShaderFactory::getForwardDirectional()->updateUniforms();
+				m_directionalShader.updateUniforms();
 				glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 			}
 
-			ShaderFactory::getForwardPoint()->bind();
+			m_pointShader.bind();
 			for (auto it = m_pointLights.begin(); it < m_pointLights.end(); it++)
 			{
 				(*it)->bind();
-				ShaderFactory::getForwardPoint()->updateUniforms();
+				m_pointShader.updateUniforms();
 				glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 			}
 
-			ShaderFactory::getForwardSpot()->bind();
+			m_spotShader.bind();
 			for (auto it = m_spotLights.begin(); it < m_spotLights.end(); it++)
 			{
 				(*it)->bind();
-				ShaderFactory::getForwardSpot()->updateUniforms();
+				m_spotShader.updateUniforms();
 				glDrawElements(GL_TRIANGLES, renderableComponent->getRenderable()->getNumIndices(), GL_UNSIGNED_SHORT, nullptr);
 			}
 

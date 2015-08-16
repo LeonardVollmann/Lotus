@@ -19,8 +19,7 @@
 #include <graphics/material.hpp>
 #include <graphics/indexedmodel.hpp>
 #include <graphics/scene.hpp>
-#include <graphics/shaders/shader.hpp>
-#include <graphics/shaders/shaderfactory.hpp>
+#include <graphics/shader.hpp>
 #include <graphics/renderers/simplerenderer.hpp>
 #include <graphics/renderers/forwardrenderer3d.hpp>
 #include <components/renderablecomponent.hpp>

@@ -11,6 +11,11 @@ namespace lotus { namespace graphics {
 	class ForwardRenderer3D : public SimpleRenderer3D
 	{
 	private:
+		Shader							m_ambientShader;
+		Shader							m_directionalShader;
+		Shader							m_pointShader;
+		Shader							m_spotShader;
+
 		AmbientLight					m_ambientLight;
 		std::vector<DirectionalLight*>	m_directionalLights;
 		std::vector<PointLight*>		m_pointLights;

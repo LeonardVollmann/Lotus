@@ -6,7 +6,8 @@
 
 namespace lotus { namespace graphics {
 
-	Texture::Texture(const std::string &fileName)
+	TextureResource::TextureResource(const std::string &fileName) :
+		Resource(fileName)
 	{
 		int width, height, numComponents;
 		unsigned char *image = stbi_load(("res/textures/" + fileName).c_str(), &width, &height, &numComponents, 4);
@@ -16,8 +17,8 @@ namespace lotus { namespace graphics {
 			std::cerr << "ERROR: Failed to load image: " << fileName << std::endl;
 		}
 
-		glGenTextures(1, &m_texture);
-		glBindTexture(GL_TEXTURE_2D, m_texture);
+		glGenTextures(1, &m_textureID);
+		glBindTexture(GL_TEXTURE_2D, m_textureID);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -29,15 +30,25 @@ namespace lotus { namespace graphics {
 
 		stbi_image_free(image);
 
-		if (m_texture == 0)
+		if (m_textureID == 0)
 		{
 			std::cerr << "ERROR: Failed to create texture: " << fileName << std::endl;
 		}
 	}
 
+	TextureResource::~TextureResource()
+	{
+		glDeleteTextures(1, &m_textureID);
+	}
+
+	Texture::Texture(const std::string &fileName)
+	{
+		m_textureResource = ResourceManager::get<TextureResource>(fileName);
+	}
+
 	Texture::~Texture()
 	{
-		glDeleteTextures(0, &m_texture);
+		m_textureResource->removeReference();
 	}
 
 	void Texture::bind(unsigned int unit) const
@@ -45,7 +56,7 @@ namespace lotus { namespace graphics {
 		assert(unit >= 0 && unit <= 31);
 
 		glActiveTexture(GL_TEXTURE0 + unit);
-		glBindTexture(GL_TEXTURE_2D, m_texture);
+		glBindTexture(GL_TEXTURE_2D, m_textureResource->getTextureID());
 	}
 
 } }

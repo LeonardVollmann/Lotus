@@ -35,10 +35,44 @@ namespace lotus {
 		static std::map<std::string, Resource*> s_resources;
 	public:
 		template <typename T>
-		T *get(const std::string &name);
+		static inline T *get(const std::string &name)
+		{
+			T *resource = nullptr;
+
+			auto it = s_resources.find(name);
+			if (it == s_resources.end())
+			{
+				resource = new T(name);
+				s_resources.insert(std::pair<std::string, Resource*>(name, resource));
+			}
+			else
+			{
+				resource = (T*) it->second;
+			}
+
+			resource->addReference();
+			return resource;
+		}
+
+		template <typename T, typename... ARGS>
+		static inline void create(const std::string &name, ARGS&&... args)
+		{
+			auto it = s_resources.find(name);
+			if (it != s_resources.end()) return;
+
+			s_resources.insert(std::pair<std::string, Resource*>(name, new T(name, args...)));
+		}
 
 		template <typename T>
-		void destroy(const std::string &name);
+		static inline void destroy(const std::string &name)
+		{
+			auto it = s_resources.find(name);
+			if (it == s_resources.end()) return;
+
+			T *ptr = &(*it);
+			s_resources.erase(it);
+			delete ptr;
+		}
 	private:
 		ResourceManager() {}
 		virtual ~ResourceManager() {}
