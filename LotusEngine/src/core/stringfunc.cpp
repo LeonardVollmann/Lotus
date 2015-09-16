@@ -48,7 +48,7 @@ namespace lotus {
 
 	std::string &removeWhiteSpaceBack(std::string &str)
 	{
-		unsigned int stringLength = str.size();
+		unsigned int stringLength = (unsigned int) str.size();
 		while (isspace(str[stringLength - 1]))
 		{
 			str.erase(--stringLength);
@@ -64,7 +64,7 @@ namespace lotus {
 
 	bool endsWith(const std::string &str, const std::string &end)
 	{
-		const unsigned int stringLength = str.size();
+		const unsigned int stringLength = (unsigned int) str.size();
 		return str.substr(stringLength - end.size(), stringLength) == end;
 	}
 

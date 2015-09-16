@@ -38,7 +38,7 @@ namespace lotus { namespace graphics {
 				}
 				else if (line[0] == 'f')
 				{
-					const unsigned int numTokens = tokens.size();
+					const unsigned int numTokens = (const unsigned int) tokens.size();
 					for (unsigned int i = 0; i < numTokens - 3; i++)
 					{
 						m_indices.push_back(parseOBJIndex(tokens[1], numTokens));
