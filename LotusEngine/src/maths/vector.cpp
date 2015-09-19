@@ -14,14 +14,41 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T, unsigned int N>
-	T lengthSquared(const vec<T, N> &vec)
+	bool operator==(const vec<T, N> &l, const vec<T, N> &r)
+	{
+		for (unsigned int i = 0; i < N; i++)
+		{
+			if (l.v[i] != r.v[i])
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	template <typename T, unsigned int N>
+	bool operator!=(const vec<T, N> &l, const vec<T, N> &r)
+	{
+		return !l == r;
+	}
+	
+	template <typename T, unsigned int N>
+	T dot(const vec<T, N> &l, const vec<T, N> &r)
 	{
 		T result;
 		for (unsigned int i = 0; i < N; i++)
 		{
-			result += vec.v[i] * vec.v[i];
+			result += l.v[i] * r.v[i];
 		}
+		
 		return result;
+	}
+	
+	template <typename T, unsigned int N>
+	T lengthSquared(const vec<T, N> &vec)
+	{
+		return dot(vec, vec);
 	}
 	
 	template <typename T, unsigned int N>
@@ -33,18 +60,7 @@ namespace lotus { namespace math {
 	template <typename T, unsigned int N>
 	vec<T, N> normalized(const vec<T, N> &vec)
 	{
-		return vec(vec / length(vec));
-	}
-	
-	template <typename T, unsigned int N>
-	T dot(const vec<T, N> &l, const vec<T, N> &r)
-	{
-		T result;
-		for (unsigned int i = 0; i < N; i++)
-		{
-			result += l.v[i] * r.v[i];
-		}
-		return result;
+		return vec(vec) / length(vec);
 	}
 	
 	template <typename T, unsigned int N>
@@ -55,6 +71,7 @@ namespace lotus { namespace math {
 		{
 			result.v[i] = l.v[i] + r.v[i];
 		}
+		
 		return result;
 	}
 	
@@ -66,6 +83,7 @@ namespace lotus { namespace math {
 		{
 			result.v[i] = l.v[i] - r.v[i];
 		}
+		
 		return result;
 	}
 	
@@ -77,6 +95,7 @@ namespace lotus { namespace math {
 		{
 			result.v[i] = l.v[i] * r.v[i];
 		}
+		
 		return result;
 	}
 	
@@ -88,6 +107,7 @@ namespace lotus { namespace math {
 		{
 			result.v[i] = l.v[i] / r.v[i];
 		}
+		
 		return result;
 	}
 	
@@ -99,6 +119,7 @@ namespace lotus { namespace math {
 		{
 			result.v[i] = l.v[i] + r;
 		}
+		
 		return result;
 	}
 	
@@ -110,6 +131,7 @@ namespace lotus { namespace math {
 		{
 			result.v[i] = l.v[i] - r;
 		}
+		
 		return result;
 	}
 	
@@ -121,6 +143,7 @@ namespace lotus { namespace math {
 		{
 			result.v[i] = l.v[i] * r;
 		}
+		
 		return result;
 	}
 	
@@ -132,6 +155,7 @@ namespace lotus { namespace math {
 		{
 			result.v[i] = l.v[i] / r;
 		}
+		
 		return result;
 	}
 	
@@ -142,6 +166,7 @@ namespace lotus { namespace math {
 		result.x = l.y * r.z - l.z * r.y;
 		result.y = l.z * r.x - l.x * r.z;
 		result.z = l.x * r.y - l.y * r.x;
+		
 		return result;
 	}
 	

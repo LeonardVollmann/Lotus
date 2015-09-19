@@ -12,14 +12,17 @@ namespace lotus { namespace math {
 	};
 	
 	template <typename T, unsigned int N>
+	bool operator==(const vec<T, N> &l, const vec<T, N> &r);
+	template <typename T, unsigned int N>
+	bool operator!=(const vec<T, N> &l, const vec<T, N> &r);
+	
+	template <typename T, unsigned int N>
 	T lengthSquared(const vec<T, N> &vec);
 	template <typename T, unsigned int N>
 	T length(const vec<T, N> &vec);
 	
 	template <typename T, unsigned int N>
 	vec<T, N> normalized(const vec<T, N> &vec);
-	template <typename T, unsigned int N>
-	T dot(const vec<T, N> &l, const vec<T, N> &r);
 	
 	template <typename T, unsigned int N>
 	vec<T, N> add(const vec<T, N> &l, const vec<T, N> &r);
@@ -102,12 +105,12 @@ namespace lotus { namespace math {
 		T &w = this->v[3];
 	};
 	
-	typedef vec2<float> vec2f;
-	typedef vec3<float> vec3f;
-	typedef vec4<float> vec4f;
-	typedef vec2<double> vec2d;
-	typedef vec3<double> vec3d;
-	typedef vec4<double> vec4d;
+	typedef vec2<float> fvec2;
+	typedef vec3<float> fvec3;
+	typedef vec4<float> fvec4;
+	typedef vec2<double> dvec2;
+	typedef vec3<double> dvec3;
+	typedef vec4<double> dvec4;
 	
 } }
 
