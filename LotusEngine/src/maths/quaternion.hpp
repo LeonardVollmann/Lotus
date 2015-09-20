@@ -53,6 +53,19 @@ namespace lotus { namespace math {
 	template <typename T>
 	inline void operator*=(Quaternion<T> &l, const vec3<T> &r) { l = l * r; }
 	
+	template <typename T>
+	inline vec3<T> getForward(const Quaternion<T> &q)	{ return rotate(vec3<T>(0, 0, 1), q); }
+	template <typename T>
+	inline vec3<T> getBack(const Quaternion<T> &q)		{ return rotate(vec3<T>(0, 0, -1), q); }
+	template <typename T>
+	inline vec3<T> getUp(const Quaternion<T> &q)		{ return rotate(vec3<T>(0, 1, 0), q); }
+	template <typename T>
+	inline vec3<T> getDown(const Quaternion<T> &q)		{ return rotate(vec3<T>(0, -1, 0), q); }
+	template <typename T>
+	inline vec3<T> getRight(const Quaternion<T> &q)		{ return rotate(vec3<T>(1, 0, 0), q); }
+	template <typename T>
+	inline vec3<T> getLeft(const Quaternion<T> &q)		{ return rotate(vec3<T>(-1, 0, 0), q); }
+	
 	typedef Quaternion<float> fquat;
 	typedef Quaternion<double> dquat;
 	

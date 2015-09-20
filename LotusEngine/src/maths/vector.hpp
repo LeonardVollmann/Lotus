@@ -3,6 +3,9 @@
 
 namespace lotus { namespace math {
 	
+	template <typename T>
+	struct Quaternion;
+	
 	template <typename T, unsigned int N>
 	struct Vector
 	{
@@ -95,6 +98,8 @@ namespace lotus { namespace math {
 	
 	template <typename T>
 	vec3<T> cross(const vec3<T> &l, const vec3<T> &r);
+	template <typename T>
+	vec3<T> rotate(const vec3<T> &v, const Quaternion<T> &q);
 	
 	template <typename T>
 	struct vec4 : Vector<T, 4>

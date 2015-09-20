@@ -1,4 +1,5 @@
 #include "vector.hpp"
+#include "quaternion.hpp"
 #include "mathsfunc.hpp"
 
 namespace lotus { namespace math {
@@ -167,6 +168,13 @@ namespace lotus { namespace math {
 		result.z = l.x * r.y - l.y * r.x;
 		
 		return result;
+	}
+	
+	template <typename T>
+	vec3<T> rotate(const vec3<T> &v, const Quaternion<T> &q)
+	{
+		Quaternion<T> r = q * v * conjugate(q);
+		return vec3<T>(r.x, r.y, r.z);
 	}
 	
 	template class vec2<float>;
