@@ -1,11 +1,10 @@
 #include "vector.hpp"
-
-#include <cmath>
+#include "mathsfunc.hpp"
 
 namespace lotus { namespace math {
 	
 	template <typename T, unsigned int N>
-	vec<T, N>::vec(T t)
+	Vector<T, N>::Vector(T t)
 	{
 		for (unsigned int i = 0; i < N; i++)
 		{
@@ -14,7 +13,7 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T, unsigned int N>
-	bool operator==(const vec<T, N> &l, const vec<T, N> &r)
+	bool operator==(const Vector<T, N> &l, const Vector<T, N> &r)
 	{
 		for (unsigned int i = 0; i < N; i++)
 		{
@@ -28,13 +27,13 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T, unsigned int N>
-	bool operator!=(const vec<T, N> &l, const vec<T, N> &r)
+	bool operator!=(const Vector<T, N> &l, const Vector<T, N> &r)
 	{
 		return !l == r;
 	}
 	
 	template <typename T, unsigned int N>
-	T dot(const vec<T, N> &l, const vec<T, N> &r)
+	T dot(const Vector<T, N> &l, const Vector<T, N> &r)
 	{
 		T result;
 		for (unsigned int i = 0; i < N; i++)
@@ -46,27 +45,27 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T, unsigned int N>
-	T lengthSquared(const vec<T, N> &vec)
+	T lengthSquared(const Vector<T, N> &vec)
 	{
 		return dot(vec, vec);
 	}
 	
 	template <typename T, unsigned int N>
-	T length(const vec<T, N> &vec)
+	T length(const Vector<T, N> &vec)
 	{
-		return (T) sqrt(lengthSquared(vec));
+		return sqrt<T>(lengthSquared(vec));
 	}
 	
 	template <typename T, unsigned int N>
-	vec<T, N> normalized(const vec<T, N> &vec)
+	Vector<T, N> normalized(const Vector<T, N> &vec)
 	{
 		return vec(vec) / length(vec);
 	}
 	
 	template <typename T, unsigned int N>
-	vec<T, N> add(const vec<T, N> &l, const vec<T, N> &r)
+	Vector<T, N> add(const Vector<T, N> &l, const Vector<T, N> &r)
 	{
-		vec<T, N> result;
+		Vector<T, N> result;
 		for (unsigned int i = 0; i < N; i++)
 		{
 			result.v[i] = l.v[i] + r.v[i];
@@ -76,9 +75,9 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T, unsigned int N>
-	vec<T, N> sub(const vec<T, N> &l, const vec<T, N> &r)
+	Vector<T, N> sub(const Vector<T, N> &l, const Vector<T, N> &r)
 	{
-		vec<T, N> result;
+		Vector<T, N> result;
 		for (unsigned int i = 0; i < N; i++)
 		{
 			result.v[i] = l.v[i] - r.v[i];
@@ -88,9 +87,9 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T, unsigned int N>
-	vec<T, N> mul(const vec<T, N> &l, const vec<T, N> &r)
+	Vector<T, N> mul(const Vector<T, N> &l, const Vector<T, N> &r)
 	{
-		vec<T, N> result;
+		Vector<T, N> result;
 		for (unsigned int i = 0; i < N; i++)
 		{
 			result.v[i] = l.v[i] * r.v[i];
@@ -100,9 +99,9 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T, unsigned int N>
-	vec<T, N> div(const vec<T, N> &l, const vec<T, N> &r)
+	Vector<T, N> div(const Vector<T, N> &l, const Vector<T, N> &r)
 	{
-		vec<T, N> result;
+		Vector<T, N> result;
 		for (unsigned int i = 0; i < N; i++)
 		{
 			result.v[i] = l.v[i] / r.v[i];
@@ -112,9 +111,9 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T, unsigned int N>
-	vec<T, N> add(const vec<T, N> &l, T r)
+	Vector<T, N> add(const Vector<T, N> &l, T r)
 	{
-		vec<T, N> result;
+		Vector<T, N> result;
 		for (unsigned int i = 0; i < N; i++)
 		{
 			result.v[i] = l.v[i] + r;
@@ -124,9 +123,9 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T, unsigned int N>
-	vec<T, N> sub(const vec<T, N> &l, T r)
+	Vector<T, N> sub(const Vector<T, N> &l, T r)
 	{
-		vec<T, N> result;
+		Vector<T, N> result;
 		for (unsigned int i = 0; i < N; i++)
 		{
 			result.v[i] = l.v[i] - r;
@@ -136,9 +135,9 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T, unsigned int N>
-	vec<T, N> mul(const vec<T, N> &l, T r)
+	Vector<T, N> mul(const Vector<T, N> &l, T r)
 	{
-		vec<T, N> result;
+		Vector<T, N> result;
 		for (unsigned int i = 0; i < N; i++)
 		{
 			result.v[i] = l.v[i] * r;
@@ -148,9 +147,9 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T, unsigned int N>
-	vec<T, N> div(const vec<T, N> &l, T r)
+	Vector<T, N> div(const Vector<T, N> &l, T r)
 	{
-		vec<T, N> result;
+		Vector<T, N> result;
 		for (unsigned int i = 0; i < N; i++)
 		{
 			result.v[i] = l.v[i] / r;

@@ -72,7 +72,7 @@ namespace lotus { namespace graphics {
 			result.append(*it + "\n");
 		}
 
-		delete ctext;
+		delete[] ctext;
 		return result;
 	}
 

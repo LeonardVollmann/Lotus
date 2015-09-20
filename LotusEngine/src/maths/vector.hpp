@@ -4,89 +4,89 @@
 namespace lotus { namespace math {
 	
 	template <typename T, unsigned int N>
-	struct vec
+	struct Vector
 	{
 		T v[N];
 		
-		vec(T t = (T) 0);
+		Vector(T t = (T) 0);
 	};
 	
 	template <typename T, unsigned int N>
-	bool operator==(const vec<T, N> &l, const vec<T, N> &r);
+	bool operator==(const Vector<T, N> &l, const Vector<T, N> &r);
 	template <typename T, unsigned int N>
-	bool operator!=(const vec<T, N> &l, const vec<T, N> &r);
+	bool operator!=(const Vector<T, N> &l, const Vector<T, N> &r);
 	
 	template <typename T, unsigned int N>
-	T lengthSquared(const vec<T, N> &vec);
+	T lengthSquared(const Vector<T, N> &Vector);
 	template <typename T, unsigned int N>
-	T length(const vec<T, N> &vec);
+	T length(const Vector<T, N> &Vector);
 	
 	template <typename T, unsigned int N>
-	vec<T, N> normalized(const vec<T, N> &vec);
+	Vector<T, N> normalized(const Vector<T, N> &vec);
 	
 	template <typename T, unsigned int N>
-	vec<T, N> add(const vec<T, N> &l, const vec<T, N> &r);
+	Vector<T, N> add(const Vector<T, N> &l, const Vector<T, N> &r);
 	template <typename T, unsigned int N>
-	vec<T, N> sub(const vec<T, N> &l, const vec<T, N> &r);
+	Vector<T, N> sub(const Vector<T, N> &l, const Vector<T, N> &r);
 	template <typename T, unsigned int N>
-	vec<T, N> mul(const vec<T, N> &l, const vec<T, N> &r);
+	Vector<T, N> mul(const Vector<T, N> &l, const Vector<T, N> &r);
 	template <typename T, unsigned int N>
-	vec<T, N> div(const vec<T, N> &l, const vec<T, N> &r);
+	Vector<T, N> div(const Vector<T, N> &l, const Vector<T, N> &r);
 	
 	template <typename T, unsigned int N>
-	vec<T, N> add(const vec<T, N> &l, T r);
+	Vector<T, N> add(const Vector<T, N> &l, T r);
 	template <typename T, unsigned int N>
-	vec<T, N> sub(const vec<T, N> &l, T nr);
+	Vector<T, N> sub(const Vector<T, N> &l, T nr);
 	template <typename T, unsigned int N>
-	vec<T, N> mul(const vec<T, N> &l, T r);
+	Vector<T, N> mul(const Vector<T, N> &l, T r);
 	template <typename T, unsigned int N>
-	vec<T, N> div(const vec<T, N> &l, T r);
+	Vector<T, N> div(const Vector<T, N> &l, T r);
 	
 	template <typename T, unsigned int N>
-	inline vec<T, N> operator+(const vec<T, N> &l, const vec<T, N> &r) { return add(l, r); }
+	inline Vector<T, N> operator+(const Vector<T, N> &l, const Vector<T, N> &r) { return add(l, r); }
 	template <typename T, unsigned int N>
-	inline vec<T, N> operator-(const vec<T, N> &l, const vec<T, N> &r) { return sub(l, r); }
+	inline Vector<T, N> operator-(const Vector<T, N> &l, const Vector<T, N> &r) { return sub(l, r); }
 	template <typename T, unsigned int N>
-	inline vec<T, N> operator*(const vec<T, N> &l, const vec<T, N> &r) { return mul(l, r); }
+	inline Vector<T, N> operator*(const Vector<T, N> &l, const Vector<T, N> &r) { return mul(l, r); }
 	template <typename T, unsigned int N>
-	inline vec<T, N> operator/(const vec<T, N> &l, const vec<T, N> &r) { return div(l, r); }
+	inline Vector<T, N> operator/(const Vector<T, N> &l, const Vector <T, N> &r) { return div(l, r); }
 	
 	template <typename T, unsigned int N>
-	inline vec<T, N> operator+(const vec<T, N> &l, T r) { return add(l, r); }
+	inline Vector<T, N> operator+(const Vector<T, N> &l, T r) { return add(l, r); }
 	template <typename T, unsigned int N>
-	inline vec<T, N> operator-(const vec<T, N> &l, T r) { return sub(l, r); }
+	inline Vector<T, N> operator-(const Vector<T, N> &l, T r) { return sub(l, r); }
 	template <typename T, unsigned int N>
-	inline vec<T, N> operator*(const vec<T, N> &l, T r) { return mul(l, r); }
+	inline Vector<T, N> operator*(const Vector<T, N> &l, T r) { return mul(l, r); }
 	template <typename T, unsigned int N>
-	inline vec<T, N> operator/(const vec<T, N> &l, T r) { return div(l, r); }
+	inline Vector<T, N> operator/(const Vector<T, N> &l, T r) { return div(l, r); }
 	
 	template <typename T, unsigned int N>
-	inline void operator+=(vec<T, N> &l, const vec<T, N> &r) { l = l + r; }
+	inline void operator+=(Vector<T, N> &l, const Vector<T, N> &r) { l = l + r; }
 	template <typename T, unsigned int N>
-	inline void operator-=(vec<T, N> &l, const vec<T, N> &r) { l = l - r; }
+	inline void operator-=(Vector<T, N> &l, const Vector<T, N> &r) { l = l - r; }
 	template <typename T, unsigned int N>
-	inline void operator*=(vec<T, N> &l, const vec<T, N> &r) { l = l * r; }
+	inline void operator*=(Vector<T, N> &l, const Vector<T, N> &r) { l = l * r; }
 	template <typename T, unsigned int N>
-	inline void operator/=(vec<T, N> &l, const vec<T, N> &r) { l = l / r; }
+	inline void operator/=(Vector<T, N> &l, const Vector<T, N> &r) { l = l / r; }
 	
 	template <typename T, unsigned int N>
-	inline void operator+=(vec<T, N> &l, T r) { l = l + r; }
+	inline void operator+=(Vector<T, N> &l, T r) { l = l + r; }
 	template <typename T, unsigned int N>
-	inline void operator-=(vec<T, N> &l, T r) { l = l - r; }
+	inline void operator-=(Vector<T, N> &l, T r) { l = l - r; }
 	template <typename T, unsigned int N>
-	inline void operator*=(vec<T, N> &l, T r) { l = l * r; }
+	inline void operator*=(Vector<T, N> &l, T r) { l = l * r; }
 	template <typename T, unsigned int N>
-	inline void operator/=(vec<T, N> &l, T r) { l = l / r; }
+	inline void operator/=(Vector<T, N> &l, T r) { l = l / r; }
 	
 	template <typename T>
-	struct vec2 : vec<T, 2>
+	struct vec2 : Vector<T, 2>
 	{
 		T &x = this->v[0];
 		T &y = this->v[1];
 	};
 	
 	template <typename T>
-	struct vec3 : vec<T, 3>
+	struct vec3 : Vector<T, 3>
 	{
 		T &x = this->v[0];
 		T &y = this->v[1];
@@ -97,7 +97,7 @@ namespace lotus { namespace math {
 	vec3<T> cross(const vec3<T> &l, const vec3<T> &r);
 	
 	template <typename T>
-	struct vec4 : vec<T, 4>
+	struct vec4 : Vector<T, 4>
 	{
 		T &x = this->v[0];
 		T &y = this->v[1];
