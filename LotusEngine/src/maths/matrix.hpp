@@ -68,6 +68,12 @@ namespace lotus { namespace math {
 	template <typename T>
 	Matrix<T, 4> perspective(T fov, T aspectRatio, T near, T far);
 	
+	typedef Matrix<float, 2> Matrix2f;
+	typedef Matrix<float, 3> Matrix3f;
+	typedef Matrix<float, 4> Matrix4f;
+	typedef Matrix<double, 2> Matrix2d;
+	typedef Matrix<double, 3> Matrix3d;
+	typedef Matrix<double, 4> Matrix4d;
 } }
 
 #endif

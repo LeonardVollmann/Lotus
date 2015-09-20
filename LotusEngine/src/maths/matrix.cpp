@@ -231,8 +231,10 @@ namespace lotus { namespace math {
 		return result;
 	}
 	
+	template class Matrix<float, 2>;
 	template class Matrix<float, 3>;
 	template class Matrix<float, 4>;
+	template class Matrix<double, 2>;
 	template class Matrix<double, 3>;
 	template class Matrix<double, 4>;
 	

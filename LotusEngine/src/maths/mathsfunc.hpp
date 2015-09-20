@@ -31,7 +31,7 @@ namespace lotus { namespace math {
 		#if T == double
 			return sqrt(n);
 		#else
-			return sqrtff(n);
+			return sqrtf(n);
 		#endif
 	}
 	

@@ -12,7 +12,7 @@ namespace lotus { namespace math {
 		w(w) {}
 	
 	template <typename T>
-	Quaternion<T>::Quaternion(const vec3<T> &axis, T angle)
+	Quaternion<T>::Quaternion(const Vector3<T> &axis, T angle)
 	{
 		const T sinHalfAngle = (T) sinf(angle / (T) 2);
 		const T cosHalfAngle = (T) cosf(angle / (T) 2);
@@ -50,16 +50,16 @@ namespace lotus { namespace math {
 	template <typename T>
 	Quaternion<T> mul(const Quaternion<T> &l, const Quaternion<T> &r)
 	{
-		const T w = l.w * r.w - l.x * r.x - l.y * r.y - l.z * r.z;
 		const T x = l.x * r.w + l.w * r.x + l.y * r.z - l.z * r.y;
 		const T y = l.y * r.w + l.w * r.y + l.z * r.x - l.x * r.z;
 		const T z = l.z * r.w + l.w * r.z + l.x * r.y - l.y * r.x;
-		
+		const T w = l.w * r.w - l.x * r.x - l.y * r.y - l.z * r.z;	
+
 		return Quaternion<T>(x, y, z, w);
 	}
 	
 	template <typename T>
-	Quaternion<T> mul(const Quaternion<T> &l, const vec3<T> &r)
+	Quaternion<T> mul(const Quaternion<T> &l, const Vector3<T> &r)
 	{
 		const float w = -l.x * r.x - l.y * r.y - l.z * r.z;
 		const float x =  l.w * r.x + l.y * r.z - l.z * r.y;

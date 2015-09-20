@@ -82,14 +82,14 @@ namespace lotus { namespace math {
 	inline void operator/=(Vector<T, N> &l, T r) { l = l / r; }
 	
 	template <typename T>
-	struct vec2 : Vector<T, 2>
+	struct Vector2 : Vector<T, 2>
 	{
 		T &x = this->v[0];
 		T &y = this->v[1];
 	};
 	
 	template <typename T>
-	struct vec3 : Vector<T, 3>
+	struct Vector3 : Vector<T, 3>
 	{
 		T &x = this->v[0];
 		T &y = this->v[1];
@@ -97,12 +97,12 @@ namespace lotus { namespace math {
 	};
 	
 	template <typename T>
-	vec3<T> cross(const vec3<T> &l, const vec3<T> &r);
+	Vector3<T> cross(const Vector3<T> &l, const Vector3<T> &r);
 	template <typename T>
-	vec3<T> rotate(const vec3<T> &v, const Quaternion<T> &q);
+	Vector3<T> rotate(const Vector3<T> &v, const Quaternion<T> &q);
 	
 	template <typename T>
-	struct vec4 : Vector<T, 4>
+	struct Vector4 : Vector<T, 4>
 	{
 		T &x = this->v[0];
 		T &y = this->v[1];
@@ -110,12 +110,12 @@ namespace lotus { namespace math {
 		T &w = this->v[3];
 	};
 	
-	typedef vec2<float> fvec2;
-	typedef vec3<float> fvec3;
-	typedef vec4<float> fvec4;
-	typedef vec2<double> dvec2;
-	typedef vec3<double> dvec3;
-	typedef vec4<double> dvec4;
+	typedef Vector2<float> Vector2f;
+	typedef Vector3<float> Vector3f;
+	typedef Vector4<float> Vector4f;
+	typedef Vector2<double> Vector2d;
+	typedef Vector3<double> Vector3d;
+	typedef Vector4<double> Vector4d;
 	
 } }
 

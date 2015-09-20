@@ -160,9 +160,9 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T>
-	vec3<T> cross(const vec3<T> &l, const vec3<T> &r)
+	Vector3<T> cross(const Vector3<T> &l, const Vector3<T> &r)
 	{
-		vec3<T> result;
+		Vector3<T> result;
 		result.x = l.y * r.z - l.z * r.y;
 		result.y = l.z * r.x - l.x * r.z;
 		result.z = l.x * r.y - l.y * r.x;
@@ -171,17 +171,17 @@ namespace lotus { namespace math {
 	}
 	
 	template <typename T>
-	vec3<T> rotate(const vec3<T> &v, const Quaternion<T> &q)
+	Vector3<T> rotate(const Vector3<T> &v, const Quaternion<T> &q)
 	{
 		Quaternion<T> r = q * v * conjugate(q);
-		return vec3<T>(r.x, r.y, r.z);
+		return Vector3<T>(r.x, r.y, r.z);
 	}
 	
-	template class vec2<float>;
-	template class vec3<float>;
-	template class vec4<float>;
-	template class vec2<double>;
-	template class vec3<double>;
-	template class vec4<double>;
+	template class Vector2<float>;
+	template class Vector3<float>;
+	template class Vector4<float>;
+	template class Vector2<double>;
+	template class Vector3<double>;
+	template class Vector4<double>;
 	
 } }
