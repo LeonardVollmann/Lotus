@@ -2,7 +2,7 @@
 #define LOTUS_CAMERA_HPP_INCLUDED
 
 #include "../core/entity.hpp"
-#include "../maths/mat4.hpp"
+#include "../maths/matrix.hpp"
 
 namespace lotus { namespace graphics {
 
@@ -13,7 +13,7 @@ namespace lotus { namespace graphics {
 	public:
 		Camera();
 		
-		maths::mat4 getViewMatrix() const;
+		maths::Matrix4f getViewMatrix() const;
 		void bind() const;
 	};
 

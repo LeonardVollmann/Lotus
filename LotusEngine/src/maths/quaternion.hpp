@@ -3,7 +3,7 @@
 
 #include "vector.hpp"
 
-namespace lotus { namespace math {
+namespace lotus { namespace maths {
 
 	template <typename T>
 	struct Quaternion
@@ -70,5 +70,7 @@ namespace lotus { namespace math {
 	typedef Quaternion<double> QuaternionD;
 	
 } }
+
+#include "quaternion.inl"
 
 #endif

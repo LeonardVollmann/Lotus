@@ -1,7 +1,9 @@
 #ifndef LOTUS_VECTOR_HPP_INCLUDED
 #define LOTUS_VECTOR_HPP_INCLUDED
 
-namespace lotus { namespace math {
+#include <cstring>
+
+namespace lotus { namespace maths {
 	
 	template <typename T>
 	struct Quaternion;
@@ -12,6 +14,7 @@ namespace lotus { namespace math {
 		T v[N];
 		
 		Vector(T t = (T) 0);
+		Vector(T t[N]);
 	};
 	
 	template <typename T, unsigned int N>
@@ -84,16 +87,90 @@ namespace lotus { namespace math {
 	template <typename T>
 	struct Vector2 : Vector<T, 2>
 	{
-		T &x = this->v[0];
-		T &y = this->v[1];
+		T &x;
+		T &y;
+		
+		Vector2(T t = (T) 0) :
+			Vector<T, 2>(t),
+			x(this->v[0]),
+			y(this->v[1]) {}
+		
+		Vector2(T x, T y) :
+			Vector2()
+		{
+			this->v[0] = x;
+			this->v[1] = y;
+		}
+		
+		inline Vector2 &operator=(const Vector2 &other)
+		{
+			memcpy(this->v, other.v, 2 * sizeof(T));
+			return *this;
+		}
+		
+		inline Vector2 &operator=(const Vector<T, 2> &other)
+		{
+			memcpy(this->v, other.v, 2 * sizeof(T));
+			return *this;
+		}
+		
+		Vector2(const Vector2 &other) :
+			Vector2()
+		{
+			operator=(other);
+		}
+		
+		Vector2(const Vector<T, 2> &other) :
+			Vector2()
+		{
+			operator=(other);
+		}
 	};
 	
 	template <typename T>
 	struct Vector3 : Vector<T, 3>
 	{
-		T &x = this->v[0];
-		T &y = this->v[1];
-		T &z = this->v[3];
+		T &x;
+		T &y;
+		T &z;
+		
+		Vector3(T t = (T) 0) :
+			Vector<T, 3>(t),
+			x(this->v[0]),
+			y(this->v[1]),
+			z(this->v[2]) {}
+		
+		Vector3(T x, T y, T z) :
+			Vector3()
+		{
+			this->v[0] = x;
+			this->v[1] = y;
+			this->v[2] = z;
+		}
+		
+		inline Vector3 &operator=(const Vector3 &other)
+		{
+			memcpy(this->v, other.v, 3 * sizeof(T));
+			return *this;
+		}
+		
+		inline Vector3 &operator=(const Vector<T, 3> &other)
+		{
+			memcpy(this->v, other.v, 3 * sizeof(T));
+			return *this;
+		}
+		
+		Vector3(const Vector3 &other) :
+			Vector3()
+		{
+			operator=(other);
+		}
+		
+		Vector3(const Vector<T, 3> &other) :
+			Vector3()
+		{
+			operator=(other);
+		}
 	};
 	
 	template <typename T>
@@ -104,10 +181,50 @@ namespace lotus { namespace math {
 	template <typename T>
 	struct Vector4 : Vector<T, 4>
 	{
-		T &x = this->v[0];
-		T &y = this->v[1];
-		T &z = this->v[2];
-		T &w = this->v[3];
+		T &x;
+		T &y;
+		T &z;
+		T &w;
+		
+		Vector4(T t = (T) 0) :
+			Vector<T, 4>(t),
+			x(this->v[0]),
+			y(this->v[1]),
+			z(this->v[2]),
+			w(this->v[3]) {}
+		
+		Vector4(T x, T y, T z, T w) :
+			Vector4()
+		{
+			this->v[0] = x;
+			this->v[1] = y;
+			this->v[2] = z;
+			this->v[3] = w;
+		}
+		
+		inline Vector4 &operator=(const Vector4 &other)
+		{
+			memcpy(this->v, other.v, 3 * sizeof(T));
+			return *this;
+		}
+		
+		inline Vector4 &operator=(const Vector<T, 4> &other)
+		{
+			memcpy(this->v, other.v, 3 * sizeof(T));
+			return *this;
+		}
+		
+		Vector4(const Vector4 &other) :
+			Vector4()
+		{
+			operator=(other);
+		}
+		
+		Vector4(const Vector<T, 4> &other) :
+			Vector4()
+		{
+			operator=(other);
+		}
 	};
 	
 	typedef Vector2<float> Vector2f;
@@ -118,5 +235,7 @@ namespace lotus { namespace math {
 	typedef Vector4<double> Vector4d;
 	
 } }
+
+#include "vector.inl"
 
 #endif

@@ -214,71 +214,71 @@ namespace lotus { namespace graphics {
 
 		if (uniform == "mvp_matrix")
 		{
-			maths::mat4(*getMVPMatrix)() = []()->maths::mat4 { return Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * Transform::CURRENT->getTransformation(); };
-			m_uniforms.push_back(new FunctionUniform<maths::mat4>(this, "mvp_matrix", getMVPMatrix));
+			maths::Matrix4f(*getMVPMatrix)() = []()->maths::Matrix4f { return Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix() * Transform::CURRENT->getTransformation(); };
+			m_uniforms.push_back(new FunctionUniform<maths::Matrix4f>(this, "mvp_matrix", getMVPMatrix));
 		}
 		else if (uniform == "vp_matrix")
 		{
-			maths::mat4(*getVPMatrix)() = []()->maths::mat4 { return Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix(); };
-			m_uniforms.push_back(new FunctionUniform<maths::mat4>(this, "vp_matrix", getVPMatrix));
+			maths::Matrix4f(*getVPMatrix)() = []()->maths::Matrix4f { return Scene::CURRENT->getProjection() * Camera::CURRENT->getViewMatrix(); };
+			m_uniforms.push_back(new FunctionUniform<maths::Matrix4f>(this, "vp_matrix", getVPMatrix));
 		}
 		else if (tokens[0] == "transform")
 		{
 			if (tokens[1] == "pos")
 			{
-				maths::vec3(*getTransformPos)() = []()->maths::vec3 { return Transform::CURRENT->getPos(); };
-				m_uniforms.push_back(new FunctionUniform<maths::vec3>(this, uniform.c_str(), getTransformPos));
+				maths::Vector3f(*getTransformPos)() = []()->maths::Vector3f { return Transform::CURRENT->getPos(); };
+				m_uniforms.push_back(new FunctionUniform<maths::Vector3f>(this, uniform.c_str(), getTransformPos));
 			}
 			else if (tokens[1] == "rot")
 			{
-				maths::vec4(*getTransformRot)() = []()->maths::vec4 { return maths::vec4(Transform::CURRENT->getRot().x, Transform::CURRENT->getRot().y, Transform::CURRENT->getRot().z, Transform::CURRENT->getRot().w); };
-				m_uniforms.push_back(new FunctionUniform<maths::vec4>(this, uniform.c_str(), getTransformRot));
+				maths::Vector4f(*getTransformRot)() = []()->maths::Vector4f { return maths::Vector4f(Transform::CURRENT->getRot().x, Transform::CURRENT->getRot().y, Transform::CURRENT->getRot().z, Transform::CURRENT->getRot().w); };
+				m_uniforms.push_back(new FunctionUniform<maths::Vector4f>(this, uniform.c_str(), getTransformRot));
 			}
 			else if (tokens[1] == "scale")
 			{
-				maths::vec3(*getTransformScale)() = []()->maths::vec3 { return Transform::CURRENT->getScale(); };
-				m_uniforms.push_back(new FunctionUniform<maths::vec3>(this, uniform.c_str(), getTransformScale));
+				maths::Vector3f(*getTransformScale)() = []()->maths::Vector3f { return Transform::CURRENT->getScale(); };
+				m_uniforms.push_back(new FunctionUniform<maths::Vector3f>(this, uniform.c_str(), getTransformScale));
 			}
 			else if (tokens[1] == "modelMatrix")
 			{
-				maths::mat4(*getModelMatrix)() = []()->maths::mat4 { return Transform::CURRENT->getTransformation(); };
-				m_uniforms.push_back(new FunctionUniform<maths::mat4>(this, uniform.c_str(), getModelMatrix));
+				maths::Matrix4f(*getModelMatrix)() = []()->maths::Matrix4f { return Transform::CURRENT->getTransformation(); };
+				m_uniforms.push_back(new FunctionUniform<maths::Matrix4f>(this, uniform.c_str(), getModelMatrix));
 			}
 		}
 		else if (tokens[0] == "scene")
 		{
 			if (tokens[1] == "projection")
 			{
-				maths::mat4(*getProjectionMatrix)() = []()->maths::mat4 { return Scene::CURRENT->getProjection(); };
-				m_uniforms.push_back(new FunctionUniform<maths::mat4>(this, uniform.c_str(), getProjectionMatrix));
+				maths::Matrix4f(*getProjectionMatrix)() = []()->maths::Matrix4f { return Scene::CURRENT->getProjection(); };
+				m_uniforms.push_back(new FunctionUniform<maths::Matrix4f>(this, uniform.c_str(), getProjectionMatrix));
 			}
 		}
 		else if (tokens[0] == "camera")
 		{
 			if (tokens[1] == "pos")
 			{
-				maths::vec3(*getCameraPos)() = []()->maths::vec3 { return Camera::CURRENT->getTransform().getPos(); };
-				m_uniforms.push_back(new FunctionUniform<maths::vec3>(this, uniform.c_str(), getCameraPos));
+				maths::Vector3f(*getCameraPos)() = []()->maths::Vector3f { return Camera::CURRENT->getTransform().getPos(); };
+				m_uniforms.push_back(new FunctionUniform<maths::Vector3f>(this, uniform.c_str(), getCameraPos));
 			}
 			else if (tokens[1] == "rot")
 			{
-				maths::vec4(*getCameraRot)() = []()->maths::vec4 { return maths::vec4(Camera::CURRENT->getTransform().getRot().x, Camera::CURRENT->getTransform().getRot().y, Camera::CURRENT->getTransform().getRot().z, Camera::CURRENT->getTransform().getRot().x); };
-				m_uniforms.push_back(new FunctionUniform<maths::vec4>(this, uniform.c_str(), getCameraRot));
+				maths::Vector4f(*getCameraRot)() = []()->maths::Vector4f { return maths::Vector4f(Camera::CURRENT->getTransform().getRot().x, Camera::CURRENT->getTransform().getRot().y, Camera::CURRENT->getTransform().getRot().z, Camera::CURRENT->getTransform().getRot().x); };
+				m_uniforms.push_back(new FunctionUniform<maths::Vector4f>(this, uniform.c_str(), getCameraRot));
 			}
 			else if (tokens[1] == "viewMatrix")
 			{
-				maths::mat4(*getCameraViewMatrix)() = []()->maths::mat4 { return Camera::CURRENT->getViewMatrix(); };
-				m_uniforms.push_back(new FunctionUniform<maths::mat4>(this, uniform.c_str(), getCameraViewMatrix));
+				maths::Matrix4f(*getCameraViewMatrix)() = []()->maths::Matrix4f { return Camera::CURRENT->getViewMatrix(); };
+				m_uniforms.push_back(new FunctionUniform<maths::Matrix4f>(this, uniform.c_str(), getCameraViewMatrix));
 			}
 		}
 		else if (tokens[0] == "material")
 		{
 			if (type == "int") m_uniforms.push_back(new MaterialUniform<int>(this, uniform.c_str(), tokens[1]));
 			else if (type == "float") m_uniforms.push_back(new MaterialUniform<float>(this, uniform.c_str(), tokens[1]));
-			else if (type == "vec2") m_uniforms.push_back(new MaterialUniform<maths::vec2>(this, uniform.c_str(), tokens[1]));
-			else if (type == "vec3") m_uniforms.push_back(new MaterialUniform<maths::vec3>(this, uniform.c_str(), tokens[1]));
-			else if (type == "vec4") m_uniforms.push_back(new MaterialUniform<maths::vec4>(this, uniform.c_str(), tokens[1]));
-			else if (type == "mat4") m_uniforms.push_back(new MaterialUniform<maths::mat4>(this, uniform.c_str(), tokens[1]));
+			else if (type == "Vector2f") m_uniforms.push_back(new MaterialUniform<maths::Vector2f>(this, uniform.c_str(), tokens[1]));
+			else if (type == "Vector3f") m_uniforms.push_back(new MaterialUniform<maths::Vector3f>(this, uniform.c_str(), tokens[1]));
+			else if (type == "Vector4f") m_uniforms.push_back(new MaterialUniform<maths::Vector4f>(this, uniform.c_str(), tokens[1]));
+			else if (type == "Matrix4f") m_uniforms.push_back(new MaterialUniform<maths::Matrix4f>(this, uniform.c_str(), tokens[1]));
 		}
 		else if (tokens[0] == "light")
 		{
@@ -335,22 +335,22 @@ namespace lotus { namespace graphics {
 		glUniform1f(location, value);
 	}
 
-	void Shader::setUniform(GLint location, const maths::vec2 &value) const
+	void Shader::setUniform(GLint location, const maths::Vector2f &value) const
 	{
 		glUniform2f(location, value.x, value.y);
 	}
 
-	void Shader::setUniform(GLint location, const maths::vec3 &value) const
+	void Shader::setUniform(GLint location, const maths::Vector3f &value) const
 	{
 		glUniform3f(location, value.x, value.y, value.z);
 	}
 
-	void Shader::setUniform(GLint location, const maths::vec4 &value) const
+	void Shader::setUniform(GLint location, const maths::Vector4f &value) const
 	{
 		glUniform4f(location, value.x, value.y, value.z, value.w);
 	}
 
-	void Shader::setUniform(GLint location, const maths::mat4 &value) const
+	void Shader::setUniform(GLint location, const maths::Matrix4f &value) const
 	{
 		glUniformMatrix4fv(location, 1, GL_FALSE, value.elements);
 	}

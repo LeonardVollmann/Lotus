@@ -5,7 +5,7 @@
 
 #include <cassert>
 
-namespace lotus { namespace math {
+namespace lotus { namespace maths {
 	
 	template <typename T, unsigned int N>
 	Matrix<T, N>::Matrix(T diagonal)
@@ -50,9 +50,9 @@ namespace lotus { namespace math {
 				T n;
 				for (unsigned int k = 0; k < N; k++)
 				{
-					n += l[k + i * N] * r[j + k * N];
+					n += l.elements[k + i * N] * r.elements[j + k * N];
 				}
-				result[j + i * N] = n;
+				result.elements[j + i * N] = n;
 			}
 		}
 		return result;
@@ -95,7 +95,7 @@ namespace lotus { namespace math {
 		Matrix<T, N> result;
 		for (unsigned int i = 0; i < N - 1; i++)
 		{
-			result[N - 1 + i * N] = translation.v[i];
+			result.elements[N - 1 + i * N] = translation.v[i];
 		}
 		return result;
 	}
@@ -106,7 +106,7 @@ namespace lotus { namespace math {
 		Matrix<T, N> result;
 		for (unsigned int i = 0; i < N - 1; i++)
 		{
-			result[i * (N + 1)] = scale.v[i];
+			result.elements[i * (N + 1)] = scale.v[i];
 		}
 		return result;
 	}
@@ -164,15 +164,15 @@ namespace lotus { namespace math {
 	{
 		Matrix<T, N> result(1);
 		
-		result[0 + 0 * N] = r.x;
-		result[1 + 0 * N] = r.y;
-		result[1 + 0 * N] = r.z;
-		result[0 + 1 * N] = u.x;
-		result[1 + 1 * N] = u.y;
-		result[1 + 1 * N] = u.z;
-		result[0 + 2 * N] = f.x;
-		result[1 + 3 * N] = f.y;
-		result[1 + 3 * N] = f.z;
+		result.elements[0 + 0 * N] = r.v[0];
+		result.elements[1 + 0 * N] = r.v[1];
+		result.elements[2 + 0 * N] = r.v[2];
+		result.elements[0 + 1 * N] = u.v[0];
+		result.elements[1 + 1 * N] = u.v[1];
+		result.elements[2 + 1 * N] = u.v[2];
+		result.elements[0 + 2 * N] = f.v[0];
+		result.elements[1 + 2 * N] = f.v[1];
+		result.elements[2 + 2 * N] = f.v[2];
 		
 		return result;
 	}
@@ -180,11 +180,11 @@ namespace lotus { namespace math {
 	template <typename T, unsigned int N>
 	Matrix<T, N> rotation(const Quaternion<T> &rot)
 	{
-		Vector<T, 3> f = Vector<T, 3>(2 * (rot.x * rot.z - rot.w * rot.y), 2.0f * (rot.y * rot.z + rot.w * rot.x), 1.0f - 2.0f * (rot.x * rot.x + rot.y * rot.y));
-		Vector<T, 3> u = Vector<T, 3>(2 * (rot.x * rot.y + rot.w * rot.z), 1.0f - 2.0f * (rot.x * rot.x + rot.z * rot.z), 2.0f * (rot.y * rot.z - rot.w * rot.x));
-		Vector<T, 3> r = Vector<T, 3>(1 - 2.0f * (rot.y * rot.y + rot.z * rot.z), 2.0f * (rot.x * rot.y - rot.w * rot.z), 2.0f * (rot.x * rot.z + rot.w * rot.y));
+		T f[3] = { 2 * (rot.x * rot.z - rot.w * rot.y), 2.0f * (rot.y * rot.z + rot.w * rot.x), 1.0f - 2.0f * (rot.x * rot.x + rot.y * rot.y) };
+		T u[3] = { 2 * (rot.x * rot.y + rot.w * rot.z), 1.0f - 2.0f * (rot.x * rot.x + rot.z * rot.z), 2.0f * (rot.y * rot.z - rot.w * rot.x) };
+		T r[3] = { 1 - 2.0f * (rot.y * rot.y + rot.z * rot.z), 2.0f * (rot.x * rot.y - rot.w * rot.z), 2.0f * (rot.x * rot.z + rot.w * rot.y) };
 		
-		return rotation(f, u, r);
+		return rotation<T, N>(Vector<T, 3>(f), Vector<T, 3>(u), Vector<T, 3>(r));
 	}
 	
 	template <typename T, unsigned int N>
@@ -222,20 +222,13 @@ namespace lotus { namespace math {
 		float b = (near + far) / (near - far);
 		float c = (2.0f * near * far) / (near - far);
 		
-		result[0 + 0 * 4] = a;
-		result[1 + 1 * 4] = q;
-		result[2 + 2 * 4] = b;
-		result[3 + 2 * 4] = -1.0f;
-		result[2 + 3 * 4] = c;
+		result.elements[0 + 0 * 4] = a;
+		result.elements[1 + 1 * 4] = q;
+		result.elements[2 + 2 * 4] = b;
+		result.elements[3 + 2 * 4] = -1.0f;
+		result.elements[2 + 3 * 4] = c;
 		
 		return result;
 	}
-	
-	template class Matrix<float, 2>;
-	template class Matrix<float, 3>;
-	template class Matrix<float, 4>;
-	template class Matrix<double, 2>;
-	template class Matrix<double, 3>;
-	template class Matrix<double, 4>;
 	
 } }

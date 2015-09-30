@@ -1,6 +1,7 @@
 #include "freemove.hpp"
 #include "../core/entity.hpp"
 #include "../core/input.hpp"
+#include "../maths/quaternion.hpp"
 
 namespace lotus {
 
@@ -11,25 +12,25 @@ FreeMove::FreeMove(float speed) :
 	{
 		if (Input::getKey(GLFW_KEY_W))
 		{
-			move(m_entity->getTransform().getRot().getBack(), m_speed * delta);
+			move(maths::getBack(m_entity->getTransform().getRot()), m_speed * delta);
 		}
 		if (Input::getKey(GLFW_KEY_A))
 		{
-			move(m_entity->getTransform().getRot().getLeft(), m_speed * delta);
+			move(maths::getLeft(m_entity->getTransform().getRot()), m_speed * delta);
 		}
 		if (Input::getKey(GLFW_KEY_S))
 		{
-			move(m_entity->getTransform().getRot().getForward(), m_speed * delta);
+			move(maths::getForward(m_entity->getTransform().getRot()), m_speed * delta);
 		}
 		if (Input::getKey(GLFW_KEY_D))
 		{
-			move(m_entity->getTransform().getRot().getRight(), m_speed * delta);
+			move(maths::getRight(m_entity->getTransform().getRot()), m_speed * delta);
 		}
 	}
 
-	void FreeMove::move(const maths::vec3 &axis, float amount)
+	void FreeMove::move(const maths::Vector3f &axis, float amount)
 	{
-		m_entity->getTransform().translate(axis * maths::vec3(amount));
+		m_entity->getTransform().translate(axis * amount);
 	}
 
 }

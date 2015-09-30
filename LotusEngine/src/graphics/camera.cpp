@@ -1,6 +1,6 @@
 #include "camera.hpp"
 #include "../core/input.hpp"
-#include "../maths/vec3.hpp"
+#include "../maths/vector.hpp"
 
 namespace lotus { namespace graphics {
 
@@ -11,9 +11,10 @@ namespace lotus { namespace graphics {
 		bind();
 	}
 
-	maths::mat4 Camera::getViewMatrix() const
+	maths::Matrix4f Camera::getViewMatrix() const
 	{
-		return maths::mat4(m_transform.getRot().conjugate().normalize()) * maths::mat4::translation(m_transform.getPos() * maths::vec3(-1.0f));
+		return maths::rotation<float, 4>(maths::normalized(maths::conjugate(m_transform.getRot()))) *
+				maths::translation<float, 4>(m_transform.getPos() * maths::Vector3f(-1.0f));
 	}
 
 	void Camera::bind() const

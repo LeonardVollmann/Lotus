@@ -1,7 +1,7 @@
 #ifndef LOTUS_MATRIX_HPP_INCLUDED
 #define LOTUS_MATRIX_HPP_INCLUDED
 
-namespace lotus { namespace math {
+namespace lotus { namespace maths {
 	
 	template <typename T, unsigned int N>
 	struct Vector;
@@ -74,6 +74,9 @@ namespace lotus { namespace math {
 	typedef Matrix<double, 2> Matrix2d;
 	typedef Matrix<double, 3> Matrix3d;
 	typedef Matrix<double, 4> Matrix4d;
+	
 } }
+
+#include "matrix.inl"
 
 #endif

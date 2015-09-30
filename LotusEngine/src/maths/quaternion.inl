@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-namespace lotus { namespace math {
+namespace lotus { namespace maths {
 
 	template <typename T>
 	Quaternion<T>::Quaternion(T x, T y, T z, T w) :
@@ -92,8 +92,5 @@ namespace lotus { namespace math {
 	{
 		return Quaternion<T>(-q.x, -q.y, -q.z, q.w);
 	}
-	
-	template class Quaternion<float>;
-	template class Quaternion<double>;
 	
 } }

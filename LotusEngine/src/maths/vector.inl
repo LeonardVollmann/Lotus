@@ -2,7 +2,7 @@
 #include "quaternion.hpp"
 #include "mathsfunc.hpp"
 
-namespace lotus { namespace math {
+namespace lotus { namespace maths {
 	
 	template <typename T, unsigned int N>
 	Vector<T, N>::Vector(T t)
@@ -11,6 +11,12 @@ namespace lotus { namespace math {
 		{
 			v[i] = t;
 		}
+	}
+	
+	template <typename T, unsigned int N>
+	Vector<T, N>::Vector(T t[N])
+	{
+		memcpy(v, t, N * sizeof(T));
 	}
 	
 	template <typename T, unsigned int N>
@@ -30,7 +36,7 @@ namespace lotus { namespace math {
 	template <typename T, unsigned int N>
 	bool operator!=(const Vector<T, N> &l, const Vector<T, N> &r)
 	{
-		return !l == r;
+		return !(l == r);
 	}
 	
 	template <typename T, unsigned int N>
@@ -60,7 +66,7 @@ namespace lotus { namespace math {
 	template <typename T, unsigned int N>
 	Vector<T, N> normalized(const Vector<T, N> &vec)
 	{
-		return vec(vec) / length(vec);
+		return vec / length(vec);
 	}
 	
 	template <typename T, unsigned int N>
@@ -176,12 +182,5 @@ namespace lotus { namespace math {
 		Quaternion<T> r = q * v * conjugate(q);
 		return Vector3<T>(r.x, r.y, r.z);
 	}
-	
-	template class Vector2<float>;
-	template class Vector3<float>;
-	template class Vector4<float>;
-	template class Vector2<double>;
-	template class Vector3<double>;
-	template class Vector4<double>;
 	
 } }

@@ -1,23 +1,22 @@
 #ifndef LOTUS_VERTEX_HPP_INCLUDED
 #define LOTUS_VERTEX_HPP_INCLUDED
 
-#include "../maths/vec3.hpp"
-#include "../maths/vec2.hpp"
+#include "../maths/vector.hpp"
 
 namespace lotus { namespace graphics {
 
 	struct Vertex2D
 	{
-		maths::vec3 position;
-		maths::vec2 texCoord;
+		maths::Vector<float, 3> position;
+		maths::Vector<float, 2> texCoord;
 	};
 
 	struct Vertex3D
 	{
-		maths::vec3 position;
-		maths::vec2 texCoord;
-		maths::vec3 normal;
-		maths::vec3 tangent;
+		maths::Vector<float, 3> position;
+		maths::Vector<float, 2> texCoord;
+		maths::Vector<float, 3> normal;
+		maths::Vector<float, 3> tangent;
 	};
 
 } }

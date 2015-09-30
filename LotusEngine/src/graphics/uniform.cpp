@@ -17,10 +17,10 @@ namespace lotus { namespace graphics {
 
 	template class VarUniform<int>;
 	template class VarUniform<float>;
-	template class VarUniform<maths::vec2>;
-	template class VarUniform<maths::vec3>;
-	template class VarUniform<maths::vec4>;
-	template class VarUniform<maths::mat4>;
+	template class VarUniform<maths::Vector2f>;
+	template class VarUniform<maths::Vector3f>;
+	template class VarUniform<maths::Vector4f>;
+	template class VarUniform<maths::Matrix4f>;
 
 	template <typename VAR_T>
 	MaterialUniform<VAR_T>::MaterialUniform(const ShaderResource *shader, const char *uniformName, const std::string &varName) :
@@ -35,10 +35,10 @@ namespace lotus { namespace graphics {
 
 	template class MaterialUniform<int>;
 	template class MaterialUniform<float>;
-	template class MaterialUniform<maths::vec2>;
-	template class MaterialUniform<maths::vec3>;
-	template class MaterialUniform<maths::vec4>;
-	template class MaterialUniform<maths::mat4>;
+	template class MaterialUniform<maths::Vector2f>;
+	template class MaterialUniform<maths::Vector3f>;
+	template class MaterialUniform<maths::Vector4f>;
+	template class MaterialUniform<maths::Matrix4f>;
 
 	SamplerUniform::SamplerUniform(const ShaderResource *shader, const char *name, int samplerSlot) :
 		m_location(glGetUniformLocation(shader->getShaderProgram(), name)),
@@ -62,10 +62,10 @@ namespace lotus { namespace graphics {
 
 	template class FunctionUniform<int>;
 	template class FunctionUniform<float>;
-	template class FunctionUniform<maths::vec2>;
-	template class FunctionUniform<maths::vec3>;
-	template class FunctionUniform<maths::vec4>;
-	template class FunctionUniform<maths::mat4>;
+	template class FunctionUniform<maths::Vector2f>;
+	template class FunctionUniform<maths::Vector3f>;
+	template class FunctionUniform<maths::Vector4f>;
+	template class FunctionUniform<maths::Matrix4f>;
 
 	template <typename VAR_T, unsigned int NUM_MEMBERS, void GET_LOCATIONS(const ShaderResource *shader, const std::string &name, GLuint *locations)>
 	StructUniform<VAR_T, NUM_MEMBERS, GET_LOCATIONS>::StructUniform(const ShaderResource *shader, const std::string &name)
