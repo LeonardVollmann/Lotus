@@ -1,9 +1,7 @@
 #ifndef LOTUS_TRANSFORM_HPP_INCLUDED
 #define LOTUS_TRANSFORM_HPP_INCLUDED
 
-#include "../maths/vector.hpp"
-#include "../maths/matrix.hpp"
-#include "../maths/quaternion.hpp"
+#include "../core/maths.hpp"
 
 namespace lotus {
 

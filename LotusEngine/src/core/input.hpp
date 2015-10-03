@@ -1,7 +1,7 @@
 #ifndef LOTUS_INPUT_HPP_INCLUDED
 #define LOTUS_INPUT_HPP_INCLUDED
 
-#include "../maths/vector.hpp"
+#include "../core/maths.hpp"
 #include "../graphics/window.hpp"
 
 #include <GLFW/glfw3.h>

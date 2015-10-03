@@ -3,7 +3,7 @@
 
 #include "vertex.hpp"
 #include "objloading.hpp"
-#include "../maths/vector.hpp"
+#include "../core/maths.hpp"
 
 #include <GL/glew.h>
 #include <vector>

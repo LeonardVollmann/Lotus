@@ -2,7 +2,7 @@
 #define LOTUS_CAMERA_HPP_INCLUDED
 
 #include "../core/entity.hpp"
-#include "../maths/matrix.hpp"
+#include "../core/maths.hpp"
 
 namespace lotus { namespace graphics {
 

@@ -8,10 +8,8 @@
 #include <core/time.hpp>
 #include <core/transform.hpp>
 #include <core/entity.hpp>
+#include <core/maths.hpp>
 #include <core/stringfunc.hpp>
-#include <maths/vector.hpp>
-#include <maths/matrix.hpp>
-#include <maths/quaternion.hpp>
 #include <graphics/window.hpp>
 #include <graphics/lighting.hpp>
 #include <graphics/camera.hpp>
@@ -66,7 +64,7 @@ public:
 	{}
 
 	virtual ~TestGame() {}
-	virtual void tick() {}
+	virtual void tick() override {}
 
 	virtual void init() override
 	{

@@ -2,7 +2,7 @@
 #define LOTUS_MATERIAL_HPP_INCLUDED
 
 #include "texture.hpp"
-#include "../maths/vector.hpp"
+#include "../core/maths.hpp"
 
 #include <map>
 #include <string>

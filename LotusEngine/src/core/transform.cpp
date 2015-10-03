@@ -18,9 +18,9 @@ namespace lotus {
 
 	maths::Matrix4f Transform::getTransformation() const
 	{
-		maths::Matrix4f transformation = maths::translation<float, 4>(m_pos) *
+		maths::Matrix4f transformation = maths::translation<float>(m_pos) *
 										maths::rotation<float, 4>(m_rot) *
-										maths::scale<float, 4>(m_scale);
+										maths::scale<float>(m_scale);
 
 		transformation = m_parent ? m_parent->getTransformation() * transformation : transformation;
 		return transformation;

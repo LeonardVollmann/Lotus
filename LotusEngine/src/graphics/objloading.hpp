@@ -1,7 +1,7 @@
 #ifndef LOTUS_OBJ_LOADING_HPP_INCLUDED
 #define LOTUS_OBJ_LOADING_HPP_INCLUDED
 
-#include "../maths/vector.hpp"
+#include "../core/maths.hpp"
 
 #include <vector>
 #include <string>

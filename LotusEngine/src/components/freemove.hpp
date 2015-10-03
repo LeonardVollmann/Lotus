@@ -2,7 +2,7 @@
 #define LOTUS_FREE_MOVE_HPP_INCLUDED
 
 #include "../core/entitycomponent.hpp"
-#include "../maths/vector.hpp"
+#include "../core/maths.hpp"
 
 namespace lotus {
 

@@ -2,7 +2,7 @@
 #define LOTUS_LIGHTING_HPP_INCLUDED
 
 #include "../core/entitycomponent.hpp"
-#include "../maths/vector.hpp"
+#include "../core/maths.hpp"
 
 #include <GL/glew.h>
 #include <string>

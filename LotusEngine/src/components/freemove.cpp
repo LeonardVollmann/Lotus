@@ -1,7 +1,7 @@
 #include "freemove.hpp"
 #include "../core/entity.hpp"
 #include "../core/input.hpp"
-#include "../maths/quaternion.hpp"
+#include "../core/maths.hpp"
 
 namespace lotus {
 

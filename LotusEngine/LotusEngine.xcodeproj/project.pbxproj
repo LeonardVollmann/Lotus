@@ -59,13 +59,6 @@
 		D70A3A5F1BA9D91900BF3177 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D70A3A201BA9D91900BF3177 /* window.cpp */; };
 		D70A3A601BA9D91900BF3177 /* window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D70A3A211BA9D91900BF3177 /* window.hpp */; };
 		D70A3A8F1BA9D98500BF3177 /* res in Copy Files */ = {isa = PBXBuildFile; fileRef = D70A3A8E1BA9D98500BF3177 /* res */; };
-		D73556151BAAFA9700C7A2FE /* vector.inl in Sources */ = {isa = PBXBuildFile; fileRef = D73556131BAAFA9700C7A2FE /* vector.inl */; };
-		D73556161BAAFA9700C7A2FE /* vector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D73556141BAAFA9700C7A2FE /* vector.hpp */; };
-		D73556191BAD89F900C7A2FE /* quaternion.inl in Sources */ = {isa = PBXBuildFile; fileRef = D73556171BAD89F900C7A2FE /* quaternion.inl */; };
-		D735561A1BAD89F900C7A2FE /* quaternion.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D73556181BAD89F900C7A2FE /* quaternion.hpp */; };
-		D735561D1BAD988300C7A2FE /* matrix.inl in Sources */ = {isa = PBXBuildFile; fileRef = D735561B1BAD988300C7A2FE /* matrix.inl */; };
-		D735561E1BAD988300C7A2FE /* matrix.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D735561C1BAD988300C7A2FE /* matrix.hpp */; };
-		D73556221BAEE2B300C7A2FE /* mathsfunc.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D73556201BAEE2B300C7A2FE /* mathsfunc.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -136,13 +129,7 @@
 		D70A3A211BA9D91900BF3177 /* window.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = window.hpp; sourceTree = "<group>"; };
 		D70A3A8E1BA9D98500BF3177 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		D710CC3C1BA75B49008D170F /* libLotusEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLotusEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D73556131BAAFA9700C7A2FE /* vector.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vector.inl; sourceTree = "<group>"; };
-		D73556141BAAFA9700C7A2FE /* vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector.hpp; sourceTree = "<group>"; };
-		D73556171BAD89F900C7A2FE /* quaternion.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = quaternion.inl; sourceTree = "<group>"; };
-		D73556181BAD89F900C7A2FE /* quaternion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = quaternion.hpp; sourceTree = "<group>"; };
-		D735561B1BAD988300C7A2FE /* matrix.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = matrix.inl; sourceTree = "<group>"; };
-		D735561C1BAD988300C7A2FE /* matrix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = matrix.hpp; sourceTree = "<group>"; };
-		D73556201BAEE2B300C7A2FE /* mathsfunc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mathsfunc.hpp; sourceTree = "<group>"; };
+		D75D06BA1BBFAA3D00E50A4C /* maths.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = maths.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +158,6 @@
 				D70A39ED1BA9D91900BF3177 /* components */,
 				D70A39F41BA9D91900BF3177 /* core */,
 				D70A3A041BA9D91900BF3177 /* graphics */,
-				D70A3A221BA9D91900BF3177 /* maths */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -207,6 +193,7 @@
 				D70A3A011BA9D91900BF3177 /* time.hpp */,
 				D70A3A021BA9D91900BF3177 /* transform.cpp */,
 				D70A3A031BA9D91900BF3177 /* transform.hpp */,
+				D75D06BA1BBFAA3D00E50A4C /* maths.hpp */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -254,20 +241,6 @@
 			path = renderers;
 			sourceTree = "<group>";
 		};
-		D70A3A221BA9D91900BF3177 /* maths */ = {
-			isa = PBXGroup;
-			children = (
-				D735561B1BAD988300C7A2FE /* matrix.inl */,
-				D735561C1BAD988300C7A2FE /* matrix.hpp */,
-				D73556171BAD89F900C7A2FE /* quaternion.inl */,
-				D73556181BAD89F900C7A2FE /* quaternion.hpp */,
-				D73556131BAAFA9700C7A2FE /* vector.inl */,
-				D73556141BAAFA9700C7A2FE /* vector.hpp */,
-				D73556201BAEE2B300C7A2FE /* mathsfunc.hpp */,
-			);
-			path = maths;
-			sourceTree = "<group>";
-		};
 		D710CC331BA75B49008D170F = {
 			isa = PBXGroup;
 			children = (
@@ -293,7 +266,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D735561E1BAD988300C7A2FE /* matrix.hpp in Headers */,
 				D70A3A601BA9D91900BF3177 /* window.hpp in Headers */,
 				D70A3A351BA9D91900BF3177 /* renderablecomponent.hpp in Headers */,
 				D70A3A531BA9D91900BF3177 /* irenderer.hpp in Headers */,
@@ -305,7 +277,6 @@
 				D70A3A591BA9D91900BF3177 /* shader.hpp in Headers */,
 				D70A3A3B1BA9D91900BF3177 /* igame.hpp in Headers */,
 				D70A3A5B1BA9D91900BF3177 /* texture.hpp in Headers */,
-				D73556161BAAFA9700C7A2FE /* vector.hpp in Headers */,
 				D70A3A3A1BA9D91900BF3177 /* entitycomponent.hpp in Headers */,
 				D70A3A2F1BA9D91900BF3177 /* stb_image.h in Headers */,
 				D70A3A4A1BA9D91900BF3177 /* lighting.hpp in Headers */,
@@ -314,14 +285,12 @@
 				D70A3A551BA9D91900BF3177 /* simplerenderer.hpp in Headers */,
 				D70A3A501BA9D91900BF3177 /* renderable.hpp in Headers */,
 				D70A3A311BA9D91900BF3177 /* freelook.hpp in Headers */,
-				D735561A1BAD89F900C7A2FE /* quaternion.hpp in Headers */,
 				D70A3A331BA9D91900BF3177 /* freemove.hpp in Headers */,
 				D70A3A421BA9D91900BF3177 /* time.hpp in Headers */,
 				D70A3A481BA9D91900BF3177 /* indexedmodel.hpp in Headers */,
 				D70A3A4C1BA9D91900BF3177 /* material.hpp in Headers */,
 				D70A3A461BA9D91900BF3177 /* camera.hpp in Headers */,
 				D70A3A571BA9D91900BF3177 /* scene.hpp in Headers */,
-				D73556221BAEE2B300C7A2FE /* mathsfunc.hpp in Headers */,
 				D70A3A391BA9D91900BF3177 /* entity.hpp in Headers */,
 				D70A3A521BA9D91900BF3177 /* forwardrenderer3d.hpp in Headers */,
 				D70A3A3D1BA9D91900BF3177 /* input.hpp in Headers */,
@@ -387,7 +356,6 @@
 			files = (
 				D70A3A5C1BA9D91900BF3177 /* uniform.cpp in Sources */,
 				D70A3A3C1BA9D91900BF3177 /* input.cpp in Sources */,
-				D73556151BAAFA9700C7A2FE /* vector.inl in Sources */,
 				D70A3A301BA9D91900BF3177 /* freelook.cpp in Sources */,
 				D70A3A4B1BA9D91900BF3177 /* material.cpp in Sources */,
 				D70A3A5F1BA9D91900BF3177 /* window.cpp in Sources */,
@@ -397,8 +365,6 @@
 				D70A3A561BA9D91900BF3177 /* scene.cpp in Sources */,
 				D70A3A361BA9D91900BF3177 /* engine.cpp in Sources */,
 				D70A3A491BA9D91900BF3177 /* lighting.cpp in Sources */,
-				D73556191BAD89F900C7A2FE /* quaternion.inl in Sources */,
-				D735561D1BAD988300C7A2FE /* matrix.inl in Sources */,
 				D70A3A511BA9D91900BF3177 /* forwardrenderer3d.cpp in Sources */,
 				D70A3A581BA9D91900BF3177 /* shader.cpp in Sources */,
 				D70A3A4D1BA9D91900BF3177 /* objloading.cpp in Sources */,

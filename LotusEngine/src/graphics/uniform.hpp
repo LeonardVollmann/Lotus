@@ -1,9 +1,8 @@
 #ifndef LOTUS_UNIFORM_HPP_INCLUDED
 #define LOTUS_UNIFORM_HPP_INCLUDED
 
-#include "../maths/vector.hpp"
-#include "../maths/matrix.hpp"
 #include "material.hpp"
+#include "../core/maths.hpp"
 
 #include <GL/glew.h>
 #include <string>
