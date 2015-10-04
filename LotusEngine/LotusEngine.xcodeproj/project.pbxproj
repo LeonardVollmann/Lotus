@@ -70,6 +70,10 @@
 		D70A3A6A1BA9D91900BF3177 /* vec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D70A3A2C1BA9D91900BF3177 /* vec4.cpp */; };
 		D70A3A6B1BA9D91900BF3177 /* vec4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D70A3A2D1BA9D91900BF3177 /* vec4.hpp */; };
 		D70A3A8F1BA9D98500BF3177 /* res in Copy Files */ = {isa = PBXBuildFile; fileRef = D70A3A8E1BA9D98500BF3177 /* res */; };
+		D75D06BD1BBFCDAB00E50A4C /* spriterenderer2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D75D06BB1BBFCDAB00E50A4C /* spriterenderer2d.cpp */; settings = {ASSET_TAGS = (); }; };
+		D75D06BE1BBFCDAB00E50A4C /* spriterenderer2d.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D75D06BC1BBFCDAB00E50A4C /* spriterenderer2d.hpp */; settings = {ASSET_TAGS = (); }; };
+		D75D06C11BBFCE2000E50A4C /* spritecomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D75D06BF1BBFCE2000E50A4C /* spritecomponent.cpp */; settings = {ASSET_TAGS = (); }; };
+		D75D06C21BBFCE2000E50A4C /* spritecomponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = D75D06C01BBFCE2000E50A4C /* spritecomponent.hpp */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -151,6 +155,10 @@
 		D70A3A2D1BA9D91900BF3177 /* vec4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec4.hpp; sourceTree = "<group>"; };
 		D70A3A8E1BA9D98500BF3177 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		D710CC3C1BA75B49008D170F /* libLotusEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLotusEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D75D06BB1BBFCDAB00E50A4C /* spriterenderer2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spriterenderer2d.cpp; sourceTree = "<group>"; };
+		D75D06BC1BBFCDAB00E50A4C /* spriterenderer2d.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = spriterenderer2d.hpp; sourceTree = "<group>"; };
+		D75D06BF1BBFCE2000E50A4C /* spritecomponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spritecomponent.cpp; sourceTree = "<group>"; };
+		D75D06C01BBFCE2000E50A4C /* spritecomponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = spritecomponent.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +201,8 @@
 				D70A39F11BA9D91900BF3177 /* freemove.hpp */,
 				D70A39F21BA9D91900BF3177 /* renderablecomponent.cpp */,
 				D70A39F31BA9D91900BF3177 /* renderablecomponent.hpp */,
+				D75D06BF1BBFCE2000E50A4C /* spritecomponent.cpp */,
+				D75D06C01BBFCE2000E50A4C /* spritecomponent.hpp */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -258,6 +268,8 @@
 				D70A3A141BA9D91900BF3177 /* irenderer.hpp */,
 				D70A3A151BA9D91900BF3177 /* simplerenderer.cpp */,
 				D70A3A161BA9D91900BF3177 /* simplerenderer.hpp */,
+				D75D06BB1BBFCDAB00E50A4C /* spriterenderer2d.cpp */,
+				D75D06BC1BBFCDAB00E50A4C /* spriterenderer2d.hpp */,
 			);
 			path = renderers;
 			sourceTree = "<group>";
@@ -316,6 +328,7 @@
 				D70A3A591BA9D91900BF3177 /* shader.hpp in Headers */,
 				D70A3A3B1BA9D91900BF3177 /* igame.hpp in Headers */,
 				D70A3A621BA9D91900BF3177 /* mat4.hpp in Headers */,
+				D75D06C21BBFCE2000E50A4C /* spritecomponent.hpp in Headers */,
 				D70A3A5B1BA9D91900BF3177 /* texture.hpp in Headers */,
 				D70A3A631BA9D91900BF3177 /* maths.hpp in Headers */,
 				D70A3A3A1BA9D91900BF3177 /* entitycomponent.hpp in Headers */,
@@ -333,6 +346,7 @@
 				D70A3A421BA9D91900BF3177 /* time.hpp in Headers */,
 				D70A3A481BA9D91900BF3177 /* indexedmodel.hpp in Headers */,
 				D70A3A651BA9D91900BF3177 /* quat.hpp in Headers */,
+				D75D06BE1BBFCDAB00E50A4C /* spriterenderer2d.hpp in Headers */,
 				D70A3A4C1BA9D91900BF3177 /* material.hpp in Headers */,
 				D70A3A461BA9D91900BF3177 /* camera.hpp in Headers */,
 				D70A3A571BA9D91900BF3177 /* scene.hpp in Headers */,
@@ -414,10 +428,12 @@
 				D70A3A511BA9D91900BF3177 /* forwardrenderer3d.cpp in Sources */,
 				D70A3A581BA9D91900BF3177 /* shader.cpp in Sources */,
 				D70A3A661BA9D91900BF3177 /* vec2.cpp in Sources */,
+				D75D06BD1BBFCDAB00E50A4C /* spriterenderer2d.cpp in Sources */,
 				D70A3A641BA9D91900BF3177 /* quat.cpp in Sources */,
 				D70A3A4D1BA9D91900BF3177 /* objloading.cpp in Sources */,
 				D70A3A321BA9D91900BF3177 /* freemove.cpp in Sources */,
 				D70A3A3E1BA9D91900BF3177 /* resourcemanagement.cpp in Sources */,
+				D75D06C11BBFCE2000E50A4C /* spritecomponent.cpp in Sources */,
 				D70A3A541BA9D91900BF3177 /* simplerenderer.cpp in Sources */,
 				D70A3A471BA9D91900BF3177 /* indexedmodel.cpp in Sources */,
 				D70A3A2E1BA9D91900BF3177 /* stb_image.c in Sources */,

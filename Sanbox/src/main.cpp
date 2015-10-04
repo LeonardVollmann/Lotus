@@ -22,7 +22,9 @@
 #include <graphics/shader.hpp>
 #include <graphics/renderers/simplerenderer.hpp>
 #include <graphics/renderers/forwardrenderer3d.hpp>
+#include <graphics/renderers/spriterenderer2d.hpp>
 #include <components/renderablecomponent.hpp>
+#include <components/spritecomponent.hpp>
 #include <components/freemove.hpp>
 #include <components/freelook.hpp>
 
@@ -64,7 +66,7 @@ public:
 	{}
 
 	virtual ~TestGame() {}
-	virtual void tick() {}
+	virtual void tick() override {}
 
 	virtual void init() override
 	{
@@ -137,7 +139,29 @@ public:
 		scene->add(plane);
 		scene->add(plane2);
 		scene->add(m_monkey1);
+		
+//		Entity *sprite = new Entity();
+//		sprite->getTransform().translate(vec3(0.0f, 0.0f, 1.0f));
+//		sprite->addComponent(new SpriteComponent());
+		
+		SpriteRenderer2D *spriteRenderer = new SpriteRenderer2D();
+		Scene *scene2 = new Scene(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), spriteRenderer);
+//		scene2->add(sprite);
+		
+		const unsigned int n = 100;
+		for (unsigned int i = 0; i < n; i++)
+		{
+			for (unsigned int j = 0; j < n; j++)
+			{
+				Entity *sprite = new Entity();
+				sprite->getTransform().translate(maths::vec3(j * 2, i * 2 + 10, 0));
+				sprite->addComponent(new SpriteComponent());
+				scene2->add(sprite);
+			}
+		}
+		
 		addScene(scene);
+		addScene(scene2);
 	}
 
 	virtual void shutdown() override {}
