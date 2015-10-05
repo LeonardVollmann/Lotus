@@ -47,6 +47,7 @@ private:
 	Entity 		*m_monkey3;
 	Entity 		*m_monkey4;
 	Entity 		*m_monkey5;
+	Entity		*sprites;
 	float m_temp = 0.0f;
 public:
 	TestGame() :
@@ -135,30 +136,34 @@ public:
 		}
 		renderer->addSpotLight(m_spotLight);
 
-		Scene *scene = new Scene(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), renderer);
+		Scene *scene = new Scene(mat4::perspective(70.0f, 1000.0f / 800.0f, 0.01f, 1000.0f), renderer);
 		scene->add(plane);
 		scene->add(plane2);
 		scene->add(m_monkey1);
 		
 //		Entity *sprite = new Entity();
-//		sprite->getTransform().translate(vec3(0.0f, 0.0f, 1.0f));
+//		sprite->getTransform().translate(vec3(0.0f, 0.0f, 0.1f));
 //		sprite->addComponent(new SpriteComponent());
 		
 		SpriteRenderer2D *spriteRenderer = new SpriteRenderer2D();
-		Scene *scene2 = new Scene(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), spriteRenderer);
+		Scene *scene2 = new Scene(mat4::orthographic(-1000.0f / 800.0f, 1000.0f / 800.0f, -1.0f, 1.0f, -1.0f, 0.0f), spriteRenderer);
 //		scene2->add(sprite);
 		
-		const unsigned int n = 100;
+		sprites = new Entity();
+		const unsigned int n = 75;
 		for (unsigned int i = 0; i < n; i++)
 		{
 			for (unsigned int j = 0; j < n; j++)
 			{
 				Entity *sprite = new Entity();
-				sprite->getTransform().translate(maths::vec3(j * 2, i * 2 + 10, 0));
+				sprite->getTransform().scale(maths::vec3(0.01f, 0.01f, 1.0f));
+				sprite->getTransform().translate(maths::vec3(j * 0.02f - (float(n) / 100.0f), i * 0.02f - (float(n) / 100.0f), 0.0f));
 				sprite->addComponent(new SpriteComponent());
-				scene2->add(sprite);
+				
+				sprites->addChild(sprite);
 			}
 		}
+		scene2->add(sprites);
 		
 		addScene(scene);
 		addScene(scene2);
@@ -192,6 +197,8 @@ public:
 		m_monkey4->getTransform().getPos().z = -cosTemp * 2.0f;
 		m_monkey5->getTransform().getPos().x = -sinTemp * 2.0f;
 		m_monkey5->getTransform().getPos().y = -cosTemp * 2.0f;
+
+		sprites->getTransform().rotate(0.001f, vec3(0.0f, 0.0f, 1.0f));
 	}
 };
 
