@@ -352,7 +352,7 @@ namespace lotus { namespace graphics {
 
 	void Shader::setUniform(GLint location, const maths::Matrix4f &value) const
 	{
-		glUniformMatrix4fv(location, 1, GL_FALSE, value.elements);
+		glUniformMatrix4fv(location, 1, GL_FALSE, value.m);
 	}
 
 } }

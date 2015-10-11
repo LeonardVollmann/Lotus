@@ -396,7 +396,7 @@ namespace lotus { namespace maths {
 	template <typename T>
 	inline T lengthSquared(const Vector4<T> &vec)
 	{
-		return vec.x * vec.x + vec.y * vec.y + vec.z * vec.z;
+		return vec.x * vec.x + vec.y * vec.y + vec.z * vec.z + vec.w * vec.w;
 	}
 	
 	template <typename T>
@@ -523,8 +523,8 @@ namespace lotus { namespace maths {
 		
 		Quaternion(const Vector3<T> &axis, T angle)
 		{
-			const T sinHalfAngle = (T) sinf(angle / (T) 2);
-			const T cosHalfAngle = (T) cosf(angle / (T) 2);
+			const T sinHalfAngle = sin(angle / (T) 2);
+			const T cosHalfAngle = cos(angle / (T) 2);
 			
 			x = axis.x * sinHalfAngle;
 			y = axis.y * sinHalfAngle;
@@ -560,7 +560,8 @@ namespace lotus { namespace maths {
 	template <typename T>
 	inline Quaternion<T> normalized(const Quaternion<T> &q)
 	{
-		return Quaternion<T>(q) * ((T) 1 / length(q));
+		const T l = length(q);
+		return Quaternion<T>(q.x / l, q.y / l, q.z / l, q.w / l);
 	}
 	
 	template <typename T>
@@ -637,29 +638,30 @@ namespace lotus { namespace maths {
 	template <typename T, unsigned int N>
 	struct Matrix
 	{
-		T elements[N * N];
+		T m[N * N];
 		
 		Matrix(T diagonal = 0)
 		{
-			for (unsigned int i = 0; i < N; i++)
+			for (unsigned int y = 0; y < N; y++)
 			{
-				for (unsigned int j = 0; j < N; j++)
+				for (unsigned int x = 0; x < N; x++)
 				{
-					if (i == j) elements[j + i * N] = diagonal;
-					else elements[j + i * N] = (T) 0;
+					if (x == y) m[x + y * N] = diagonal;
+					else m[x + y * N] = (T) 0;
 				}
 			}
 		}
+
 	};
 	
 	template <typename T, unsigned int N>
 	inline bool operator==(const Matrix<T, N> &l, const Matrix<T, N> &r)
 	{
-		for (unsigned int i = 0; i < N; i++)
+		for (unsigned int y = 0; y < N; y++)
 		{
-			for (unsigned int j = 0; j < N; j++)
+			for (unsigned int x = 0; x < N; x++)
 			{
-				if (l[j + i * N] != r[j + i * N]) return false;
+				if (l[x + y * N] != r[x + y * N]) return false;
 			}
 		}
 		return true;
@@ -675,16 +677,15 @@ namespace lotus { namespace maths {
 	inline Matrix<T, N> mul(const Matrix<T, N> &l, const Matrix<T, N> &r)
 	{
 		Matrix<T, N> result;
-		for (unsigned int i = 0; i < N; i++)
+		for (unsigned int y = 0; y < N; y++)
 		{
-			for (unsigned int j = 0; j < N; j++)
+			for (unsigned int x = 0; x < N; x++)
 			{
-				T n;
-				for (unsigned int k = 0; k < N; k++)
+				result.m[x + y * N] = 0;
+				for (unsigned int i = 0; i < N; i++)
 				{
-					n +=  l.elements[i + k * N] * r.elements[k + j * N];
+					result.m[x + y * N] += l.m[x + i * N] * r.m[i + y * N];
 				}
-				result.elements[i + j * N] = n;
 			}
 		}
 		return result;
@@ -696,7 +697,7 @@ namespace lotus { namespace maths {
 		Matrix<T, N> result;
 		for (unsigned int i = 0; i < N * N; i++)
 		{
-			result[i] = l[i] * r;
+			result.m[i] = l.m[i] * r;
 		}
 		return result;
 	}
@@ -717,26 +718,23 @@ namespace lotus { namespace maths {
 	inline Matrix<T, N> transposed(const Matrix<T, N> &m)
 	{
 		Matrix<T, N> result;
-		for (unsigned int i = 0; i < N; i++)
+		for (unsigned int y = 0; y < N; y++)
 		{
-			for (unsigned int j = 0; j < N; j++)
+			for (unsigned int x = 0; x < N; x++)
 			{
-				result[j + i * N] = m[i + j * N];
+				result[x + y * N] = m[y + x * N];
 			}
 		}
 		return result;
 	}
-	
-//	template <typename T, unsigned int N>
-//	Matrix<T, N> translation(const Vector<T, N - 1> &translation);
 
 	template <typename T>
 	inline Matrix<T, 3> translation(const Vector2<T> &translation)
 	{
-		Matrix<T, 3> result;
-		for (unsigned int i = 0; i < 3 - 1; i++)
+		Matrix<T, 3> result(1);
+		for (unsigned int i = 0; i < 2; i++)
 		{
-			result.elements[3 - 1 + i * 3] = translation.v[i];
+			result.m[5] = translation.v[i];
 		}
 		return result;
 	}
@@ -744,24 +742,21 @@ namespace lotus { namespace maths {
 	template <typename T>
 	inline Matrix<T, 4> translation(const Vector3<T> &translation)
 	{
-		Matrix<T, 4> result;
-		for (unsigned int i = 0; i < 4 - 1; i++)
+		Matrix<T, 4> result(1);
+		for (unsigned int i = 0; i < 3; i++)
 		{
-			result.elements[4 - 1 + i * 4] = translation.v[i];
+			result.m[12 + i] = translation.v[i];
 		}
 		return result;
 	}
 	
-//	template <typename T, unsigned int N>
-//	Matrix<T, N> scale(const Vector<T, N - 1> &scale);
-	
 	template <typename T>
 	inline Matrix<T, 3> scale(const Vector2<T> &scale)
 	{
-		Matrix<T, 3> result;
-		for (unsigned int i = 0; i < 3 - 1; i++)
+		Matrix<T, 3> result(1);
+		for (unsigned int i = 0; i < 2; i++)
 		{
-			result.elements[i * (3 + 1)] = scale.v[i];
+			result.m[i + i * 3] = scale.v[i];
 		}
 		return result;
 	}
@@ -769,10 +764,10 @@ namespace lotus { namespace maths {
 	template <typename T>
 	inline Matrix<T, 4> scale(const Vector3<T> &scale)
 	{
-		Matrix<T, 4> result;
-		for (unsigned int i = 0; i < 4 - 1; i++)
+		Matrix<T, 4> result(1);
+		for (unsigned int i = 0; i < 3; i++)
 		{
-			result.elements[i * (4 + 1)] = scale.v[i];
+			result.m[i + i * 4] = scale.v[i];
 		}
 		return result;
 	}
@@ -830,15 +825,17 @@ namespace lotus { namespace maths {
 	{
 		Matrix<T, N> result(1);
 		
-		result.elements[0 + 0 * N] = r.x;
-		result.elements[1 + 0 * N] = r.y;
-		result.elements[2 + 0 * N] = r.z;
-		result.elements[0 + 1 * N] = u.x;
-		result.elements[1 + 1 * N] = u.y;
-		result.elements[2 + 1 * N] = u.z;
-		result.elements[0 + 2 * N] = f.x;
-		result.elements[1 + 2 * N] = f.y;
-		result.elements[2 + 2 * N] = f.z;
+		result.m[0 + 0 * N] = r.x;
+		result.m[1 + 0 * N] = r.y;
+		result.m[2 + 0 * N] = r.z;
+		
+		result.m[0 + 1 * N] = u.x;
+		result.m[1 + 1 * N] = u.y;
+		result.m[2 + 1 * N] = u.z;
+		
+		result.m[0 + 2 * N] = f.x;
+		result.m[1 + 2 * N] = f.y;
+		result.m[2 + 2 * N] = f.z;
 		
 		return result;
 	}
@@ -846,17 +843,39 @@ namespace lotus { namespace maths {
 	template <typename T, unsigned int N>
 	inline Matrix<T, N> rotation(const Quaternion<T> &rot)
 	{
-		T f[3] = { 2 * (rot.x * rot.z - rot.w * rot.y), 2.0f * (rot.y * rot.z + rot.w * rot.x), 1.0f - 2.0f * (rot.x * rot.x + rot.y * rot.y) };
-		T u[3] = { 2 * (rot.x * rot.y + rot.w * rot.z), 1.0f - 2.0f * (rot.x * rot.x + rot.z * rot.z), 2.0f * (rot.y * rot.z - rot.w * rot.x) };
-		T r[3] = { 1 - 2.0f * (rot.y * rot.y + rot.z * rot.z), 2.0f * (rot.x * rot.y - rot.w * rot.z), 2.0f * (rot.x * rot.z + rot.w * rot.y) };
+		Vector3<T> f((T) 2 * (rot.x * rot.z - rot.w * rot.y), (T) 2 * (rot.y * rot.z + rot.w * rot.x), (T) 1 - (T) 2 * (rot.x * rot.x + rot.y * rot.y));
+		Vector3<T> u((T) 2 * (rot.x * rot.y + rot.w * rot.z), (T) 1 - (T) 2 * (rot.x * rot.x + rot.z * rot.z), (T) 2 * (rot.y * rot.z - rot.w * rot.x));
+		Vector3<T> r((T) 1 - (T) 2 * (rot.y * rot.y + rot.z * rot.z), (T) 2 * (rot.x * rot.y - rot.w * rot.z), (T) 2 * (rot.x * rot.z + rot.w * rot.y));
 		
-		return rotation<T, N>(Vector3<T>(f), Vector3<T>(u), Vector3<T>(r));
+		return rotation<T, N>(f, u, r);
 	}
 	
 	template <typename T, unsigned int N>
 	inline Matrix<T, N> rotation(const Vector<T, N> &axis, T angle)
 	{
-		return rotation(Quaternion<T>(axis, angle));
+		Matrix<T, N> result(1);
+		
+		const T c = cos(angle);
+		const T s = sin(angle);
+		const T omc = (T) 1 - c;
+		
+		const T &x = axis.x;
+		const T &y = axis.y;
+		const T &z = axis.z;
+		
+		result[0 + 0 * 4] = x * omc + c;
+		result[1 + 0 * 4] = y * x * omc + z * s;
+		result[2 + 0 * 4] = x * z * omc - y * s;
+		
+		result[0 + 1 * 4] = x * y * omc - z * s;
+		result[1 + 1 * 4] = y * omc + c;
+		result[2 + 1 * 4] = y * z * omc + x * s;
+		
+		result[0 + 2 * 4] = x * z * omc + y * s;
+		result[1 + 2 * 4] = y * z * omc - x * s;
+		result[2 + 2 * 4] = z * omc + c;
+		
+		return result;
 	}
 	
 	template <typename T>
@@ -864,11 +883,9 @@ namespace lotus { namespace maths {
 	{
 		Matrix<T, 4> result;
 		
-		result[0 + 0 * 4] = 2.0f / (right - left);
-		
-		result[1 + 1 * 4] = 2.0f / (top - bottom);
-		
-		result[2 + 2 * 4] = 2.0f / (near - far);
+		result[0 + 0 * 4] = (T) 2 / (right - left);
+		result[1 + 1 * 4] = (T) 2 / (top - bottom);
+		result[2 + 2 * 4] = (T) 2 / (near - far);
 		
 		result[0 + 3 * 4] = (left + right) / (left - right);
 		result[1 + 3 * 4] = (bottom + top) / (bottom - top);
@@ -880,19 +897,19 @@ namespace lotus { namespace maths {
 	template <typename T>
 	inline Matrix<T, 4> perspective(T fov, T aspectRatio, T near, T far)
 	{
-		Matrix<T, 4> result(1.0f);
+		Matrix<T, 4> result(1);
 		
-		float q = 1.0f / tan(toRadians(0.5f * fov));
-		float a = q / aspectRatio;
+		const T q = (T) 1 / tan(toRadians((T) 0.5 * fov));
+		const T a = q / aspectRatio;
 		
-		float b = (near + far) / (near - far);
-		float c = (2.0f * near * far) / (near - far);
+		const T b = (near + far) / (near - far);
+		const T c = ((T) 2 * near * far) / (near - far);
 		
-		result.elements[0 + 0 * 4] = a;
-		result.elements[1 + 1 * 4] = q;
-		result.elements[2 + 2 * 4] = b;
-		result.elements[3 + 2 * 4] = -1.0f;
-		result.elements[2 + 3 * 4] = c;
+		result.m[0 + 0 * 4] = a;
+		result.m[1 + 1 * 4] = q;
+		result.m[2 + 2 * 4] = b;
+		result.m[3 + 2 * 4] = (T) -1;
+		result.m[2 + 3 * 4] = c;
 		
 		return result;
 	}
