@@ -41,10 +41,6 @@ private:
 	SpotLight	*m_spotLight;
 	PointLight	*m_pointLights[8];
 	Entity 		*m_monkey1;
-	Entity 		*m_monkey2;
-	Entity 		*m_monkey3;
-	Entity 		*m_monkey4;
-	Entity 		*m_monkey5;
 	float m_temp = 0.0f;
 public:
 	TestGame() :
@@ -92,24 +88,11 @@ public:
 		Entity *plane = new Entity();
 		Entity *plane2 = new Entity();
 		m_monkey1 = new Entity();
-		m_monkey2 = new Entity();
-		m_monkey3 = new Entity();
-		m_monkey4 = new Entity();
-		m_monkey5 = new Entity();
-		plane->getTransform().rotate(3.14159f / 2.0f, Vector3f(1.0f, 0.0f, 0.0f));
+		plane->getTransform().rotate(-3.14159f / 2.0f, Vector3f(1.0f, 0.0f, 0.0f));
 		plane2->getTransform().rotate(-3.14159f / 2.0f, Vector3f(1.0f, 0.0f, 0.0f));
 		plane2->getTransform().translate(Vector3f(5.0f, 2.0f, 5.0f));
 		plane2->getTransform().scale(Vector3f(0.3f, 0.3f, 0.3f));
 		m_monkey1->getTransform().translate(Vector3f(0.0f, 3.0f, 0.0f));
-		m_monkey2->getTransform().scale(Vector3f(0.25f));
-		m_monkey3->getTransform().scale(Vector3f(0.25f));
-		m_monkey4->getTransform().scale(Vector3f(0.25f));
-		m_monkey5->getTransform().scale(Vector3f(0.25f));
-
-		m_monkey1->addChild(m_monkey2);
-		m_monkey1->addChild(m_monkey3);
-		// m_monkey1->addChild(m_monkey4);
-		// m_monkey1->addChild(m_monkey5);
 
 		m_camera->addComponent<FreeMove>(10.0f);
 		m_camera->addComponent<FreeLook>(5.0f);
@@ -118,15 +101,11 @@ public:
 		plane->addComponent<RenderableComponent3D>(new Renderable3D(model), material);
 		plane2->addComponent<RenderableComponent3D>(new Renderable3D(model), material2);
 		m_monkey1->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
-		m_monkey2->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
-		m_monkey3->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
-		// m_monkey4->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
-		// m_monkey5->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
-
+		
 		ForwardRenderer3D *renderer = new ForwardRenderer3D();
 		renderer->setAmbientLight(Vector3f(0.1f));
-		renderer->addDirectionalLight(new DirectionalLight(Vector3f(1.0f, 0.0f, 0.0f), 0.4f, normalized(Vector3f(1.0f, 1.0f, 1.0f))));
-									  renderer->addDirectionalLight(new DirectionalLight(Vector3f(0.0f, 0.0f, 1.0f), 0.4f, normalized(Vector3f(-1.0f, 1.0f, -1.0f))));
+		renderer->addDirectionalLight(new DirectionalLight(Vector3f(1.0f, 0.0f, 0.0f), 0.4f, normalize(Vector3f(1.0f, 1.0f, 1.0f))));
+		renderer->addDirectionalLight(new DirectionalLight(Vector3f(0.0f, 0.0f, 1.0f), 0.4f, normalize(Vector3f(-1.0f, 1.0f, -1.0f))));
 		for (unsigned int i = 0; i < 8; i++)
 		{
 			renderer->addPointLight(m_pointLights[i]);
@@ -159,15 +138,6 @@ public:
 		m_spotLight->setDirection(getBack(m_camera->getTransform().getRot()));
 
 		m_monkey1->getTransform().rotate(0.01f, Vector3f(0.0f, 1.0f, 0.0f));
-
-		m_monkey2->getTransform().getPos().x = sinTemp * 2.0f;
-		m_monkey2->getTransform().getPos().z = cosTemp * 2.0f;
-		m_monkey3->getTransform().getPos().x = sinTemp * 2.0f;
-		m_monkey3->getTransform().getPos().y = cosTemp * 2.0f;
-		m_monkey4->getTransform().getPos().x = -sinTemp * 2.0f;
-		m_monkey4->getTransform().getPos().z = -cosTemp * 2.0f;
-		m_monkey5->getTransform().getPos().x = -sinTemp * 2.0f;
-		m_monkey5->getTransform().getPos().y = -cosTemp * 2.0f;
 	}
 };
 

@@ -13,8 +13,8 @@ namespace lotus { namespace graphics {
 
 	maths::Matrix4f Camera::getViewMatrix() const
 	{
-		return maths::rotation<float, 4>(maths::normalized(maths::conjugate(m_transform.getRot()))) *
-				maths::translation<float>(m_transform.getPos() * maths::Vector3f(-1.0f));
+		return maths::rotation<float, 4>(maths::conjugate(m_transform.getRot())) *
+				maths::translation<float>(m_transform.getPos() * -1.0f);
 	}
 
 	void Camera::bind() const

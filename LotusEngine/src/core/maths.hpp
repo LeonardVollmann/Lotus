@@ -105,7 +105,7 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector2<T> normalized(const Vector2<T> &vec)
+	inline Vector2<T> normalize(const Vector2<T> &vec)
 	{
 		Vector2<T> result(vec);
 		result /= length(result);
@@ -243,7 +243,7 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector3<T> normalized(const Vector3<T> &vec)
+	inline Vector3<T> normalize(const Vector3<T> &vec)
 	{
 		Vector3<T> result;
 		result = vec / length(vec);
@@ -402,11 +402,11 @@ namespace lotus { namespace maths {
 	template <typename T>
 	inline T length(const Vector4<T> &vec)
 	{
-		return sqrtf(lengthSquared(vec));
+		return sqrt<T>(lengthSquared(vec));
 	}
 	
 	template <typename T>
-	inline Vector4<T> normalized(const Vector4<T> &vec)
+	inline Vector4<T> normalize(const Vector4<T> &vec)
 	{
 		Vector4<T> result(vec);
 		result /= length(result);
@@ -510,10 +510,7 @@ namespace lotus { namespace maths {
 	template <typename T>
 	struct Quaternion
 	{
-		T x;
-		T y;
-		T z;
-		T w;
+		T x, y, z, w;
 		
 		Quaternion(T x = (T) 0, T y = (T) 0, T z = (T) 0, T w = (T) 1) :
 			x(x),
@@ -523,8 +520,8 @@ namespace lotus { namespace maths {
 		
 		Quaternion(const Vector3<T> &axis, T angle)
 		{
-			const T sinHalfAngle = sin(angle / (T) 2);
-			const T cosHalfAngle = cos(angle / (T) 2);
+			const T sinHalfAngle = sin<T>(angle / (T) 2);
+			const T cosHalfAngle = cos<T>(angle / (T) 2);
 			
 			x = axis.x * sinHalfAngle;
 			y = axis.y * sinHalfAngle;
@@ -558,7 +555,7 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Quaternion<T> normalized(const Quaternion<T> &q)
+	inline Quaternion<T> normalize(const Quaternion<T> &q)
 	{
 		const T l = length(q);
 		return Quaternion<T>(q.x / l, q.y / l, q.z / l, q.w / l);
@@ -586,10 +583,10 @@ namespace lotus { namespace maths {
 	template <typename T>
 	inline Quaternion<T> mul(const Quaternion<T> &l, const Quaternion<T> &r)
 	{
+		const T w = l.w * r.w - l.x * r.x - l.y * r.y - l.z * r.z;
 		const T x = l.x * r.w + l.w * r.x + l.y * r.z - l.z * r.y;
 		const T y = l.y * r.w + l.w * r.y + l.z * r.x - l.x * r.z;
 		const T z = l.z * r.w + l.w * r.z + l.x * r.y - l.y * r.x;
-		const T w = l.w * r.w - l.x * r.x - l.y * r.y - l.z * r.z;
 		
 		return Quaternion<T>(x, y, z, w);
 	}
@@ -777,13 +774,13 @@ namespace lotus { namespace maths {
 	{
 		Matrix<T, N> result(1);
 		
-		T sin = sin(angle);
-		T cos = cos(angle);
+		T sinAngle = sin<T>(angle);
+		T cosAngle = cos<T>(angle);
 		
-		result[0 + 0 * N] = cos;
-		result[1 + 0 * N] = -sin;
-		result[0 + 1 * N] = sin;
-		result[1 + 1 * N] = cos;
+		result[0 + 0 * N] = cosAngle;
+		result[1 + 0 * N] = -sinAngle;
+		result[0 + 1 * N] = sinAngle;
+		result[1 + 1 * N] = cosAngle;
 		
 		return result;
 	}
@@ -795,12 +792,12 @@ namespace lotus { namespace maths {
 		Matrix<T, N> ry(1);
 		Matrix<T, N> rz(1);
 		
-		const T sinx = sin(x);
-		const T cosx = cos(x);
-		const T siny = sin(y);
-		const T cosy = cos(y);
-		const T sinz = sin(z);
-		const T cosz = cos(z);
+		const T sinx = sin<T>(x);
+		const T cosx = cos<T>(x);
+		const T siny = sin<T>(y);
+		const T cosy = cos<T>(y);
+		const T sinz = sin<T>(z);
+		const T cosz = cos<T>(z);
 		
 		rx[1 + 1 * N] = cosx;
 		rx[2 + 1 * N] = -sinx;
@@ -843,9 +840,9 @@ namespace lotus { namespace maths {
 	template <typename T, unsigned int N>
 	inline Matrix<T, N> rotation(const Quaternion<T> &rot)
 	{
-		Vector3<T> f((T) 2 * (rot.x * rot.z - rot.w * rot.y), (T) 2 * (rot.y * rot.z + rot.w * rot.x), (T) 1 - (T) 2 * (rot.x * rot.x + rot.y * rot.y));
-		Vector3<T> u((T) 2 * (rot.x * rot.y + rot.w * rot.z), (T) 1 - (T) 2 * (rot.x * rot.x + rot.z * rot.z), (T) 2 * (rot.y * rot.z - rot.w * rot.x));
-		Vector3<T> r((T) 1 - (T) 2 * (rot.y * rot.y + rot.z * rot.z), (T) 2 * (rot.x * rot.y - rot.w * rot.z), (T) 2 * (rot.x * rot.z + rot.w * rot.y));
+		const Vector3<T> f = rotate(Vector3<T>(0.0f, 0.0f, 1.0f), rot);
+		const Vector3<T> u = rotate(Vector3<T>(0.0f, 1.0f, 0.0f), rot);
+		const Vector3<T> r = rotate(Vector3<T>(1.0f, 0.0f, 0.0f), rot);
 		
 		return rotation<T, N>(f, u, r);
 	}
@@ -855,8 +852,8 @@ namespace lotus { namespace maths {
 	{
 		Matrix<T, N> result(1);
 		
-		const T c = cos(angle);
-		const T s = sin(angle);
+		const T c = cos<T>(angle);
+		const T s = sin<T>(angle);
 		const T omc = (T) 1 - c;
 		
 		const T &x = axis.x;

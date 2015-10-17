@@ -10,10 +10,10 @@ namespace lotus {
 	public:
 		static const Transform *CURRENT;
 	private:
-		maths::Vector3f m_pos;
-		maths::QuaternionF m_rot;
-		maths::Vector3f m_scale;
-		Transform 	*m_parent;
+		maths::Vector3f		m_pos;
+		maths::QuaternionF	m_rot;
+		maths::Vector3f		m_scale;
+		Transform			*m_parent;
 	public:
 		Transform(const maths::Vector3f &pos = maths::Vector3f(0.0f, 0.0f, 0.0f),
 			const maths::QuaternionF &rot = maths::QuaternionF(0.0f, 0.0f, 0.0f, 1.0f),

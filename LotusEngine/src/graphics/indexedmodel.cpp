@@ -132,7 +132,7 @@ namespace lotus { namespace graphics {
 
 		for (auto it = m_normals.begin(); it < m_normals.end(); it++)
 		{
-			*it = maths::normalized(*it);
+			*it = maths::normalize(*it);
 		}
 	}
 
@@ -169,7 +169,7 @@ namespace lotus { namespace graphics {
 
 		for (auto it = m_tangents.begin(); it < m_tangents.end(); it++)
 		{
-			*it = maths::normalized(*it);
+			*it = maths::normalize(*it);
 		}
 	}
 
