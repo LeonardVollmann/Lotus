@@ -88,8 +88,8 @@ public:
 		Entity *plane = new Entity();
 		Entity *plane2 = new Entity();
 		m_monkey1 = new Entity();
-		plane->getTransform().rotate(-3.14159f / 2.0f, Vector3f(1.0f, 0.0f, 0.0f));
-		plane2->getTransform().rotate(-3.14159f / 2.0f, Vector3f(1.0f, 0.0f, 0.0f));
+		plane->getTransform().rotate(Vector3f(1.0f, 0.0f, 0.0f), -3.14159f / 2.0f);
+		plane2->getTransform().rotate(Vector3f(1.0f, 0.0f, 0.0f), -3.14159f / 2.0f);
 		plane2->getTransform().translate(Vector3f(5.0f, 2.0f, 5.0f));
 		plane2->getTransform().scale(Vector3f(0.3f, 0.3f, 0.3f));
 		m_monkey1->getTransform().translate(Vector3f(0.0f, 3.0f, 0.0f));
@@ -135,9 +135,9 @@ public:
 		}
 
 		m_spotLight->setPos(m_camera->getTransform().getPos());
-		m_spotLight->setDirection(getBack(m_camera->getTransform().getRot()));
+		m_spotLight->setDirection(getForward(m_camera->getTransform().getRot()));
 
-		m_monkey1->getTransform().rotate(0.01f, Vector3f(0.0f, 1.0f, 0.0f));
+		m_monkey1->getTransform().rotate(Vector3f(0.0f, 1.0f, 0.0f), 0.01f);
 	}
 };
 

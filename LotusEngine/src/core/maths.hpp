@@ -617,9 +617,9 @@ namespace lotus { namespace maths {
 	inline void operator*=(Quaternion<T> &l, const Vector3<T> &r) { l = l * r; }
 	
 	template <typename T>
-	inline Vector3<T> getForward(const Quaternion<T> &q)	{ return rotate(Vector3<T>(0, 0, 1), q); }
+	inline Vector3<T> getForward(const Quaternion<T> &q)	{ return rotate(Vector3<T>(0, 0, -1), q); }
 	template <typename T>
-	inline Vector3<T> getBack(const Quaternion<T> &q)		{ return rotate(Vector3<T>(0, 0, -1), q); }
+	inline Vector3<T> getBack(const Quaternion<T> &q)		{ return rotate(Vector3<T>(0, 0, 1), q); }
 	template <typename T>
 	inline Vector3<T> getUp(const Quaternion<T> &q)			{ return rotate(Vector3<T>(0, 1, 0), q); }
 	template <typename T>

@@ -33,10 +33,10 @@ namespace lotus {
 
 	void Transform::rotate(const maths::QuaternionF &rotation)
 	{
-		m_rot = maths::normalize(m_rot * rotation);
+		m_rot = maths::normalize(rotation * m_rot);
 	}
 
-	void Transform::rotate(float angle, const maths::Vector3f &axis)
+	void Transform::rotate(const maths::Vector3f &axis, float angle)
 	{
 		rotate(maths::QuaternionF(axis, angle));
 	}

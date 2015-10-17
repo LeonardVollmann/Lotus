@@ -12,7 +12,7 @@ FreeMove::FreeMove(float speed) :
 	{
 		if (Input::getKey(GLFW_KEY_W))
 		{
-			move(maths::getBack(m_entity->getTransform().getRot()), m_speed * delta);
+			move(maths::getForward(m_entity->getTransform().getRot()), m_speed * delta);
 		}
 		if (Input::getKey(GLFW_KEY_A))
 		{
@@ -20,7 +20,7 @@ FreeMove::FreeMove(float speed) :
 		}
 		if (Input::getKey(GLFW_KEY_S))
 		{
-			move(maths::getForward(m_entity->getTransform().getRot()), m_speed * delta);
+			move(maths::getBack(m_entity->getTransform().getRot()), m_speed * delta);
 		}
 		if (Input::getKey(GLFW_KEY_D))
 		{

@@ -25,7 +25,7 @@ namespace lotus {
 
 		void translate(const maths::Vector3f &translation);
 		void rotate(const maths::QuaternionF &rotation);
-		void rotate(float angle, const maths::Vector3f &axis);
+		void rotate(const maths::Vector3f &axis, float angle);
 		void scale(const maths::Vector3f &scale);
 
 		void setPos(const maths::Vector3f &pos);
