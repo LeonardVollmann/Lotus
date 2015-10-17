@@ -11,11 +11,6 @@ namespace lotus {
 
 	class Entity
 	{
-	protected:
-		Entity 							*m_parent;
-		Transform 						m_transform;
-		std::vector<Entity*>			m_children;
-		std::vector<EntityComponent*> 	m_components;
 	public:
 		Entity(const Transform &transform = Transform());
 		virtual ~Entity();
@@ -49,6 +44,11 @@ namespace lotus {
 		inline Transform &getTransform() { return m_transform; }
 		inline const Transform &getTransform()	const { return m_transform; }
 		inline Entity *getParent()				const { return m_parent; }
+	protected:
+		Entity 							*m_parent;
+		Transform 						m_transform;
+		std::vector<Entity*>			m_children;
+		std::vector<EntityComponent*> 	m_components;
 	};
 
 }

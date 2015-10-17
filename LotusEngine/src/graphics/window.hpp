@@ -8,11 +8,6 @@ namespace lotus { namespace graphics {
 
 	class Window
 	{
-	private:
-		GLFWwindow 	*m_window;
-		int 		m_width;
-		int 		m_height;
-		const char 	*m_title;
 	public:
 		Window(int width, int height, const char *title);
 		virtual ~Window();
@@ -31,6 +26,11 @@ namespace lotus { namespace graphics {
 		inline void setHeight(int height)	{ m_height = height; }
 	private:
 		bool init();
+	private:
+		GLFWwindow 	*m_window;
+		int 		m_width;
+		int 		m_height;
+		const char 	*m_title;
 	};
 
 } }

@@ -10,19 +10,17 @@ namespace lotus { namespace graphics {
 
 	class TextureResource : public Resource
 	{
-	private:
-		GLuint m_textureID;
 	public:
 		TextureResource(const std::string &fileName);
 		virtual ~TextureResource();
 
 		inline GLuint getTextureID() const { return m_textureID; }
+	private:
+		GLuint m_textureID;
 	};
 
 	class Texture
 	{
-	private:
-		TextureResource *m_textureResource;
 	public:
 		Texture(const std::string &fileName);
 		virtual ~Texture();
@@ -30,6 +28,8 @@ namespace lotus { namespace graphics {
 		void bind(unsigned int unit) const;
 
 		inline GLuint getTextureID() const { return m_textureResource->getTextureID(); }
+	private:
+		TextureResource *m_textureResource;
 	};
 
 } }

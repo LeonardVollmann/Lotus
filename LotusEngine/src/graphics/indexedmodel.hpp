@@ -12,13 +12,6 @@ namespace lotus { namespace graphics {
 
 	class IndexedModel
 	{
-	private:
-		std::vector<maths::Vector3f>	m_positions;
-		std::vector<maths::Vector2f>	m_texCoords;
-		std::vector<maths::Vector3f>	m_normals;
-		std::vector<maths::Vector3f>	m_tangents;
-		std::vector<GLushort>		m_indices;
-		std::vector<Vertex3D>		m_vertices;
 	public:
 		IndexedModel(const std::vector<maths::Vector3f> &positions, const std::vector<maths::Vector2f> &texCoords,
 					const std::vector<maths::Vector3f> &normals, const std::vector<maths::Vector3f> &tangents,
@@ -41,6 +34,13 @@ namespace lotus { namespace graphics {
 	private:
 		void calcNormals();
 		void calcTangents();
+	private:
+		std::vector<maths::Vector3f>	m_positions;
+		std::vector<maths::Vector2f>	m_texCoords;
+		std::vector<maths::Vector3f>	m_normals;
+		std::vector<maths::Vector3f>	m_tangents;
+		std::vector<GLushort>			m_indices;
+		std::vector<Vertex3D>			m_vertices;
 	};
 
 } }

@@ -10,9 +10,6 @@ namespace lotus {
 	class Resource
 	{
 	friend class ResourceManager;
-	protected:
-		std::string		m_name;
-		unsigned int	m_references;
 	public:
 		Resource(const std::string &name) :
 			m_name(name),
@@ -27,6 +24,9 @@ namespace lotus {
 
 		inline unsigned int getReferences() const { return m_references; }
 		inline const std::string &getName() const { return m_name; }
+	protected:
+		std::string		m_name;
+		unsigned int	m_references;
 	};
 
 	class ResourceManager

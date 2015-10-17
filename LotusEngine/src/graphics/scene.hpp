@@ -14,12 +14,6 @@ namespace lotus { namespace graphics {
 	class Scene
 	{
 	public:
-		static const Scene *CURRENT;
-	protected:
-		maths::Matrix4f							m_projection;
-		IRenderer								*m_renderer;
-		std::vector<std::unique_ptr<Entity>>	m_entities;
-	public:
 		Scene(const maths::Matrix4f &m_projection, IRenderer *renderer);
 		virtual ~Scene();
 
@@ -33,6 +27,12 @@ namespace lotus { namespace graphics {
 
 		inline const maths::Matrix4f &getProjection() const { return m_projection; }
 		inline void setProjection(const maths::Matrix4f &projection) { m_projection = projection; }
+	public:
+		static const Scene *CURRENT;
+	protected:
+		maths::Matrix4f							m_projection;
+		IRenderer								*m_renderer;
+		std::vector<std::unique_ptr<Entity>>	m_entities;
 	};
 
 } }

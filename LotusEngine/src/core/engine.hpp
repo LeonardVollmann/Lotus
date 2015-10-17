@@ -9,12 +9,6 @@ namespace lotus {
 
 	class Engine
 	{
-	private:
-		graphics::Window 	m_window;
-		IGame 	*m_game;
-
-		double 	m_fps;
-		bool 	m_running;
 	public:
 		Engine(double fps, int width, int height, const char *title);
 
@@ -27,6 +21,12 @@ namespace lotus {
 		void shutdownSubsystems() const;
 	private:
 		void run();
+	private:
+		graphics::Window m_window;
+		IGame			*m_game;
+		
+		double			m_fps;
+		bool			m_running;
 	};
 
 }

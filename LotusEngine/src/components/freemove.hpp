@@ -8,13 +8,13 @@ namespace lotus {
 
 	class FreeMove : public EntityComponent
 	{
-	private:
-		float m_speed;
 	public:
 		FreeMove(float speed);
 		virtual void update(float delta) override;
 	private:
 		void move(const maths::Vector3f &axis, float amount);
+	private:
+		float m_speed;
 	};
 
 }

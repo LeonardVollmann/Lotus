@@ -9,8 +9,6 @@ namespace lotus {
 
 	class EntityComponent
 	{
-	protected:
-		Entity *m_entity;
 	public:
 		virtual ~EntityComponent() {} 
 
@@ -19,6 +17,8 @@ namespace lotus {
 		
 		inline Entity *getEntity() const { return m_entity; }
 		inline void setEntity(Entity *entity) { m_entity = entity; }
+	protected:
+		Entity *m_entity;
 	};
 
 }

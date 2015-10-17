@@ -7,11 +7,11 @@ namespace lotus {
 
 	class FreeLook : public EntityComponent
 	{
-	private:
-		float m_turnSpeed;
 	public:
 		FreeLook(float turnSpeed);
 		virtual void update(float delta) override;
+	private:
+		float m_turnSpeed;
 	};
 
 }
