@@ -7,9 +7,9 @@ namespace lotus {
 
 	bool Input::s_cursorVisible;
 	bool Input::s_mouseLocked;
-	maths::vec2 Input::s_cursorPos;
-	maths::vec2 Input::s_oldCursorPos;
-	maths::vec2 Input::s_cursorPosDelta;
+	maths::Vector2f Input::s_cursorPos;
+	maths::Vector2f Input::s_oldCursorPos;
+	maths::Vector2f Input::s_cursorPosDelta;
 
 	graphics::Window *Input::s_window;
 
@@ -35,13 +35,13 @@ namespace lotus {
 		const float yNormalized = -(height / 2.0f - (float) ypos) / height * 2.0f;
 		
 		s_oldCursorPos = s_cursorPos;
-		s_cursorPos = maths::vec2(xNormalized, yNormalized);
+		s_cursorPos = maths::Vector2f(xNormalized, yNormalized);
 		s_cursorPosDelta = s_cursorPos - s_oldCursorPos;
 		
 		if (s_mouseLocked)
 		{
 			glfwSetCursorPos(s_window->getWindow(), (float) width / 2.0f, (float) height / 2.0f);
-			s_cursorPos = maths::vec2::ZERO;
+			s_cursorPos = maths::Vector2f(0.0f);
 		}
 	}
 

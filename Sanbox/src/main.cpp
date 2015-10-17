@@ -8,8 +8,8 @@
 #include <core/time.hpp>
 #include <core/transform.hpp>
 #include <core/entity.hpp>
+#include <core/maths.hpp>
 #include <core/stringfunc.hpp>
-#include <maths/maths.hpp>
 #include <graphics/window.hpp>
 #include <graphics/lighting.hpp>
 #include <graphics/camera.hpp>
@@ -41,30 +41,26 @@ private:
 	SpotLight	*m_spotLight;
 	PointLight	*m_pointLights[8];
 	Entity 		*m_monkey1;
-	Entity 		*m_monkey2;
-	Entity 		*m_monkey3;
-	Entity 		*m_monkey4;
-	Entity 		*m_monkey5;
 	float m_temp = 0.0f;
 public:
 	TestGame() :
 		IGame(),
-		m_spotLight(new SpotLight(vec3(1.0f, 1.0f, 1.0f), 3.0f, Attenuation(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, -6.0f), vec3(Transform().getRot().getForward()), 0.7f)),
+		m_spotLight(new SpotLight(Vector3f(1.0f, 1.0f, 1.0f), 3.0f, Attenuation(0.0f, 0.0f, 1.0f), Vector3f(0.0f, 0.0f, -6.0f), getForward(Transform().getRot()), 0.7f)),
 		m_pointLights
 		{
-			new PointLight(vec3(1.0f, 1.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3(-7.0f, 0.0f, 0.0f)),
-			new PointLight(vec3(1.0f, 0.0f, 0.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3(-5.0f, 0.0f, 0.0f)),
-			new PointLight(vec3(0.0f, 1.0f, 0.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3(-3.0f, 0.0f, 0.0f)),
-			new PointLight(vec3(0.0f, 0.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3(-1.0f, 0.0f, 0.0f)),
-			new PointLight(vec3(1.0f, 1.0f, 0.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3( 1.0f, 0.0f, 0.0f)),
-			new PointLight(vec3(0.0f, 1.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3( 3.0f, 0.0f, 0.0f)),
-			new PointLight(vec3(1.0f, 0.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3( 5.0f, 0.0f, 0.0f)),
-			new PointLight(vec3(1.0f, 1.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), vec3( 7.0f, 0.0f, 0.0f)),
+			new PointLight(Vector3f(1.0f, 1.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), Vector3f(-7.0f, 0.0f, 0.0f)),
+			new PointLight(Vector3f(1.0f, 0.0f, 0.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), Vector3f(-5.0f, 0.0f, 0.0f)),
+			new PointLight(Vector3f(0.0f, 1.0f, 0.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), Vector3f(-3.0f, 0.0f, 0.0f)),
+			new PointLight(Vector3f(0.0f, 0.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), Vector3f(-1.0f, 0.0f, 0.0f)),
+			new PointLight(Vector3f(1.0f, 1.0f, 0.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), Vector3f( 1.0f, 0.0f, 0.0f)),
+			new PointLight(Vector3f(0.0f, 1.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), Vector3f( 3.0f, 0.0f, 0.0f)),
+			new PointLight(Vector3f(1.0f, 0.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), Vector3f( 5.0f, 0.0f, 0.0f)),
+			new PointLight(Vector3f(1.0f, 1.0f, 1.0f), 0.5f, Attenuation(0.0f, 0.0f, 1.0f), Vector3f( 7.0f, 0.0f, 0.0f)),
 		}
 	{}
 
 	virtual ~TestGame() {}
-	virtual void tick() {}
+	virtual void tick() override {}
 
 	virtual void init() override
 	{
@@ -73,43 +69,30 @@ public:
 
 		IndexedModel model;
 		const float size = 10.0f;
-		model.addPosition(vec3(-size, size, 0));
-		model.addPosition(vec3(-size, -size, 0));
-		model.addPosition(vec3(size, -size, 0));
-		model.addPosition(vec3(size, size, 0));
-		model.addTexCoord(vec2(0, 3));
-		model.addTexCoord(vec2(0, 0));
-		model.addTexCoord(vec2(3, 0));
-		model.addTexCoord(vec2(3, 3));
+		model.addPosition(Vector3f(-size, size, 0));
+		model.addPosition(Vector3f(-size, -size, 0));
+		model.addPosition(Vector3f(size, -size, 0));
+		model.addPosition(Vector3f(size, size, 0));
+		model.addTexCoord(Vector2f(0, 3));
+		model.addTexCoord(Vector2f(0, 0));
+		model.addTexCoord(Vector2f(3, 0));
+		model.addTexCoord(Vector2f(3, 3));
 		model.addFace(0, 1, 2);
 		model.addFace(2, 3, 0);
 		model.finalize();
 
-		Material *material = new Material(new Texture("bricks.png"), vec4::ZERO, 2.0f, 32.0f, new Texture("bricks_normal.png"), new Texture("bricks_disp.png"), 0.04f);
-		Material *material2 = new Material(new Texture("bricks2.png"), vec4::ZERO, 2.0f, 32.0f, new Texture("bricks2_normal.png"), new Texture("bricks2_disp.png"), 0.04f, -1.0f);
-		Material *material3 = new Material(new Texture("white.png"), vec4::ZERO, 0.0f, 0.0f, new Texture("default_normal.png"), new Texture("default_disp.png"), 0.0f, 0.0f);
+		Material *material = new Material(new Texture("bricks.png"), Vector4f(), 2.0f, 32.0f, new Texture("bricks_normal.png"), new Texture("bricks_disp.png"), 0.04f);
+		Material *material2 = new Material(new Texture("bricks2.png"), Vector4f(), 2.0f, 32.0f, new Texture("bricks2_normal.png"), new Texture("bricks2_disp.png"), 0.04f, -1.0f);
+		Material *material3 = new Material(new Texture("white.png"), Vector4f(), 0.0f, 0.0f, new Texture("default_normal.png"), new Texture("default_disp.png"), 0.0f, 0.0f);
 
 		Entity *plane = new Entity();
 		Entity *plane2 = new Entity();
 		m_monkey1 = new Entity();
-		m_monkey2 = new Entity();
-		m_monkey3 = new Entity();
-		m_monkey4 = new Entity();
-		m_monkey5 = new Entity();
-		plane->getTransform().rotate(-MATH_PI / 2.0f, vec3(1.0f, 0.0f, 0.0f));
-		plane2->getTransform().rotate(-MATH_PI / 2.0f, vec3(1.0f, 0.0f, 0.0f));
-		plane2->getTransform().translate(vec3(5.0f, 2.0f, 5.0f));
-		plane2->getTransform().scale(vec3(0.3f, 0.3f, 0.3f));
-		m_monkey1->getTransform().translate(vec3(0.0f, 3.0f, 0.0f));
-		m_monkey2->getTransform().scale(vec3(0.25f));
-		m_monkey3->getTransform().scale(vec3(0.25f));
-		m_monkey4->getTransform().scale(vec3(0.25f));
-		m_monkey5->getTransform().scale(vec3(0.25f));
-
-		m_monkey1->addChild(m_monkey2);
-		m_monkey1->addChild(m_monkey3);
-		// m_monkey1->addChild(m_monkey4);
-		// m_monkey1->addChild(m_monkey5);
+		plane->getTransform().rotate(Vector3f(1.0f, 0.0f, 0.0f), -3.14159f / 2.0f);
+		plane2->getTransform().rotate(Vector3f(1.0f, 0.0f, 0.0f), -3.14159f / 2.0f);
+		plane2->getTransform().translate(Vector3f(5.0f, 2.0f, 5.0f));
+		plane2->getTransform().scale(Vector3f(0.3f, 0.3f, 0.3f));
+		m_monkey1->getTransform().translate(Vector3f(0.0f, 3.0f, 0.0f));
 
 		m_camera->addComponent<FreeMove>(10.0f);
 		m_camera->addComponent<FreeLook>(5.0f);
@@ -118,22 +101,18 @@ public:
 		plane->addComponent<RenderableComponent3D>(new Renderable3D(model), material);
 		plane2->addComponent<RenderableComponent3D>(new Renderable3D(model), material2);
 		m_monkey1->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
-		m_monkey2->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
-		m_monkey3->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
-		// m_monkey4->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
-		// m_monkey5->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
-
+		
 		ForwardRenderer3D *renderer = new ForwardRenderer3D();
-		renderer->setAmbientLight(vec3(0.1f));
-		renderer->addDirectionalLight(new DirectionalLight(vec3(1.0f, 0.0f, 0.0f), 0.4f, vec3(1.0f, 1.0f, 1.0f).normalize()));
-		renderer->addDirectionalLight(new DirectionalLight(vec3(0.0f, 0.0f, 1.0f), 0.4f, vec3(-1.0f, 1.0f, -1.0f).normalize()));
+		renderer->setAmbientLight(Vector3f(0.1f));
+		renderer->addDirectionalLight(new DirectionalLight(Vector3f(1.0f, 0.0f, 0.0f), 0.4f, normalize(Vector3f(1.0f, 1.0f, 1.0f))));
+		renderer->addDirectionalLight(new DirectionalLight(Vector3f(0.0f, 0.0f, 1.0f), 0.4f, normalize(Vector3f(-1.0f, 1.0f, -1.0f))));
 		for (unsigned int i = 0; i < 8; i++)
 		{
 			renderer->addPointLight(m_pointLights[i]);
 		}
 		renderer->addSpotLight(m_spotLight);
 
-		Scene *scene = new Scene(mat4::perspective(70.0f, 1000.0 / 800.0f, 0.01f, 1000.0f), renderer);
+		Scene *scene = new Scene(perspective(70.0f, 1000.0f / 800.0f, 0.01f, 1000.0f), renderer);
 		scene->add(plane);
 		scene->add(plane2);
 		scene->add(m_monkey1);
@@ -156,18 +135,9 @@ public:
 		}
 
 		m_spotLight->setPos(m_camera->getTransform().getPos());
-		m_spotLight->setDirection(m_camera->getTransform().getRot().getBack());
+		m_spotLight->setDirection(getForward(m_camera->getTransform().getRot()));
 
-		m_monkey1->getTransform().rotate(0.01f, vec3(0.0f, 1.0f, 0.0f));
-
-		m_monkey2->getTransform().getPos().x = sinTemp * 2.0f;
-		m_monkey2->getTransform().getPos().z = cosTemp * 2.0f;
-		m_monkey3->getTransform().getPos().x = sinTemp * 2.0f;
-		m_monkey3->getTransform().getPos().y = cosTemp * 2.0f;
-		m_monkey4->getTransform().getPos().x = -sinTemp * 2.0f;
-		m_monkey4->getTransform().getPos().z = -cosTemp * 2.0f;
-		m_monkey5->getTransform().getPos().x = -sinTemp * 2.0f;
-		m_monkey5->getTransform().getPos().y = -cosTemp * 2.0f;
+		m_monkey1->getTransform().rotate(Vector3f(0.0f, 1.0f, 0.0f), 0.01f);
 	}
 };
 

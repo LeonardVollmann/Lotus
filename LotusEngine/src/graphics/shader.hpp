@@ -6,7 +6,6 @@
 #include "material.hpp"
 #include "lighting.hpp"
 #include "scene.hpp"
-#include "../maths/maths.hpp"
 #include "../core/resourcemanagement.hpp"
 #include "../core/transform.hpp"
 
@@ -66,10 +65,10 @@ namespace lotus { namespace graphics {
 
 		void setUniform(GLint location, const int &value) const;
 		void setUniform(GLint location, const float &value) const;
-		void setUniform(GLint location, const maths::vec2 &value) const;
-		void setUniform(GLint location, const maths::vec3 &value) const;
-		void setUniform(GLint location, const maths::vec4 &value) const;
-		void setUniform(GLint location, const maths::mat4 &value) const;
+		void setUniform(GLint location, const maths::Vector2f &value) const;
+		void setUniform(GLint location, const maths::Vector3f &value) const;
+		void setUniform(GLint location, const maths::Vector4f &value) const;
+		void setUniform(GLint location, const maths::Matrix4f &value) const;
 
 		inline GLuint getShaderProgram() const { return m_shaderResource->getShaderProgram(); }
 	};

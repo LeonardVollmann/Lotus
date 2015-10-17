@@ -1,9 +1,7 @@
 #ifndef LOTUS_TRANSFORM_HPP_INCLUDED
 #define LOTUS_TRANSFORM_HPP_INCLUDED
 
-#include "../maths/vec3.hpp"
-#include "../maths/mat4.hpp"
-#include "../maths/quat.hpp"
+#include "../core/maths.hpp"
 
 namespace lotus {
 
@@ -12,36 +10,36 @@ namespace lotus {
 	public:
 		static const Transform *CURRENT;
 	private:
-		maths::vec3 m_pos;
-		maths::quat m_rot;
-		maths::vec3 m_scale;
-		Transform 	*m_parent;
+		maths::Vector3f		m_pos;
+		maths::QuaternionF	m_rot;
+		maths::Vector3f		m_scale;
+		Transform			*m_parent;
 	public:
-		Transform(const maths::vec3 &pos = maths::vec3(0.0f, 0.0f, 0.0f),
-			const maths::quat &rot = maths::quat(0.0f, 0.0f, 0.0f, 1.0f),
-			const maths::vec3 &scale = maths::vec3(1.0f, 1.0f, 1.0f));
+		Transform(const maths::Vector3f &pos = maths::Vector3f(0.0f, 0.0f, 0.0f),
+			const maths::QuaternionF &rot = maths::QuaternionF(0.0f, 0.0f, 0.0f, 1.0f),
+			const maths::Vector3f &scale = maths::Vector3f(1.0f, 1.0f, 1.0f));
 
 		void bind() const;
 
-		maths::mat4 getTransformation() const;
+		maths::Matrix4f getTransformation() const;
 
-		void translate(const maths::vec3 &translation);
-		void rotate(const maths::quat &rotation);
-		void rotate(float angle, const maths::vec3 &axis);
-		void scale(const maths::vec3 &scale);
+		void translate(const maths::Vector3f &translation);
+		void rotate(const maths::QuaternionF &rotation);
+		void rotate(const maths::Vector3f &axis, float angle);
+		void scale(const maths::Vector3f &scale);
 
-		void setPos(const maths::vec3 &pos);
-		void setRot(const maths::quat &rot);
-		void setScale(const maths::vec3 &scale);
+		void setPos(const maths::Vector3f &pos);
+		void setRot(const maths::QuaternionF &rot);
+		void setScale(const maths::Vector3f &scale);
 
-		inline const maths::vec3 &getPos() 		const { return m_pos; }
-		inline const maths::quat &getRot() 		const { return m_rot; }
-		inline const maths::vec3 &getScale() 	const { return m_scale; }
-		inline Transform *getParent()			const { return m_parent; }
+		inline const maths::Vector3f &getPos()		const { return m_pos; }
+		inline const maths::QuaternionF &getRot()	const { return m_rot; }
+		inline const maths::Vector3f &getScale()	const { return m_scale; }
+		inline Transform *getParent()				const { return m_parent; }
 
-		inline maths::vec3 &getPos() 	{ return m_pos; }
-		inline maths::quat &getRot() 	{ return m_rot; }
-		inline maths::vec3 &getScale() 	{ return m_scale; }
+		inline maths::Vector3f &getPos() 	{ return m_pos; }
+		inline maths::QuaternionF &getRot() { return m_rot; }
+		inline maths::Vector3f &getScale() 	{ return m_scale; }
 
 		inline void setParent(Transform *parent) { m_parent = parent; }
 	};
