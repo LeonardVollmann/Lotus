@@ -96,17 +96,23 @@ namespace lotus {
 			while (unprocessed >= freq)
 			{
 				unprocessed -= freq;
+				m_updateTimer.start();
 				update(freq);
+				m_updateTimer.stop();
 				updates++;
 			}
 
+			m_renderTimer.start();
 			render();
+			m_renderTimer.stop();
 			frames++;
 
 			if (accumulatedDelta >= 1.0)
 			{
 				m_game->tick();
-				std::cout << delta * 1000 << " ms, " << updates << " updates, " << frames << " frames." << std::endl;
+				m_updateTimer.displayAndReset("Update Time: ");
+				m_renderTimer.displayAndReset("Render Time: ");
+				std::cout << std::endl;
 				updates = 0;
 				frames = 0;
 				accumulatedDelta = 0;

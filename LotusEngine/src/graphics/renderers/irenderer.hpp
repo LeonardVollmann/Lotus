@@ -13,6 +13,8 @@ namespace lotus { namespace graphics {
 		virtual void prepare() {}
 		virtual void submit(const void *renderableComponent) = 0;
 		virtual void flush() = 0;
+		
+		virtual void displayProfilingInfo() {}
 	};
 
 } }

@@ -1,6 +1,7 @@
 #ifndef LOTUS_ENGINE_HPP_INCLUDED
 #define LOTUS_ENGINE_HPP_INCLUDED
 
+#include "profiling.hpp"
 #include "../graphics/window.hpp"
 
 namespace lotus {
@@ -27,6 +28,9 @@ namespace lotus {
 		
 		double			m_fps;
 		bool			m_running;
+
+		ProfileTimer 	m_updateTimer;
+		ProfileTimer 	m_renderTimer;
 	};
 
 }

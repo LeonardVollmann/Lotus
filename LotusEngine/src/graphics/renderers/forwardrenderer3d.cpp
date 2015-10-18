@@ -11,6 +11,7 @@ namespace lotus { namespace graphics {
 
 	void ForwardRenderer3D::flush()
 	{
+		m_renderTimer.start();
 		while (!m_renderQueue.empty())
 		{
 			const RenderableComponent<Renderable<Vertex3D>> *renderableComponent = m_renderQueue.front();
@@ -59,6 +60,12 @@ namespace lotus { namespace graphics {
 
 			m_renderQueue.pop_front();
 		}
+		m_renderTimer.stop();
+	}
+
+	void ForwardRenderer3D::displayProfilingInfo()
+	{
+		m_renderTimer.displayAndReset("ForwardRenderer3D Render Time: ");
 	}
 
 } }

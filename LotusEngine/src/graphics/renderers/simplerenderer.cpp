@@ -15,6 +15,7 @@ namespace lotus { namespace graphics {
 	template <typename RENDERABLE_T>
 	void SimpleRenderer<RENDERABLE_T>::flush()
 	{
+		m_renderTimer.start();
 		m_shader.bind();
 		while (!m_renderQueue.empty())
 		{
@@ -27,6 +28,13 @@ namespace lotus { namespace graphics {
 
 			m_renderQueue.pop_front();
 		}
+		m_renderTimer.stop();
+	}
+
+	template <typename RENDERABLE_T>
+	void SimpleRenderer<RENDERABLE_T>::displayProfilingInfo()
+	{
+		m_renderTimer.displayAndReset("SimpleRenderer Render Time: ");
 	}
 
 	template class SimpleRenderer<Renderable<Vertex2D>>;
