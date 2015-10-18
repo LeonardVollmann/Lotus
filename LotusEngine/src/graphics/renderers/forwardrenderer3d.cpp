@@ -7,7 +7,8 @@ namespace lotus { namespace graphics {
 		m_directionalShader("forward3d_directional"),
 		m_pointShader("forward3d_point"),
 		m_spotShader("forward3d_spot"),
-		m_ambientLight(0.0f) {}
+		m_ambientLight(0.0f),
+		m_renderTimer("ForwardRenderer3D Render Time") {}
 
 	void ForwardRenderer3D::flush()
 	{
@@ -61,11 +62,6 @@ namespace lotus { namespace graphics {
 			m_renderQueue.pop_front();
 		}
 		m_renderTimer.stop();
-	}
-
-	void ForwardRenderer3D::displayProfilingInfo()
-	{
-		m_renderTimer.displayAndReset("ForwardRenderer3D Render Time: ");
 	}
 
 } }

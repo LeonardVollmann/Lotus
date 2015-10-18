@@ -12,7 +12,10 @@ namespace lotus {
 	Engine::Engine(double fps, int width, int height, const char *title) :
 		m_window(width, height, title),
 		m_fps(fps),
-		m_running(false)
+		m_running(false),
+		m_updateTimer("Engine Update Time"),
+		m_renderTimer("Engine Render Time"),
+		m_loopTimer("Engine Loop Time")
 	{
 		initSubsystems();
 	}
@@ -81,6 +84,7 @@ namespace lotus {
 		unsigned int updates = 0;
 		while (m_running)
 		{
+			m_loopTimer.start();
 			if (m_window.isClosed())
 			{
 				stop();
@@ -110,13 +114,14 @@ namespace lotus {
 			if (accumulatedDelta >= 1.0)
 			{
 				m_game->tick();
-				m_updateTimer.displayAndReset("Update Time: ");
-				m_renderTimer.displayAndReset("Render Time: ");
-				std::cout << std::endl;
+				std::cout << delta * 1000 << " ms, " << updates << " updates, " << frames << " frames." << std::endl;
+				std::cout << ProfileTimer::getInfoMessage(ProfilingVerbosity::LOW);
 				updates = 0;
 				frames = 0;
 				accumulatedDelta = 0;
 			}
+
+			m_loopTimer.stop();
 		}
 
 		shutdownSubsystems();

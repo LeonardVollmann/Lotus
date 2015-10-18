@@ -4,6 +4,8 @@
 #include "profiling.hpp"
 #include "../graphics/window.hpp"
 
+#include <vector>
+
 namespace lotus {
 
 	class IGame;
@@ -29,8 +31,9 @@ namespace lotus {
 		double			m_fps;
 		bool			m_running;
 
-		ProfileTimer 	m_updateTimer;
-		ProfileTimer 	m_renderTimer;
+		ProfileTimer	m_updateTimer;
+		ProfileTimer	m_renderTimer;
+		ProfileTimer	m_loopTimer;
 	};
 
 }

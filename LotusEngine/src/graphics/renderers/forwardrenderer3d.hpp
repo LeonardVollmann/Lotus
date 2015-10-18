@@ -15,7 +15,6 @@ namespace lotus { namespace graphics {
 		ForwardRenderer3D();
 		
 		virtual void flush() override;
-		virtual void displayProfilingInfo() override;
 		
 		inline void setAmbientLight(const AmbientLight &ambientLight)		{ m_ambientLight = ambientLight; }
 		inline void addDirectionalLight(DirectionalLight *directionalLight)	{ m_directionalLights.push_back(directionalLight); }

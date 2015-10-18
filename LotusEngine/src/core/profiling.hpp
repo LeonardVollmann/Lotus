@@ -4,18 +4,40 @@
 #include "time.hpp"
 
 #include <string>
+#include <vector>
 
 namespace lotus {
+
+	enum class ProfilingVerbosity
+	{
+		LOW,
+		HIGH
+	};
+
+	struct ProfilingInfo
+	{
+		std::string getInfoMessage(ProfilingVerbosity verbosity);
+
+		std::string		name;
+		unsigned int	numInvocations;
+		double			totalTime;
+	};
 
 	class ProfileTimer
 	{
 	public:
-		ProfileTimer();
+		static std::string getInfoMessage(ProfilingVerbosity verbosity);
+
+		ProfileTimer(const std::string &name);
+		virtual ~ProfileTimer();
 
 		void start();
 		void stop();
-		void displayAndReset(const std::string &message);
+		ProfilingInfo reset();
 	private:
+		static std::vector<ProfileTimer*> s_profileTimers;
+
+		std::string		m_name;
 		unsigned int	m_numInvocations;
 		double			m_startTime;
 		double			m_totalTime;

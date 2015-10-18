@@ -4,6 +4,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include "../core/profiling.hpp"
+
 namespace lotus { namespace graphics {
 
 	class Window
@@ -27,10 +29,12 @@ namespace lotus { namespace graphics {
 	private:
 		bool init();
 	private:
-		GLFWwindow 	*m_window;
-		int 		m_width;
-		int 		m_height;
-		const char 	*m_title;
+		GLFWwindow		*m_window;
+		int				m_width;
+		int				m_height;
+		const char		*m_title;
+
+		ProfileTimer	m_updateTimer;
 	};
 
 } }

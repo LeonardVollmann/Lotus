@@ -4,7 +4,8 @@ namespace lotus { namespace graphics {
 
 	template <typename RENDERABLE_T>
 	SimpleRenderer<RENDERABLE_T>::SimpleRenderer() :
-		m_shader("basic") {}
+		m_shader("basic"),
+		m_renderTimer("SimpleRenderer Render Time") {}
 
 	template <typename RENDERABLE_T>
 	void SimpleRenderer<RENDERABLE_T>::submit(const void *renderableComponent)
@@ -29,12 +30,6 @@ namespace lotus { namespace graphics {
 			m_renderQueue.pop_front();
 		}
 		m_renderTimer.stop();
-	}
-
-	template <typename RENDERABLE_T>
-	void SimpleRenderer<RENDERABLE_T>::displayProfilingInfo()
-	{
-		m_renderTimer.displayAndReset("SimpleRenderer Render Time: ");
 	}
 
 	template class SimpleRenderer<Renderable<Vertex2D>>;

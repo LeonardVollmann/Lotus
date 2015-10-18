@@ -18,7 +18,6 @@ namespace lotus { namespace graphics {
 
 		virtual void submit(const void *renderableComponent) override;
 		virtual void flush() override;
-		virtual void displayProfilingInfo() override;
 	protected:
 		std::deque<const RenderableComponent<RENDERABLE_T>*>	m_renderQueue;
 		Shader													m_shader;
