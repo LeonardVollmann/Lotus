@@ -17,13 +17,6 @@ namespace lotus { namespace graphics {
 
 	class OBJModel
 	{
-	private:
-		std::vector<OBJIndex>	 	m_indices;
-		std::vector<maths::Vector3f>	m_positions;
-		std::vector<maths::Vector2f>	m_texCoords;
-		std::vector<maths::Vector3f>	m_normals;
-		bool 						m_hasTexCoords;
-		bool 						m_hasNormals;
 	public:
 		OBJModel(const std::string &fileName);
 
@@ -35,6 +28,13 @@ namespace lotus { namespace graphics {
 		inline bool hasNormals()								const { return m_hasNormals; }
 	private:
 		OBJIndex parseOBJIndex(const std::string &token, unsigned int numTokens);
+	private:
+		std::vector<OBJIndex>			m_indices;
+		std::vector<maths::Vector3f>	m_positions;
+		std::vector<maths::Vector2f>	m_texCoords;
+		std::vector<maths::Vector3f>	m_normals;
+		bool							m_hasTexCoords;
+		bool							m_hasNormals;
 	};
 
 } }

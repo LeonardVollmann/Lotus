@@ -60,13 +60,6 @@ namespace lotus { namespace maths {
 	template <typename T>
 	struct Vector2 : Vector<T, 2>
 	{
-		union
-		{
-			T v[2];
-			struct { T x, y; };
-			struct { T r, g; };
-		};
-		
 		Vector2(T t = 0) :
 			v{t} {}
 
@@ -78,6 +71,13 @@ namespace lotus { namespace maths {
 		{
 			memcpy(v, t, 2 * sizeof(T));
 		}
+		
+		union
+		{
+			T v[2];
+			struct { T x, y; };
+			struct { T r, g; };
+		};
 	};
 	
 	template <typename T>
@@ -197,13 +197,6 @@ namespace lotus { namespace maths {
 	template <typename T>
 	struct Vector3 : Vector<T, 3>
 	{
-		union
-		{
-			T v[3];
-			struct { T x, y, z; };
-			struct { T r, g, b; };
-		};
-		
 		Vector3(T t = 0) :
 			v{t} {}
 		
@@ -216,6 +209,13 @@ namespace lotus { namespace maths {
 		{
 			memcpy(v, t, 3 * sizeof(T));
 		}
+		
+		union
+		{
+			T v[3];
+			struct { T x, y, z; };
+			struct { T r, g, b; };
+		};
 	};
 	
 	template <typename T>
@@ -359,13 +359,6 @@ namespace lotus { namespace maths {
 	template <typename T>
 	struct Vector4 : Vector<T, 4>
 	{
-		union
-		{
-			T v[4];
-			struct { T x, y, z, w; };
-			struct { T r, g, b, a; };
-		};
-		
 		Vector4(T t = 0) :
 			v{t} {}
 		
@@ -379,6 +372,13 @@ namespace lotus { namespace maths {
 		{
 			memcpy(v, t, 4 * sizeof(T));
 		}
+		
+		union
+		{
+			T v[4];
+			struct { T x, y, z, w; };
+			struct { T r, g, b, a; };
+		};
 	};
 	
 	template <typename T>
@@ -510,8 +510,6 @@ namespace lotus { namespace maths {
 	template <typename T>
 	struct Quaternion
 	{
-		T x, y, z, w;
-		
 		Quaternion(T x = (T) 0, T y = (T) 0, T z = (T) 0, T w = (T) 1) :
 			x(x),
 			y(y),
@@ -528,6 +526,8 @@ namespace lotus { namespace maths {
 			z = axis.z * sinHalfAngle;
 			w = cosHalfAngle;
 		}
+		
+		T x, y, z, w;
 	};
 	
 	template <typename T>
@@ -635,8 +635,6 @@ namespace lotus { namespace maths {
 	template <typename T, unsigned int N>
 	struct Matrix
 	{
-		T m[N * N];
-		
 		Matrix(T diagonal = 0)
 		{
 			for (unsigned int y = 0; y < N; y++)
@@ -649,6 +647,7 @@ namespace lotus { namespace maths {
 			}
 		}
 
+		T m[N * N];
 	};
 	
 	template <typename T, unsigned int N>

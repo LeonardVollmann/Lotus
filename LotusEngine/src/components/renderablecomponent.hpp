@@ -11,9 +11,6 @@ namespace lotus { namespace graphics {
 	template<typename RENDERABLE_T>
 	class RenderableComponent : public EntityComponent
 	{
-	private:
-		RENDERABLE_T	*m_renderable;
-		Material		*m_material;
 	public:
 		RenderableComponent<RENDERABLE_T>(RENDERABLE_T *renderable, Material *material);
 		virtual ~RenderableComponent<RENDERABLE_T>();
@@ -23,6 +20,9 @@ namespace lotus { namespace graphics {
 		
 		inline const RENDERABLE_T *getRenderable()	const { return m_renderable; }
 		inline const Material *getMaterial()		const { return m_material; }
+	private:
+		RENDERABLE_T	*m_renderable;
+		Material		*m_material;
 	};
 
 } }

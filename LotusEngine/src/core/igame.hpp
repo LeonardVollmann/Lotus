@@ -12,10 +12,6 @@ namespace lotus {
 
 	class IGame
 	{
-	protected:
-		Engine 							*m_engine;
-		std::vector<graphics::Scene*> 	m_scenes;
-		graphics::Camera				*m_camera;
 	public:
 		IGame() :
 			m_camera(new graphics::Camera) {}
@@ -45,6 +41,10 @@ namespace lotus {
 		inline void setEngine(Engine *engine)	{ m_engine = engine; }
 		inline void addScene(graphics::Scene *scene)		{ m_scenes.push_back(scene); }
 		inline void setCamera(graphics::Camera *camera)	{ m_camera = camera; }
+	protected:
+		Engine 							*m_engine;
+		std::vector<graphics::Scene*> 	m_scenes;
+		graphics::Camera				*m_camera;
 	};
 
 }
