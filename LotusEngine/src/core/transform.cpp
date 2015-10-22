@@ -4,7 +4,8 @@ namespace lotus {
 
 	const Transform *Transform::CURRENT;
 
-	Transform::Transform(const maths::vec3 &pos, const maths::quat &rot, const maths::vec3 &scale) :
+	Transform::Transform(const maths::Vector3f &pos, const maths::QuaternionF &rot,
+						 const maths::Vector3f &scale) :
 		m_pos(pos),
 		m_rot(rot),
 		m_scale(scale),
@@ -15,47 +16,47 @@ namespace lotus {
 		CURRENT = this;
 	}
 
-	maths::mat4 Transform::getTransformation() const
+	maths::Matrix4f Transform::getTransformation() const
 	{
-		maths::mat4 transformation = maths::mat4::translation(m_pos) *
-									 maths::mat4::rotation(m_rot) *
-									 maths::mat4::scale(m_scale);
+		maths::Matrix4f transformation = maths::translation<float>(m_pos) *
+										maths::rotation<float, 4>(m_rot) *
+										maths::scale<float>(m_scale);
 
 		transformation = m_parent ? m_parent->getTransformation() * transformation : transformation;
 		return transformation;
 	}
 
-	void Transform::translate(const maths::vec3 &translation)
+	void Transform::translate(const maths::Vector3f &translation)
 	{
 		m_pos += translation;
 	}
 
-	void Transform::rotate(const maths::quat &rotation)
+	void Transform::rotate(const maths::QuaternionF &rotation)
 	{
-		m_rot = (rotation * m_rot).normalize();
+		m_rot = maths::normalize(rotation * m_rot);
 	}
 
-	void Transform::rotate(float angle, const maths::vec3 &axis)
+	void Transform::rotate(const maths::Vector3f &axis, float angle)
 	{
-		rotate(maths::quat(angle, axis));
+		rotate(maths::QuaternionF(axis, angle));
 	}
 
-	void Transform::scale(const maths::vec3 &scale)
+	void Transform::scale(const maths::Vector3f &scale)
 	{
 		m_scale *= scale;
 	}
 
-	void Transform::setPos(const maths::vec3 &pos)
+	void Transform::setPos(const maths::Vector3f &pos)
 	{
 		m_pos = pos;
 	}
 
-	void Transform::setRot(const maths::quat &rot)
+	void Transform::setRot(const maths::QuaternionF &rot)
 	{
 		m_rot = rot;
 	}
 
-	void Transform::setScale(const maths::vec3 &scale)
+	void Transform::setScale(const maths::Vector3f &scale)
 	{
 		m_scale = scale;
 	}

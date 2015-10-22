@@ -24,14 +24,6 @@ namespace lotus { namespace graphics {
 	template<class VERTEX_T>
 	class Renderable
 	{
-	private:
-		GLuint			m_vao;
-		GLuint			m_vbo;
-		GLuint			m_ibo;
-		const VERTEX_T	*m_vertices;
-		const GLushort	*m_indices;
-		GLsizei			m_numVertices;
-		GLsizei			m_numIndices;
 	public:
 		Renderable(const VERTEX_T *vertices, const GLushort *indices, GLsizei numVertices, GLsizei numIndices);
 		Renderable(IndexedModel indexedModel);
@@ -43,6 +35,14 @@ namespace lotus { namespace graphics {
 		inline const GLushort *getIndices()		const { return m_indices; }
 		inline GLsizei getNumVertices()			const { return m_numVertices; }
 		inline GLsizei getNumIndices()			const { return m_numIndices; }
+	private:
+		GLuint			m_vao;
+		GLuint			m_vbo;
+		GLuint			m_ibo;
+		const VERTEX_T	*m_vertices;
+		const GLushort	*m_indices;
+		GLsizei			m_numVertices;
+		GLsizei			m_numIndices;
 	};
 
 } }

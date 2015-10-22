@@ -6,10 +6,10 @@ namespace lotus { namespace graphics {
 
 	const Material *Material::CURRENT;
 
-	Material::Material(Texture *diffuse, maths::vec4 color, float specularIntensity, float specularPower, Texture *normalMap, Texture *dispMap, float dispMapScale, float dispMapOffset)
+	Material::Material(Texture *diffuse, maths::Vector4f color, float specularIntensity, float specularPower, Texture *normalMap, Texture *dispMap, float dispMapScale, float dispMapOffset)
 	{
 		set("diffuse", diffuse);
-		set("color", new maths::vec4(color));
+		set("color", new maths::Vector4f(color));
 		set("specularIntensity", new float(specularIntensity));
 		set("specularPower", new float(specularPower));
 		set("normalMap", normalMap);
@@ -26,9 +26,9 @@ namespace lotus { namespace graphics {
 		{
 			const std::type_info &type = typeid(it->second);
 			if (type == typeid(float*)) delete (float*) it->second;
-			else if (type == typeid(maths::vec2*)) delete (maths::vec2*) it->second;
-			else if (type == typeid(maths::vec3*)) delete (maths::vec3*) it->second;
-			else if (type == typeid(maths::vec4*)) delete (maths::vec4*) it->second;
+			else if (type == typeid(maths::Vector2f*)) delete (maths::Vector2f*) it->second;
+			else if (type == typeid(maths::Vector3f*)) delete (maths::Vector3f*) it->second;
+			else if (type == typeid(maths::Vector4f*)) delete (maths::Vector4f*) it->second;
 			else if (type == typeid(Texture*)) delete (Texture*) it->second;
 		}
 	}

@@ -12,7 +12,8 @@ namespace lotus { namespace graphics {
 	Window::Window(int width, int height, const char *title) :
 		m_width(width),
 		m_height(height),
-		m_title(title)
+		m_title(title),
+		m_updateTimer("Window Update Time")
 	{
 		if(!init())
 		{
@@ -38,8 +39,10 @@ namespace lotus { namespace graphics {
 
 	void Window::update()
 	{
+		m_updateTimer.start();
 		glfwPollEvents();
 		glfwSwapBuffers(m_window);
+		m_updateTimer.stop();
 	}
 
 	bool Window::init()

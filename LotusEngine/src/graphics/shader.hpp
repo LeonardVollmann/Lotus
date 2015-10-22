@@ -6,7 +6,6 @@
 #include "material.hpp"
 #include "lighting.hpp"
 #include "scene.hpp"
-#include "../maths/maths.hpp"
 #include "../core/resourcemanagement.hpp"
 #include "../core/transform.hpp"
 
@@ -20,12 +19,6 @@ namespace lotus { namespace graphics {
 	class ShaderResource : public Resource
 	{
 	friend class Shader;
-	private:
-		GLuint										m_program;
-		GLuint										m_shaders[3];
-		mutable std::map<std::string, std::string>	m_uniformTypes;
-		mutable std::vector<IUniform*>				m_uniforms;
-		mutable std::vector<std::string>			m_samplers;
 	public:
 		ShaderResource(const std::string &name, const std::string &vShader = "", const std::string &fShader = "", const std::string &gShader = "");
 		virtual ~ShaderResource();
@@ -48,13 +41,17 @@ namespace lotus { namespace graphics {
 		void addAllUniforms() const;
 		void addUniform(const std::string &uniform, const std::string &type = "") const;
 		void addSampler(const std::string &uniform);
+	private:
+		GLuint										m_program;
+		GLuint										m_shaders[3];
+		mutable std::map<std::string, std::string>	m_uniformTypes;
+		mutable std::vector<IUniform*>				m_uniforms;
+		mutable std::vector<std::string>			m_samplers;
 	};
 
 	class Shader
 	{
 	friend class ShaderFactory;
-	protected:
-		ShaderResource *m_shaderResource;
 	public:
 		static void initShaders();
 
@@ -66,12 +63,14 @@ namespace lotus { namespace graphics {
 
 		void setUniform(GLint location, const int &value) const;
 		void setUniform(GLint location, const float &value) const;
-		void setUniform(GLint location, const maths::vec2 &value) const;
-		void setUniform(GLint location, const maths::vec3 &value) const;
-		void setUniform(GLint location, const maths::vec4 &value) const;
-		void setUniform(GLint location, const maths::mat4 &value) const;
+		void setUniform(GLint location, const maths::Vector2f &value) const;
+		void setUniform(GLint location, const maths::Vector3f &value) const;
+		void setUniform(GLint location, const maths::Vector4f &value) const;
+		void setUniform(GLint location, const maths::Matrix4f &value) const;
 
 		inline GLuint getShaderProgram() const { return m_shaderResource->getShaderProgram(); }
+	protected:
+		ShaderResource *m_shaderResource;
 	};
 
 } }
