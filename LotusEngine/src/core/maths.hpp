@@ -5,24 +5,6 @@
 #include <cstring>
 
 namespace lotus { namespace maths {
-	
-	template <typename T, unsigned int N>
-	struct Vector {};
-	
-	template <typename T>
-	struct Vector2;
-	
-	template <typename T>
-	struct Vector3;
-	
-	template <typename T>
-	struct Vector3;
-	
-	template <typename T>
-	struct Quaternion;
-	
-	template <typename T, unsigned int N>
-	struct Matrix;
 
 	template <typename T>
 	T sin(T n);
@@ -56,18 +38,27 @@ namespace lotus { namespace maths {
 	{
 		return rad / M_PI * T(180);
 	}
-	
+
+	template <typename T, unsigned int N>
+	struct Vector {};
+
 	template <typename T>
-	struct Vector2 : Vector<T, 2>
+	struct Quaternion;
+
+	template <typename T, unsigned int N>
+	struct Matrix;
+
+	template <typename T>
+	struct Vector<T, 2>
 	{
-		Vector2(T t = 0) :
+		Vector(T t = 0) :
 			v{t} {}
 
-		Vector2(T x, T y) :
+		Vector(T x, T y) :
 			x(x),
 			y(y) {}
 		
-		Vector2(T t[2])
+		Vector(T t[2])
 		{
 			memcpy(v, t, 2 * sizeof(T));
 		}
@@ -81,131 +72,131 @@ namespace lotus { namespace maths {
 	};
 	
 	template <typename T>
-	inline bool operator==(const Vector2<T> &l, const Vector2<T> &r)
+	inline bool operator==(const Vector<T, 2> &l, const Vector<T, 2> &r)
 	{
 		return (l.x == r.x) && (l.y == r.y);
 	}
 	
 	template <typename T>
-	inline bool operator!=(const Vector2<T> &l, const Vector2<T> &r)
+	inline bool operator!=(const Vector<T, 2> &l, const Vector<T, 2> &r)
 	{
 		return !(l == r);
 	}
 	
 	template <typename T>
-	inline T lengthSquared(const Vector2<T> &vec)
+	inline T lengthSquared(const Vector<T, 2> &vec)
 	{
 		return vec.x * vec.x + vec.y * vec.y;
 	}
 	
 	template <typename T>
-	inline T length(const Vector2<T> &vec)
+	inline T length(const Vector<T, 2> &vec)
 	{
 		return sqrtf(lengthSquared(vec));
 	}
 	
 	template <typename T>
-	inline Vector2<T> normalize(const Vector2<T> &vec)
+	inline Vector<T, 2> normalize(const Vector<T, 2> &vec)
 	{
-		Vector2<T> result(vec);
+		Vector<T, 2> result(vec);
 		result /= length(result);
 		return result;
 	}
 	
 	template <typename T>
-	inline Vector2<T> add(const Vector2<T> &l, const Vector2<T> &r)
+	inline Vector<T, 2> add(const Vector<T, 2> &l, const Vector<T, 2> &r)
 	{
-		Vector2<T> result;
+		Vector<T, 2> result;
 		result.x = l.x + r.x;
 		result.y = l.y + r.y;
 		return result;
 	}
 	
 	template <typename T>
-	inline Vector2<T> sub(const Vector2<T> &l, const Vector2<T> &r)
+	inline Vector<T, 2> sub(const Vector<T, 2> &l, const Vector<T, 2> &r)
 	{
-		Vector2<T> result;
+		Vector<T, 2> result;
 		result.x = l.x - r.x;
 		result.y = l.y - r.y;
 		return result;
 	}
 	
 	template <typename T>
-	inline Vector2<T> mul(const Vector2<T> &l, const Vector2<T> &r)
+	inline Vector<T, 2> mul(const Vector<T, 2> &l, const Vector<T, 2> &r)
 	{
-		Vector2<T> result;
+		Vector<T, 2> result;
 		result.x = l.x * r.x;
 		result.y = l.y * r.y;
 		return result;
 	}
 	
 	template <typename T>
-	inline Vector2<T> div(const Vector2<T> &l, const Vector2<T> &r)
+	inline Vector<T, 2> div(const Vector<T, 2> &l, const Vector<T, 2> &r)
 	{
-		Vector2<T> result;
+		Vector<T, 2> result;
 		result.x = l.x / r.x;
 		result.y = l.y / r.y;
 		return result;
 	}
 	
 	template <typename T>
-	inline Vector2<T> mul(const Vector2<T> &l, T r)
+	inline Vector<T, 2> mul(const Vector<T, 2> &l, T r)
 	{
-		Vector2<T> result(l);
+		Vector<T, 2> result(l);
 		result.x *= r;
 		result.y *= r;
 		return result;
 	}
 	
 	template <typename T>
-	inline Vector2<T> div(const Vector2<T> &l, T r)
+	inline Vector<T, 2> div(const Vector<T, 2> &l, T r)
 	{
-		Vector2<T> result(l);
+		Vector<T, 2> result(l);
 		result.x /= r;
 		result.y /= r;
 		return result;
 	}
 	
 	template <typename T>
-	inline Vector2<T> operator+(const Vector2<T> &l, const Vector2<T> &r) { return add(l, r); }
+	inline Vector<T, 2> operator+(const Vector<T, 2> &l, const Vector<T, 2> &r) { return add(l, r); }
 	template <typename T>
-	inline Vector2<T> operator-(const Vector2<T> &l, const Vector2<T> &r) { return sub(l, r); }
+	inline Vector<T, 2> operator-(const Vector<T, 2> &l, const Vector<T, 2> &r) { return sub(l, r); }
 	template <typename T>
-	inline Vector2<T> operator*(const Vector2<T> &l, const Vector2<T> &r) { return mul(l, r); }
+	inline Vector<T, 2> operator*(const Vector<T, 2> &l, const Vector<T, 2> &r) { return mul(l, r); }
 	template <typename T>
-	inline Vector2<T> operator/(const Vector2<T> &l, const Vector2<T> &r) { return div(l, r); }
+	inline Vector<T, 2> operator/(const Vector<T, 2> &l, const Vector<T, 2> &r) { return div(l, r); }
 	
 	template <typename T>
-	inline Vector2<T> operator*(const Vector2<T> &l, T r) { return mul(l, r); }
+	inline Vector<T, 2> operator*(const Vector<T, 2> &l, T r) { return mul(l, r); }
 	template <typename T>
-	inline Vector2<T> operator/(const Vector2<T> &l, T r) { return div(l, r); }
+	inline Vector<T, 2> operator/(const Vector<T, 2> &l, T r) { return div(l, r); }
 	
 	template <typename T>
-	inline void operator+=(Vector2<T> &l, const Vector2<T> &r) { l = l + r; }
+	inline void operator+=(Vector<T, 2> &l, const Vector<T, 2> &r) { l = l + r; }
 	template <typename T>
-	inline void operator-=(Vector2<T> &l, const Vector2<T> &r) { l = l - r; }
+	inline void operator-=(Vector<T, 2> &l, const Vector<T, 2> &r) { l = l - r; }
 	template <typename T>
-	inline void operator*=(Vector2<T> &l, const Vector2<T> &r) { l = l * r; }
+	inline void operator*=(Vector<T, 2> &l, const Vector<T, 2> &r) { l = l * r; }
 	template <typename T>
-	inline void operator/=(Vector2<T> &l, const Vector2<T> &r) { l = l / r; }
+	inline void operator/=(Vector<T, 2> &l, const Vector<T, 2> &r) { l = l / r; }
 	
-	typedef Vector2<float>			Vector2f;
-	typedef Vector2<double>			Vector2d;
-	typedef Vector2<int>			Vector2i;
-	typedef Vector2<unsigned int>	Vector2ui;
+	typedef Vector<float, 2>			Vector2f;
+	typedef Vector<double, 2>			Vector2d;
+	typedef Vector<int, 2>				Vector2i;
+	typedef Vector<unsigned int, 2>		Vector2ui;
 	
 	template <typename T>
-	struct Vector3 : Vector<T, 3>
+	struct Vector<T, 3>
 	{
-		Vector3(T t = 0) :
+		Vector(T t = 0) :
 			v{t} {}
 		
-		Vector3(T x, T y, T z) :
+		Vector(T x, T y, T z) :
 			x(x),
 			y(y),
 			z(z) {}
 		
-		Vector3(T t[3])
+		Vector(T t[3])
 		{
 			memcpy(v, t, 3 * sizeof(T));
 		}
@@ -219,41 +210,41 @@ namespace lotus { namespace maths {
 	};
 	
 	template <typename T>
-	inline bool operator==(const Vector3<T> &l, const Vector3<T> &r)
+	inline bool operator==(const Vector<T, 3> &l, const Vector<T, 3> &r)
 	{
 		return (l.x == r.x) && (l.y == r.y) && (l.z == r.z);
 	}
 	
 	template <typename T>
-	inline bool operator!=(const Vector3<T> &l, const Vector3<T> &r)
+	inline bool operator!=(const Vector<T, 3> &l, const Vector<T, 3> &r)
 	{
 		return !(l == r);
 	}
 	
 	template <typename T>
-	inline T lengthSquared(const Vector3<T> &vec)
+	inline T lengthSquared(const Vector<T, 3> &vec)
 	{
 		return vec.x * vec.x + vec.y * vec.y + vec.z * vec.z;
 	}
 	
 	template <typename T>
-	inline T length(const Vector3<T> &vec)
+	inline T length(const Vector<T, 3> &vec)
 	{
 		return sqrtf(lengthSquared(vec));
 	}
 	
 	template <typename T>
-	inline Vector3<T> normalize(const Vector3<T> &vec)
+	inline Vector<T, 3> normalize(const Vector<T, 3> &vec)
 	{
-		Vector3<T> result;
+		Vector<T, 3> result;
 		result = vec / length(vec);
 		return result;
 	}
 	
 	template <typename T>
-	inline Vector3<T> add(const Vector3<T> &l, const Vector3<T> &r)
+	inline Vector<T, 3> add(const Vector<T, 3> &l, const Vector<T, 3> &r)
 	{
-		Vector3<T> result;
+		Vector<T, 3> result;
 		result.x = l.x + r.x;
 		result.y = l.y + r.y;
 		result.z = l.z + r.z;
@@ -261,9 +252,9 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector3<T> sub(const Vector3<T> &l, const Vector3<T> &r)
+	inline Vector<T, 3> sub(const Vector<T, 3> &l, const Vector<T, 3> &r)
 	{
-		Vector3<T> result;
+		Vector<T, 3> result;
 		result.x = l.x - r.x;
 		result.y = l.y - r.y;
 		result.z = l.z - r.z;
@@ -271,9 +262,9 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector3<T> mul(const Vector3<T> &l, const Vector3<T> &r)
+	inline Vector<T, 3> mul(const Vector<T, 3> &l, const Vector<T, 3> &r)
 	{
-		Vector3<T> result;
+		Vector<T, 3> result;
 		result.x = l.x * r.x;
 		result.y = l.y * r.y;
 		result.z = l.z * r.z;
@@ -281,9 +272,9 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector3<T> div(const Vector3<T> &l, const Vector3<T> &r)
+	inline Vector<T, 3> div(const Vector<T, 3> &l, const Vector<T, 3> &r)
 	{
-		Vector3<T> result;
+		Vector<T, 3> result;
 		result.x = l.x / r.x;
 		result.y = l.y / r.y;
 		result.z = l.z / r.z;
@@ -291,9 +282,9 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector3<T> mul(const Vector3<T> &l, T r)
+	inline Vector<T, 3> mul(const Vector<T, 3> &l, T r)
 	{
-		Vector3<T> result(l);
+		Vector<T, 3> result(l);
 		result.x *= r;
 		result.y *= r;
 		result.z *= r;
@@ -301,9 +292,9 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector3<T> div(const Vector3<T> &l, T r)
+	inline Vector<T, 3> div(const Vector<T, 3> &l, T r)
 	{
-		Vector3<T> result(l);
+		Vector<T, 3> result(l);
 		result.x /= r;
 		result.y /= r;
 		result.z /= r;
@@ -311,9 +302,9 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector3<T> cross(const Vector3<T> &l, const Vector3<T> &r)
+	inline Vector<T, 3> cross(const Vector<T, 3> &l, const Vector<T, 3> &r)
 	{
-		Vector3<T> result;
+		Vector<T, 3> result;
 		result.x = l.y * r.z - l.z * r.y;
 		result.y = l.z * r.x - l.x * r.z;
 		result.z = l.x * r.y - l.y * r.x;
@@ -322,53 +313,53 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector3<T> rotate(const Vector3<T> &v, const Quaternion<T> &q)
+	inline Vector<T, 3> rotate(const Vector<T, 3> &v, const Quaternion<T> &q)
 	{
 		Quaternion<T> r = q * v * conjugate(q);
-		return Vector3<T>(r.x, r.y, r.z);
+		return Vector<T, 3>(r.x, r.y, r.z);
 	}
 	
 	template <typename T>
-	inline Vector3<T> operator+(const Vector3<T> &l, const Vector3<T> &r) { return add(l, r); }
+	inline Vector<T, 3> operator+(const Vector<T, 3> &l, const Vector<T, 3> &r) { return add(l, r); }
 	template <typename T>
-	inline Vector3<T> operator-(const Vector3<T> &l, const Vector3<T> &r) { return sub(l, r); }
+	inline Vector<T, 3> operator-(const Vector<T, 3> &l, const Vector<T, 3> &r) { return sub(l, r); }
 	template <typename T>
-	inline Vector3<T> operator*(const Vector3<T> &l, const Vector3<T> &r) { return mul(l, r); }
+	inline Vector<T, 3> operator*(const Vector<T, 3> &l, const Vector<T, 3> &r) { return mul(l, r); }
 	template <typename T>
-	inline Vector3<T> operator/(const Vector3<T> &l, const Vector3<T> &r) { return div(l, r); }
+	inline Vector<T, 3> operator/(const Vector<T, 3> &l, const Vector<T, 3> &r) { return div(l, r); }
 	
 	template <typename T>
-	inline Vector3<T> operator*(const Vector3<T> &l, T r) { return mul(l, r); }
+	inline Vector<T, 3> operator*(const Vector<T, 3> &l, T r) { return mul(l, r); }
 	template <typename T>
-	inline Vector3<T> operator/(const Vector3<T> &l, T r) { return div(l, r); }
+	inline Vector<T, 3> operator/(const Vector<T, 3> &l, T r) { return div(l, r); }
 	
 	template <typename T>
-	inline void operator+=(Vector3<T> &l, const Vector3<T> &r) { l = l + r; }
+	inline void operator+=(Vector<T, 3> &l, const Vector<T, 3> &r) { l = l + r; }
 	template <typename T>
-	inline void operator-=(Vector3<T> &l, const Vector3<T> &r) { l = l - r; }
+	inline void operator-=(Vector<T, 3> &l, const Vector<T, 3> &r) { l = l - r; }
 	template <typename T>
-	inline void operator*=(Vector3<T> &l, const Vector3<T> &r) { l = l * r; }
+	inline void operator*=(Vector<T, 3> &l, const Vector<T, 3> &r) { l = l * r; }
 	template <typename T>
-	inline void operator/=(Vector3<T> &l, const Vector3<T> &r) { l = l / r; }
+	inline void operator/=(Vector<T, 3> &l, const Vector<T, 3> &r) { l = l / r; }
 	
-	typedef Vector3<float>			Vector3f;
-	typedef Vector3<double>			Vector3d;
-	typedef Vector3<int>			Vector3i;
-	typedef Vector3<unsigned int>	Vector3ui;
+	typedef Vector<float, 3>			Vector3f;
+	typedef Vector<double, 3>			Vector3d;
+	typedef Vector<int, 3>				Vector3i;
+	typedef Vector<unsigned int, 3>		Vector3ui;
 	
 	template <typename T>
-	struct Vector4 : Vector<T, 4>
+	struct Vector<T, 4>
 	{
-		Vector4(T t = 0) :
+		Vector(T t = 0) :
 			v{t} {}
 		
-		Vector4(T x, T y, T z, T w) :
+		Vector(T x, T y, T z, T w) :
 			x(x),
 			y(y),
 			z(z),
 			w(w) {}
 		
-		Vector4(T t[4])
+		Vector(T t[4])
 		{
 			memcpy(v, t, 4 * sizeof(T));
 		}
@@ -382,41 +373,41 @@ namespace lotus { namespace maths {
 	};
 	
 	template <typename T>
-	inline bool operator==(const Vector4<T> &l, const Vector4<T> &r)
+	inline bool operator==(const Vector<T, 4> &l, const Vector<T, 4> &r)
 	{
 		return (l.x == r.x) && (l.y == r.y) && (l.z == r.z) && (l.w == r.w);
 	}
 	
 	template <typename T>
-	inline bool operator!=(const Vector4<T> &l, const Vector4<T> &r)
+	inline bool operator!=(const Vector<T, 4> &l, const Vector<T, 4> &r)
 	{
 		return !(l == r);
 	}
 	
 	template <typename T>
-	inline T lengthSquared(const Vector4<T> &vec)
+	inline T lengthSquared(const Vector<T, 4> &vec)
 	{
 		return vec.x * vec.x + vec.y * vec.y + vec.z * vec.z + vec.w * vec.w;
 	}
 	
 	template <typename T>
-	inline T length(const Vector4<T> &vec)
+	inline T length(const Vector<T, 4> &vec)
 	{
 		return sqrt<T>(lengthSquared(vec));
 	}
 	
 	template <typename T>
-	inline Vector4<T> normalize(const Vector4<T> &vec)
+	inline Vector<T, 4> normalize(const Vector<T, 4> &vec)
 	{
-		Vector4<T> result(vec);
+		Vector<T, 4> result(vec);
 		result /= length(result);
 		return result;
 	}
 	
 	template <typename T>
-	inline Vector4<T> add(const Vector4<T> &l, const Vector4<T> &r)
+	inline Vector<T, 4> add(const Vector<T, 4> &l, const Vector<T, 4> &r)
 	{
-		Vector4<T> result;
+		Vector<T, 4> result;
 		result.x = l.x + r.x;
 		result.y = l.y + r.y;
 		result.z = l.z + r.z;
@@ -425,9 +416,9 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector4<T> sub(const Vector4<T> &l, const Vector4<T> &r)
+	inline Vector<T, 4> sub(const Vector<T, 4> &l, const Vector<T, 4> &r)
 	{
-		Vector4<T> result;
+		Vector<T, 4> result;
 		result.x = l.x - r.x;
 		result.y = l.y - r.y;
 		result.z = l.z - r.z;
@@ -436,9 +427,9 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector4<T> mul(const Vector4<T> &l, const Vector4<T> &r)
+	inline Vector<T, 4> mul(const Vector<T, 4> &l, const Vector<T, 4> &r)
 	{
-		Vector4<T> result;
+		Vector<T, 4> result;
 		result.x = l.x * r.x;
 		result.y = l.y * r.y;
 		result.z = l.z * r.z;
@@ -447,9 +438,9 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector4<T> div(const Vector4<T> &l, const Vector4<T> &r)
+	inline Vector<T, 4> div(const Vector<T, 4> &l, const Vector<T, 4> &r)
 	{
-		Vector4<T> result;
+		Vector<T, 4> result;
 		result.x = l.x / r.x;
 		result.y = l.y / r.y;
 		result.z = l.z / r.z;
@@ -458,9 +449,9 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector4<T> mul(const Vector4<T> &l, T r)
+	inline Vector<T, 4> mul(const Vector<T, 4> &l, T r)
 	{
-		Vector4<T> result(l);
+		Vector<T, 4> result(l);
 		result.x *= r;
 		result.y *= r;
 		result.z *= r;
@@ -469,9 +460,9 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector4<T> div(const Vector4<T> &l, T r)
+	inline Vector<T, 4> div(const Vector<T, 4> &l, T r)
 	{
-		Vector4<T> result(l);
+		Vector<T, 4> result(l);
 		result.x /= r;
 		result.y /= r;
 		result.z /= r;
@@ -480,32 +471,32 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Vector4<T> operator+(const Vector4<T> &l, const Vector4<T> &r) { return add(l, r); }
+	inline Vector<T, 4> operator+(const Vector<T, 4> &l, const Vector<T, 4> &r) { return add(l, r); }
 	template <typename T>
-	inline Vector4<T> operator-(const Vector4<T> &l, const Vector4<T> &r) { return sub(l, r); }
+	inline Vector<T, 4> operator-(const Vector<T, 4> &l, const Vector<T, 4> &r) { return sub(l, r); }
 	template <typename T>
-	inline Vector4<T> operator*(const Vector4<T> &l, const Vector4<T> &r) { return mul(l, r); }
+	inline Vector<T, 4> operator*(const Vector<T, 4> &l, const Vector<T, 4> &r) { return mul(l, r); }
 	template <typename T>
-	inline Vector4<T> operator/(const Vector4<T> &l, const Vector4<T> &r) { return div(l, r); }
+	inline Vector<T, 4> operator/(const Vector<T, 4> &l, const Vector<T, 4> &r) { return div(l, r); }
 	
 	template <typename T>
-	inline Vector4<T> operator*(const Vector4<T> &l, T r) { return mul(l, r); }
+	inline Vector<T, 4> operator*(const Vector<T, 4> &l, T r) { return mul(l, r); }
 	template <typename T>
-	inline Vector4<T> operator/(const Vector4<T> &l, T r) { return div(l, r); }
+	inline Vector<T, 4> operator/(const Vector<T, 4> &l, T r) { return div(l, r); }
 	
 	template <typename T>
-	inline void operator+=(Vector4<T> &l, const Vector4<T> &r) { l = l + r; }
+	inline void operator+=(Vector<T, 4> &l, const Vector<T, 4> &r) { l = l + r; }
 	template <typename T>
-	inline void operator-=(Vector4<T> &l, const Vector4<T> &r) { l = l - r; }
+	inline void operator-=(Vector<T, 4> &l, const Vector<T, 4> &r) { l = l - r; }
 	template <typename T>
-	inline void operator*=(Vector4<T> &l, const Vector4<T> &r) { l = l * r; }
+	inline void operator*=(Vector<T, 4> &l, const Vector<T, 4> &r) { l = l * r; }
 	template <typename T>
-	inline void operator/=(Vector4<T> &l, const Vector4<T> &r) { l = l / r; }
+	inline void operator/=(Vector<T, 4> &l, const Vector<T, 4> &r) { l = l / r; }
 	
-	typedef Vector4<float>			Vector4f;
-	typedef Vector4<double>			Vector4d;
-	typedef Vector4<int>			Vector4i;
-	typedef Vector4<unsigned int>	Vector4ui;
+	typedef Vector<float, 4>			Vector4f;
+	typedef Vector<double, 4>			Vector4d;
+	typedef Vector<int, 4>				Vector4i;
+	typedef Vector<unsigned int, 4>		Vector4ui;
 	
 	template <typename T>
 	struct Quaternion
@@ -516,7 +507,7 @@ namespace lotus { namespace maths {
 			z(z),
 			w(w) {}
 		
-		Quaternion(const Vector3<T> &axis, T angle)
+		Quaternion(const Vector<T, 3> &axis, T angle)
 		{
 			const T sinHalfAngle = sin<T>(angle / (T) 2);
 			const T cosHalfAngle = cos<T>(angle / (T) 2);
@@ -592,7 +583,7 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Quaternion<T> mul(const Quaternion<T> &l, const Vector3<T> &r)
+	inline Quaternion<T> mul(const Quaternion<T> &l, const Vector<T, 3> &r)
 	{
 		const float w = -l.x * r.x - l.y * r.y - l.z * r.z;
 		const float x =  l.w * r.x + l.y * r.z - l.z * r.y;
@@ -607,27 +598,27 @@ namespace lotus { namespace maths {
 	template <typename T>
 	inline Quaternion<T> operator*(const Quaternion<T> &l, const Quaternion<T> &r) { return mul(l, r); }
 	template <typename T>
-	inline Quaternion<T> operator*(const Quaternion<T> &l, const Vector3<T> &r) { return mul(l, r); }
+	inline Quaternion<T> operator*(const Quaternion<T> &l, const Vector<T, 3> &r) { return mul(l, r); }
 	
 	template <typename T>
 	inline void operator*=(Quaternion<T> &l, T r) { l = l * r; }
 	template <typename T>
 	inline void operator*=(Quaternion<T> &l, const Quaternion<T> &r) { l = l * r; }
 	template <typename T>
-	inline void operator*=(Quaternion<T> &l, const Vector3<T> &r) { l = l * r; }
+	inline void operator*=(Quaternion<T> &l, const Vector<T, 3> &r) { l = l * r; }
 	
 	template <typename T>
-	inline Vector3<T> getForward(const Quaternion<T> &q)	{ return rotate(Vector3<T>(0, 0, -1), q); }
+	inline Vector<T, 3> getForward(const Quaternion<T> &q)	{ return rotate(Vector<T, 3>(0, 0, -1), q); }
 	template <typename T>
-	inline Vector3<T> getBack(const Quaternion<T> &q)		{ return rotate(Vector3<T>(0, 0, 1), q); }
+	inline Vector<T, 3> getBack(const Quaternion<T> &q)		{ return rotate(Vector<T, 3>(0, 0, 1), q); }
 	template <typename T>
-	inline Vector3<T> getUp(const Quaternion<T> &q)			{ return rotate(Vector3<T>(0, 1, 0), q); }
+	inline Vector<T, 3> getUp(const Quaternion<T> &q)			{ return rotate(Vector<T, 3>(0, 1, 0), q); }
 	template <typename T>
-	inline Vector3<T> getDown(const Quaternion<T> &q)		{ return rotate(Vector3<T>(0, -1, 0), q); }
+	inline Vector<T, 3> getDown(const Quaternion<T> &q)		{ return rotate(Vector<T, 3>(0, -1, 0), q); }
 	template <typename T>
-	inline Vector3<T> getRight(const Quaternion<T> &q)		{ return rotate(Vector3<T>(1, 0, 0), q); }
+	inline Vector<T, 3> getRight(const Quaternion<T> &q)		{ return rotate(Vector<T, 3>(1, 0, 0), q); }
 	template <typename T>
-	inline Vector3<T> getLeft(const Quaternion<T> &q)		{ return rotate(Vector3<T>(-1, 0, 0), q); }
+	inline Vector<T, 3> getLeft(const Quaternion<T> &q)		{ return rotate(Vector<T, 3>(-1, 0, 0), q); }
 	
 	typedef Quaternion<float> QuaternionF;
 	typedef Quaternion<double> QuaternionD;
@@ -725,7 +716,7 @@ namespace lotus { namespace maths {
 	}
 
 	template <typename T>
-	inline Matrix<T, 3> translation(const Vector2<T> &translation)
+	inline Matrix<T, 3> translation(const Vector<T, 2> &translation)
 	{
 		Matrix<T, 3> result(1);
 		for (unsigned int i = 0; i < 2; i++)
@@ -736,7 +727,7 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Matrix<T, 4> translation(const Vector3<T> &translation)
+	inline Matrix<T, 4> translation(const Vector<T, 3> &translation)
 	{
 		Matrix<T, 4> result(1);
 		for (unsigned int i = 0; i < 3; i++)
@@ -747,7 +738,7 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Matrix<T, 3> scale(const Vector2<T> &scale)
+	inline Matrix<T, 3> scale(const Vector<T, 2> &scale)
 	{
 		Matrix<T, 3> result(1);
 		for (unsigned int i = 0; i < 2; i++)
@@ -758,7 +749,7 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T>
-	inline Matrix<T, 4> scale(const Vector3<T> &scale)
+	inline Matrix<T, 4> scale(const Vector<T, 3> &scale)
 	{
 		Matrix<T, 4> result(1);
 		for (unsigned int i = 0; i < 3; i++)
@@ -817,7 +808,7 @@ namespace lotus { namespace maths {
 	}
 	
 	template <typename T, unsigned int N>
-	inline Matrix<T, N> rotation(const Vector3<T> &f, const Vector3<T> &u, const Vector3<T> &r)
+	inline Matrix<T, N> rotation(const Vector<T, 3> &f, const Vector<T, 3> &u, const Vector<T, 3> &r)
 	{
 		Matrix<T, N> result(1);
 		
@@ -839,9 +830,9 @@ namespace lotus { namespace maths {
 	template <typename T, unsigned int N>
 	inline Matrix<T, N> rotation(const Quaternion<T> &rot)
 	{
-		const Vector3<T> f = rotate(Vector3<T>(0.0f, 0.0f, 1.0f), rot);
-		const Vector3<T> u = rotate(Vector3<T>(0.0f, 1.0f, 0.0f), rot);
-		const Vector3<T> r = rotate(Vector3<T>(1.0f, 0.0f, 0.0f), rot);
+		const Vector<T, 3> f = rotate(Vector<T, 3>(0.0f, 0.0f, 1.0f), rot);
+		const Vector<T, 3> u = rotate(Vector<T, 3>(0.0f, 1.0f, 0.0f), rot);
+		const Vector<T, 3> r = rotate(Vector<T, 3>(1.0f, 0.0f, 0.0f), rot);
 		
 		return rotation<T, N>(f, u, r);
 	}

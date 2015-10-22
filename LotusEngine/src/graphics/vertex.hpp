@@ -7,16 +7,16 @@ namespace lotus { namespace graphics {
 
 	struct Vertex2D
 	{
-		maths::Vector3<float> position;
-		maths::Vector2<float> texCoord;
+		maths::Vector3f position;
+		maths::Vector2f texCoord;
 	};
 
 	struct Vertex3D
 	{
-		maths::Vector3<float> position;
-		maths::Vector2<float> texCoord;
-		maths::Vector3<float> normal;
-		maths::Vector3<float> tangent;
+		maths::Vector3f position;
+		maths::Vector2f texCoord;
+		maths::Vector3f normal;
+		maths::Vector3f tangent;
 	};
 
 } }
