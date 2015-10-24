@@ -32,7 +32,7 @@ namespace lotus { namespace graphics {
 		return glfwWindowShouldClose(m_window) == 1;
 	}
 
-	void Window::clear()
+	void Window::clear() const
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
@@ -43,6 +43,12 @@ namespace lotus { namespace graphics {
 		glfwPollEvents();
 		glfwSwapBuffers(m_window);
 		m_updateTimer.stop();
+	}
+
+	void Window::bindAsRenderTarget() const
+	{
+		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+		glViewport(0, 0, m_width, m_height);
 	}
 
 	bool Window::init()

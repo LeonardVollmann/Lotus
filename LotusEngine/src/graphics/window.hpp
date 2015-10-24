@@ -16,8 +16,9 @@ namespace lotus { namespace graphics {
 
 		bool isClosed();
 
-		void clear();
+		void clear() const;
 		void update();
+		void bindAsRenderTarget() const;
 
 		inline GLFWwindow *getWindow()	const { return m_window; }
 		inline int getWidth()			const { return m_width; }
