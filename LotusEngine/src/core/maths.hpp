@@ -668,7 +668,6 @@ namespace lotus { namespace maths {
 		{
 			for (unsigned int x = 0; x < N; x++)
 			{
-				result.m[x + y * N] = 0;
 				for (unsigned int i = 0; i < N; i++)
 				{
 					result.m[x + y * N] += l.m[x + i * N] * r.m[i + y * N];
@@ -683,7 +682,6 @@ namespace lotus { namespace maths {
 	{
 		static_assert(M_N >= V_N, "Matrix size must be bigger than Vector size.");
 		Vector<T, V_N> result;
-
 		for (unsigned int y = 0; y < V_N; y++)
 		{
 			for (unsigned int x = 0; x < M_N; x++)
@@ -691,7 +689,6 @@ namespace lotus { namespace maths {
 				result.v[y] += l.m[y + x * M_N] * (x < V_N ? r.v[x] : 1);
 			}
 		}
-
 		return result;
 	}
 
@@ -787,10 +784,10 @@ namespace lotus { namespace maths {
 		T sinAngle = sin<T>(angle);
 		T cosAngle = cos<T>(angle);
 
-		result[0 + 0 * N] = cosAngle;
-		result[1 + 0 * N] = -sinAngle;
-		result[0 + 1 * N] = sinAngle;
-		result[1 + 1 * N] = cosAngle;
+		result.m[0 + 0 * N] = cosAngle;
+		result.m[1 + 0 * N] = -sinAngle;
+		result.m[0 + 1 * N] = sinAngle;
+		result.m[1 + 1 * N] = cosAngle;
 
 		return result;
 	}
@@ -809,20 +806,20 @@ namespace lotus { namespace maths {
 		const T sinz = sin<T>(z);
 		const T cosz = cos<T>(z);
 
-		rx[1 + 1 * N] = cosx;
-		rx[2 + 1 * N] = -sinx;
-		rx[1 + 2 * N] = sinx;
-		rx[2 + 2 * N] = cosx;
+		rx.m[1 + 1 * N] = cosx;
+		rx.m[2 + 1 * N] = -sinx;
+		rx.m[1 + 2 * N] = sinx;
+		rx.m[2 + 2 * N] = cosx;
 
-		ry[0 + 0 * N] = cosx;
-		ry[2 + 0 * N] = -sinx;
-		ry[0 + 2 * N] = sinx;
-		ry[2 + 2 * N] = cosx;
+		ry.m[0 + 0 * N] = cosx;
+		ry.m[2 + 0 * N] = -sinx;
+		ry.m[0 + 2 * N] = sinx;
+		ry.m[2 + 2 * N] = cosx;
 
-		rz[0 + 0 * N] = cosx;
-		rz[1 + 0 * N] = -sinx;
-		rz[0 + 1 * N] = sinx;
-		rz[1 + 1 * N] = cosx;
+		rz.m[0 + 0 * N] = cosx;
+		rz.m[1 + 0 * N] = -sinx;
+		rz.m[0 + 1 * N] = sinx;
+		rz.m[1 + 1 * N] = cosx;
 
 		return rz * ry * rx;
 	}
@@ -850,9 +847,9 @@ namespace lotus { namespace maths {
 	template <typename T, unsigned int N>
 	inline Matrix<T, N> rotation(const Quaternion<T> &rot)
 	{
-		const Vector<T, 3> f = rotate(Vector<T, 3>(0.0f, 0.0f, 1.0f), rot);
-		const Vector<T, 3> u = rotate(Vector<T, 3>(0.0f, 1.0f, 0.0f), rot);
-		const Vector<T, 3> r = rotate(Vector<T, 3>(1.0f, 0.0f, 0.0f), rot);
+		const Vector<T, 3> f = rotate(Vector<T, 3>(0, 0, 1), rot);
+		const Vector<T, 3> u = rotate(Vector<T, 3>(0, 1, 0), rot);
+		const Vector<T, 3> r = rotate(Vector<T, 3>(1, 0, 0), rot);
 
 		return rotation<T, N>(f, u, r);
 	}
@@ -870,17 +867,17 @@ namespace lotus { namespace maths {
 		const T &y = axis.y;
 		const T &z = axis.z;
 
-		result[0 + 0 * 4] = x * omc + c;
-		result[1 + 0 * 4] = y * x * omc + z * s;
-		result[2 + 0 * 4] = x * z * omc - y * s;
+		result.m[0 + 0 * 4] = x * omc + c;
+		result.m[1 + 0 * 4] = y * x * omc + z * s;
+		result.m[2 + 0 * 4] = x * z * omc - y * s;
 
-		result[0 + 1 * 4] = x * y * omc - z * s;
-		result[1 + 1 * 4] = y * omc + c;
-		result[2 + 1 * 4] = y * z * omc + x * s;
+		result.m[0 + 1 * 4] = x * y * omc - z * s;
+		result.m[1 + 1 * 4] = y * omc + c;
+		result.m[2 + 1 * 4] = y * z * omc + x * s;
 
-		result[0 + 2 * 4] = x * z * omc + y * s;
-		result[1 + 2 * 4] = y * z * omc - x * s;
-		result[2 + 2 * 4] = z * omc + c;
+		result.m[0 + 2 * 4] = x * z * omc + y * s;
+		result.m[1 + 2 * 4] = y * z * omc - x * s;
+		result.m[2 + 2 * 4] = z * omc + c;
 
 		return result;
 	}
@@ -890,13 +887,13 @@ namespace lotus { namespace maths {
 	{
 		Matrix<T, 4> result;
 
-		result[0 + 0 * 4] = (T) 2 / (right - left);
-		result[1 + 1 * 4] = (T) 2 / (top - bottom);
-		result[2 + 2 * 4] = (T) 2 / (near - far);
+		result.m[0 + 0 * 4] = (T) 2 / (right - left);
+		result.m[1 + 1 * 4] = (T) 2 / (top - bottom);
+		result.m[2 + 2 * 4] = (T) 2 / (near - far);
 
-		result[0 + 3 * 4] = (left + right) / (left - right);
-		result[1 + 3 * 4] = (bottom + top) / (bottom - top);
-		result[2 + 3 * 4] = (far + near) / (far - near);
+		result.m[0 + 3 * 4] = (left + right) / (left - right);
+		result.m[1 + 3 * 4] = (bottom + top) / (bottom - top);
+		result.m[2 + 3 * 4] = (far + near) / (far - near);
 
 		return result;
 	}

@@ -4,6 +4,7 @@
 #include "irenderer.hpp"
 #include "../vertex.hpp"
 #include "../shader.hpp"
+#include "../../core/profiling.hpp"
 
 #include <GL/glew.h>
 
@@ -19,11 +20,10 @@ namespace lotus { namespace graphics {
 		GLuint			m_vao;
 		GLuint			m_vbo;
 		GLuint			m_ibo;
-		
 		Vertex2D		*m_buffer;
 		unsigned int	m_count;
-		
 		Shader			m_shader;
+		ProfileTimer	m_renderTimer;
 	public:
 		SpriteRenderer2D();
 		
