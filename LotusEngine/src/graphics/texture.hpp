@@ -14,7 +14,8 @@ namespace lotus { namespace graphics {
 	{
 	public:
 		TextureResource(const std::string &name, GLenum textureTarget, unsigned int width, unsigned int height,
-						unsigned int numTextures, unsigned char **data, GLfloat *filters, GLenum *attachments);
+						unsigned int numTextures, unsigned char **data, GLfloat *filters,
+						GLenum *internalFormats, GLenum *formats, bool *clamp, GLenum *attachments);
 		TextureResource(const std::string &name);
 		virtual ~TextureResource();
 
@@ -23,7 +24,7 @@ namespace lotus { namespace graphics {
 
 		inline GLuint *getTextureID() const { return m_textureID; }
 	private:
-		void initTextures(unsigned char **data, GLfloat *filters);
+		void initTextures(unsigned char **data, GLfloat *filters, GLenum *internalFormats, GLenum *formats, bool *clamp);
 		void initRenderTargets(GLenum *attachments);
 
 		GLuint			*m_textureID;
@@ -38,9 +39,17 @@ namespace lotus { namespace graphics {
 	{
 	public:
 		Texture(const std::string &name, GLenum textureTarget,
-				GLuint numTextures, std::string *fileNames, GLfloat *filters, GLenum *attachments);
-		Texture(const std::string &fileName,
-				GLenum textureTarget = GL_TEXTURE_2D, GLfloat filter = GL_NEAREST, GLenum attachment = GL_NONE);
+				GLuint numTextures, std::string *fileNames, GLfloat *filters,
+				GLenum *internalFormats, GLenum *formats, bool *clamp, GLenum *attachments);
+		Texture(const std::string &fileName, GLenum textureTarget = GL_TEXTURE_2D, GLfloat filter = GL_NEAREST,
+				GLenum internalFormat = GL_RGBA, GLenum format = GL_RGBA, bool clamp = false, GLenum attachment = GL_NONE);
+		Texture(const std::string &name, unsigned int width, unsigned int height, GLenum textureTarget,
+				unsigned int numTextures, unsigned char **data, GLfloat *filters, GLenum *internalFormats, GLenum *formats,
+				bool *clamp, GLenum *attachments);
+		Texture(const std::string &name, unsigned int width, unsigned int height, unsigned char *data = nullptr,
+				GLenum textureTarget = GL_TEXTURE_2D, GLfloat filter = GL_NEAREST,
+				GLenum internalFormat = GL_RGBA, GLenum format = GL_RGBA,
+				bool clamp = false, GLenum attachment = GL_NONE);
 		virtual ~Texture();
 
 		void bind(GLuint unit) const;

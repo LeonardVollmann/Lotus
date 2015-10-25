@@ -1,4 +1,5 @@
 #include "simplerenderer.hpp"
+#include "../window.hpp"
 
 namespace lotus { namespace graphics {
 
@@ -17,6 +18,8 @@ namespace lotus { namespace graphics {
 	void SimpleRenderer<RENDERABLE_T>::flush()
 	{
 		m_renderTimer.start();
+
+		Window::CURRENT->bindAsRenderTarget();
 		m_shader.bind();
 		while (!m_renderQueue.empty())
 		{

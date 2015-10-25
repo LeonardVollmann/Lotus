@@ -11,6 +11,8 @@ namespace lotus { namespace graphics {
 	class Window
 	{
 	public:
+		static const Window *CURRENT;
+
 		Window(int width, int height, const char *title);
 		virtual ~Window();
 
@@ -19,6 +21,7 @@ namespace lotus { namespace graphics {
 		void clear() const;
 		void update();
 		void bindAsRenderTarget() const;
+		void bind() const;
 
 		inline GLFWwindow *getWindow()	const { return m_window; }
 		inline int getWidth()			const { return m_width; }

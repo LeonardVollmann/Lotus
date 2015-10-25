@@ -31,7 +31,7 @@ namespace lotus {
 
 	namespace
 	{
-		std::map<std::string, Resource*> s_resources;
+		static std::map<std::string, Resource*> s_resources;
 	}
 
 	class ResourceManager

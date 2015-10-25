@@ -7,7 +7,8 @@
 namespace lotus { namespace graphics {
 
 	TextureResource::TextureResource(const std::string &name, GLenum textureTarget, unsigned int width, unsigned int height,
-									unsigned int numTextures, unsigned char **data, GLfloat *filters, GLenum *attachments) :
+									unsigned int numTextures, unsigned char **data, GLfloat *filters,
+									GLenum *internalFormats, GLenum *formats, bool *clamp, GLenum *attachments) :
 		Resource(name),
 		m_textureTarget(textureTarget),
 		m_width(width),
@@ -18,7 +19,7 @@ namespace lotus { namespace graphics {
 		m_textureID = new GLuint[m_numTextures];
 		glGenTextures(m_numTextures, m_textureID);
 
-		initTextures(data, filters);
+		initTextures(data, filters, internalFormats, formats, clamp);
 		initRenderTargets(attachments);
 	}
 
@@ -44,19 +45,28 @@ namespace lotus { namespace graphics {
 		glViewport(0, 0, m_width, m_height);
 	}
 
-	void TextureResource::initTextures(unsigned char **data, GLfloat *filters)
+	void TextureResource::initTextures(unsigned char **data, GLfloat *filters, GLenum *internalFormats, GLenum *formats, bool *clamp)
 	{
+		std::cout << m_name << std::endl;
 		for (unsigned int i = 0; i < m_numTextures; i++)
 		{
 			glBindTexture(m_textureTarget, m_textureID[i]);
 
-			glTexParameteri(m_textureTarget, GL_TEXTURE_WRAP_S, GL_REPEAT);
-			glTexParameteri(m_textureTarget, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
 			glTexParameterf(m_textureTarget, GL_TEXTURE_MIN_FILTER, filters[i]);
 			glTexParameterf(m_textureTarget, GL_TEXTURE_MAG_FILTER, filters[i]);
 
-			glTexImage2D(m_textureTarget, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data[i]);
+			if (clamp[i])
+			{
+				glTexParameterf(m_textureTarget, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+				glTexParameterf(m_textureTarget, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			}
+			else
+			{
+				glTexParameteri(m_textureTarget, GL_TEXTURE_WRAP_S, GL_REPEAT);
+				glTexParameteri(m_textureTarget, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			}
+
+			glTexImage2D(m_textureTarget, 0, internalFormats[i], m_width, m_height, 0, formats[i], GL_UNSIGNED_BYTE, data[i]);
 		}
 	}
 
@@ -68,6 +78,8 @@ namespace lotus { namespace graphics {
 
 		for (unsigned int i = 0; i < m_numTextures; i++)
 		{
+			if (attachments[i] == GL_NONE) continue;
+
 			if (attachments[i] == GL_DEPTH_ATTACHMENT || attachments[i] == GL_STENCIL_ATTACHMENT)
 			{
 				drawBuffers[i] = GL_NONE;
@@ -77,14 +89,12 @@ namespace lotus { namespace graphics {
 				drawBuffers[i] = attachments[i];
 			}
 
-			if (attachments[i] == GL_NONE) continue;
-
 			if (!m_frameBuffer)
 			{
 				glGenFramebuffers(1, &m_frameBuffer);
 				glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_frameBuffer);
 			}
-			glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, attachments[i], m_textureTarget, m_textureID[i], 0);
+			glFramebufferTexture2D(GL_FRAMEBUFFER, attachments[i], m_textureTarget, m_textureID[i], 0);
 		}
 
 		if (!m_frameBuffer) return;
@@ -96,8 +106,8 @@ namespace lotus { namespace graphics {
 		}
 	}
 
-	Texture::Texture(const std::string &name, GLenum textureTarget,
-					GLuint numTextures, std::string *fileNames, GLfloat *filters, GLenum *attachments)
+	Texture::Texture(const std::string &name, GLenum textureTarget, GLuint numTextures,
+					std::string *fileNames, GLfloat *filters, GLenum *internalFormats, GLenum *formats, bool *clamp, GLenum *attachments)
 	{
 		if (ResourceManager::exists(name))
 		{
@@ -119,14 +129,25 @@ namespace lotus { namespace graphics {
 			}
 		}
 
-		m_textureResource = ResourceManager::create<TextureResource>(name, true, textureTarget, width, height, numTextures, data, filters, attachments);
+		m_textureResource = ResourceManager::create<TextureResource>(name, true, textureTarget, width, height, numTextures, data, filters, internalFormats, formats, clamp, attachments);
 
 		for (unsigned int i = 0; i < numTextures; i++) stbi_image_free(data[i]);
 		delete[] data;
 	}
 
-	Texture::Texture(const std::string &fileName, GLenum textureTarget, GLfloat filter, GLenum attachment) :
-		Texture(fileName, textureTarget, 1, (std::string[]) {fileName}, (GLfloat[]) {filter}, (GLenum[]) {attachment}) {}
+	Texture::Texture(const std::string &fileName, GLenum textureTarget, GLfloat filter, GLenum internalFormat, GLenum format, bool clamp, GLenum attachment) :
+		Texture(fileName, textureTarget, 1, (std::string[]) {fileName}, (GLfloat[]) {filter},
+				(GLenum[]) {internalFormat}, (GLenum[]) {format}, (bool[]) {clamp}, (GLenum[]) {attachment}) {}
+
+	Texture::Texture(const std::string &name, GLenum textureTarget, unsigned int width, unsigned int height,
+					unsigned int numTextures, unsigned char **data, GLfloat *filters, GLenum *internalFormats, GLenum *formats, bool *clamp, GLenum *attachments)
+	{
+		m_textureResource = ResourceManager::create<TextureResource>(name, true, textureTarget, width, height, numTextures, data, filters, internalFormats, formats, clamp, attachments);
+	}
+
+	Texture::Texture(const std::string &name, unsigned int width, unsigned int height, unsigned char *data, GLenum textureTarget, GLfloat filter,
+					GLenum internalFormat, GLenum format, bool clamp, GLenum attachment) :
+		Texture(name, textureTarget, width, height, 1, &data, (GLfloat[]) {filter}, (GLenum[]) {internalFormat}, (GLenum[]) {format}, (bool[]) {clamp}, (GLenum[]) {attachment}) {}
 
 	Texture::~Texture()
 	{

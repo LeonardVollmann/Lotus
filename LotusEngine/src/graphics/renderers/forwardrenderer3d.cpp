@@ -1,4 +1,5 @@
 #include "forwardrenderer3d.hpp"
+#include "../window.hpp"
 
 namespace lotus { namespace graphics {
 
@@ -7,12 +8,24 @@ namespace lotus { namespace graphics {
 		m_directionalShader("forward3d_directional"),
 		m_pointShader("forward3d_point"),
 		m_spotShader("forward3d_spot"),
+		m_shadowMapShader("forward3d_shadow"),
 		m_ambientLight(0.0f),
-		m_renderTimer("ForwardRenderer3D Render Time") {}
+		m_renderTimer("ForwardRenderer3D Render Time")
+	{
+		m_shadowMap = new Texture("forward3d_shadowmap", 1024, 1024, nullptr, GL_TEXTURE_2D, GL_NEAREST,
+								GL_DEPTH_COMPONENT16, GL_DEPTH_COMPONENT, true, GL_DEPTH_ATTACHMENT);
+	}
+
+	ForwardRenderer3D::~ForwardRenderer3D()
+	{
+		delete m_shadowMap;
+	}
 
 	void ForwardRenderer3D::flush()
 	{
 		m_renderTimer.start();
+
+		Window::CURRENT->bindAsRenderTarget();
 		while (!m_renderQueue.empty())
 		{
 			const RenderableComponent<Renderable<Vertex3D>> *renderableComponent = m_renderQueue.front();
