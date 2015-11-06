@@ -296,10 +296,10 @@ namespace lotus { namespace graphics {
 
 	void Shader::initShaders()
 	{
-		ResourceManager::create<ShaderResource>("forward3d_ambient", "forward3d", "forward3d_ambient");
-		ResourceManager::create<ShaderResource>("forward3d_directional", "forward3d", "forward3d_directional");
-		ResourceManager::create<ShaderResource>("forward3d_point", "forward3d", "forward3d_point");
-		ResourceManager::create<ShaderResource>("forward3d_spot", "forward3d", "forward3d_spot");
+		ResourceManager::create<ShaderResource>("forward3d_ambient", false, "forward3d", "forward3d_ambient");
+		ResourceManager::create<ShaderResource>("forward3d_directional", false, "forward3d", "forward3d_directional");
+		ResourceManager::create<ShaderResource>("forward3d_point", false, "forward3d", "forward3d_point");
+		ResourceManager::create<ShaderResource>("forward3d_spot", false, "forward3d", "forward3d_spot");
 	}
 
 	Shader::Shader(const std::string &name)

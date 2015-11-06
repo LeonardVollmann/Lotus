@@ -13,6 +13,7 @@ namespace lotus { namespace graphics {
 	{
 	public:
 		ForwardRenderer3D();
+		virtual ~ForwardRenderer3D();
 		
 		virtual void flush() override;
 		
@@ -25,6 +26,9 @@ namespace lotus { namespace graphics {
 		Shader							m_directionalShader;
 		Shader							m_pointShader;
 		Shader							m_spotShader;
+		Shader							m_shadowMapShader;
+
+		Texture							*m_shadowMap;
 
 		AmbientLight					m_ambientLight;
 		std::vector<DirectionalLight*>	m_directionalLights;

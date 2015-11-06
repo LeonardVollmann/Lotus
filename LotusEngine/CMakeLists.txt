@@ -14,11 +14,11 @@ add_definitions(
 
 if (CMAKE_BUILD_TYPE STREQUAL "Release")
 	add_definitions(-O3)
-elif (CMAKE_BUILD_TYPE STREQUAL "Debug")
+elseif (CMAKE_BUILD_TYPE STREQUAL "Debug")
 	add_definitions(-g)
 endif (CMAKE_BUILD_TYPE STREQUAL "Release")
 
-file(GLOB_RECURSE HDRS 
+file(GLOB_RECURSE HDRS
 	${LotusEngine_SOURCE_DIR}/src/*.hpp
 	${LotusEngine_SOURCE_DIR}/src/*.h
 	${LotusEngine_SOURCE_DIR}/ext/*.hpp

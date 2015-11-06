@@ -9,6 +9,8 @@ namespace lotus { namespace graphics {
 	void callback_key(GLFWwindow* window, int key, int scancode, int action, int mods);
 	void callback_mouse_button(GLFWwindow* window, int button, int action, int mods);
 
+	const Window *Window::CURRENT;
+
 	Window::Window(int width, int height, const char *title) :
 		m_width(width),
 		m_height(height),
@@ -19,6 +21,8 @@ namespace lotus { namespace graphics {
 		{
 			glfwTerminate();
 		}
+
+		bind();
 	}
 
 	Window::~Window()
@@ -32,7 +36,7 @@ namespace lotus { namespace graphics {
 		return glfwWindowShouldClose(m_window) == 1;
 	}
 
-	void Window::clear()
+	void Window::clear() const
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
@@ -43,6 +47,17 @@ namespace lotus { namespace graphics {
 		glfwPollEvents();
 		glfwSwapBuffers(m_window);
 		m_updateTimer.stop();
+	}
+
+	void Window::bindAsRenderTarget() const
+	{
+		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+		glViewport(0, 0, m_width, m_height);
+	}
+
+	void Window::bind() const
+	{
+		CURRENT = this;
 	}
 
 	bool Window::init()

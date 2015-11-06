@@ -29,11 +29,20 @@ namespace lotus {
 		unsigned int	m_references;
 	};
 
+	namespace
+	{
+		static std::map<std::string, Resource*> s_resources;
+	}
+
 	class ResourceManager
 	{
-	private:
-		static std::map<std::string, Resource*> s_resources;
 	public:
+		static inline bool exists(const std::string &name)
+		{
+			auto it = s_resources.find(name);
+			return it != s_resources.end();
+		}
+
 		template <typename T>
 		static inline T *get(const std::string &name)
 		{
@@ -55,12 +64,34 @@ namespace lotus {
 		}
 
 		template <typename T, typename... ARGS>
-		static inline void create(const std::string &name, ARGS&&... args)
+		static inline T *create(const std::string &name, bool returnResult, ARGS&&... args)
 		{
 			auto it = s_resources.find(name);
-			if (it != s_resources.end()) return;
+			if (it != s_resources.end())
+			{
+				if (returnResult)
+				{
+					(it->second)->addReference();
+					return (T*) it->second;
+				}
+				else
+				{
+					return nullptr;
+				}
+			}
 
-			s_resources.insert(std::pair<std::string, Resource*>(name, new T(name, args...)));
+			T *resource = new T(name, args...);
+			s_resources.insert(std::pair<std::string, Resource*>(name, resource));
+
+			if (returnResult)
+			{
+				resource->addReference();
+				return resource;
+			}
+			else
+			{
+				return nullptr;
+			}
 		}
 
 		template <typename T>
