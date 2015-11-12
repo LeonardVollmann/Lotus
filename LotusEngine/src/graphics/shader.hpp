@@ -8,6 +8,7 @@
 #include "scene.hpp"
 #include "../core/resourcemanagement.hpp"
 #include "../core/transform.hpp"
+#include "../maths/types.hpp"
 
 #include <GL/glew.h>
 #include <map>
@@ -63,10 +64,10 @@ namespace lotus { namespace graphics {
 
 		void setUniform(GLint location, const int &value) const;
 		void setUniform(GLint location, const float &value) const;
-		void setUniform(GLint location, const maths::Vector2f &value) const;
-		void setUniform(GLint location, const maths::Vector3f &value) const;
-		void setUniform(GLint location, const maths::Vector4f &value) const;
-		void setUniform(GLint location, const maths::Matrix4f &value) const;
+		void setUniform(GLint location, const maths::vec2f &value) const;
+		void setUniform(GLint location, const maths::vec3f &value) const;
+		void setUniform(GLint location, const maths::vec4f &value) const;
+		void setUniform(GLint location, const maths::mat4f &value) const;
 
 		inline GLuint getShaderProgram() const { return m_shaderResource->getShaderProgram(); }
 	protected:

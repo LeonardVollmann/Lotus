@@ -2,7 +2,6 @@
 #define LOTUS_UNIFORM_HPP_INCLUDED
 
 #include "material.hpp"
-#include "../core/maths.hpp"
 
 #include <GL/glew.h>
 #include <string>
@@ -24,7 +23,7 @@ namespace lotus { namespace graphics {
 	{
 	public:
 		VarUniform(const ShaderResource *shader, const char *name, unsigned char **owner, size_t m_varOffset);
-		
+
 		virtual void update(const Shader *shader) const final;
 	private:
 		GLint			m_location;
@@ -37,7 +36,7 @@ namespace lotus { namespace graphics {
 	{
 	public:
 		MaterialUniform(const ShaderResource *shader, const char *uniformName, const std::string &varName);
-		
+
 		virtual void update(const Shader *shader) const final;
 	private:
 		GLint		m_location;
@@ -48,7 +47,7 @@ namespace lotus { namespace graphics {
 	{
 	public:
 		SamplerUniform(const ShaderResource *shader, const char *name, int samplerSlot);
-		
+
 		virtual void update(const Shader *shader) const final;
 	private:
 		GLint	m_location;
@@ -60,7 +59,7 @@ namespace lotus { namespace graphics {
 	{
 	public:
 		FunctionUniform(const ShaderResource *shader, const char *name, VAR_T (*getUniformValue)());
-		
+
 		virtual void update(const Shader *shader) const final;
 	private:
 		GLuint m_location;
@@ -72,7 +71,7 @@ namespace lotus { namespace graphics {
 	{
 	public:
 		StructUniform(const ShaderResource *shader, const std::string &name);
-		
+
 		virtual void update(const Shader *shader) const final;
 	private:
 		GLuint m_locations[NUM_MEMBERS];

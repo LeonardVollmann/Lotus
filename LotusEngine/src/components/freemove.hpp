@@ -2,7 +2,7 @@
 #define LOTUS_FREE_MOVE_HPP_INCLUDED
 
 #include "../core/entitycomponent.hpp"
-#include "../core/maths.hpp"
+#include "../maths/types.hpp"
 
 namespace lotus {
 
@@ -12,7 +12,7 @@ namespace lotus {
 		FreeMove(float speed);
 		virtual void update(float delta) override;
 	private:
-		void move(const maths::Vector3f &axis, float amount);
+		void move(const maths::vec3f &axis, float amount);
 	private:
 		float m_speed;
 	};

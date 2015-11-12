@@ -5,7 +5,7 @@ namespace lotus { namespace graphics {
 
 	const Scene *Scene::CURRENT;
 
-	Scene::Scene(const maths::Matrix4f &projection, IRenderer *renderer) :
+	Scene::Scene(const maths::mat4f &projection, IRenderer *renderer) :
 		m_projection(projection),
 		m_renderer(renderer) {}
 

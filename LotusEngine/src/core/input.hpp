@@ -1,8 +1,8 @@
 #ifndef LOTUS_INPUT_HPP_INCLUDED
 #define LOTUS_INPUT_HPP_INCLUDED
 
-#include "../core/maths.hpp"
 #include "../graphics/window.hpp"
+#include "../maths/types.hpp"
 
 #include <GLFW/glfw3.h>
 
@@ -15,12 +15,12 @@ namespace lotus {
 		static void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods);
 
 		static void update();
-		
+
 		inline static bool getKey(int key)							{ return s_keys[key]; }
 		inline static bool getMouseButton(int button)				{ return s_mouseButtons[button]; }
-		inline static const maths::Vector2f &getCursorPos()			{ return s_cursorPos; }
-		inline static const maths::Vector2f &getOldCursorPos()		{ return s_oldCursorPos; }
-		inline static const maths::Vector2f &getCursorPosDelta() 	{ return s_cursorPosDelta; }
+		inline static const maths::vec2f &getCursorPos()			{ return s_cursorPos; }
+		inline static const maths::vec2f &getOldCursorPos()		{ return s_oldCursorPos; }
+		inline static const maths::vec2f &getCursorPosDelta() 	{ return s_cursorPosDelta; }
 		inline static bool isCursorVisible()						{ return s_cursorVisible; }
 		inline static bool isMouseLocked()					{ return s_mouseLocked; }
 
@@ -32,10 +32,10 @@ namespace lotus {
 		static bool				s_mouseButtons[64];
 		static bool				s_cursorVisible;
 		static bool				s_mouseLocked;
-		static maths::Vector2f 	s_cursorPos;
-		static maths::Vector2f 	s_oldCursorPos;
-		static maths::Vector2f 	s_cursorPosDelta;
-		
+		static maths::vec2f 	s_cursorPos;
+		static maths::vec2f 	s_oldCursorPos;
+		static maths::vec2f 	s_cursorPosDelta;
+
 		static graphics::Window *s_window;
 	};
 

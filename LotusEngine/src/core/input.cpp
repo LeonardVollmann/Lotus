@@ -1,4 +1,5 @@
 #include "input.hpp"
+#include "../maths/vector.hpp"
 
 namespace lotus {
 
@@ -7,9 +8,9 @@ namespace lotus {
 
 	bool Input::s_cursorVisible;
 	bool Input::s_mouseLocked;
-	maths::Vector2f Input::s_cursorPos;
-	maths::Vector2f Input::s_oldCursorPos;
-	maths::Vector2f Input::s_cursorPosDelta;
+	maths::vec2f Input::s_cursorPos;
+	maths::vec2f Input::s_oldCursorPos;
+	maths::vec2f Input::s_cursorPosDelta;
 
 	graphics::Window *Input::s_window;
 
@@ -24,24 +25,24 @@ namespace lotus {
 	}
 
 	void Input::update()
-	{	
+	{
 		float width = (float) s_window->getWidth();
 		float height = (float) s_window->getHeight();
-		
+
 		double xpos, ypos;
 		glfwGetCursorPos(s_window->getWindow(), &xpos, &ypos);
-		
+
 		const float xNormalized = -(width / 2.0f - (float) xpos) / width * 2.0f;
 		const float yNormalized = -(height / 2.0f - (float) ypos) / height * 2.0f;
-		
+
 		s_oldCursorPos = s_cursorPos;
-		s_cursorPos = maths::Vector2f(xNormalized, yNormalized);
+		s_cursorPos = maths::vec2f(xNormalized, yNormalized);
 		s_cursorPosDelta = s_cursorPos - s_oldCursorPos;
-		
+
 		if (s_mouseLocked)
 		{
 			glfwSetCursorPos(s_window->getWindow(), (float) width / 2.0f, (float) height / 2.0f);
-			s_cursorPos = maths::Vector2f(0.0f);
+			s_cursorPos = maths::vec2f(0.0f);
 		}
 	}
 

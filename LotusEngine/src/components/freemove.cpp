@@ -1,7 +1,8 @@
 #include "freemove.hpp"
 #include "../core/entity.hpp"
 #include "../core/input.hpp"
-#include "../core/maths.hpp"
+#include "../maths/vector.hpp"
+#include "../maths/quaternion.hpp"
 
 namespace lotus {
 
@@ -28,7 +29,7 @@ FreeMove::FreeMove(float speed) :
 		}
 	}
 
-	void FreeMove::move(const maths::Vector3f &axis, float amount)
+	void FreeMove::move(const maths::vec3f &axis, float amount)
 	{
 		m_entity->getTransform().translate(axis * amount);
 	}

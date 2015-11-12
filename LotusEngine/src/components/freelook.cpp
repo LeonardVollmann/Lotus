@@ -1,6 +1,8 @@
 #include "freelook.hpp"
 #include "../core/entity.hpp"
 #include "../core/input.hpp"
+#include "../maths/types.hpp"
+#include "../maths/quaternion.hpp"
 
 namespace lotus {
 
@@ -25,11 +27,11 @@ namespace lotus {
 			}
 			if (Input::getKey(GLFW_KEY_LEFT))
 			{
-				m_entity->getTransform().rotate(maths::Vector3f(0.0f, 1.0f, 0.0f), m_turnSpeed * delta);
+				m_entity->getTransform().rotate(maths::vec3f(0.0f, 1.0f, 0.0f), m_turnSpeed * delta);
 			}
 			if (Input::getKey(GLFW_KEY_RIGHT))
 			{
-				m_entity->getTransform().rotate(maths::Vector3f(0.0f, -1.0f, 0.0f), m_turnSpeed * delta);
+				m_entity->getTransform().rotate(maths::vec3f(0.0f, -1.0f, 0.0f), m_turnSpeed * delta);
 			}
 		}
 	}

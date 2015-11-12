@@ -1,13 +1,14 @@
 #include "indexedmodel.hpp"
 #include "../core/stringfunc.hpp"
+#include "../maths/vector.hpp"
 
 #include <iostream>
 #include <fstream>
 
 namespace lotus { namespace graphics {
 
-	IndexedModel::IndexedModel(const std::vector<maths::Vector3f> &positions, const std::vector<maths::Vector2f> &texCoords,
-							const std::vector<maths::Vector3f> &normals, const std::vector<maths::Vector3f> &tangents,
+	IndexedModel::IndexedModel(const std::vector<maths::vec3f> &positions, const std::vector<maths::vec2f> &texCoords,
+							const std::vector<maths::vec3f> &normals, const std::vector<maths::vec3f> &tangents,
 							const std::vector<GLushort> &indices) :
 		m_positions(positions),
 		m_texCoords(texCoords),
@@ -20,41 +21,41 @@ namespace lotus { namespace graphics {
 		for (unsigned int i = 0; i < objModel.getIndices().size(); i++)
 		{
 			const OBJIndex &index = objModel.getIndices()[i];
-			maths::Vector3f position = objModel.getPositions()[index.positionIndex];
-			maths::Vector2f texCoord = objModel.hasTexCoords() ? objModel.getTexCoords()[index.texCoordIndex] : maths::Vector2f();
-			maths::Vector3f normal = objModel.hasNormals() ? objModel.getNormals()[index.normalIndex] : maths::Vector3f();
+			maths::vec3f position = objModel.getPositions()[index.positionIndex];
+			maths::vec2f texCoord = objModel.hasTexCoords() ? objModel.getTexCoords()[index.texCoordIndex] : maths::vec2f();
+			maths::vec3f normal = objModel.hasNormals() ? objModel.getNormals()[index.normalIndex] : maths::vec3f();
 
 			m_positions.push_back(position);
 			m_texCoords.push_back(texCoord);
-			if (normal != maths::Vector3f())
+			if (normal != maths::vec3f())
 			{
 				m_normals.push_back(normal);
 			}
 			m_indices.push_back(i);
 		}
-		
+
 		finalize();
 	}
 
 	IndexedModel::IndexedModel(const std::string &fileName) :
 		IndexedModel(OBJModel(fileName)) {}
 
-	void IndexedModel::addPosition(const maths::Vector3f &position)
+	void IndexedModel::addPosition(const maths::vec3f &position)
 	{
 		m_positions.push_back(position);
 	}
 
-	void IndexedModel::addTexCoord(const maths::Vector2f &texCoord)
+	void IndexedModel::addTexCoord(const maths::vec2f &texCoord)
 	{
 		m_texCoords.push_back(texCoord);
 	}
 
-	void IndexedModel::addNormal(const maths::Vector3f &normal)
+	void IndexedModel::addNormal(const maths::vec3f &normal)
 	{
 		m_normals.push_back(normal);
 	}
 
-	void IndexedModel::addTangent(const maths::Vector3f &tangent)
+	void IndexedModel::addTangent(const maths::vec3f &tangent)
 	{
 		m_tangents.push_back(tangent);
 	}
@@ -111,7 +112,7 @@ namespace lotus { namespace graphics {
 
 		for (unsigned int i = 0; i < m_positions.size(); i++)
 		{
-			m_normals.push_back(maths::Vector3f(0.0f));
+			m_normals.push_back(maths::vec3f(0.0f));
 		}
 
 		for (unsigned int i = 0; i < m_indices.size(); i += 3)
@@ -120,10 +121,10 @@ namespace lotus { namespace graphics {
 			GLushort i1 = m_indices[i + 1];
 			GLushort i2 = m_indices[i + 2];
 
-			maths::Vector3f d1 = m_positions[i1] - m_positions[i0];
-			maths::Vector3f d2 = m_positions[i2] - m_positions[i0];
+			maths::vec3f d1 = m_positions[i1] - m_positions[i0];
+			maths::vec3f d2 = m_positions[i2] - m_positions[i0];
 
-			maths::Vector3f normal = maths::cross(d1, d2);
+			maths::vec3f normal = maths::cross(d1, d2);
 
 			m_normals[i0] += normal;
 			m_normals[i1] += normal;
@@ -142,7 +143,7 @@ namespace lotus { namespace graphics {
 
 		for (unsigned int i = 0; i < m_positions.size(); i++)
 		{
-			m_tangents.push_back(maths::Vector3f(0.0f));
+			m_tangents.push_back(maths::vec3f(0.0f));
 		}
 
 		for (unsigned int i = 0; i < m_indices.size(); i += 3)
@@ -151,17 +152,17 @@ namespace lotus { namespace graphics {
 			GLushort i1 = m_indices[i + 1];
 			GLushort i2 = m_indices[i + 2];
 
-			maths::Vector3f edge0 = m_positions[i1] - m_positions[i0];
-			maths::Vector3f edge1 = m_positions[i2] - m_positions[i0];
+			maths::vec3f edge0 = m_positions[i1] - m_positions[i0];
+			maths::vec3f edge1 = m_positions[i2] - m_positions[i0];
 
-			maths::Vector2f deltaUV0 = m_texCoords[i1] - m_texCoords[i0];
-			maths::Vector2f deltaUV1 = m_texCoords[i2] - m_texCoords[i0];
+			maths::vec2f deltaUV0 = m_texCoords[i1] - m_texCoords[i0];
+			maths::vec2f deltaUV1 = m_texCoords[i2] - m_texCoords[i0];
 
 			float dividend = (deltaUV0.x * deltaUV1.y - deltaUV1.x * deltaUV0.y);
 			float f = dividend == 0.0f ? 0.0f : 1.0f / dividend;
 
-			maths::Vector3f tangent = (edge0 * deltaUV1.y - edge1 * deltaUV0.y) * f;
-			
+			maths::vec3f tangent = (edge0 * deltaUV1.y - edge1 * deltaUV0.y) * f;
+
 			m_tangents[i0] += tangent;
 			m_tangents[i1] += tangent;
 			m_tangents[i2] += tangent;

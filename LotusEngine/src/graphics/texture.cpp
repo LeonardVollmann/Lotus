@@ -47,7 +47,6 @@ namespace lotus { namespace graphics {
 
 	void TextureResource::initTextures(unsigned char **data, GLfloat *filters, GLenum *internalFormats, GLenum *formats, bool *clamp)
 	{
-		std::cout << m_name << std::endl;
 		for (unsigned int i = 0; i < m_numTextures; i++)
 		{
 			glBindTexture(m_textureTarget, m_textureID[i]);

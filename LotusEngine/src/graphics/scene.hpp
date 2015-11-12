@@ -2,7 +2,7 @@
 #define LOTUS_SCENE_HPP_INCLUDED
 
 #include "../core/entity.hpp"
-#include "../core/maths.hpp"
+#include "../maths/types.hpp"
 
 #include <vector>
 #include <memory>
@@ -14,7 +14,7 @@ namespace lotus { namespace graphics {
 	class Scene
 	{
 	public:
-		Scene(const maths::Matrix4f &m_projection, IRenderer *renderer);
+		Scene(const maths::mat4f &m_projection, IRenderer *renderer);
 		virtual ~Scene();
 
 		template <typename ENTITY_T, typename... ARGS>
@@ -25,12 +25,12 @@ namespace lotus { namespace graphics {
 		void bind() const;
 		void add(Entity *entity);
 
-		inline const maths::Matrix4f &getProjection() const { return m_projection; }
-		inline void setProjection(const maths::Matrix4f &projection) { m_projection = projection; }
+		inline const maths::mat4f &getProjection() const { return m_projection; }
+		inline void setProjection(const maths::mat4f &projection) { m_projection = projection; }
 	public:
 		static const Scene *CURRENT;
 	protected:
-		maths::Matrix4f							m_projection;
+		maths::mat4f							m_projection;
 		IRenderer								*m_renderer;
 		std::vector<std::unique_ptr<Entity>>	m_entities;
 	};

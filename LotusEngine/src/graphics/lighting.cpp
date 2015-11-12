@@ -1,7 +1,7 @@
 #include "lighting.hpp"
 #include "shader.hpp"
+#include "../maths/functions.hpp"
 
-#include <cmath>
 #include <string>
 
 namespace lotus { namespace graphics {
@@ -11,7 +11,7 @@ namespace lotus { namespace graphics {
 		m_linear(linear),
 		m_exponent(exponent) {}
 
-	Attenuation::Attenuation(const maths::Vector3f &attenuation) :
+	Attenuation::Attenuation(const maths::vec3f &attenuation) :
 		m_constant(attenuation.x),
 		m_linear(attenuation.y),
 		m_exponent(attenuation.z) {}
@@ -28,7 +28,7 @@ namespace lotus { namespace graphics {
 		shader->setUniform(locations[0], CURRENT->getLight());
 	}
 
-	AmbientLight::AmbientLight(const maths::Vector3f &light) :
+	AmbientLight::AmbientLight(const maths::vec3f &light) :
 		m_light(light) {}
 
 	AmbientLight::AmbientLight(float r, float g, float b) :
@@ -43,7 +43,7 @@ namespace lotus { namespace graphics {
 		m_color(1.0f, 1.0f, 1.0f),
 		m_intensity(1.0f) {}
 
-	BaseLight::BaseLight(const maths::Vector3f &color, float intensity) :
+	BaseLight::BaseLight(const maths::vec3f &color, float intensity) :
 		m_color(color),
 		m_intensity(intensity) {}
 
@@ -67,11 +67,11 @@ namespace lotus { namespace graphics {
 		BaseLight(),
 		m_direction() {}
 
-	DirectionalLight::DirectionalLight(const maths::Vector3f &color, float intensity, const maths::Vector3f &direction) :
+	DirectionalLight::DirectionalLight(const maths::vec3f &color, float intensity, const maths::vec3f &direction) :
 		BaseLight(color, intensity),
 		m_direction(direction) {}
 
-	DirectionalLight::DirectionalLight(const maths::Vector3f &direction, const BaseLight &base) :
+	DirectionalLight::DirectionalLight(const maths::vec3f &direction, const BaseLight &base) :
 		BaseLight(base),
 		m_direction(direction) {}
 
@@ -110,13 +110,13 @@ namespace lotus { namespace graphics {
 		m_pos(0.0f, 0.0f, 0.0f),
 		m_range(calcRange(*this)) {}
 
-	PointLight::PointLight(const maths::Vector3f &color, float intensity, const Attenuation &atten, const maths::Vector3f &pos) :
+	PointLight::PointLight(const maths::vec3f &color, float intensity, const Attenuation &atten, const maths::vec3f &pos) :
 		BaseLight(color, intensity),
 		m_atten(atten),
 		m_pos(pos),
 		m_range(calcRange(*this)) {}
 
-	PointLight::PointLight(const Attenuation &atten, const maths::Vector3f &pos, const BaseLight &base) :
+	PointLight::PointLight(const Attenuation &atten, const maths::vec3f &pos, const BaseLight &base) :
 		BaseLight(base),
 		m_atten(atten),
 		m_pos(pos),
@@ -131,12 +131,12 @@ namespace lotus { namespace graphics {
 	{
 		float maxColorValue = pointLight.getColor().x > pointLight.getColor().y ? pointLight.getColor().x : pointLight.getColor().y;
 		if (pointLight.getColor().z > maxColorValue) maxColorValue = pointLight.getColor().z;
-		
+
 		float a = pointLight.getAttenuation().getExponent();
 		float b = pointLight.getAttenuation().getLinear();
 		float c = pointLight.getAttenuation().getConstant() - COLOR_DEPTH * pointLight.getIntensity() * maxColorValue;
-		
-		return (-b + sqrtf(b * b - 4 * a * c)) / (2 * a);
+
+		return (-b + maths::sqrt<float>(b * b - 4 * a * c)) / (2 * a);
 	}
 
 	const SpotLight *SpotLight::CURRENT;
@@ -172,12 +172,12 @@ namespace lotus { namespace graphics {
 		m_direction(),
 		m_cutoff(0.7f) {}
 
-	SpotLight::SpotLight(const maths::Vector3f &color, float intensity, const Attenuation &atten, const maths::Vector3f &pos, const maths::Vector3f &direction, float cutoff) :
+	SpotLight::SpotLight(const maths::vec3f &color, float intensity, const Attenuation &atten, const maths::vec3f &pos, const maths::vec3f &direction, float cutoff) :
 		PointLight(color, intensity, atten, pos),
 		m_direction(direction),
 		m_cutoff(cutoff) {}
 
-	SpotLight::SpotLight(const maths::Vector3f &direction, float cutoff, const PointLight &pointLight) :
+	SpotLight::SpotLight(const maths::vec3f &direction, float cutoff, const PointLight &pointLight) :
 		PointLight(pointLight),
 		m_direction(direction),
 		m_cutoff(cutoff) {}

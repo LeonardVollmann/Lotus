@@ -18,22 +18,22 @@ namespace lotus { namespace graphics {
 			{
 				getline(file, line);
 				removeWhiteSpaceFront(line);
-				
+
 				std::vector<std::string> tokens = tokenize(line, ' ');
-				
+
 				if (line[0] == 'v')
 				{
 					if (line[1] == 't')
 					{
-						m_texCoords.push_back(maths::Vector2f(atof(tokens[1].c_str()), atof(tokens[2].c_str())));
+						m_texCoords.push_back(maths::vec2f(atof(tokens[1].c_str()), atof(tokens[2].c_str())));
 					}
 					else if (line[1] == 'n')
 					{
-						m_normals.push_back(maths::Vector3f(atof(tokens[1].c_str()), atof(tokens[2].c_str()), atof(tokens[3].c_str())));
+						m_normals.push_back(maths::vec3f(atof(tokens[1].c_str()), atof(tokens[2].c_str()), atof(tokens[3].c_str())));
 					}
 					else
 					{
-						m_positions.push_back(maths::Vector3f(atof(tokens[1].c_str()), atof(tokens[2].c_str()), atof(tokens[3].c_str())));
+						m_positions.push_back(maths::vec3f(atof(tokens[1].c_str()), atof(tokens[2].c_str()), atof(tokens[3].c_str())));
 					}
 				}
 				else if (line[0] == 'f')
