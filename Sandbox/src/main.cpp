@@ -9,6 +9,8 @@
 #include <core/transform.hpp>
 #include <core/entity.hpp>
 #include <core/stringfunc.hpp>
+#include <core/entity/entity.hpp>
+#include <core/entity/scenegraph.hpp>
 #include <graphics/window.hpp>
 #include <graphics/lighting.hpp>
 #include <graphics/camera.hpp>
@@ -146,6 +148,21 @@ public:
 
 		addScene(scene);
 		// addScene(scene2);
+
+		EntityWorld w;
+		SceneGraph sg(16);
+		EntityID e0 = w.create();
+		EntityID e1 = w.create();
+		EntityID e2 = w.create();
+		EntityID e3 = w.create();
+		sg.create(e0, mat4f(1.0f));
+		sg.create(e1, mat4f(1.0f));
+		sg.create(e2, mat4f(1.0f));
+		sg.create(e3, mat4f(1.0f));
+		sg.link(sg.getInstanceID(e1), sg.getInstanceID(e0));
+		sg.link(sg.getInstanceID(e2), sg.getInstanceID(e0));
+		sg.link(sg.getInstanceID(e3), sg.getInstanceID(e1));
+		sg.printInstanceData();
 	}
 
 	virtual void shutdown() override {}

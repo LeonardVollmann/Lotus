@@ -65,21 +65,9 @@ namespace lotus { namespace maths {
 	}
 
 	template <typename T, unsigned int N>
-	mat<T, N> diagonal(T n)
-	{
-		mat<T, N> result {};
-		result.m[0] = n;
-		for (unsigned int i = 0; i < N * N; i++)
-		{
-			result.m[i] = ((i - i / N) % N) == 0 ? n : 0;
-		}
-		return result;
-	}
-
-	template <typename T, unsigned int N>
 	mat<T, N> identity()
 	{
-		return diagonal<T, N>(1);
+		return mat<T, N>(1);
 	}
 
 	template <typename T, unsigned int N>

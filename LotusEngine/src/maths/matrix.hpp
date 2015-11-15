@@ -18,8 +18,6 @@ namespace lotus { namespace maths {
 	mat<T, N> mul(const mat<T, N> &l, T r);
 
 	template <typename T, unsigned int N>
-	mat<T, N> diagonal(T n);
-	template <typename T, unsigned int N>
 	mat<T, N> identity();
 
 	template <typename T, unsigned int N>

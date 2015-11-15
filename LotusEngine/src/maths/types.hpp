@@ -94,6 +94,17 @@ namespace lotus { namespace maths {
 			T m[N * N];
 			vec<T, N> columns[N];
 		};
+
+		mat(T diagonal = 0.0f)
+		{
+			for (unsigned int y = 0; y < N; y++)
+			{
+				for (unsigned int x = 0; x < N; x++)
+				{
+					m[x + y * N] = x == y ? diagonal : (T) 0;
+				}
+			}
+		}
 	};
 
 	typedef vec<float, 2>			vec2f;
