@@ -23,12 +23,19 @@ namespace lotus {
 		InstanceID getInstanceID(EntityID entity);
 		bool isValid(InstanceID id);
 
-		void create(EntityID entity, const maths::mat4f &transformation);
+		void create(EntityID entity, const maths::mat4f &transform);
 		void destroy(EntityID entity);
 
 		void link(InstanceID child, InstanceID parent);
 		void unlink(InstanceID i);
+
+		void setLocalTransform(InstanceID id, const maths::mat4f &transform);
+		void transformInstance(InstanceID id, const maths::mat4f &transform);
+		void updateGlobalTransforms();
 	private:
+		void swap(InstanceID id0, InstanceID id1);
+		void transformChildren(InstanceID id);
+
 		struct InstanceData
 		{
 			unsigned int size		= 0;
@@ -37,7 +44,7 @@ namespace lotus {
 			unsigned char *data		= nullptr;
 			EntityID *entity		= nullptr;
 			maths::mat4f *local		= nullptr;
-			maths::mat4f *world		= nullptr;
+			maths::mat4f *global	= nullptr;
 			InstanceID *parent		= nullptr;
 			InstanceID *firstChild	= nullptr;
 			InstanceID *nextSibling	= nullptr;
@@ -46,6 +53,7 @@ namespace lotus {
 
 		InstanceData m_data;
 		std::map<EntityID, InstanceID> m_map;
+		InstanceID m_firstDirty;
 	};
 
 }

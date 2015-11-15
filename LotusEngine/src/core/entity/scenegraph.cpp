@@ -28,8 +28,8 @@ namespace lotus {
 
 		newData.entity		= (EntityID*) newData.data;
 		newData.local		= (maths::mat4f*) (newData.entity + capacity);
-		newData.world		= (maths::mat4f*) (newData.local + capacity);
-		newData.parent		= (InstanceID*) (newData.world + capacity);
+		newData.global		= (maths::mat4f*) (newData.local + capacity);
+		newData.parent		= (InstanceID*) (newData.global + capacity);
 		newData.firstChild	= (InstanceID*) (newData.parent + capacity);
 		newData.nextSibling	= (InstanceID*) (newData.firstChild + capacity);
 		newData.prevSibling	= (InstanceID*) (newData.nextSibling + capacity);
@@ -38,7 +38,7 @@ namespace lotus {
 		{
 			memcpy(newData.entity, m_data.entity, sizeof(EntityID) * m_data.size);
 			memcpy(newData.local, m_data.local, sizeof(maths::mat4f) * m_data.size);
-			memcpy(newData.world, m_data.world, sizeof(maths::mat4f) * m_data.size);
+			memcpy(newData.global, m_data.global, sizeof(maths::mat4f) * m_data.size);
 			memcpy(newData.parent, m_data.parent, sizeof(InstanceID) * m_data.size);
 			memcpy(newData.firstChild, m_data.firstChild, sizeof(InstanceID) * m_data.size);
 			memcpy(newData.nextSibling, m_data.nextSibling, sizeof(InstanceID) * m_data.size);
@@ -77,7 +77,7 @@ namespace lotus {
 		return id != EMPTY_INSTANCE_ID;
 	}
 
-	void SceneGraph::create(EntityID entity, const maths::mat4f &transformation)
+	void SceneGraph::create(EntityID entity, const maths::mat4f &transform)
 	{
 		if (m_data.size == m_data.capacity)
 		{
@@ -86,8 +86,8 @@ namespace lotus {
 
 		const unsigned int index = m_data.size;
 		m_data.entity[index]		= entity;
-		m_data.local[index]			= transformation;
-		m_data.world[index]			= transformation;
+		m_data.local[index]			= transform;
+		m_data.global[index]		= transform;
 		m_data.parent[index]		= EMPTY_INSTANCE_ID;
 		m_data.firstChild[index]	= EMPTY_INSTANCE_ID;
 		m_data.nextSibling[index]	= EMPTY_INSTANCE_ID;
@@ -105,11 +105,11 @@ namespace lotus {
 
 		m_map.erase(entity);
 		m_data.local[id] = maths::mat4f(1.0f);
-		m_data.world[id] = maths::mat4f(1.0f);
+		m_data.global[id] = maths::mat4f(1.0f);
 
 		m_data.entity[id]		= m_data.entity[last];
 		m_data.local[id]		= m_data.local[last];
-		m_data.world[id]		= m_data.world[last];
+		m_data.global[id]		= m_data.global[last];
 		m_data.parent[id]		= m_data.parent[last];
 		m_data.firstChild[id]	= m_data.parent[last];
 		m_data.nextSibling[id]	= m_data.nextSibling[last];
@@ -153,6 +153,75 @@ namespace lotus {
 		m_data.parent[id] = EMPTY_INSTANCE_ID;
 		m_data.nextSibling[id] = EMPTY_INSTANCE_ID;
 		m_data.prevSibling[id] = EMPTY_INSTANCE_ID;
+	}
+
+	void SceneGraph::setLocalTransform(InstanceID id, const maths::mat4f &transform)
+	{
+		if (!isValid(m_firstDirty))
+		{
+			m_firstDirty = m_data.size;
+		}
+
+		m_firstDirty--;
+		m_data.local[id] = transform;
+		swap(id, m_firstDirty);
+	}
+
+	void SceneGraph::transformInstance(InstanceID id, const maths::mat4f &transform)
+	{
+		setLocalTransform(id, transform * m_data.local[id]);
+	}
+
+	void SceneGraph::updateGlobalTransforms()
+	{
+		for (InstanceID id = m_firstDirty; id < m_data.size; id++)
+		{
+			if (isValid(m_data.parent[id]))
+			{
+				transformInstance(id, m_data.global[m_data.parent[id]]);
+			}
+
+			transformChildren(id);
+		}
+		m_firstDirty = EMPTY_INSTANCE_ID;
+	}
+
+	void SceneGraph::swap(InstanceID id0, InstanceID id1)
+	{
+		EntityID entity			= m_data.entity[id0];
+		maths::mat4f local		= m_data.local[id0];
+		maths::mat4f global		= m_data.global[id0];
+		InstanceID parent		= m_data.parent[id0];
+		InstanceID firstChild	= m_data.firstChild[id0];
+		InstanceID nextSibling	= m_data.nextSibling[id0];
+		InstanceID prevSibling	= m_data.prevSibling[id0];
+
+		m_data.entity[id0]		= m_data.entity[id1];
+		m_data.local[id0]		= m_data.local[id1];
+		m_data.global[id0]		= m_data.global[id1];
+		m_data.parent[id0]		= m_data.parent[id1];
+		m_data.firstChild[id0]	= m_data.firstChild[id1];
+		m_data.nextSibling[id0]	= m_data.nextSibling[id1];
+		m_data.prevSibling[id0]	= m_data.prevSibling[id1];
+
+		m_data.entity[id1]		= entity;
+		m_data.local[id1]		= local;
+		m_data.global[id1]		= global;
+		m_data.parent[id1]		= parent;
+		m_data.firstChild[id1]	= firstChild;
+		m_data.nextSibling[id1]	= nextSibling;
+		m_data.prevSibling[id1]	= prevSibling;
+	}
+
+	void SceneGraph::transformChildren(InstanceID id)
+	{
+		InstanceID current = m_data.firstChild[id];
+		while (isValid(current))
+		{
+			transformInstance(current, m_data.global[m_data.parent[current]]);
+			current = m_data.nextSibling[current];
+			transformChildren(current);
+		}
 	}
 
 }
