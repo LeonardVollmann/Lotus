@@ -31,16 +31,17 @@ namespace lotus { namespace graphics {
 
 		inline const std::vector<Vertex3D> &getVertices() 	const { return m_vertices; }
 		inline const std::vector<GLushort> &getIndices() 	const { return m_indices; }
+	protected:
 	private:
 		void calcNormals();
 		void calcTangents();
-	private:
+
 		std::vector<maths::vec3f>	m_positions;
 		std::vector<maths::vec2f>	m_texCoords;
 		std::vector<maths::vec3f>	m_normals;
 		std::vector<maths::vec3f>	m_tangents;
-		std::vector<GLushort>			m_indices;
-		std::vector<Vertex3D>			m_vertices;
+		std::vector<GLushort>		m_indices;
+		std::vector<Vertex3D>		m_vertices;
 	};
 
 } }

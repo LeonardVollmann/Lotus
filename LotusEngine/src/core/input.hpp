@@ -27,6 +27,7 @@ namespace lotus {
 		static void setCursorVisible(bool visible);
 		inline static void setMouseLocked(bool mouseLocked) 	{ s_mouseLocked = mouseLocked; }
 		inline static void setWindow(graphics::Window *window)	{ s_window = window; }
+	protected:
 	private:
 		static bool				s_keys[512];
 		static bool				s_mouseButtons[64];

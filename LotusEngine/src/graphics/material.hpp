@@ -12,6 +12,8 @@ namespace lotus { namespace graphics {
 	class Material
 	{
 	public:
+		static const Material *CURRENT;
+
 		Material() {}
 		Material(Texture *diffuse, maths::vec4f color = maths::vec4f(), float specularIntensity = 2.0f, float specularPower = 8.0f,
 				 Texture *normalMap = new Texture("default_normal.png"), Texture *dispMap = new Texture("default_disp.png"),
@@ -29,8 +31,7 @@ namespace lotus { namespace graphics {
 		inline const maths::vec3f *getVector3f(const std::string &name)	const { return (const maths::vec3f*) get(name); }
 		inline const maths::vec4f *getVector4f(const std::string &name)	const { return (maths::vec4f*) get(name); }
 		inline const Texture *getTexture(const std::string &name)			const { return (const Texture*) get(name); }
-	public:
-		static const Material *CURRENT;
+	protected:
 	private:
 		mutable std::map<std::string, void*> m_values;
 	};

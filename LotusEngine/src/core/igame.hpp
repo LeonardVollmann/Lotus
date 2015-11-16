@@ -15,21 +15,21 @@ namespace lotus {
 	public:
 		IGame() :
 			m_camera(new graphics::Camera) {}
-		
+
 		virtual void init() = 0;
 		virtual void shutdown() = 0;
 		virtual void tick() = 0;
-		
+
 		virtual void update(double delta)
 		{
 			m_camera->update(delta);
-			
+
 			for (auto it = m_scenes.begin(); it < m_scenes.end(); it++)
 			{
 				(*it)->update(delta);
 			}
 		}
-		
+
 		virtual void render()
 		{
 			for (auto it = m_scenes.begin(); it < m_scenes.end(); it++)
@@ -45,6 +45,7 @@ namespace lotus {
 		Engine 							*m_engine;
 		std::vector<graphics::Scene*> 	m_scenes;
 		graphics::Camera				*m_camera;
+	private:
 	};
 
 }

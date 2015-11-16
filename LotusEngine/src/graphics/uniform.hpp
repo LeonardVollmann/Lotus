@@ -16,6 +16,8 @@ namespace lotus { namespace graphics {
 	public:
 		virtual ~IUniform() {}
 		virtual void update(const Shader *shader) const = 0;
+	protected:
+	private:
 	};
 
 	template <typename VAR_T>
@@ -25,6 +27,7 @@ namespace lotus { namespace graphics {
 		VarUniform(const ShaderResource *shader, const char *name, unsigned char **owner, size_t m_varOffset);
 
 		virtual void update(const Shader *shader) const final;
+	protected:
 	private:
 		GLint			m_location;
 		unsigned char	**m_owner;
@@ -38,6 +41,7 @@ namespace lotus { namespace graphics {
 		MaterialUniform(const ShaderResource *shader, const char *uniformName, const std::string &varName);
 
 		virtual void update(const Shader *shader) const final;
+	protected:
 	private:
 		GLint		m_location;
 		std::string m_name;
@@ -49,6 +53,7 @@ namespace lotus { namespace graphics {
 		SamplerUniform(const ShaderResource *shader, const char *name, int samplerSlot);
 
 		virtual void update(const Shader *shader) const final;
+	protected:
 	private:
 		GLint	m_location;
 		int		m_samplerSlot;
@@ -61,6 +66,7 @@ namespace lotus { namespace graphics {
 		FunctionUniform(const ShaderResource *shader, const char *name, VAR_T (*getUniformValue)());
 
 		virtual void update(const Shader *shader) const final;
+	protected:
 	private:
 		GLuint m_location;
 		VAR_T (*m_getUniformValue)();
@@ -73,6 +79,7 @@ namespace lotus { namespace graphics {
 		StructUniform(const ShaderResource *shader, const std::string &name);
 
 		virtual void update(const Shader *shader) const final;
+	protected:
 	private:
 		GLuint m_locations[NUM_MEMBERS];
 	};

@@ -14,12 +14,13 @@ namespace lotus { namespace graphics {
 	public:
 		RenderableComponent<RENDERABLE_T>(RENDERABLE_T *renderable, Material *material);
 		virtual ~RenderableComponent<RENDERABLE_T>();
-		
+
 		virtual void render(IRenderer *renderer) const override;
 		void bind() const;
-		
+
 		inline const RENDERABLE_T *getRenderable()	const { return m_renderable; }
 		inline const Material *getMaterial()		const { return m_material; }
+	protected:
 	private:
 		RENDERABLE_T	*m_renderable;
 		Material		*m_material;

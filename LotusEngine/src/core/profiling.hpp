@@ -34,6 +34,7 @@ namespace lotus {
 		void start();
 		void stop();
 		ProfilingInfo reset();
+	protected:
 	private:
 		static std::vector<ProfileTimer*> s_profileTimers;
 

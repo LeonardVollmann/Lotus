@@ -27,6 +27,7 @@ namespace lotus {
 	protected:
 		std::string		m_name;
 		unsigned int	m_references;
+	private:
 	};
 
 	namespace
@@ -104,6 +105,7 @@ namespace lotus {
 			s_resources.erase(it);
 			delete ptr;
 		}
+	protected:
 	private:
 		ResourceManager() {}
 		virtual ~ResourceManager() {}

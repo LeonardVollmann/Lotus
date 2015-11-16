@@ -22,12 +22,13 @@ namespace lotus {
 		void update(float delta);
 		void render();
 		void shutdownSubsystems() const;
+	protected:
 	private:
 		void run();
-	private:
+
 		graphics::Window m_window;
 		IGame			*m_game;
-		
+
 		double			m_fps;
 		bool			m_running;
 

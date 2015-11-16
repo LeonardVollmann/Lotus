@@ -10,6 +10,7 @@ namespace lotus {
 	public:
 		FreeLook(float turnSpeed);
 		virtual void update(float delta) override;
+	protected:
 	private:
 		float m_turnSpeed;
 	};

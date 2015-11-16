@@ -30,9 +30,10 @@ namespace lotus { namespace graphics {
 
 		inline void setWidth(int width)		{ m_width = width; }
 		inline void setHeight(int height)	{ m_height = height; }
+	protected:
 	private:
 		bool init();
-	private:
+
 		GLFWwindow		*m_window;
 		int				m_width;
 		int				m_height;

@@ -49,6 +49,7 @@ namespace lotus {
 		Transform 						m_transform;
 		std::vector<Entity*>			m_children;
 		std::vector<EntityComponent*> 	m_components;
+	private:
 	};
 
 }

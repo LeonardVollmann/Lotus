@@ -8,6 +8,8 @@ namespace lotus {
 	class Transform
 	{
 	public:
+		static const Transform *CURRENT;
+
 		Transform(const maths::vec3f &pos = maths::vec3f(0.0f, 0.0f, 0.0f),
 			const maths::fquat &rot = maths::fquat(0.0f, 0.0f, 0.0f, 1.0f),
 			const maths::vec3f &scale = maths::vec3f(1.0f, 1.0f, 1.0f));
@@ -35,8 +37,7 @@ namespace lotus {
 		inline maths::vec3f &getScale() 	{ return m_scale; }
 
 		inline void setParent(Transform *parent) { m_parent = parent; }
-	public:
-		static const Transform *CURRENT;
+	protected:
 	private:
 		maths::vec3f		m_pos;
 		maths::fquat	m_rot;

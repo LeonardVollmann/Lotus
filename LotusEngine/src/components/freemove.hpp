@@ -11,9 +11,10 @@ namespace lotus {
 	public:
 		FreeMove(float speed);
 		virtual void update(float delta) override;
+	protected:
 	private:
 		void move(const maths::vec3f &axis, float amount);
-	private:
+
 		float m_speed;
 	};
 

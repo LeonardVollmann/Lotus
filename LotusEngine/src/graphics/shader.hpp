@@ -25,6 +25,7 @@ namespace lotus { namespace graphics {
 		virtual ~ShaderResource();
 
 		inline GLuint getShaderProgram() const { return m_program; }
+	protected:
 	private:
 		std::string preprocess(const std::string &shaderSource);
 
@@ -42,7 +43,7 @@ namespace lotus { namespace graphics {
 		void addAllUniforms() const;
 		void addUniform(const std::string &uniform, const std::string &type = "") const;
 		void addSampler(const std::string &uniform);
-	private:
+
 		GLuint										m_program;
 		GLuint										m_shaders[3];
 		mutable std::map<std::string, std::string>	m_uniformTypes;
@@ -72,6 +73,7 @@ namespace lotus { namespace graphics {
 		inline GLuint getShaderProgram() const { return m_shaderResource->getShaderProgram(); }
 	protected:
 		ShaderResource *m_shaderResource;
+	private:
 	};
 
 } }

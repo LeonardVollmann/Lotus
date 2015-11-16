@@ -9,12 +9,14 @@ namespace lotus { namespace graphics {
 	class Camera : public Entity
 	{
 	public:
+		static const Camera *CURRENT;
+
 		Camera();
 
 		maths::mat4f getViewMatrix() const;
 		void bind() const;
-	public:
-		static const Camera *CURRENT;
+	protected:
+	private:
 	};
 
 } }

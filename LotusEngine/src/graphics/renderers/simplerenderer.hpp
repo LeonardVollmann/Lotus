@@ -22,6 +22,7 @@ namespace lotus { namespace graphics {
 		std::deque<const RenderableComponent<RENDERABLE_T>*>	m_renderQueue;
 		Shader													m_shader;
 		ProfileTimer											m_renderTimer;
+	private:
 	};
 
 	typedef SimpleRenderer<Renderable<Vertex2D>> SimpleRenderer2D;

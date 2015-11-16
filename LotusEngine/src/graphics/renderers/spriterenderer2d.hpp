@@ -16,6 +16,13 @@ namespace lotus { namespace graphics {
 
 	class SpriteRenderer2D : public IRenderer
 	{
+	public:
+		SpriteRenderer2D();
+
+		virtual void prepare() override;
+		virtual void submit(const void *s) override;
+		virtual void flush() override;
+	protected:
 	private:
 		GLuint			m_vao;
 		GLuint			m_vbo;
@@ -24,14 +31,8 @@ namespace lotus { namespace graphics {
 		unsigned int	m_count;
 		Shader			m_shader;
 		ProfileTimer	m_renderTimer;
-	public:
-		SpriteRenderer2D();
-		
-		virtual void prepare() override;
-		virtual void submit(const void *s) override;
-		virtual void flush() override;
 	};
-	
+
 } }
 
 #endif

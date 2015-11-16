@@ -26,15 +26,16 @@ namespace lotus { namespace graphics {
 		inline const std::vector<maths::vec3f> &getNormals() 	const { return m_normals; }
 		inline bool hasTexCoords() 								const { return m_hasTexCoords;}
 		inline bool hasNormals()								const { return m_hasNormals; }
+	protected:
 	private:
 		OBJIndex parseOBJIndex(const std::string &token, unsigned int numTokens);
-	private:
-		std::vector<OBJIndex>			m_indices;
+
+		std::vector<OBJIndex>		m_indices;
 		std::vector<maths::vec3f>	m_positions;
 		std::vector<maths::vec2f>	m_texCoords;
 		std::vector<maths::vec3f>	m_normals;
-		bool							m_hasTexCoords;
-		bool							m_hasNormals;
+		bool						m_hasTexCoords;
+		bool						m_hasNormals;
 	};
 
 } }

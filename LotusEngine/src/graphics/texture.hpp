@@ -23,6 +23,7 @@ namespace lotus { namespace graphics {
 		void bindAsRenderTarget() const;
 
 		inline GLuint *getTextureID() const { return m_textureID; }
+	protected:
 	private:
 		void initTextures(unsigned char **data, GLfloat *filters, GLenum *internalFormats, GLenum *formats, bool *clamp);
 		void initRenderTargets(GLenum *attachments);
@@ -56,6 +57,7 @@ namespace lotus { namespace graphics {
 		void bindAsRenderTarget() const;
 
 		inline GLuint *getTextureID() const { return m_textureResource->getTextureID(); }
+	protected:
 	private:
 		TextureResource *m_textureResource;
 	};

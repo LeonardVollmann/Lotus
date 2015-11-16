@@ -14,13 +14,14 @@ namespace lotus { namespace graphics {
 	public:
 		ForwardRenderer3D();
 		virtual ~ForwardRenderer3D();
-		
+
 		virtual void flush() override;
-		
+
 		inline void setAmbientLight(const AmbientLight &ambientLight)		{ m_ambientLight = ambientLight; }
 		inline void addDirectionalLight(DirectionalLight *directionalLight)	{ m_directionalLights.push_back(directionalLight); }
 		inline void addPointLight(PointLight *pointLight)					{ m_pointLights.push_back(pointLight); }
 		inline void addSpotLight(SpotLight *spotLight)						{ m_spotLights.push_back(spotLight); }
+	protected:
 	private:
 		Shader							m_ambientShader;
 		Shader							m_directionalShader;

@@ -35,6 +35,7 @@ namespace lotus { namespace graphics {
 		inline const GLushort *getIndices()		const { return m_indices; }
 		inline GLsizei getNumVertices()			const { return m_numVertices; }
 		inline GLsizei getNumIndices()			const { return m_numIndices; }
+	protected:
 	private:
 		GLuint			m_vao;
 		GLuint			m_vbo;
