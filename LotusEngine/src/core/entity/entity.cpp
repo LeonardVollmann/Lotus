@@ -16,7 +16,7 @@ namespace lotus {
 			index = m_generation.size() - 1;
   		}
 
-  		return EntityID{index, m_generation[index]};
+		return EntityID{index, m_generation[index]};
 	}
 
 	void EntityWorld::destroy(const EntityID &entity)

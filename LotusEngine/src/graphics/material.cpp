@@ -22,6 +22,7 @@ namespace lotus { namespace graphics {
 
 	Material::~Material()
 	{
+		// TODO: Find a better way to do this
 		for (auto it = m_values.begin(); it != m_values.end(); it++)
 		{
 			const std::type_info &type = typeid(it->second);

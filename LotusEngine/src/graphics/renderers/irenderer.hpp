@@ -11,7 +11,7 @@ namespace lotus { namespace graphics {
 		virtual ~IRenderer() {}
 
 		virtual void prepare() {}
-		virtual void submit(const void *renderableComponent) = 0;
+		virtual void submit(const void *object) = 0;
 		virtual void flush() = 0;
 	protected:
 	private:

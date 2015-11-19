@@ -39,10 +39,10 @@ namespace lotus {
 		inline void setParent(Transform *parent) { m_parent = parent; }
 	protected:
 	private:
-		maths::vec3f		m_pos;
+		maths::vec3f	m_pos;
 		maths::fquat	m_rot;
-		maths::vec3f		m_scale;
-		Transform			*m_parent;
+		maths::vec3f	m_scale;
+		Transform		*m_parent;
 	};
 
 }
