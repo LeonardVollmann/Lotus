@@ -21,35 +21,27 @@ endif (CMAKE_BUILD_TYPE STREQUAL "Release")
 file(GLOB_RECURSE HDRS
 	${LotusEngine_SOURCE_DIR}/src/*.hpp
 	${LotusEngine_SOURCE_DIR}/src/*.h
-	${LotusEngine_SOURCE_DIR}/ext/*.hpp
-	${LotusEngine_SOURCE_DIR}/ext/*.h
+	${LotusEngine_SOURCE_DIR}/ext/include/stb/*.h
 )
 
 file(GLOB_RECURSE SRCS
 	${LotusEngine_SOURCE_DIR}/src/*.cpp
 	${LotusEngine_SOURCE_DIR}/src/*.c
-	${LotusEngine_SOURCE_DIR}/ext/*.cpp
-	${LotusEngine_SOURCE_DIR}/ext/*.c
+	${LotusEngine_SOURCE_DIR}/ext/include/stb/*.c
 )
 
 add_library(LotusEngine STATIC ${HDRS} ${SRCS})
 
-set(LotusEngine_CMAKE_DIR "${LotusEngine_SOURCE_DIR}/../cmake")
-
 find_package(OpenGL REQUIRED)
-include(${LotusEngine_CMAKE_DIR}/FindGLEW.cmake)
-include(${LotusEngine_CMAKE_DIR}/FindGLFW3.cmake)
 
 include_directories(
 	${LotusEngine_SOURCE_DIR}/headers
 	${LotusEngine_SOURCE_DIR}/sources
-	${OPENGL_INCLUDE_DIRS}
-	${GLEW_INCLUDE_DIRS}
-	${GLFW3_INCLUDE_DIRS}
+	${LotusEngine_SOURCE_DIR}/ext/include
 )
 
 target_link_libraries( LotusEngine
 	${OPENGL_LIBRARIES}
-	${GLEW_LIBRARIES}
-	${GLFW3_LIBRARIES}
+	${LotusEngine_SOURCE_DIR}/ext/lib/libGLEW.1.12.0.dylib
+	${LotusEngine_SOURCE_DIR}/ext/lib/libglfw3.3.1.dylib
 )

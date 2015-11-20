@@ -1,5 +1,5 @@
 #include "texture.hpp"
-#include "../../ext/stb_image.h"
+#include "stb/stb_image.h"
 
 #include <iostream>
 #include <cassert>
