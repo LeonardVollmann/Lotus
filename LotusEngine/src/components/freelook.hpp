@@ -1,20 +1,18 @@
-#ifndef LOTUS_FREE_LOOK_HPP_INCLUDED
-#define LOTUS_FREE_LOOK_HPP_INCLUDED
+#pragma once
 
 #include "../core/entitycomponent.hpp"
 
-namespace lotus {
+namespace lotus
+{
 
-	class FreeLook : public EntityComponent
-	{
-	public:
-		FreeLook(float turnSpeed);
-		virtual void update(float delta) override;
-	protected:
-	private:
-		float m_turnSpeed;
-	};
+class FreeLook : public EntityComponent
+{
+private:
+	float m_turnSpeed;
 
-}
+public:
+	FreeLook(float turnSpeed);
+	virtual void update(float delta) override;
+};
 
-#endif
+} // namespace lotus

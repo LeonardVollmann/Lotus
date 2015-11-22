@@ -1,10 +1,14 @@
 #include "spritecomponent.hpp"
 
-namespace lotus { namespace graphics {
+namespace lotus
+{
+namespace graphics
+{
 
-	void SpriteComponent::render(IRenderer *renderer) const
-	{
-		renderer->submit(this);
-	}
-	
-} }
+void SpriteComponent::render(IRenderer *renderer) const
+{
+	renderer->submit(this);
+}
+
+} // namespace graphics
+} // namespace lotus

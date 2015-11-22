@@ -1,5 +1,4 @@
-#ifndef LOTUS_SIMPLE_RENDERER_HPP_INCLUDED
-#define LOTUS_SIMPLE_RENDERER_HPP_INCLUDED
+#pragma once
 
 #include "irenderer.hpp"
 #include "../shader.hpp"
@@ -8,26 +7,28 @@
 
 #include <deque>
 
-namespace lotus { namespace graphics {
+namespace lotus
+{
+namespace graphics
+{
 
-	template <typename RENDERABLE_T>
-	class SimpleRenderer : public IRenderer
-	{
-	public:
-		SimpleRenderer();
+template <typename RENDERABLE_T>
+class SimpleRenderer : public IRenderer
+{
+protected:
+	std::deque<const RenderableComponent<RENDERABLE_T> *> m_renderQueue;
+	Shader m_shader;
+	ProfileTimer m_renderTimer;
 
-		virtual void submit(const void *renderableComponent) override;
-		virtual void flush() override;
-	protected:
-		std::deque<const RenderableComponent<RENDERABLE_T>*>	m_renderQueue;
-		Shader													m_shader;
-		ProfileTimer											m_renderTimer;
-	private:
-	};
+public:
+	SimpleRenderer();
 
-	typedef SimpleRenderer<Renderable<Vertex2D>> SimpleRenderer2D;
-	typedef SimpleRenderer<Renderable<Vertex3D>> SimpleRenderer3D;
+	virtual void submit(const void *renderableComponent) override;
+	virtual void flush() override;
+};
 
-} }
+typedef SimpleRenderer<Renderable<Vertex2D>> SimpleRenderer2D;
+typedef SimpleRenderer<Renderable<Vertex3D>> SimpleRenderer3D;
 
-#endif
+} // namespace graphics
+} // namespace lotus

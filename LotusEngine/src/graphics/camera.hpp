@@ -1,24 +1,24 @@
-#ifndef LOTUS_CAMERA_HPP_INCLUDED
-#define LOTUS_CAMERA_HPP_INCLUDED
+#pragma once
 
 #include "../core/entity.hpp"
 #include "../maths/types.hpp"
 
-namespace lotus { namespace graphics {
+namespace lotus
+{
+namespace graphics
+{
 
-	class Camera : public Entity
-	{
-	public:
-		static const Camera *CURRENT;
+class Camera : public Entity
+{
+public:
+	static const Camera *CURRENT;
 
-		Camera();
+public:
+	Camera();
 
-		maths::mat4f getViewMatrix() const;
-		void bind() const;
-	protected:
-	private:
-	};
+	maths::mat4f getViewMatrix() const;
+	void bind() const;
+};
 
-} }
-
-#endif
+} // namespace graphics
+} // namespace lotus

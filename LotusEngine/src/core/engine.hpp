@@ -1,42 +1,41 @@
-#ifndef LOTUS_ENGINE_HPP_INCLUDED
-#define LOTUS_ENGINE_HPP_INCLUDED
+#pragma once
 
 #include "profiling.hpp"
 #include "../graphics/window.hpp"
 
 #include <vector>
 
-namespace lotus {
+namespace lotus
+{
 
-	class IGame;
+class IGame;
 
-	class Engine
-	{
-	public:
-		Engine(double fps, int width, int height, const char *title);
+class Engine
+{
+private:
+	graphics::Window m_window;
+	IGame *m_game;
 
-		void setGame(IGame *game);
-		void initSubsystems() const;
-		void start();
-		void stop();
-		void update(float delta);
-		void render();
-		void shutdownSubsystems() const;
-	protected:
-	private:
-		void run();
+	double m_fps;
+	bool m_running;
 
-		graphics::Window m_window;
-		IGame			*m_game;
+	ProfileTimer m_updateTimer;
+	ProfileTimer m_renderTimer;
+	ProfileTimer m_loopTimer;
 
-		double			m_fps;
-		bool			m_running;
+public:
+	Engine(double fps, int width, int height, const char *title);
 
-		ProfileTimer	m_updateTimer;
-		ProfileTimer	m_renderTimer;
-		ProfileTimer	m_loopTimer;
-	};
+	void setGame(IGame *game);
+	void initSubsystems() const;
+	void start();
+	void stop();
+	void update(float delta);
+	void render();
+	void shutdownSubsystems() const;
 
-}
+private:
+	void run();
+};
 
-#endif
+} // namespace lotus

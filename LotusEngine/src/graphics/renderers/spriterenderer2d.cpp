@@ -5,83 +5,95 @@
 
 #include <cstdlib>
 
-namespace lotus { namespace graphics {
+namespace lotus
+{
+namespace graphics
+{
 
-	SpriteRenderer2D::SpriteRenderer2D() :
-		m_shader("sprite2d"),
-		m_renderTimer("SpriteRenderer2D Render Time")
+SpriteRenderer2D::SpriteRenderer2D()
+: m_shader("sprite2d")
+, m_renderTimer("SpriteRenderer2D Render Time")
+{
+	glGenVertexArrays(1, &m_vao);
+	glBindVertexArray(m_vao);
+
+	glGenBuffers(1, &m_vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+	glBufferData(GL_ARRAY_BUFFER, SPRITE_RENDERER_BUFFER_VERTEX_SIZE, nullptr, GL_DYNAMIC_DRAW);
+
+	glGenBuffers(1, &m_ibo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
+
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+
+	glVertexAttribPointer(
+	    0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex2D), (const GLvoid *)offsetof(Vertex2D, position));
+	glVertexAttribPointer(
+	    1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex2D), (const GLvoid *)offsetof(Vertex2D, texCoord));
+
+	GLuint *indices = new GLuint[SPRITE_RENDERER_BUFFER_INDEX_SIZE];
+	unsigned int i = 0;
+	for (unsigned int j = 0; j < SPRITE_RENDERER_MAX_SPRITES; j++)
 	{
-		glGenVertexArrays(1, &m_vao);
-		glBindVertexArray(m_vao);
-
-		glGenBuffers(1, &m_vbo);
-		glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-		glBufferData(GL_ARRAY_BUFFER, SPRITE_RENDERER_BUFFER_VERTEX_SIZE, nullptr, GL_DYNAMIC_DRAW);
-
-		glGenBuffers(1, &m_ibo);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
-
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
-
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex2D), (const GLvoid*) offsetof(Vertex2D, position));
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex2D), (const GLvoid*) offsetof(Vertex2D, texCoord));
-
-		GLuint *indices = new GLuint[SPRITE_RENDERER_BUFFER_INDEX_SIZE];
-		unsigned int i = 0;
-		for (unsigned int j = 0; j < SPRITE_RENDERER_MAX_SPRITES; j++)
-		{
-			indices[j * 6 + 0] = i + 0;
-			indices[j * 6 + 1] = i + 1;
-			indices[j * 6 + 2] = i + 2;
-			indices[j * 6 + 3] = i + 2;
-			indices[j * 6 + 4] = i + 3;
-			indices[j * 6 + 5] = i + 0;
-			i += 4;
-		}
-
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, SPRITE_RENDERER_MAX_SPRITES * 6 * sizeof(GLuint), indices, GL_STATIC_DRAW);
-		delete[] indices;
+		indices[j * 6 + 0] = i + 0;
+		indices[j * 6 + 1] = i + 1;
+		indices[j * 6 + 2] = i + 2;
+		indices[j * 6 + 3] = i + 2;
+		indices[j * 6 + 4] = i + 3;
+		indices[j * 6 + 5] = i + 0;
+		i += 4;
 	}
 
-	void SpriteRenderer2D::prepare()
-	{
-		glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-		m_buffer = (Vertex2D*) glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+	             SPRITE_RENDERER_MAX_SPRITES * 6 * sizeof(GLuint),
+	             indices,
+	             GL_STATIC_DRAW);
+	delete[] indices;
+}
 
-		m_count = 0;
-	}
+void SpriteRenderer2D::prepare()
+{
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+	m_buffer = (Vertex2D *)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 
-	void SpriteRenderer2D::submit(const void *s)
-	{
-		const SpriteComponent *spriteComponent = (const SpriteComponent*) s;
+	m_count = 0;
+}
 
-		maths::mat4f transformation = spriteComponent->getEntity()->getTransform().getTransformation();
+void SpriteRenderer2D::submit(const void *s)
+{
+	const SpriteComponent *spriteComponent = (const SpriteComponent *)s;
 
-		*m_buffer = Vertex2D {transformation * maths::vec3f(-0.5f, 0.5f, 0.0f), maths::vec2f(0.0f, 1.0f)};
-		m_buffer++;
-		*m_buffer = Vertex2D {transformation * maths::vec3f(-0.5f, -0.5f, 0.0f), maths::vec2f(0.0f, 0.0f)};
-		m_buffer++;
-		*m_buffer = Vertex2D {transformation * maths::vec3f(0.5f, -0.5f, 0.0f), maths::vec2f(1.0f, 0.0f)};
-		m_buffer++;
-		*m_buffer = Vertex2D {transformation * maths::vec3f(0.5f, 0.5f, 0.0f), maths::vec2f(1.0f, 1.0f)};
-		m_buffer++;
+	maths::mat4f transformation = spriteComponent->getEntity()->getTransform().getTransformation();
 
-		m_count++;
-	}
+	*m_buffer =
+	    Vertex2D{transformation * maths::vec3f(-0.5f, 0.5f, 0.0f), maths::vec2f(0.0f, 1.0f)};
+	m_buffer++;
+	*m_buffer =
+	    Vertex2D{transformation * maths::vec3f(-0.5f, -0.5f, 0.0f), maths::vec2f(0.0f, 0.0f)};
+	m_buffer++;
+	*m_buffer =
+	    Vertex2D{transformation * maths::vec3f(0.5f, -0.5f, 0.0f), maths::vec2f(1.0f, 0.0f)};
+	m_buffer++;
+	*m_buffer = Vertex2D{transformation * maths::vec3f(0.5f, 0.5f, 0.0f), maths::vec2f(1.0f, 1.0f)};
+	m_buffer++;
 
-	void SpriteRenderer2D::flush()
-	{
-		m_renderTimer.start();
-		m_shader.bind();
-		m_shader.updateUniforms();
+	m_count++;
+}
 
-		glUnmapBuffer(GL_ARRAY_BUFFER);
-		glBindVertexArray(m_vao);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
+void SpriteRenderer2D::flush()
+{
+	m_renderTimer.start();
+	m_shader.bind();
+	m_shader.updateUniforms();
 
-		glDrawElements(GL_TRIANGLES, m_count * 6, GL_UNSIGNED_INT, nullptr);
-		m_renderTimer.stop();
-	}
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+	glBindVertexArray(m_vao);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
 
-} }
+	glDrawElements(GL_TRIANGLES, m_count * 6, GL_UNSIGNED_INT, nullptr);
+	m_renderTimer.stop();
+}
+
+} // namespace graphics
+} // namespace lotus

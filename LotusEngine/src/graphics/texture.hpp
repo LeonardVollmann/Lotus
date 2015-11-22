@@ -1,67 +1,105 @@
-#ifndef LOTUS_TEXTURE_HPP_INCLUDED
-#define LOTUS_TEXTURE_HPP_INCLUDED
+#pragma once
 
 #include "../core/resourcemanagement.hpp"
 
 #include <GL/glew.h>
 #include <string>
 
-namespace lotus { namespace graphics {
+namespace lotus
+{
+namespace graphics
+{
 
-	#define TEXTURE_IMAGE_FILE_DIRECTORY "./res/textures/"
+#define TEXTURE_IMAGE_FILE_DIRECTORY "./res/textures/"
 
-	class TextureResource : public Resource
-	{
-	public:
-		TextureResource(const std::string &name, GLenum textureTarget, unsigned int width, unsigned int height,
-						unsigned int numTextures, unsigned char **data, GLfloat *filters,
-						GLenum *internalFormats, GLenum *formats, bool *clamp, GLenum *attachments);
-		TextureResource(const std::string &name);
-		virtual ~TextureResource();
+class TextureResource : public Resource
+{
+private:
+	GLuint *m_textureID;
+	GLenum m_textureTarget;
+	unsigned int m_width;
+	unsigned int m_height;
+	unsigned int m_numTextures;
+	GLuint m_frameBuffer;
 
-		void bind(GLuint unit) const;
-		void bindAsRenderTarget() const;
+public:
+	TextureResource(const std::string &name,
+	                GLenum textureTarget,
+	                unsigned int width,
+	                unsigned int height,
+	                unsigned int numTextures,
+	                unsigned char **data,
+	                GLfloat *filters,
+	                GLenum *internalFormats,
+	                GLenum *formats,
+	                bool *clamp,
+	                GLenum *attachments);
+	TextureResource(const std::string &name);
+	virtual ~TextureResource();
 
-		inline GLuint *getTextureID() const { return m_textureID; }
-	protected:
-	private:
-		void initTextures(unsigned char **data, GLfloat *filters, GLenum *internalFormats, GLenum *formats, bool *clamp);
-		void initRenderTargets(GLenum *attachments);
+	void bind(GLuint unit) const;
+	void bindAsRenderTarget() const;
 
-		GLuint			*m_textureID;
-		GLenum			m_textureTarget;
-		unsigned int	m_width;
-		unsigned int	m_height;
-		unsigned int	m_numTextures;
-		GLuint			m_frameBuffer;
-	};
+	inline GLuint *getTextureID() const { return m_textureID; }
+private:
+	void initTextures(unsigned char **data,
+	                  GLfloat *filters,
+	                  GLenum *internalFormats,
+	                  GLenum *formats,
+	                  bool *clamp);
+	void initRenderTargets(GLenum *attachments);
+};
 
-	class Texture
-	{
-	public:
-		Texture(const std::string &name, GLenum textureTarget,
-				GLuint numTextures, std::string *fileNames, GLfloat *filters,
-				GLenum *internalFormats, GLenum *formats, bool *clamp, GLenum *attachments);
-		Texture(const std::string &fileName, GLenum textureTarget = GL_TEXTURE_2D, GLfloat filter = GL_NEAREST,
-				GLenum internalFormat = GL_RGBA, GLenum format = GL_RGBA, bool clamp = false, GLenum attachment = GL_NONE);
-		Texture(const std::string &name, unsigned int width, unsigned int height, GLenum textureTarget,
-				unsigned int numTextures, unsigned char **data, GLfloat *filters, GLenum *internalFormats, GLenum *formats,
-				bool *clamp, GLenum *attachments);
-		Texture(const std::string &name, unsigned int width, unsigned int height, unsigned char *data = nullptr,
-				GLenum textureTarget = GL_TEXTURE_2D, GLfloat filter = GL_NEAREST,
-				GLenum internalFormat = GL_RGBA, GLenum format = GL_RGBA,
-				bool clamp = false, GLenum attachment = GL_NONE);
-		virtual ~Texture();
+class Texture
+{
+private:
+	TextureResource *m_textureResource;
 
-		void bind(GLuint unit) const;
-		void bindAsRenderTarget() const;
+public:
+	Texture(const std::string &name,
+	        GLenum textureTarget,
+	        GLuint numTextures,
+	        std::string *fileNames,
+	        GLfloat *filters,
+	        GLenum *internalFormats,
+	        GLenum *formats,
+	        bool *clamp,
+	        GLenum *attachments);
+	Texture(const std::string &fileName,
+	        GLenum textureTarget  = GL_TEXTURE_2D,
+	        GLfloat filter        = GL_NEAREST,
+	        GLenum internalFormat = GL_RGBA,
+	        GLenum format         = GL_RGBA,
+	        bool clamp            = false,
+	        GLenum attachment = GL_NONE);
+	Texture(const std::string &name,
+	        unsigned int width,
+	        unsigned int height,
+	        GLenum textureTarget,
+	        unsigned int numTextures,
+	        unsigned char **data,
+	        GLfloat *filters,
+	        GLenum *internalFormats,
+	        GLenum *formats,
+	        bool *clamp,
+	        GLenum *attachments);
+	Texture(const std::string &name,
+	        unsigned int width,
+	        unsigned int height,
+	        unsigned char *data   = nullptr,
+	        GLenum textureTarget  = GL_TEXTURE_2D,
+	        GLfloat filter        = GL_NEAREST,
+	        GLenum internalFormat = GL_RGBA,
+	        GLenum format         = GL_RGBA,
+	        bool clamp            = false,
+	        GLenum attachment = GL_NONE);
+	virtual ~Texture();
 
-		inline GLuint *getTextureID() const { return m_textureResource->getTextureID(); }
-	protected:
-	private:
-		TextureResource *m_textureResource;
-	};
+	void bind(GLuint unit) const;
+	void bindAsRenderTarget() const;
 
-} }
+	inline GLuint *getTextureID() const { return m_textureResource->getTextureID(); }
+};
 
-#endif
+} // namespace graphics
+} // namespace lotus

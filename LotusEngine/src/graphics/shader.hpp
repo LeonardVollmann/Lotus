@@ -1,5 +1,4 @@
-#ifndef LOTUS_SHADER_HPP_INCLUDED
-#define LOTUS_SHADER_HPP_INCLUDED
+#pragma once
 
 #include "uniform.hpp"
 #include "camera.hpp"
@@ -15,67 +14,75 @@
 #include <string>
 #include <vector>
 
-namespace lotus { namespace graphics {
+namespace lotus
+{
+namespace graphics
+{
 
-	class ShaderResource : public Resource
-	{
+class ShaderResource : public Resource
+{
 	friend class Shader;
-	public:
-		ShaderResource(const std::string &name, const std::string &vShader = "", const std::string &fShader = "", const std::string &gShader = "");
-		virtual ~ShaderResource();
 
-		inline GLuint getShaderProgram() const { return m_program; }
-	protected:
-	private:
-		std::string preprocess(const std::string &shaderSource);
+private:
+	GLuint m_program;
+	GLuint m_shaders[3];
+	mutable std::map<std::string, std::string> m_uniformTypes;
+	mutable std::vector<IUniform *> m_uniforms;
+	mutable std::vector<std::string> m_samplers;
 
-		GLuint createShader(const std::string &text, const std::string &fileName, GLenum shaderType);
-		void checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
+public:
+	ShaderResource(const std::string &name,
+	               const std::string &vShader = "",
+	               const std::string &fShader = "",
+	               const std::string &gShader = "");
+	virtual ~ShaderResource();
 
-		std::string loadShaderSource(const std::string &fileName);
-		void addShaders(const std::string &name, const std::string &vShader, const std::string &fShader, const std::string &gShader);
-		void addVertexShader(const std::string &name, const std::string &source);
-		void addFragmentShader(const std::string &name, const std::string &source);
-		void addGeometryShader(const std::string &name, const std::string &source);
+	inline GLuint getShaderProgram() const { return m_program; }
+private:
+	std::string preprocess(const std::string &shaderSource);
 
-		void compile();
+	GLuint createShader(const std::string &text, const std::string &fileName, GLenum shaderType);
+	void
+	checkShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string &errorMessage);
+	std::string loadShaderSource(const std::string &fileName);
+	void addShaders(const std::string &name,
+	                const std::string &vShader,
+	                const std::string &fShader,
+	                const std::string &gShader);
+	void addVertexShader(const std::string &name, const std::string &source);
+	void addFragmentShader(const std::string &name, const std::string &source);
+	void addGeometryShader(const std::string &name, const std::string &source);
 
-		void addAllUniforms() const;
-		void addUniform(const std::string &uniform, const std::string &type = "") const;
-		void addSampler(const std::string &uniform);
+	void compile();
 
-		GLuint										m_program;
-		GLuint										m_shaders[3];
-		mutable std::map<std::string, std::string>	m_uniformTypes;
-		mutable std::vector<IUniform*>				m_uniforms;
-		mutable std::vector<std::string>			m_samplers;
-	};
+	void addAllUniforms() const;
+	void addUniform(const std::string &uniform, const std::string &type = "") const;
+	void addSampler(const std::string &uniform);
+};
 
-	class Shader
-	{
-	friend class ShaderFactory;
-	public:
-		static void initShaders();
+class Shader
+{
+protected:
+	ShaderResource *m_shaderResource;
 
-		Shader(const std::string &name);
-		virtual ~Shader();
+public:
+	static void initShaders();
 
-		void bind() const;
-		void updateUniforms() const;
+	Shader(const std::string &name);
+	virtual ~Shader();
 
-		void setUniform(GLint location, const int &value) const;
-		void setUniform(GLint location, const float &value) const;
-		void setUniform(GLint location, const maths::vec2f &value) const;
-		void setUniform(GLint location, const maths::vec3f &value) const;
-		void setUniform(GLint location, const maths::vec4f &value) const;
-		void setUniform(GLint location, const maths::mat4f &value) const;
+	void bind() const;
+	void updateUniforms() const;
 
-		inline GLuint getShaderProgram() const { return m_shaderResource->getShaderProgram(); }
-	protected:
-		ShaderResource *m_shaderResource;
-	private:
-	};
+	void setUniform(GLint location, const int &value) const;
+	void setUniform(GLint location, const float &value) const;
+	void setUniform(GLint location, const maths::vec2f &value) const;
+	void setUniform(GLint location, const maths::vec3f &value) const;
+	void setUniform(GLint location, const maths::vec4f &value) const;
+	void setUniform(GLint location, const maths::mat4f &value) const;
 
-} }
+	inline GLuint getShaderProgram() const { return m_shaderResource->getShaderProgram(); }
+};
 
-#endif
+} // namespace graphics
+} // namespace lotus

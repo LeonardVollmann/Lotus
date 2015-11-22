@@ -1,5 +1,4 @@
-#ifndef LOTUS_RENDERABLE_HPP_INCLUDED
-#define LOTUS_RENDERABLE_HPP_INCLUDED
+#pragma once
 
 #include "vertex.hpp"
 #include "indexedmodel.hpp"
@@ -7,41 +6,49 @@
 #include <GL/glew.h>
 #include <string>
 
-namespace lotus { namespace graphics {
+namespace lotus
+{
+namespace graphics
+{
 
-	enum AttribLocation : GLuint
-	{
-		Position = 0,
-		TexCoord = 1,
-		Normal = 2,
-		Tangent = 3
-	};
+enum AttribLocation : GLuint
+{
+	Position = 0,
+	TexCoord = 1,
+	Normal   = 2,
+	Tangent  = 3
+};
 
-	template<class VERTEX_T>
-	class Renderable
-	{
-	public:
-		Renderable(const VERTEX_T *vertices, const GLushort *indices, GLsizei numVertices, GLsizei numIndices);
-		Renderable(IndexedModel indexedModel);
-		virtual ~Renderable();
+template <class VERTEX_T>
+class Renderable
+{
+private:
+	GLuint m_vao;
+	GLuint m_vbo;
+	GLuint m_ibo;
+	GLsizei m_numIndices;
 
-		void bind() const;
+public:
+	Renderable(const VERTEX_T *vertices,
+	           const GLushort *indices,
+	           GLsizei numVertices,
+	           GLsizei numIndices);
+	Renderable(IndexedModel indexedModel);
+	virtual ~Renderable();
 
-		inline GLsizei getNumIndices() const { return m_numIndices; }
-	protected:
-	private:
-		void initBuffers(const VERTEX_T *vertices, const GLushort *indices, GLsizei numVertices, GLsizei numIndices);
-		void addPositionAttrib();
-		void addTexCoordAttrib();
-		void addNormalAttrib();
-		void addTangentAttrib();
+	void bind() const;
 
-		GLuint	m_vao;
-		GLuint	m_vbo;
-		GLuint	m_ibo;
-		GLsizei	m_numIndices;
-	};
+	inline GLsizei getNumIndices() const { return m_numIndices; }
+private:
+	void initBuffers(const VERTEX_T *vertices,
+	                 const GLushort *indices,
+	                 GLsizei numVertices,
+	                 GLsizei numIndices);
+	void addPositionAttrib();
+	void addTexCoordAttrib();
+	void addNormalAttrib();
+	void addTangentAttrib();
+};
 
-} }
-
-#endif
+} // namespace graphics
+} // namespace lotus

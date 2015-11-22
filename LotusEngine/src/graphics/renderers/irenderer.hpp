@@ -1,22 +1,21 @@
-#ifndef LOTUS_I_RENDERER_HPP_INCLUDED
-#define LOTUS_I_RENDERER_HPP_INCLUDED
+#pragma once
 
 #include <GL/glew.h>
 
-namespace lotus { namespace graphics {
+namespace lotus
+{
+namespace graphics
+{
 
-	class IRenderer
-	{
-	public:
-		virtual ~IRenderer() {}
+class IRenderer
+{
+public:
+	virtual ~IRenderer() {}
 
-		virtual void prepare() {}
-		virtual void submit(const void *object) = 0;
-		virtual void flush() = 0;
-	protected:
-	private:
-	};
+	virtual void prepare() {}
+	virtual void submit(const void *object) = 0;
+	virtual void flush() = 0;
+};
 
-} }
-
-#endif
+} // namespace graphics
+} // namespace lotus

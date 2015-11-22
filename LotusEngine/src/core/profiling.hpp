@@ -1,49 +1,47 @@
-#ifndef LOTUS_PROFILING_HPP_INCLUDED
-#define LOTUS_PROFILING_HPP_INCLUDED
+#pragma once
 
 #include "time.hpp"
 
 #include <string>
 #include <vector>
 
-namespace lotus {
+namespace lotus
+{
 
-	enum class ProfilingVerbosity
-	{
-		LOW,
-		HIGH
-	};
+enum class ProfilingVerbosity
+{
+	LOW,
+	HIGH
+};
 
-	struct ProfilingInfo
-	{
-		std::string getInfoMessage(ProfilingVerbosity verbosity);
+struct ProfilingInfo
+{
+	std::string getInfoMessage(ProfilingVerbosity verbosity);
 
-		std::string		name;
-		unsigned int	numInvocations;
-		double			totalTime;
-	};
+	std::string name;
+	unsigned int numInvocations;
+	double totalTime;
+};
 
-	class ProfileTimer
-	{
-	public:
-		static std::string getInfoMessage(ProfilingVerbosity verbosity);
+class ProfileTimer
+{
+private:
+	static std::vector<ProfileTimer *> s_profileTimers;
 
-		ProfileTimer(const std::string &name);
-		virtual ~ProfileTimer();
+	std::string m_name;
+	unsigned int m_numInvocations;
+	double m_startTime;
+	double m_totalTime;
 
-		void start();
-		void stop();
-		ProfilingInfo reset();
-	protected:
-	private:
-		static std::vector<ProfileTimer*> s_profileTimers;
+public:
+	static std::string getInfoMessage(ProfilingVerbosity verbosity);
 
-		std::string		m_name;
-		unsigned int	m_numInvocations;
-		double			m_startTime;
-		double			m_totalTime;
-	};
+	ProfileTimer(const std::string &name);
+	virtual ~ProfileTimer();
 
-}
+	void start();
+	void stop();
+	ProfilingInfo reset();
+};
 
-#endif
+} // namespace lotus

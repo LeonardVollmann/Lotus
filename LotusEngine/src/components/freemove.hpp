@@ -1,23 +1,22 @@
-#ifndef LOTUS_FREE_MOVE_HPP_INCLUDED
-#define LOTUS_FREE_MOVE_HPP_INCLUDED
+#pragma once
 
 #include "../core/entitycomponent.hpp"
 #include "../maths/types.hpp"
 
-namespace lotus {
+namespace lotus
+{
 
-	class FreeMove : public EntityComponent
-	{
-	public:
-		FreeMove(float speed);
-		virtual void update(float delta) override;
-	protected:
-	private:
-		void move(const maths::vec3f &axis, float amount);
+class FreeMove : public EntityComponent
+{
+private:
+	float m_speed;
 
-		float m_speed;
-	};
+public:
+	FreeMove(float speed);
+	virtual void update(float delta) override;
 
-}
+private:
+	void move(const maths::vec3f &axis, float amount);
+};
 
-#endif
+} // namespace lotus

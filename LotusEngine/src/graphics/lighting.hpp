@@ -1,5 +1,4 @@
-#ifndef LOTUS_LIGHTING_HPP_INCLUDED
-#define LOTUS_LIGHTING_HPP_INCLUDED
+#pragma once
 
 #include "../core/entitycomponent.hpp"
 #include "../maths/types.hpp"
@@ -7,151 +6,173 @@
 #include <GL/glew.h>
 #include <string>
 
-namespace lotus { namespace graphics {
+namespace lotus
+{
+namespace graphics
+{
 
-	#define COLOR_DEPTH 256
+#define COLOR_DEPTH 256
 
-	class Shader;
-	class ShaderResource;
+class Shader;
+class ShaderResource;
 
-	class Attenuation
-	{
-	public:
-		Attenuation(float constant, float linear, float exponent);
-		Attenuation(const maths::vec3f &attenuation);
+class Attenuation
+{
+private:
+	float m_constant;
+	float m_linear;
+	float m_exponent;
 
-		inline float getConstant()	const { return m_constant; }
-		inline float getLinear()	const { return m_linear; }
-		inline float getExponent()	const { return m_exponent; }
+public:
+	Attenuation(float constant, float linear, float exponent);
+	Attenuation(const maths::vec3f &attenuation);
 
-		inline void setConstant(float constant) { m_constant = constant; }
-		inline void setLinear(float linear)		{ m_linear = linear; }
-		inline void setExponent(float exponent) { m_exponent = exponent; }
-	protected:
-	private:
-		float m_constant;
-		float m_linear;
-		float m_exponent;
-	};
+	inline float getConstant() const { return m_constant; }
+	inline float getLinear() const { return m_linear; }
+	inline float getExponent() const { return m_exponent; }
 
-	class AmbientLight
-	{
-	public:
-		static const AmbientLight *CURRENT;
+	inline void setConstant(float constant) { m_constant = constant; }
+	inline void setLinear(float linear) { m_linear = linear; }
+	inline void setExponent(float exponent) { m_exponent = exponent; }
+};
 
-		static void getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
-		static void setUniformValues(const Shader *shader, GLuint *locations);
+class AmbientLight
+{
+public:
+	static const AmbientLight *CURRENT;
 
-		AmbientLight(const maths::vec3f &light);
-		AmbientLight(float r, float g, float b);
+private:
+	maths::vec3f m_light;
 
-		void bind() const;
+public:
+	static void
+	getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
+	static void setUniformValues(const Shader *shader, GLuint *locations);
 
-		inline const maths::vec3f &getLight() const { return m_light; }
-	protected:
-	private:
-		maths::vec3f m_light;
-	};
+	AmbientLight(const maths::vec3f &light);
+	AmbientLight(float r, float g, float b);
 
-	class BaseLight : public EntityComponent
-	{
-	public:
-		BaseLight();
-		BaseLight(const maths::vec3f &color, float intensity);
-		virtual ~BaseLight() {}
+	void bind() const;
 
-		inline const maths::vec3f &getColor()	const { return m_color; }
-		inline float getIntensity()					const { return m_intensity; }
+	inline const maths::vec3f &getLight() const { return m_light; }
+};
 
-		inline void setColor(const maths::vec3f &color)	{ m_color = color; }
-		inline void setIntensity(float intensity)			{ m_intensity = intensity; }
-	protected:
-		maths::vec3f m_color;
-		float m_intensity;
-	private:
-	};
+class BaseLight : public EntityComponent
+{
+protected:
+	maths::vec3f m_color;
+	float m_intensity;
 
-	class DirectionalLight : public BaseLight
-	{
-	public:
-		static const DirectionalLight *CURRENT;
+public:
+	BaseLight();
+	BaseLight(const maths::vec3f &color, float intensity);
+	virtual ~BaseLight() {}
 
-		static void getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
-		static void setUniformValues(const Shader *shader, GLuint *locations);
+	inline const maths::vec3f &getColor() const { return m_color; }
+	inline float getIntensity() const { return m_intensity; }
 
-		DirectionalLight();
-		DirectionalLight(const maths::vec3f &color, float intensity, const maths::vec3f &direction);
-		DirectionalLight(const maths::vec3f &direction, const BaseLight &base = BaseLight());
-		virtual ~DirectionalLight() {}
+	inline void setColor(const maths::vec3f &color) { m_color = color; }
+	inline void setIntensity(float intensity) { m_intensity = intensity; }
+};
 
-		void bind() const;
+class DirectionalLight : public BaseLight
+{
+public:
+	static const DirectionalLight *CURRENT;
 
-		inline const maths::vec3f &getDirection() const { return m_direction; }
+protected:
+	maths::vec3f m_direction;
 
-		inline void setDirection(const maths::vec3f &direction) { m_direction = direction; }
-	protected:
-		maths::vec3f m_direction;
-	private:
-	};
+public:
+	static void
+	getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
+	static void setUniformValues(const Shader *shader, GLuint *locations);
 
-	class PointLight : public BaseLight
-	{
-	public:
-		static const PointLight *CURRENT;
+	DirectionalLight();
+	DirectionalLight(const maths::vec3f &color, float intensity, const maths::vec3f &direction);
+	DirectionalLight(const maths::vec3f &direction, const BaseLight &base = BaseLight());
+	virtual ~DirectionalLight() {}
 
-		static void getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
-		static void setUniformValues(const Shader *shader, GLuint *locations);
+	void bind() const;
 
-		PointLight();
-		PointLight(const maths::vec3f &color, float intensity, const Attenuation &atten, const maths::vec3f &pos);
-		PointLight(const Attenuation &atten, const maths::vec3f &pos, const BaseLight &base = BaseLight());
-		virtual ~PointLight() {}
+	inline const maths::vec3f &getDirection() const { return m_direction; }
 
-		void bind() const;
+	inline void setDirection(const maths::vec3f &direction) { m_direction = direction; }
+};
 
-		inline maths::vec3f &getPos()						{ return m_pos; }
-		inline const maths::vec3f &getPos()			const	{ return m_pos; }
-		inline const Attenuation &getAttenuation()		const	{ return m_atten; }
-		inline float getRange()							const	{ return m_range; }
+class PointLight : public BaseLight
+{
+public:
+	static const PointLight *CURRENT;
 
-		inline void setAttenuation(const Attenuation &atten)	{ m_atten = atten; }
-		inline void setPos(const maths::vec3f &pos)			{ m_pos = pos; }
-		inline void setRange(float range)						{ m_range = range; }
-	protected:
-		static float calcRange(const PointLight &pointLight);
+protected:
+	Attenuation m_atten;
+	maths::vec3f m_pos;
+	float m_range;
 
-		Attenuation m_atten;
-		maths::vec3f m_pos;
-		float m_range;
-	private:
-	};
+public:
+	static void
+	getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
+	static void setUniformValues(const Shader *shader, GLuint *locations);
 
-	class SpotLight : public PointLight
-	{
-	public:
-		static const SpotLight *CURRENT;
+	PointLight();
+	PointLight(const maths::vec3f &color,
+	           float intensity,
+	           const Attenuation &atten,
+	           const maths::vec3f &pos);
+	PointLight(const Attenuation &atten,
+	           const maths::vec3f &pos,
+	           const BaseLight &base = BaseLight());
+	virtual ~PointLight() {}
 
-		static void getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
-		static void setUniformValues(const Shader *shader, GLuint *locations);
+	void bind() const;
 
-		SpotLight();
-		SpotLight(const maths::vec3f &color, float intensity, const Attenuation &atten, const maths::vec3f &pos, const maths::vec3f &direction, float cutoff);
-		SpotLight(const maths::vec3f &direction, float cutoff, const PointLight &pointLight = PointLight());
-		virtual ~SpotLight() {}
+	inline maths::vec3f &getPos() { return m_pos; }
+	inline const maths::vec3f &getPos() const { return m_pos; }
+	inline const Attenuation &getAttenuation() const { return m_atten; }
+	inline float getRange() const { return m_range; }
 
-		void bind() const;
+	inline void setAttenuation(const Attenuation &atten) { m_atten = atten; }
+	inline void setPos(const maths::vec3f &pos) { m_pos = pos; }
+	inline void setRange(float range) { m_range = range; }
+protected:
+	static float calcRange(const PointLight &pointLight);
+};
 
-		inline const maths::vec3f &getDirection()	const { return m_direction; }
-		inline float getCutoff()						const { return m_cutoff; }
+class SpotLight : public PointLight
+{
+public:
+	static const SpotLight *CURRENT;
 
-		inline void setDirection(const maths::vec3f &direction)	{ m_direction = direction; }
-		inline void setCutoff(float cutoff)							{ m_cutoff = cutoff; }
-	protected:
-	private:
-		maths::vec3f m_direction;
-		float m_cutoff;
-	};
+private:
+	maths::vec3f m_direction;
+	float m_cutoff;
 
-} }
+public:
+	static void
+	getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
+	static void setUniformValues(const Shader *shader, GLuint *locations);
 
-#endif
+	SpotLight();
+	SpotLight(const maths::vec3f &color,
+	          float intensity,
+	          const Attenuation &atten,
+	          const maths::vec3f &pos,
+	          const maths::vec3f &direction,
+	          float cutoff);
+	SpotLight(const maths::vec3f &direction,
+	          float cutoff,
+	          const PointLight &pointLight = PointLight());
+	virtual ~SpotLight() {}
+
+	void bind() const;
+
+	inline const maths::vec3f &getDirection() const { return m_direction; }
+	inline float getCutoff() const { return m_cutoff; }
+
+	inline void setDirection(const maths::vec3f &direction) { m_direction = direction; }
+	inline void setCutoff(float cutoff) { m_cutoff = cutoff; }
+};
+
+} // namespace graphics
+} // namespace lotus

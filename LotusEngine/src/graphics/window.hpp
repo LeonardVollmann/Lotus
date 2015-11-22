@@ -1,47 +1,49 @@
-#ifndef LOTUS_WINDOW_HPP_INCLUDED
-#define LOTUS_WINDOW_HPP_INCLUDED
+#pragma once
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include "../core/profiling.hpp"
 
-namespace lotus { namespace graphics {
+namespace lotus
+{
+namespace graphics
+{
 
-	class Window
-	{
-	public:
-		static const Window *CURRENT;
+class Window
+{
+public:
+	static const Window *CURRENT;
 
-		Window(int width, int height, const char *title);
-		virtual ~Window();
+private:
+	GLFWwindow *m_window;
+	int m_width;
+	int m_height;
+	const char *m_title;
 
-		bool isClosed();
+	ProfileTimer m_updateTimer;
 
-		void clear() const;
-		void update();
-		void bindAsRenderTarget() const;
-		void bind() const;
+public:
+	Window(int width, int height, const char *title);
+	virtual ~Window();
 
-		inline GLFWwindow *getWindow()	const { return m_window; }
-		inline int getWidth()			const { return m_width; }
-		inline int getHeight()			const { return m_height; }
-		inline float getAspect()		const { return (float) m_width / (float) m_height; }
+	bool isClosed();
 
-		inline void setWidth(int width)		{ m_width = width; }
-		inline void setHeight(int height)	{ m_height = height; }
-	protected:
-	private:
-		bool init();
+	void clear() const;
+	void update();
+	void bindAsRenderTarget() const;
+	void bind() const;
 
-		GLFWwindow		*m_window;
-		int				m_width;
-		int				m_height;
-		const char		*m_title;
+	inline GLFWwindow *getWindow() const { return m_window; }
+	inline int getWidth() const { return m_width; }
+	inline int getHeight() const { return m_height; }
+	inline float getAspect() const { return (float)m_width / (float)m_height; }
 
-		ProfileTimer	m_updateTimer;
-	};
+	inline void setWidth(int width) { m_width = width; }
+	inline void setHeight(int height) { m_height = height; }
+private:
+	bool init();
+};
 
-} }
-
-#endif
+} // namespace graphics
+} // namespace lotus
