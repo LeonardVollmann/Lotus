@@ -1,4 +1,4 @@
-#include "forwardrenderer3d.hpp"
+#include "forwardrenderer.hpp"
 #include "../window.hpp"
 
 namespace lotus
@@ -6,16 +6,16 @@ namespace lotus
 namespace graphics
 {
 
-ForwardRenderer3D::ForwardRenderer3D()
-: m_ambientShader("forward3d_ambient")
-, m_directionalShader("forward3d_directional")
-, m_pointShader("forward3d_point")
-, m_spotShader("forward3d_spot")
-, m_shadowMapShader("forward3d_shadow")
+ForwardRenderer::ForwardRenderer()
+: m_ambientShader("forward_ambient")
+, m_directionalShader("forward_directional")
+, m_pointShader("forward_point")
+, m_spotShader("forward_spot")
+, m_shadowMapShader("forward_shadow")
 , m_ambientLight(0.0f)
-, m_renderTimer("ForwardRenderer3D Render Time")
+, m_renderTimer("ForwardRenderer Render Time")
 {
-	m_shadowMap = new Texture("forward3d_shadowmap",
+	m_shadowMap = new Texture("forward_shadowmap",
 	                          1024,
 	                          1024,
 	                          nullptr,
@@ -27,20 +27,19 @@ ForwardRenderer3D::ForwardRenderer3D()
 	                          GL_DEPTH_ATTACHMENT);
 }
 
-ForwardRenderer3D::~ForwardRenderer3D()
+ForwardRenderer::~ForwardRenderer()
 {
 	delete m_shadowMap;
 }
 
-void ForwardRenderer3D::flush()
+void ForwardRenderer::flush()
 {
 	m_renderTimer.start();
 
 	Window::CURRENT->bindAsRenderTarget();
 	while (!m_renderQueue.empty())
 	{
-		const RenderableComponent<Renderable<Vertex3D>> *renderableComponent =
-		    m_renderQueue.front();
+		const RenderableComponent *renderableComponent = m_renderQueue.front();
 		renderableComponent->bind();
 		renderableComponent->getMaterial()->bindTexture("diffuse", 0);
 		renderableComponent->getMaterial()->bindTexture("normalMap", 1);

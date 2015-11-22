@@ -100,7 +100,7 @@ IndexedModel &IndexedModel::finalize()
 
 	for (unsigned int i = 0; i < m_positions.size(); i++)
 	{
-		Vertex3D vertex;
+		Vertex vertex;
 		vertex.position = m_positions[i];
 		vertex.texCoord = m_texCoords[i];
 		vertex.normal   = m_normals[i];

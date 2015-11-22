@@ -1,5 +1,5 @@
-#include forward3d_fs.glsl
-#include forward3d_sampling.glsl
+#include forward_fs.glsl
+#include forward_sampling.glsl
 
 uniform vec3 light_ambient;
 

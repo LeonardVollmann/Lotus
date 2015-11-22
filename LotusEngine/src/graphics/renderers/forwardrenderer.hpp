@@ -11,7 +11,7 @@ namespace lotus
 namespace graphics
 {
 
-class ForwardRenderer3D : public SimpleRenderer3D
+class ForwardRenderer : public SimpleRenderer
 {
 private:
 	Shader m_ambientShader;
@@ -30,8 +30,8 @@ private:
 	ProfileTimer m_renderTimer;
 
 public:
-	ForwardRenderer3D();
-	virtual ~ForwardRenderer3D();
+	ForwardRenderer();
+	virtual ~ForwardRenderer();
 
 	virtual void flush() override;
 

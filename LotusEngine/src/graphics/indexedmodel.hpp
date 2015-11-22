@@ -23,7 +23,7 @@ private:
 	std::vector<maths::vec3f> m_normals;
 	std::vector<maths::vec3f> m_tangents;
 	std::vector<GLushort> m_indices;
-	std::vector<Vertex3D> m_vertices;
+	std::vector<Vertex> m_vertices;
 
 public:
 	IndexedModel(const std::vector<maths::vec3f> &positions,
@@ -44,7 +44,7 @@ public:
 	void addTangent(const maths::vec3f &tangent);
 	void addFace(GLushort i1, GLushort i2, GLushort i3);
 
-	inline const std::vector<Vertex3D> &getVertices() const { return m_vertices; }
+	inline const std::vector<Vertex> &getVertices() const { return m_vertices; }
 	inline const std::vector<GLushort> &getIndices() const { return m_indices; }
 };
 

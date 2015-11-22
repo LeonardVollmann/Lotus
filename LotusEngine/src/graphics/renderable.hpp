@@ -19,7 +19,6 @@ enum AttribLocation : GLuint
 	Tangent  = 3
 };
 
-template <class VERTEX_T>
 class Renderable
 {
 private:
@@ -29,7 +28,7 @@ private:
 	GLsizei m_numIndices;
 
 public:
-	Renderable(const VERTEX_T *vertices,
+	Renderable(const Vertex *vertices,
 	           const GLushort *indices,
 	           GLsizei numVertices,
 	           GLsizei numIndices);
@@ -39,15 +38,6 @@ public:
 	void bind() const;
 
 	inline GLsizei getNumIndices() const { return m_numIndices; }
-private:
-	void initBuffers(const VERTEX_T *vertices,
-	                 const GLushort *indices,
-	                 GLsizei numVertices,
-	                 GLsizei numIndices);
-	void addPositionAttrib();
-	void addTexCoordAttrib();
-	void addNormalAttrib();
-	void addTangentAttrib();
 };
 
 } // namespace graphics

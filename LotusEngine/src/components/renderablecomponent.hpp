@@ -10,21 +10,20 @@ namespace lotus
 namespace graphics
 {
 
-template <typename RENDERABLE_T>
 class RenderableComponent : public EntityComponent
 {
 private:
-	RENDERABLE_T *m_renderable;
+	Renderable *m_renderable;
 	Material *m_material;
 
 public:
-	RenderableComponent<RENDERABLE_T>(RENDERABLE_T *renderable, Material *material);
-	virtual ~RenderableComponent<RENDERABLE_T>();
+	RenderableComponent(Renderable *renderable, Material *material);
+	virtual ~RenderableComponent();
 
 	virtual void render(IRenderer *renderer) const override;
 	void bind() const;
 
-	inline const RENDERABLE_T *getRenderable() const { return m_renderable; }
+	inline const Renderable *getRenderable() const { return m_renderable; }
 	inline const Material *getMaterial() const { return m_material; }
 };
 

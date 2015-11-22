@@ -387,12 +387,12 @@ void ShaderResource::addSampler(const std::string &uniform)
 void Shader::initShaders()
 {
 	ResourceManager::create<ShaderResource>(
-	    "forward3d_ambient", false, "forward3d", "forward3d_ambient");
+	    "forward_ambient", false, "forward", "forward_ambient");
 	ResourceManager::create<ShaderResource>(
-	    "forward3d_directional", false, "forward3d", "forward3d_directional");
+	    "forward_directional", false, "forward", "forward_directional");
 	ResourceManager::create<ShaderResource>(
-	    "forward3d_point", false, "forward3d", "forward3d_point");
-	ResourceManager::create<ShaderResource>("forward3d_spot", false, "forward3d", "forward3d_spot");
+	    "forward_point", false, "forward", "forward_point");
+	ResourceManager::create<ShaderResource>("forward_spot", false, "forward", "forward_spot");
 }
 
 Shader::Shader(const std::string &name)

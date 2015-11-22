@@ -4,8 +4,9 @@
 
 commnd='find ./LotusEngine/src ./Sandbox/src
  -name "[!\.]*.cpp" -or
+ -name "[!\.]*.c" -or
  -name "[!\.]*.h"   -or
- -name "[!\.]*.tpp" -or
+ -name "[!\.]*.hpp" -or
  -name "SConscript*" -or
  -name "SConstruct"
  | xargs stat -t %Y | md5'

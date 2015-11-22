@@ -1,4 +1,4 @@
-#include forward3d_sampling.glsl
+#include forward_sampling.glsl
 
 void main()
 {

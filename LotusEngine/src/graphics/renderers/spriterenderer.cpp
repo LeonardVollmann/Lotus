@@ -1,4 +1,4 @@
-#include "spriterenderer2d.hpp"
+#include "spriterenderer.hpp"
 #include "../../components/spritecomponent.hpp"
 #include "../../core/entity.hpp"
 #include "../../maths/matrix.hpp"
@@ -9,10 +9,10 @@ namespace lotus
 {
 namespace graphics
 {
-
-SpriteRenderer2D::SpriteRenderer2D()
-: m_shader("sprite2d")
-, m_renderTimer("SpriteRenderer2D Render Time")
+/*
+SpriteRenderer::SpriteRenderer()
+: m_shader("sprite")
+, m_renderTimer("SpriteRenderer Render Time")
 {
 	glGenVertexArrays(1, &m_vao);
 	glBindVertexArray(m_vao);
@@ -52,15 +52,15 @@ SpriteRenderer2D::SpriteRenderer2D()
 	delete[] indices;
 }
 
-void SpriteRenderer2D::prepare()
+void SpriteRenderer::prepare()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-	m_buffer = (Vertex2D *)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+	m_buffer = (Vertex *)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 
 	m_count = 0;
 }
 
-void SpriteRenderer2D::submit(const void *s)
+void SpriteRenderer::submit(const void *s)
 {
 	const SpriteComponent *spriteComponent = (const SpriteComponent *)s;
 
@@ -81,7 +81,7 @@ void SpriteRenderer2D::submit(const void *s)
 	m_count++;
 }
 
-void SpriteRenderer2D::flush()
+void SpriteRenderer::flush()
 {
 	m_renderTimer.start();
 	m_shader.bind();
@@ -94,6 +94,6 @@ void SpriteRenderer2D::flush()
 	glDrawElements(GL_TRIANGLES, m_count * 6, GL_UNSIGNED_INT, nullptr);
 	m_renderTimer.stop();
 }
-
+*/
 } // namespace graphics
 } // namespace lotus

@@ -22,8 +22,8 @@
 #include <graphics/scene.hpp>
 #include <graphics/shader.hpp>
 #include <graphics/renderers/simplerenderer.hpp>
-#include <graphics/renderers/forwardrenderer3d.hpp>
-#include <graphics/renderers/spriterenderer2d.hpp>
+#include <graphics/renderers/forwardrenderer.hpp>
+#include <graphics/renderers/spriterenderer.hpp>
 #include <components/renderablecomponent.hpp>
 #include <components/freemove.hpp>
 #include <components/freelook.hpp>
@@ -33,11 +33,6 @@
 using namespace lotus;
 using namespace lotus::maths;
 using namespace lotus::graphics;
-
-typedef Renderable<Vertex2D> Renderable2D;
-typedef Renderable<Vertex3D> Renderable3D;
-typedef RenderableComponent<Renderable2D> RenderableComponent2D;
-typedef RenderableComponent<Renderable3D> RenderableComponent3D;
 
 class TestGame : public IGame
 {
@@ -103,11 +98,11 @@ public:
 		m_camera->addComponent<FreeLook>(5.0f);
 		m_camera->bind();
 
-		plane->addComponent<RenderableComponent3D>(new Renderable3D(model), material);
-		plane2->addComponent<RenderableComponent3D>(new Renderable3D(model), material2);
-		m_monkey1->addComponent<RenderableComponent3D>(new Renderable3D(IndexedModel("monkey")), material3);
+		plane->addComponent<RenderableComponent>(new Renderable(model), material);
+		plane2->addComponent<RenderableComponent>(new Renderable(model), material2);
+		m_monkey1->addComponent<RenderableComponent>(new Renderable(IndexedModel("monkey")), material3);
 
-		ForwardRenderer3D *renderer = new ForwardRenderer3D();
+		ForwardRenderer *renderer = new ForwardRenderer();
 		renderer->setAmbientLight(vec3f(0.1f));
 		renderer->addDirectionalLight(new DirectionalLight(vec3f(1.0f, 0.0f, 0.0f), 0.4f, normalize(vec3f(1.0f, 1.0f, 1.0f))));
 		renderer->addDirectionalLight(new DirectionalLight(vec3f(0.0f, 0.0f, 1.0f), 0.4f, normalize(vec3f(-1.0f, 1.0f, -1.0f))));
@@ -122,7 +117,7 @@ public:
 		scene->add(plane2);
 		scene->add(m_monkey1);
 
-		//		Entity *sprite = new Entity();
+		// 		Entity *sprite = new Entity();
 		//		sprite->getTransform().translate(vec3(0.0f, 0.0f, 0.1f));
 		//		sprite->addComponent(new SpriteComponent());
 

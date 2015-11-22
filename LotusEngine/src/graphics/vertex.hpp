@@ -7,13 +7,7 @@ namespace lotus
 namespace graphics
 {
 
-struct Vertex2D
-{
-	maths::vec3f position;
-	maths::vec2f texCoord;
-};
-
-struct Vertex3D
+struct Vertex
 {
 	maths::vec3f position;
 	maths::vec2f texCoord;

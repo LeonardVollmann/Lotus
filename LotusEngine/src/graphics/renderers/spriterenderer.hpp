@@ -15,8 +15,8 @@ namespace lotus
 {
 namespace graphics
 {
-
-class SpriteRenderer2D : public IRenderer
+/*
+class SpriteRenderer : public IRenderer
 {
 private:
 	GLuint m_vao;
@@ -28,12 +28,12 @@ private:
 	ProfileTimer m_renderTimer;
 
 public:
-	SpriteRenderer2D();
+	SpriteRenderer();
 
 	virtual void prepare() override;
 	virtual void submit(const void *s) override;
 	virtual void flush() override;
 };
-
+*/
 } // namespace graphics
 } // namespace lotus

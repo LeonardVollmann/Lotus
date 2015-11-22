@@ -2,7 +2,7 @@
 
 #include "../core/entitycomponent.hpp"
 #include "../graphics/texture.hpp"
-#include "../graphics/renderers/spriterenderer2d.hpp"
+#include "../graphics/renderers/spriterenderer.hpp"
 
 namespace lotus
 {

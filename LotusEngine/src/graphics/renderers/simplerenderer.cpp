@@ -6,21 +6,18 @@ namespace lotus
 namespace graphics
 {
 
-template <typename RENDERABLE_T>
-SimpleRenderer<RENDERABLE_T>::SimpleRenderer()
+SimpleRenderer::SimpleRenderer()
 : m_shader("basic")
 , m_renderTimer("SimpleRenderer Render Time")
 {
 }
 
-template <typename RENDERABLE_T>
-void SimpleRenderer<RENDERABLE_T>::submit(const void *renderableComponent)
+void SimpleRenderer::submit(const void *renderableComponent)
 {
-	m_renderQueue.push_back((RenderableComponent<RENDERABLE_T> *)renderableComponent);
+	m_renderQueue.push_back((RenderableComponent *)renderableComponent);
 }
 
-template <typename RENDERABLE_T>
-void SimpleRenderer<RENDERABLE_T>::flush()
+void SimpleRenderer::flush()
 {
 	m_renderTimer.start();
 
@@ -28,7 +25,7 @@ void SimpleRenderer<RENDERABLE_T>::flush()
 	m_shader.bind();
 	while (!m_renderQueue.empty())
 	{
-		const RenderableComponent<RENDERABLE_T> *renderableComponent = m_renderQueue.front();
+		const RenderableComponent *renderableComponent = m_renderQueue.front();
 		renderableComponent->bind();
 		renderableComponent->getMaterial()->bindTexture("diffuse", 0);
 
@@ -42,9 +39,6 @@ void SimpleRenderer<RENDERABLE_T>::flush()
 	}
 	m_renderTimer.stop();
 }
-
-template class SimpleRenderer<Renderable<Vertex2D>>;
-template class SimpleRenderer<Renderable<Vertex3D>>;
 
 } // namespace graphics
 } // namespace lotus
