@@ -2,7 +2,7 @@
 #include "igame.hpp"
 #include "time.hpp"
 #include "input.hpp"
-#include "../graphics/shader.hpp"
+#include "../graphics/shaders/shader.hpp"
 
 #include <string>
 #include <iostream>

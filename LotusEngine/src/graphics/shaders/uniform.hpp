@@ -1,6 +1,6 @@
 #pragma once
 
-#include "material.hpp"
+#include "../material.hpp"
 
 #include <GL/glew.h>
 #include <string>

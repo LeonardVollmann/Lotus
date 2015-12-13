@@ -22,9 +22,8 @@ EntityID EntityWorld::create()
 
 void EntityWorld::destroy(const EntityID &entity)
 {
-	const unsigned int index = entity.index;
-	m_generation[index]++;
-	m_freeIndices.push_back(index);
+	m_generation[entity.index]++;
+	m_freeIndices.push_back(entity.index);
 }
 
 bool EntityWorld::alive(const EntityID &entity)

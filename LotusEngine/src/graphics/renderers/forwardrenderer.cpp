@@ -11,25 +11,24 @@ ForwardRenderer::ForwardRenderer()
 , m_directionalShader("forward_directional")
 , m_pointShader("forward_point")
 , m_spotShader("forward_spot")
-, m_shadowMapShader("forward_shadow")
 , m_ambientLight(0.0f)
 , m_renderTimer("ForwardRenderer Render Time")
 {
-	m_shadowMap = new Texture("forward_shadowmap",
-	                          1024,
-	                          1024,
-	                          nullptr,
-	                          GL_TEXTURE_2D,
-	                          GL_NEAREST,
-	                          GL_DEPTH_COMPONENT16,
-	                          GL_DEPTH_COMPONENT,
-	                          true,
-	                          GL_DEPTH_ATTACHMENT);
+	// m_shadowMap = new Texture("forward_shadowmap",
+	//                           1024,
+	//                           1024,
+	//                           nullptr,
+	//                           GL_TEXTURE_2D,
+	//                           GL_NEAREST,
+	//                           GL_DEPTH_COMPONENT16,
+	//                           GL_DEPTH_COMPONENT,
+	//                           true,
+	//                           GL_DEPTH_ATTACHMENT);
 }
 
 ForwardRenderer::~ForwardRenderer()
 {
-	delete m_shadowMap;
+	// delete m_shadowMap;
 }
 
 void ForwardRenderer::flush()

@@ -1,6 +1,6 @@
 #include "uniform.hpp"
 #include "shader.hpp"
-#include "../maths/types.hpp"
+#include "../../maths/types.hpp"
 
 namespace lotus
 {

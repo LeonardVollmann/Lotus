@@ -1,13 +1,13 @@
 #pragma once
 
 #include "uniform.hpp"
-#include "camera.hpp"
-#include "material.hpp"
-#include "lighting.hpp"
-#include "scene.hpp"
-#include "../core/resourcemanagement.hpp"
-#include "../core/transform.hpp"
-#include "../maths/types.hpp"
+#include "../camera.hpp"
+#include "../material.hpp"
+#include "../lighting.hpp"
+#include "../scene.hpp"
+#include "../../core/resourcemanagement.hpp"
+#include "../../core/transform.hpp"
+#include "../../maths/types.hpp"
 
 #include <GL/glew.h>
 #include <map>

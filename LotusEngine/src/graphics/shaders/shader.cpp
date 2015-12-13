@@ -1,6 +1,6 @@
 #include "shader.hpp"
-#include "../core/stringfunc.hpp"
-#include "../maths/matrix.hpp"
+#include "../../core/stringfunc.hpp"
+#include "../../maths/matrix.hpp"
 
 #include <iostream>
 #include <fstream>

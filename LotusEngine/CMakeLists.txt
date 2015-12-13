@@ -33,6 +33,8 @@ file(GLOB_RECURSE SRCS
 add_library(LotusEngine STATIC ${HDRS} ${SRCS})
 
 find_package(OpenGL REQUIRED)
+include(${LotusEngine_SOURCE_DIR}/../cmake/FindGLFW3.cmake)
+include(${LotusEngine_SOURCE_DIR}/../cmake/FindGLEW.cmake)
 
 include_directories(
 	${LotusEngine_SOURCE_DIR}/headers
@@ -42,6 +44,6 @@ include_directories(
 
 target_link_libraries( LotusEngine
 	${OPENGL_LIBRARIES}
-	${LotusEngine_SOURCE_DIR}/ext/lib/libGLEW.1.12.0.dylib
-	${LotusEngine_SOURCE_DIR}/ext/lib/libglfw3.3.1.dylib
+	${GLEW_LIBRARIES}
+	${GLFW3_LIBRARIES}
 )

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "irenderer.hpp"
-#include "../shader.hpp"
+#include "../shaders/shader.hpp"
 #include "../../core/profiling.hpp"
 #include "../../components/renderablecomponent.hpp"
 

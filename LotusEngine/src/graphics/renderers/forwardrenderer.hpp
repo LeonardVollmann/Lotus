@@ -18,9 +18,6 @@ private:
 	Shader m_directionalShader;
 	Shader m_pointShader;
 	Shader m_spotShader;
-	Shader m_shadowMapShader;
-
-	Texture *m_shadowMap;
 
 	AmbientLight m_ambientLight;
 	std::vector<DirectionalLight *> m_directionalLights;
