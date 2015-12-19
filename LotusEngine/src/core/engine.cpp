@@ -30,7 +30,6 @@ void Engine::setGame(IGame *game)
 
 void Engine::initSubsystems() const
 {
-	graphics::Shader::initShaders();
 }
 
 void Engine::start()

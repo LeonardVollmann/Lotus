@@ -7,7 +7,7 @@ namespace graphics
 {
 
 WaterRenderer::WaterRenderer()
-: m_shader("water")
+: m_shader("water", "water_vs.glsl", "water_fs.glsl")
 , m_renderTimer("WaterRenderer Render Time")
 {
 }

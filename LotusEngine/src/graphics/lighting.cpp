@@ -25,7 +25,7 @@ Attenuation::Attenuation(const maths::vec3f &attenuation)
 
 const AmbientLight *AmbientLight::CURRENT;
 
-void AmbientLight::getUniformLocations(const ShaderResource *shader,
+void AmbientLight::getUniformLocations(const Shader *shader,
                                        const std::string &name,
                                        GLuint *locations)
 {
@@ -66,7 +66,7 @@ BaseLight::BaseLight(const maths::vec3f &color, float intensity)
 
 const DirectionalLight *DirectionalLight::CURRENT;
 
-void DirectionalLight::getUniformLocations(const ShaderResource *shader,
+void DirectionalLight::getUniformLocations(const Shader *shader,
                                            const std::string &name,
                                            GLuint *locations)
 {
@@ -110,7 +110,7 @@ void DirectionalLight::bind() const
 
 const PointLight *PointLight::CURRENT;
 
-void PointLight::getUniformLocations(const ShaderResource *shader,
+void PointLight::getUniformLocations(const Shader *shader,
                                      const std::string &name,
                                      GLuint *locations)
 {
@@ -188,7 +188,7 @@ float PointLight::calcRange(const PointLight &pointLight)
 
 const SpotLight *SpotLight::CURRENT;
 
-void SpotLight::getUniformLocations(const ShaderResource *shader,
+void SpotLight::getUniformLocations(const Shader *shader,
                                     const std::string &name,
                                     GLuint *locations)
 {

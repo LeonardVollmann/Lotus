@@ -14,7 +14,6 @@ namespace graphics
 #define COLOR_DEPTH 256
 
 class Shader;
-class ShaderResource;
 
 class Attenuation
 {
@@ -46,7 +45,7 @@ private:
 
 public:
 	static void
-	getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
+	getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations);
 	static void setUniformValues(const Shader *shader, GLuint *locations);
 
 	AmbientLight(const maths::vec3f &light);
@@ -85,7 +84,7 @@ protected:
 
 public:
 	static void
-	getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
+	getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations);
 	static void setUniformValues(const Shader *shader, GLuint *locations);
 
 	DirectionalLight();
@@ -112,7 +111,7 @@ protected:
 
 public:
 	static void
-	getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
+	getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations);
 	static void setUniformValues(const Shader *shader, GLuint *locations);
 
 	PointLight();
@@ -150,7 +149,7 @@ private:
 
 public:
 	static void
-	getUniformLocations(const ShaderResource *shader, const std::string &name, GLuint *locations);
+	getUniformLocations(const Shader *shader, const std::string &name, GLuint *locations);
 	static void setUniformValues(const Shader *shader, GLuint *locations);
 
 	SpotLight();

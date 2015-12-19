@@ -7,10 +7,10 @@ namespace graphics
 {
 
 ForwardRenderer::ForwardRenderer()
-: m_ambientShader("forward_ambient")
-, m_directionalShader("forward_directional")
-, m_pointShader("forward_point")
-, m_spotShader("forward_spot")
+: m_ambientShader("forward_ambient", "forward_ambient_vs.glsl", "forward_ambient_fs.glsl")
+, m_directionalShader("forward_directional", "forward_vs.glsl", "forward_directional_fs.glsl")
+, m_pointShader("forward_point", "forward_vs.glsl", "forward_point_fs.glsl")
+, m_spotShader("forward_spot", "forward_vs.glsl", "forward_spot_fs.glsl")
 , m_ambientLight(0.0f)
 , m_renderTimer("ForwardRenderer Render Time")
 {

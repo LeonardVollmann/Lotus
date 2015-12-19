@@ -9,18 +9,18 @@ namespace lotus
 {
 namespace graphics
 {
-ShaderResource::ShaderResource(const std::string &name,
-                               const std::string &vShader,
-                               const std::string &fShader,
-                               const std::string &gShader)
-: Resource(name)
+Shader::Shader(const std::string &name,
+               const std::string &vShader,
+               const std::string &fShader,
+               const std::string &gShader)
+: m_name(name)
 {
 	m_program = glCreateProgram();
-	addShaders(name, vShader, fShader, gShader);
+	addShaders(vShader, fShader, gShader);
 	compile();
 }
 
-ShaderResource::~ShaderResource()
+Shader::~Shader()
 {
 	for (auto it = m_uniforms.begin(); it < m_uniforms.end(); it++)
 	{
@@ -36,7 +36,7 @@ ShaderResource::~ShaderResource()
 	glDeleteProgram(m_program);
 }
 
-std::string ShaderResource::preprocess(const std::string &shaderSource)
+std::string Shader::preprocess(const std::string &shaderSource)
 {
 	std::string result;
 	char *ctext = new char[shaderSource.size() + 1];
@@ -82,9 +82,7 @@ std::string ShaderResource::preprocess(const std::string &shaderSource)
 	return result;
 }
 
-GLuint ShaderResource::createShader(const std::string &text,
-                                    const std::string &fileName,
-                                    GLenum shaderType)
+GLuint Shader::createShader(const std::string &text, const std::string &fileName, GLenum shaderType)
 {
 	GLuint shader = glCreateShader(shaderType);
 	if (shader == 0)
@@ -108,10 +106,10 @@ GLuint ShaderResource::createShader(const std::string &text,
 	return shader;
 }
 
-void ShaderResource::checkShaderError(GLuint shader,
-                                      GLuint flag,
-                                      bool isProgram,
-                                      const std::string &errorMessage)
+void Shader::checkShaderError(GLuint shader,
+                              GLuint flag,
+                              bool isProgram,
+                              const std::string &errorMessage)
 {
 	GLint success      = 0;
 	GLchar error[1024] = {0};
@@ -140,7 +138,7 @@ void ShaderResource::checkShaderError(GLuint shader,
 	}
 }
 
-std::string ShaderResource::loadShaderSource(const std::string &fileName)
+std::string Shader::loadShaderSource(const std::string &fileName)
 {
 	std::string result;
 	std::ifstream file;
@@ -165,44 +163,55 @@ std::string ShaderResource::loadShaderSource(const std::string &fileName)
 	return result;
 }
 
-void ShaderResource::addShaders(const std::string &name,
-                                const std::string &vShader,
-                                const std::string &fShader,
-                                const std::string &gShader)
+void Shader::addShaders(const std::string &vShader,
+                        const std::string &fShader,
+                        const std::string &gShader)
 {
-	addVertexShader(name, loadShaderSource((vShader != "" ? vShader : name) + "_vs.glsl"));
-	addFragmentShader(name, loadShaderSource((fShader != "" ? fShader : name) + "_fs.glsl"));
-	addGeometryShader(name, loadShaderSource((gShader != "" ? gShader : name) + "_gs.glsl"));
+	if (vShader != "")
+	{
+		addVertexShader(vShader);
+	}
+	if (fShader != "")
+	{
+		addFragmentShader(fShader);
+	}
+	if (gShader != "")
+	{
+		addGeometryShader(gShader);
+	}
 }
 
-void ShaderResource::addVertexShader(const std::string &name, const std::string &source)
+void Shader::addVertexShader(const std::string &fileName)
 {
+	std::string source = loadShaderSource(fileName);
 	if (source.size() == 0)
 		return;
-	GLuint shader = createShader(preprocess(source), name, GL_VERTEX_SHADER);
+	GLuint shader = createShader(preprocess(source), fileName, GL_VERTEX_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[0] = shader;
 }
 
-void ShaderResource::addFragmentShader(const std::string &name, const std::string &source)
+void Shader::addFragmentShader(const std::string &fileName)
 {
+	std::string source = loadShaderSource(fileName);
 	if (source.size() == 0)
 		return;
-	GLuint shader = createShader(preprocess(source), name, GL_FRAGMENT_SHADER);
+	GLuint shader = createShader(preprocess(source), fileName, GL_FRAGMENT_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[0] = shader;
 }
 
-void ShaderResource::addGeometryShader(const std::string &name, const std::string &source)
+void Shader::addGeometryShader(const std::string &fileName)
 {
+	std::string source = loadShaderSource(fileName);
 	if (source.size() == 0)
 		return;
-	GLuint shader = createShader(preprocess(source), name, GL_GEOMETRY_SHADER);
+	GLuint shader = createShader(preprocess(source), fileName, GL_GEOMETRY_SHADER);
 	glAttachShader(m_program, shader);
 	m_shaders[0] = shader;
 }
 
-void ShaderResource::compile()
+void Shader::compile()
 {
 	glLinkProgram(m_program);
 	checkShaderError(
@@ -217,7 +226,7 @@ void ShaderResource::compile()
 	addAllUniforms();
 }
 
-void ShaderResource::addAllUniforms() const
+void Shader::addAllUniforms() const
 {
 	for (auto it = m_uniformTypes.begin(); it != m_uniformTypes.end(); it++)
 	{
@@ -233,7 +242,7 @@ void ShaderResource::addAllUniforms() const
 	m_samplers.clear();
 }
 
-void ShaderResource::addUniform(const std::string &uniform, const std::string &type) const
+void Shader::addUniform(const std::string &uniform, const std::string &type) const
 {
 	std::vector<std::string> tokens = tokenize(uniform, '_');
 
@@ -379,43 +388,21 @@ void ShaderResource::addUniform(const std::string &uniform, const std::string &t
 	}
 }
 
-void ShaderResource::addSampler(const std::string &uniform)
+void Shader::addSampler(const std::string &uniform)
 {
 	m_samplers.push_back(uniform);
 }
 
-void Shader::initShaders()
-{
-	ResourceManager::create<ShaderResource>(
-	    "forward_ambient", false, "forward", "forward_ambient");
-	ResourceManager::create<ShaderResource>(
-	    "forward_directional", false, "forward", "forward_directional");
-	ResourceManager::create<ShaderResource>(
-	    "forward_point", false, "forward", "forward_point");
-	ResourceManager::create<ShaderResource>("forward_spot", false, "forward", "forward_spot");
-}
-
-Shader::Shader(const std::string &name)
-{
-	m_shaderResource = ResourceManager::get<ShaderResource>(name);
-}
-
-Shader::~Shader()
-{
-	m_shaderResource->removeReference();
-}
-
 void Shader::bind() const
 {
-	glUseProgram(m_shaderResource->getShaderProgram());
+	glUseProgram(getShaderProgram());
 }
 
 void Shader::updateUniforms() const
 {
-	for (auto it = m_shaderResource->m_uniforms.begin(); it < m_shaderResource->m_uniforms.end();
-	     it++)
+	for (auto uniform : m_uniforms)
 	{
-		(*it)->update(this);
+		uniform->update(this);
 	}
 }
 
